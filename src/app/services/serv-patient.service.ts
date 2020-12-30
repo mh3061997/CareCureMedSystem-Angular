@@ -9,7 +9,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServPatientService {
-  addpatientmedimage(mi: ResMedImage, patientTry: ResPatient) {
+
+  constructor(private http:HttpClient) { }
+
+  //Add a medical image to patient record
+  addPatientMedImage(mi: ResMedImage, patientTry: ResPatient) {
     const obj = {
       code:mi.code,
       image:mi.image,
@@ -30,17 +34,29 @@ export class ServPatientService {
     });
   }
 
-  medimagesarr:ResMedImage[];
 
-  constructor(private http:HttpClient) { }
+  //get all patients
+  getPatientsAll(){
 
-  getMedImages():Observable<ResMedImage[]> {
+  }
+
+  //get Patient by ID
+  getPatientByID(code:number){
+
+  }
+
+  //Add a new patient
+  addPatient(newPatient:ResPatient){}
   
-   return  this.http
-     .get<ResMedImage[]>('http://localhost:8080/medImage');
+  //update an existing patient
+  updatePatient(updatedPatient:ResPatient){
 
- }
+  }
  
+  //Delete an existing patient with all his history and related entities
+  deletePatient(code:number){}
+
+
 
 }
 

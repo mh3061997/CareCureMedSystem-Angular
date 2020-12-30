@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientComponent implements OnInit {
 
-  constructor() { }
+  constructor() {console.log("hello") }
 
   ngOnInit(): void {
   }

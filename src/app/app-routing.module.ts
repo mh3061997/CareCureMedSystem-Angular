@@ -8,9 +8,9 @@ import { PatientComponent } from './components/patient/patient/patient.component
 import { PatientpageComponent } from './components/patient/patientpage/patientpage.component';
 
 const routes: Routes = [{
-  path:"patient",component:PatientpageComponent,children:[{
-    path:":id",component:PatientComponent
-  }]
+  path:"patient",component:PatientpageComponent},
+    {path:"patient/:id",component:PatientComponent
+  
 },{
   path:"doctor",component:DoctorpageComponent,children:[{
     path:":id",component:DoctorComponent
