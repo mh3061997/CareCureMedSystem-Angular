@@ -23,7 +23,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { PatienttableComponent} from './components/patient/patienttable/patienttable/patienttable.component'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +44,9 @@ import { MatListModule } from '@angular/material/list';
     NotFoundComponent,
     RegisterUserComponent,
     LoginComponent,
-    NavBarSideComponent
- 
+    NavBarSideComponent,
+    PatienttableComponent
+     
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,12 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
