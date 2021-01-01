@@ -1,6 +1,74 @@
-<mat-card>
-    <mat-card-header>
-<mat-card-title>Patient Information</mat-card-title>
-    </mat-card-header>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi perspiciatis iste porro vitae, rem quas veritatis eius modi molestiae sapiente dignissimos error officia minima quidem temporibus repellat? Cupiditate, nam ad.</p>
-</mat-card>
+<div id="bg-patient" class=" p-4 mb-0 pb-0" style="color:white!important;">
+    
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-10 col-lg-7">
+                <h1 class="display-2">Welcome to the patient page</h1>
+            <p>Here you will find all the information about the patient, his appointments and package memberships.</p>
+            </div>
+        </div>
+
+  
+</div>
+
+</div>
+<div class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
+    <div class="row justify-content-center ">
+        <div class="col-md-10">
+
+            <div class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <h3 class="mb-0">Patient Information</h3>
+                </div>
+               <div class="row p-4">
+                <div class="card-body  justify-content-center ">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Name</p>
+                            <p>{{patient.name}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Code</p>
+                            <p>{{patient.code}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Age</p>
+                            <p>{{patient.age}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Mobile</p>
+                            <p>{{patient.mobile}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Email</p>
+                            <p>{{patient.email}}</p>
+                        </div>
+                        
+                    </div>
+
+                    <div class="">
+                        <hr class="my-4"/>
+    
+                    </div>
+                    <div class="card-header  bg-white p-3">
+                        <h3 class="mb-0">Appointments</h3>
+                    </div>
+                    <app-appointment-patient-table *ngIf="appointmentArr" [appointments]="appointmentArr" ></app-appointment-patient-table>
+
+                </div>
+             
+               </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

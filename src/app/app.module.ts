@@ -29,10 +29,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { PatienttableComponent} from './components/patient/patienttable/patienttable/patienttable.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCardModule} from '@angular/material/card';
-
+import { AppointmentPatientTableComponent } from './components/tables/appointment-patient-table/appointment-patient-table.component';
+import { AppointmentDoctorTableComponent } from './components/tables/appointment-doctor-table/appointment-doctor-table.component';
+import { AppointmentTableComponent } from './components/tables/appointment-table/appointment-table.component';
+import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor'
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import {MatCardModule} from '@angular/material/card';
     RegisterUserComponent,
     LoginComponent,
     NavBarSideComponent,
-    PatienttableComponent
+    PatienttableComponent,
+    AppointmentPatientTableComponent,
+    AppointmentDoctorTableComponent,
+    AppointmentTableComponent
      
   ],
   imports: [
@@ -72,7 +78,11 @@ import {MatCardModule} from '@angular/material/card';
     FontAwesomeModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
