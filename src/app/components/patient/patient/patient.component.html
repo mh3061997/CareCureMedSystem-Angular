@@ -12,11 +12,11 @@
 </div>
 
 </div>
-<div class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
+<div *ngIf="patient" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
     <div class="row justify-content-center ">
         <div class="col-md-10">
 
-            <div class="card shadow bg-sec-light text-sm-center">
+            <div  class="card shadow bg-sec-light text-sm-center">
 
 
                 <div class="card-header  bg-white p-3">
@@ -60,7 +60,7 @@
                     <div class="card-header  bg-white p-3">
                         <h3 class="mb-0">Appointments</h3>
                     </div>
-                    <app-appointment-patient-table *ngIf="appointmentArr" [appointments]="appointmentArr" ></app-appointment-patient-table>
+                    <app-appointment-patient-table  [appointments]="patient.appointments"></app-appointment-patient-table>
 
                 </div>
              
