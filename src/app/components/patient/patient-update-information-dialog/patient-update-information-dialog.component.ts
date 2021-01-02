@@ -19,12 +19,13 @@ export class PatientUpdateInformationDialogComponent implements OnInit {
               public dialogRef: MatDialogRef<PatientUpdateInformationDialogComponent>,
               private servPatient:ServPatientService) {
 
-   
     this.patient=data.patient;
   }
               
   updatePatientInformation(updatedPatient:ResPatient){
     
+    console.log(this.updateInfoForm);
+
     this.servPatient.updatePatient(updatedPatient).subscribe(response =>{
 
       this.dialogRef.close();
@@ -45,6 +46,7 @@ export class PatientUpdateInformationDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
 }

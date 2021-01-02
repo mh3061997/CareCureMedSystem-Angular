@@ -42,6 +42,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PatientUpdateInformationDialogComponent } from './components/patient/patient-update-information-dialog/patient-update-information-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { PatientAddNewDialogComponent } from './components/patient/patient-add-new-dialog/patient-add-new-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { FormsModule } from '@angular/forms';
     AppointmentTableComponent,
     MembershipPatientTableComponent,
     PatientAddMembershipDialogComponent,
-    PatientUpdateInformationDialogComponent
+    PatientUpdateInformationDialogComponent,
+    PatientAddNewDialogComponent
      
   ],
   imports: [
@@ -97,7 +99,8 @@ import { FormsModule } from '@angular/forms';
   }],
   entryComponents: [
     PatientAddMembershipDialogComponent,
-    PatientUpdateInformationDialogComponent
+    PatientUpdateInformationDialogComponent,
+    PatientAddNewDialogComponent
   ],
   bootstrap: [AppComponent]
 })

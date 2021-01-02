@@ -1,7 +1,7 @@
-<h1 class="mat-dialog-title bg-info ">Update Patient Information</h1>
+<h1 class="mat-dialog-title bg-white ">Add New Patient</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form *ngIf="patient"(ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+    <form  (ngSubmit)="onNewPatientSubmit()"  #newPatientForm="ngForm" >
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
@@ -12,7 +12,7 @@
                         <input  matInput type="text" 
                         name="name"
                         class="form-control"
-                        [ngModel]="patient.name"
+                        ngModel
                         #name="ngModel"
                         required>
                         <span
@@ -27,8 +27,8 @@
                         <label for="input-name" class="form-control-label">Gender</label>
                         <mat-select
                         
-                        [(ngModel)]="patient.gender" 
-                        name="gender"
+                        ngModel
+                         name="gender"
                         class="form-control"
                         required
                          #gender="ngModel">
@@ -54,7 +54,7 @@
                         name="email"
                          matInput type="text" 
                         class="form-control"
-                        [ngModel]="patient.email"
+                        ngModel
                         required
                         email
                         #email="ngModel">
@@ -73,7 +73,7 @@
                         name="mobile"
                          matInput type="text" 
                         class="form-control"
-                        [ngModel]="patient.mobile"
+                        ngModel
                         #mobile = "ngModel"
                         required>
                         <span
@@ -95,7 +95,7 @@
                         name="age"
                         matInput type="text" 
                         class="form-control"
-                        [ngModel]="patient.age"
+                        ngModel
                         #age = "ngModel"
                         required>
                         <span
@@ -110,7 +110,7 @@
                 </div>
                 
             </div>
-            <button class="btn btn-success" [disabled]="!updateInfoForm.valid" type="submit">Update</button>
+            <button class="btn btn-success" [disabled]="!newPatientForm.valid" type="submit">Add</button>
         </div>
     </form>
 </div>

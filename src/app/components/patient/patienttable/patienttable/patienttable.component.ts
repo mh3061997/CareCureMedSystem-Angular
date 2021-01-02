@@ -1,6 +1,6 @@
 
 
-import {AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -37,7 +37,7 @@ const NAMES: string[] = [
     styleUrls: ['./patienttable.component.css']
 
 })
-export class PatienttableComponent implements AfterViewInit {
+export class PatienttableComponent implements AfterViewInit, OnChanges {
 
   
   @Input()
@@ -83,6 +83,14 @@ export class PatienttableComponent implements AfterViewInit {
     console.log(this.route);
     this.router.navigate([code.toString()],{relativeTo:this.route});
   }
+
+  
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['patients']) {
+      this.dataSource = new MatTableDataSource(this.patients);
+    }
+}
 }
 
 
