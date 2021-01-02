@@ -4,8 +4,8 @@ import { ResPatient } from "./res-patient"
 export interface ResAppointment {
     code:number;
     speciality:string;
-    dateCreated:Date;
-    dateToVisit:Date;
+    dateCreated:string;
+    dateToVisit:string;
     status:string;
     notes:string;
     doctor:ResDoctor;

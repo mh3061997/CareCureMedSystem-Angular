@@ -33,13 +33,13 @@ export class PackageAddNewDialogComponent implements OnInit {
 
 onNewPackageSubmit(){
 
-
+  console.log(this.newPackageBaseForm.value);
   const newPackageBase:ResPackageBase = {
     code:0, //code must ALWAYS be 0 when inserting bec. it wont insert if code is existing and 
     //it starts from 1 so 0 always available
     name:this.newPackageBaseForm.value.name,
-    dateCreated:new Date(this.newPackageBaseForm.value.dateCreation).toISOString(), //in correct format after install moment.js
-    dateExpired:this.dateExpiration.value,
+    dateCreated:this.newPackageBaseForm.value.dateCreated.toISOString(), //in correct format after install moment.js
+    dateExpired:this.newPackageBaseForm.value.dateExpired.toISOString(),
     status:this.newPackageBaseForm.value.status,
     price:this.newPackageBaseForm.value.price,
     unitTotal:this.newPackageBaseForm.value.unitTotal,

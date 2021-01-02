@@ -4,7 +4,7 @@ import { ResPatient } from "./res-patient"
 export interface ResMembership {
 
     code:number;
-    dateSubscriped:Date;
+    dateSubscriped:string;
     usedAmount:number;
     remainingAmount:number;
     patient:ResPatient;

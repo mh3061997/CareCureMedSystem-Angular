@@ -34,7 +34,7 @@ export class PatientAddMembershipDialogComponent implements OnInit {
 
     const newMembership:ResMembership = {
       code:0,
-      dateSubscriped:new Date(),
+      dateSubscriped:new Date().toISOString(),
       usedAmount:0,
       remainingAmount:packageBaseChosen.unitTotal,
       patient:this.patient,

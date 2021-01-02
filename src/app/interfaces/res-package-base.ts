@@ -3,8 +3,8 @@ import { ResMembership } from "./res-membership"
 export interface ResPackageBase {
     code:number;
     name:string;
-    dateCreated:Date;
-    dateExpired:Date;
+    dateCreated:string;
+    dateExpired:string;
     status:string;
     price:number;
     unitTotal:number;
