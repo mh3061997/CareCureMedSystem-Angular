@@ -41,11 +41,14 @@ import { PatientAddMembershipDialogComponent } from './components/patient/patien
 import { MatDialogModule } from '@angular/material/dialog';
 import { PatientUpdateInformationDialogComponent } from './components/patient/patient-update-information-dialog/patient-update-information-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientAddNewDialogComponent } from './components/patient/patient-add-new-dialog/patient-add-new-dialog.component';
 import { PackageBaseTableComponent } from './components/packagebase/packagepage/package-base-table/package-base-table.component';
 import { PackageMembershipTableComponent } from './components/packagebase/packagebase/package-membership-table/package-membership-table.component';
-
+import {PackagepageComponent} from './components/packagebase/packagepage/packagepage.component';
+import { PackageAddNewDialogComponent } from './components/packagebase/packagepage/package-add-new-dialog/package-add-new-dialog.component'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +74,9 @@ import { PackageMembershipTableComponent } from './components/packagebase/packag
     PatientUpdateInformationDialogComponent,
     PatientAddNewDialogComponent,
     PackageBaseTableComponent,
-    PackageMembershipTableComponent
+    PackageMembershipTableComponent,
+    PackagepageComponent,
+    PackageAddNewDialogComponent
      
   ],
   imports: [
@@ -94,7 +99,10 @@ import { PackageMembershipTableComponent } from './components/packagebase/packag
     MatCardModule,
     MatDialogModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+  MatDatepickerModule,
+       MatNativeDateModule,
+       ReactiveFormsModule 
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -104,7 +112,8 @@ import { PackageMembershipTableComponent } from './components/packagebase/packag
   entryComponents: [
     PatientAddMembershipDialogComponent,
     PatientUpdateInformationDialogComponent,
-    PatientAddNewDialogComponent
+    PatientAddNewDialogComponent,
+    PackageAddNewDialogComponent
   ],
   bootstrap: [AppComponent]
 })

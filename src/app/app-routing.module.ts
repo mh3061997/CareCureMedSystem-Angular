@@ -6,6 +6,7 @@ import { DoctorComponent } from './components/doctor/doctor/doctor.component';
 import { DoctorpageComponent } from './components/doctor/doctorpage/doctorpage.component';
 import { PatientComponent } from './components/patient/patient/patient.component';
 import { PatientpageComponent } from './components/patient/patientpage/patientpage.component';
+import { PackagepageComponent  } from './components/packagebase/packagepage/packagepage.component'
 
 const routes: Routes = [{
   path:"patient",component:PatientpageComponent},
@@ -19,6 +20,8 @@ const routes: Routes = [{
   path:"appointment",component:AppointmentpageComponent,children:[{
     path:":id",component:AppointmentComponent
   }]
+},{
+  path:"packagebases",component:PackagepageComponent
 }];
 
 @NgModule({

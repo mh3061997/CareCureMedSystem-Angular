@@ -1,1 +1,25 @@
-<p>packagepage works!</p>
+<div id="packageinfo" class="m-0 p-5 container justify-content-center" >
+    
+
+    <div  class="text-left  text-white mb-4">
+    
+        <div class="row">
+            <div class="col-lg-7 col-md-10 text-danger">
+                <h1>Packages Information</h1>
+                <p class="mt-0 mb-5 text-danger">Welcome to the Packages page. Here you will find all the package offers.</p>
+
+            </div> 
+           
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="openNewPackageDialog()" >Add New Package</button>
+
+        </div>
+    </div>
+
+    <div class="row bg-sec-light">
+        <div *ngIf="packageBases" class="col-sm-12">
+            <app-package-base-table  [packages]="packageBases"></app-package-base-table>
+        </div>
+    </div>
+</div>

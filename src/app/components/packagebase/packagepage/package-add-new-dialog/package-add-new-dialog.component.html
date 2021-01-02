@@ -1,0 +1,141 @@
+<h1 class="mat-dialog-title bg-white ">Add New Package</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form (ngSubmit)="onNewPackageSubmit()" #newPackageBaseForm="ngForm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput type="text" name="name" class="form-control" ngModel #name="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name
+                                !<br></span>
+
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Status</label>
+                            <mat-select ngModel name="status" class="form-control" required #status="ngModel">
+                                <span class="form-text text-muted" *ngIf="status.touched && status.invalid">Please enter
+                                    status !<br></span>
+                                <mat-option value="Ongoing">Ongoing</mat-option>
+                                <mat-option value="Expired">Expired</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Price</label>
+                            <input name="price" matInput type="text" class="form-control" ngModel required
+                                #price="ngModel">
+                            <span class="form-text text-muted" *ngIf="price.touched && price.invalid">Please enter price
+                                !<br></span>
+
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Units</label>
+                            <input name="unitTotal" matInput type="text" class="form-control" ngModel
+                                #unitTotal="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="unitTotal.touched && unitTotal.invalid">Please
+                                enter Number of units !<br></span>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Type</label>
+                            <input name="type" 
+                            matInput 
+                            type="text"
+                             class="form-control" 
+                             ngModel
+                              #type="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter type
+                                !<br></span>
+
+
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose Creation Date</mat-label>
+                            <input 
+                            matInput
+                           name="dateCreation"
+
+                           required
+                           ngModel
+                           #dateCreation="ngModel"
+
+                             [matDatepicker]="dp1">
+                             
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker 
+                            required
+                            #dp1 ></mat-datepicker>
+                    
+                        </mat-form-field>
+                      
+
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose Expiration Date</mat-label>
+                            <input 
+                            matInput
+                            required
+                            
+                            name="dateExpiration"
+                            ngModel
+                           #dateExpiration="ngModel"
+                             [matDatepicker]="dp2"
+                             >
+                            <mat-datepicker-toggle  matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker required #dp2></mat-datepicker>
+                    
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <button class="btn btn-success" [disabled]="!newPackageBaseForm.valid" type="submit">Add</button>
+        </div>
+    </form>
+</div>
