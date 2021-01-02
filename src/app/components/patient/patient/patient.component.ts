@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ResAppointment } from 'src/app/interfaces/res-appointment';
+import { ResMembership } from 'src/app/interfaces/res-membership';
 import { ResPatient } from 'src/app/interfaces/res-patient';
 import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
 import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
+import { ServPatientService } from 'src/app/services/serv-patient.service';
+import {MatDialog} from '@angular/material/dialog';
+import { PatientAddMembershipDialogComponent } from '../patient-add-membership-dialog/patient-add-membership-dialog.component';
+import { PatientUpdateInformationDialogComponent } from '../patient-update-information-dialog/patient-update-information-dialog.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-patient',
@@ -10,64 +17,67 @@ import { ServPackageBaseService } from 'src/app/services/serv-package-base.servi
   styleUrls: ['./patient.component.css']
 })
 export class PatientComponent implements OnInit {
-  patient:ResPatient = {
-    code: 9,
-      name: "mohammed Ali ",
-      gender: "male",
-      email: "mh@gmail.com",
-      mobile: "0111457920",
-      age: 22,
-      notes: "high hjghg pressure",
-      memberships:[],
-      appointments:[],
-      medImages:[]
-  };
+  
+  patient:ResPatient;
+  patientId:number;
 
-//   appointmentArr:ResAppointment[] = [
-//     {
-//         code: 2,
-//         speciality: "laser",
-//         dateCreated: new Date("2017-01-01T02:02:58.000+00:00"),
-//         dateToVisit: new Date("2020-05-08T17:54:20.000+00:00"),
-//         status: "res only",
-//         notes: "vip",
-//         doctor: {
-//             code: 3,
-//             name: "haitham ",
-//             mobile: "012987456",
-//             email: "mh@gmail.com",
-//             gender: "male",
-//             age: 22,
-//             speciality: "heart",
-//             appointments: []
-//         },
-//       patient: {
-//             code: 1,
-//             name: "oka  ali mohamed",
-//             gender: "male",
-//             email: "mh@gmail.com",
-//             mobile: "0111457920",
-//             age: 22,
-//             notes: "high blood pressure",
-//             memberships: [],
-//             appointments: [],
-//             medImages: []
-//     }
-//   }
-// ]
 
-appointmentArr:ResAppointment[];
+  
+  constructor(public dialogAddMembership:MatDialog,public dialogUpdatePatientInformation:MatDialog,private currentRoute:ActivatedRoute,private servPatient:ServPatientService) {
 
-  constructor(private servAppointment:ServAppointmentService) {
-    servAppointment.getAppointmentsAll().subscribe(arr =>{
-    this.appointmentArr = arr;
-    console.log(this.appointmentArr);2
-    },error=>{
-      console.log(error);
+    this.getPatientCode();
+
+    servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+
+    this.patient = patient;
+    console.log(this.patient);
     });
+  }
+
+  private getPatientCode(){
+  this.patientId = this.currentRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
   }
+
+
+ 
+  openUpdatePatientInformationDialog(){
+   const dialogRef =  this.dialogUpdatePatientInformation.open(PatientUpdateInformationDialogComponent,{
+      data:{
+        patient:this.patient
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(closed =>{
+   
+      this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+
+        this.patient = patient;
+        });
+
+    });
+  
+  }
+
+  openMembershipDialog(){
+    const dialogRef =  this.dialogAddMembership.open(PatientAddMembershipDialogComponent,{
+       data:{
+         patient:this.patient
+       }
+     });
+   
+     dialogRef.afterClosed().subscribe(closed =>{
+    
+       this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+ 
+         this.patient = patient;
+         });
+ 
+     });
+   
+   }
+  
 
 }

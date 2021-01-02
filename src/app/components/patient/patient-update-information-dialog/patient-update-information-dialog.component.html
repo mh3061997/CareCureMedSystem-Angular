@@ -1,0 +1,86 @@
+<h1 class="mat-dialog-title bg-info ">Update Patient Information</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form *ngIf="patient"(ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>   
+
+                        <label for="input-name" class="form-control-label">Name</label>
+                        <input  matInput type="text" 
+                        name="name"
+                        class="form-control"
+                        [ngModel]="patient.name">
+                        
+                    </mat-form-field> 
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field> 
+                        <label for="input-name" class="form-control-label">Gender</label>
+                        <mat-select
+                        
+                        [(ngModel)]="patient.gender" 
+                        name="gender"
+                        class="form-control">
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                        </mat-select >
+                    </mat-form-field> 
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field> 
+
+                        <label for="input-name" class="form-control-label">Email</label>
+                        <input
+                        name="email"
+                         matInput type="text" 
+                        class="form-control"
+                        [ngModel]="patient.email">
+                    </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field> 
+
+                        <label for="input-name" class="form-control-label">Mobile</label>
+                        <input
+                        name="mobile"
+                         matInput type="text" 
+                        class="form-control"
+                        [ngModel]="patient.mobile">
+                    </mat-form-field>
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field> 
+
+                        <label for="input-name" class="form-control-label">Age</label>
+                        <input 
+                        name="age"
+                        matInput type="text" 
+                        class="form-control"
+                        [ngModel]="patient.age">
+                    </mat-form-field>
+
+                    </div>
+
+                </div>
+                
+            </div>
+            <button class="btn btn-success" type="submit">Update</button>
+        </div>
+    </form>
+</div>

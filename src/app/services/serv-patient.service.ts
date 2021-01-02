@@ -36,12 +36,12 @@ export class ServPatientService {
   
   //update an existing Patient
   updatePatient(updatedPatient:ResPatient){
-  return this.http.put(this.servPath.getPathPatient(),updatedPatient);
+  return this.http.put(this.servPath.getPathPatient()+"/"+updatedPatient.code.toString(),updatedPatient);
   }
  
   //Delete an existing Patient with all his history and related entities
   deletePatient(code:number){
-    return this.http.delete(this.servPath.getPathPatient()+"/"+"code")
+    return this.http.delete(this.servPath.getPathPatient()+"/"+code.toString())
   }
 
 

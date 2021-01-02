@@ -20,7 +20,13 @@
 
 
                 <div class="card-header  bg-white p-3">
-                    <h3 class="mb-0">Patient Information</h3>
+                    <div class="container-fluid">
+                        <div class="row justify-content-end align-middle ">
+                            <h3 class="mb-0 col-6 ">Patient Information</h3>
+                            <button class="btn btn-info col-3" (click)="openUpdatePatientInformationDialog()" >Update Information</button>
+                        </div>
+                    </div>
+                 
                 </div>
                <div class="row p-4">
                 <div class="card-body  justify-content-center ">
@@ -50,7 +56,10 @@
                             <p class="form-control-label">Email</p>
                             <p>{{patient.email}}</p>
                         </div>
-                        
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Gender</p>
+                            <p>{{patient.gender}}</p>
+                        </div>
                     </div>
 
                     <div class="">
@@ -61,6 +70,20 @@
                         <h3 class="mb-0">Appointments</h3>
                     </div>
                     <app-appointment-patient-table  [appointments]="patient.appointments"></app-appointment-patient-table>
+
+                    <hr class="my-4"/>
+
+                    <div class="card-header  bg-white p-3">
+                        <div class="container-fluid">
+                            <div class="row justify-content-end align-middle ">
+                                <h3 class="mb-0 col-6 ">Package Memberships</h3>
+                                <button class="btn btn-success col-3" (click)="openMembershipDialog()">Add Membership</button>
+                            </div>
+                        </div>
+                       
+                       
+                    </div>
+                    <app-membership-patient-table  [memberships]="patient.memberships"></app-membership-patient-table>
 
                 </div>
              

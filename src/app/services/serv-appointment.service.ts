@@ -30,7 +30,7 @@ export class ServAppointmentService {
   
   //update an existing Appointment
   updateAppointment(updatedAppointment:ResAppointment){
-  return this.http.put(this.servPath.getPathAppointment(),updatedAppointment);
+  return this.http.put(this.servPath.getPathAppointment()+"/"+updatedAppointment.code.toString(),updatedAppointment);
   }
  
   //Delete an existing Appointment with all his history and related entities

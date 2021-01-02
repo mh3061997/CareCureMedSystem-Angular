@@ -35,7 +35,13 @@ import {MatCardModule} from '@angular/material/card';
 import { AppointmentPatientTableComponent } from './components/tables/appointment-patient-table/appointment-patient-table.component';
 import { AppointmentDoctorTableComponent } from './components/tables/appointment-doctor-table/appointment-doctor-table.component';
 import { AppointmentTableComponent } from './components/tables/appointment-table/appointment-table.component';
-import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor'
+import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor';
+import { MembershipPatientTableComponent } from './components/tables/membership-patient-table/membership-patient-table.component';
+import { PatientAddMembershipDialogComponent } from './components/patient/patient-add-membership-dialog/patient-add-membership-dialog.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { PatientUpdateInformationDialogComponent } from './components/patient/patient-update-information-dialog/patient-update-information-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -56,7 +62,10 @@ import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor'
     PatienttableComponent,
     AppointmentPatientTableComponent,
     AppointmentDoctorTableComponent,
-    AppointmentTableComponent
+    AppointmentTableComponent,
+    MembershipPatientTableComponent,
+    PatientAddMembershipDialogComponent,
+    PatientUpdateInformationDialogComponent
      
   ],
   imports: [
@@ -76,13 +85,20 @@ import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor'
     MatInputModule,
     HttpClientModule,
     FontAwesomeModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorInterceptor,
     multi: true
   }],
+  entryComponents: [
+    PatientAddMembershipDialogComponent,
+    PatientUpdateInformationDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

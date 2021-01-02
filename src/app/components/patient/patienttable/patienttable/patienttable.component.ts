@@ -1,6 +1,6 @@
 
 
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -8,6 +8,7 @@ import { ResMedImage } from 'src/app/interfaces/res-med-image';
 import { ResMembership } from 'src/app/interfaces/res-membership';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
 import {ResPatient} from 'src/app/interfaces/res-patient'
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface UserData {
   id: string;
@@ -38,112 +39,58 @@ const NAMES: string[] = [
 })
 export class PatienttableComponent implements AfterViewInit {
 
+  
+  @Input()
+  patients:ResPatient[];
 
-  displayedColumns: string[] = ['code', 'dateSubscriped', 'usedAmount', 'remainingAmount'];
-  displayedColumnsMedImage: string[] = ['code', 'image', 'type', 'dateAdded'];
 
-  dataSource: MatTableDataSource<ResMembership>;
-  medimagedatasource:MatTableDataSource<ResMedImage>;
 
-  @ViewChild(MatPaginator) paginator2: MatPaginator;
+  
+  displayedColumns: string[] = ['code', 'name', 'gender', 'email', 'mobile','age',' '];
 
-  @ViewChild(MatSort) sort2: MatSort;
+  dataSource: MatTableDataSource<ResPatient>;
 
-//   constructor(private patientservice:ServPatientService) {
-//     // Create 100 users
-//     const images = Array.from({length: 100}, (_, k) => this.createNewImage());
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-//     this.patientservice.getMedImages().subscribe(arr =>{
-//       // Assign the data to the data source for the table to render
-//     this.medimagedatasource = new MatTableDataSource(arr);
-//     this.medimagedatasource.paginator = this.paginator2;
-//     this.medimagedatasource.sort = this.sort2;
-//   });
+  @ViewChild(MatSort) sort: MatSort;
 
-   
+  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
 
-//     }
-    
-//      patientTry:ResPatient = {
-//       code: 9,
-//       name: "mohamشسيشسيشسيed",
-//       gender: "male",
-//       email: "mh@gmail.com",
-//       mobile: "0111457920",
-//       age: 22,
-//       notes: "high hjghg pressure",
-//       memberships:[],
-//       appointments:[],
-//       medImages:[]
-// };
-
-//   addpatientmedimage (){
-//     const mi:ResMedImage={
-//       code:21,
-//       image:"sdfsdf",
-//       type:"sonar",
-//       dateAdded:new Date(2018,11,11)
-//     };
-//    // this.patientservice.addpatientmedimage(mi,this.patientTry);
-//   }
+  }
+  
   ngAfterViewInit() {
   
+           // Assign the data to the data source for the table to render
+           this.dataSource = new MatTableDataSource(this.patients);
+           this.dataSource.paginator = this.paginator;
+           this.dataSource.sort = this.sort;
      // If the user changes the sort order, reset back to the first page.
-    // this.sort2.sortChange.subscribe(() => this.paginator2.pageIndex = 0);
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.cdr.detectChanges();
+
   }
 
-//   applyFilter(event: Event) {
-//     const filterValue = (event.target as HTMLInputElement).value;
-//     this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-//     if (this.dataSource.paginator) {
-//       this.dataSource.paginator.firstPage();
-//     }
-//   }
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
-
-// /** Builds and returns a new User. */
-//  createNewUser(id: number): UserData {
-//   const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-//       NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-//   };
-// }
-//  createNewImage():ResMedImage{
-//   return {code:Math.floor(Math.random()*100),
-//   image:"string",
-//   type:"string",
-//   dateAdded: new Date(2018, 11, 24, 10, 33, 30)};
-// }
-
-//  createNewMembership(id: number): ResMembership {
-
-//   return {
-//     code:Math.floor(Math.random()*100),
-//     dateSubscriped:new  Date(2018, 11, 24, 10, 33, 30),
-//     usedAmount:Math.floor(Math.random()*1000),
-//     remainingAmount:Math.floor(Math.random()*1000),
-//     patient:{  code:12,
-//       name:"sdf",
-//       gender:"string",
-//       email:"string",
-//       mobile:"string",
-//       age:234,
-//       notes:"string",
-//       memberships:new Array(),
-//       appointments:new Array(),
-//       medImages:new Array()}
-//   };
-// }
-
-
-//   clicker() {
-//  // this.patientservice.getMedImages();
-//   }
-
+  goToPatient(code:number){
+    console.log(this.route);
+    this.router.navigate([code.toString()],{relativeTo:this.route});
+  }
 }
+
+
+
+
+ 
+   
+
+
+
+

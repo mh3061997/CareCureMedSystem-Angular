@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ResPatient } from 'src/app/interfaces/res-patient';
+import { ServPatientService } from 'src/app/services/serv-patient.service';
 
 @Component({
   selector: 'app-patientpage',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientpageComponent implements OnInit {
   
-  constructor() { }
+  patients:ResPatient[];
+
+  constructor(servPatient:ServPatientService) { 
+    servPatient.getPatientsAll().subscribe(patients =>{
+
+      this.patients = patients;
+    });
+  }
 
   ngOnInit(): void {
   }

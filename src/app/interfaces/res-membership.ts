@@ -1,3 +1,4 @@
+import { ResPackageBase } from "./res-package-base";
 import { ResPatient } from "./res-patient"
 
 export interface ResMembership {
@@ -7,4 +8,5 @@ export interface ResMembership {
     usedAmount:number;
     remainingAmount:number;
     patient:ResPatient;
+    packageBase:ResPackageBase;
 }

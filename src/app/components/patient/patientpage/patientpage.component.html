@@ -1,4 +1,4 @@
-<!-- <div id="patientInfo" class="m-0 p-5 container justify-content-center" >
+<div id="patientInfo" class="m-0 p-5 container justify-content-center" >
     
     <span class="mask bg-gradient-danger opacity-8"></span>
 
@@ -15,8 +15,8 @@
     </div>
 
     <div class="row bg-secondary">
-        <div class="col-sm-12">
-            <app-patienttable></app-patienttable>
+        <div *ngIf="patients" class="col-sm-12">
+            <app-patienttable  [patients]="patients"></app-patienttable>
         </div>
     </div>
-</div> -->
+</div>
