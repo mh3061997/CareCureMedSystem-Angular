@@ -43,6 +43,8 @@ import { PatientUpdateInformationDialogComponent } from './components/patient/pa
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { PatientAddNewDialogComponent } from './components/patient/patient-add-new-dialog/patient-add-new-dialog.component';
+import { PackageBaseTableComponent } from './components/packagebase/packagepage/package-base-table/package-base-table.component';
+import { PackageMembershipTableComponent } from './components/packagebase/packagebase/package-membership-table/package-membership-table.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { PatientAddNewDialogComponent } from './components/patient/patient-add-n
     MembershipPatientTableComponent,
     PatientAddMembershipDialogComponent,
     PatientUpdateInformationDialogComponent,
-    PatientAddNewDialogComponent
+    PatientAddNewDialogComponent,
+    PackageBaseTableComponent,
+    PackageMembershipTableComponent
      
   ],
   imports: [
