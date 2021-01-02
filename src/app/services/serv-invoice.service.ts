@@ -1,33 +1,48 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResInvoice } from '../interfaces/res-invoice';
+import { ResInvoice } from 'src/app/interfaces/res-invoice'
+import { Observable } from 'rxjs';
+import { PathService } from './path.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServInvoiceService {
 
-  constructor() { }
+  constructor(private http:HttpClient,private servPath:PathService) { }
 
+  //Get and Delete subscribe inside component
+  //Post and Put subscribe inside service
   
-  //get all Invoices
-  getInvoicesAll(){
+  
 
+  //get all Invoices
+  getInvoicesAll():Observable<ResInvoice[]>{
+    return this.http.get<ResInvoice[]>(this.servPath.getPathInvoice());
   }
 
   //get Invoice by ID
-  getInvoiceByID(code:number){
-
+  getInvoiceByID(code:number):Observable<ResInvoice>{
+    return this.http.get<ResInvoice>(this.servPath.getPathInvoice()+"/"+code);
+  
   }
 
   //Add a new Invoice
-  addInvoice(newInvoice:ResInvoice){}
+  addInvoice(newInvoice:ResInvoice){
+    return this.http.post(this.servPath.getPathInvoice(),newInvoice);
+  }
   
   //update an existing Invoice
   updateInvoice(updatedInvoice:ResInvoice){
-
+  return this.http.put(this.servPath.getPathInvoice()+"/"+updatedInvoice.code.toString(),updatedInvoice);
   }
  
   //Delete an existing Invoice with all his history and related entities
-  deleteInvoice(code:number){}
+  deleteInvoice(code:number){
+    return this.http.delete(this.servPath.getPathInvoice()+"/"+code.toString())
+  }
 
 }
+
+  
+
