@@ -7,6 +7,7 @@ import { DoctorpageComponent } from './components/doctor/doctorpage/doctorpage.c
 import { PatientComponent } from './components/patient/patient/patient.component';
 import { PatientpageComponent } from './components/patient/patientpage/patientpage.component';
 import { PackagepageComponent  } from './components/packagebase/packagepage/packagepage.component'
+import { PackagebaseComponent } from './components/packagebase/packagebase/packagebase.component';
 
 const routes: Routes = [{
   path:"patient",component:PatientpageComponent},
@@ -22,6 +23,8 @@ const routes: Routes = [{
   }]
 },{
   path:"packagebases",component:PackagepageComponent
+},{
+  path:"packagebases/:id",component:PackagebaseComponent
 }];
 
 @NgModule({

@@ -1,1 +1,95 @@
-<p>packagebase works!</p>
+<div id="bg-patient" class=" p-4 mb-0 pb-0" style="color:white!important;">
+    
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-10 col-lg-7">
+                <h1 class="display-2">Welcome to the package page</h1>
+            <p>Here you will find all the information about the package and it's memberships.</p>
+            </div>
+        </div>
+
+  
+</div>
+
+</div>
+<div *ngIf="packageBase" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
+    <div class="row justify-content-center ">
+        <div class="col-md-10">
+
+            <div  class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-end align-middle ">
+                            <h3 class="mb-0 col-6 ">Package Information</h3>
+                            <button class="btn btn-info col-3">Update Information</button>
+                        </div>
+                    </div>
+                 
+                </div>
+               <div class="row p-4">
+                <div class="card-body  justify-content-center ">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Name</p>
+                            <p>{{packageBase.name}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Code</p>
+                            <p>{{packageBase.code}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Date of Creation</p>
+                            <p>{{packageBase.dateCreated}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Date of Expiry</p>
+                            <p>{{packageBase.dateExpired}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Status</p>
+                            <p>{{packageBase.status}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Price</p>
+                            <p>{{packageBase.price}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Units</p>
+                            <p>{{packageBase.unitTotal}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Type</p>
+                            <p>{{packageBase.type}}</p>
+                        </div>
+                    </div>
+                    <div class="">
+                        <hr class="my-4"/>
+    
+                    </div>
+                    <div class="card-header  bg-white p-3">
+                        <h3 class="mb-0">Memberships</h3>
+                    </div>
+                    <app-package-membership-table  [memberships]="packageBase.memberships"></app-package-membership-table>
+
+                 
+                   
+                </div>
+             
+               </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

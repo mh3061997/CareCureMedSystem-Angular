@@ -1,0 +1,12 @@
+#bg-patient {
+    background-image: url(../../../../assets/package-bg.jpg);
+    background-size: cover; 
+    background-position: center top;
+    height:200px;
+
+}
+
+.text-white {
+
+ color:white!important;
+}
