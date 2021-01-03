@@ -33,8 +33,6 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCardModule} from '@angular/material/card';
 import { AppointmentPatientTableComponent } from './components/tables/appointment-patient-table/appointment-patient-table.component';
-import { AppointmentDoctorTableComponent } from './components/tables/appointment-doctor-table/appointment-doctor-table.component';
-import { AppointmentTableComponent } from './components/tables/appointment-table/appointment-table.component';
 import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor';
 import { MembershipPatientTableComponent } from './components/tables/membership-patient-table/membership-patient-table.component';
 import { PatientAddMembershipDialogComponent } from './components/patient/patient-add-membership-dialog/patient-add-membership-dialog.component'
@@ -49,6 +47,8 @@ import {PackagepageComponent} from './components/packagebase/packagepage/package
 import { PackageAddNewDialogComponent } from './components/packagebase/packagepage/package-add-new-dialog/package-add-new-dialog.component'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { DoctorUpdateInformationDialogComponent } from './components/doctor/doctor/doctor-update-information-dialog/doctor-update-information-dialog.component';
+import { DoctorAppointmentTableComponent } from './components/doctor/doctor/doctor-appointment-table/doctor-appointment-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,8 +67,6 @@ import {MatNativeDateModule} from '@angular/material/core';
     NavBarSideComponent,
     PatienttableComponent,
     AppointmentPatientTableComponent,
-    AppointmentDoctorTableComponent,
-    AppointmentTableComponent,
     MembershipPatientTableComponent,
     PatientAddMembershipDialogComponent,
     PatientUpdateInformationDialogComponent,
@@ -76,7 +74,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     PackageBaseTableComponent,
     PackageMembershipTableComponent,
     PackagepageComponent,
-    PackageAddNewDialogComponent
+    PackageAddNewDialogComponent,
+    DoctorUpdateInformationDialogComponent,
+    DoctorAppointmentTableComponent
      
   ],
   imports: [

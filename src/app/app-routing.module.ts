@@ -14,9 +14,9 @@ const routes: Routes = [{
     {path:"patient/:id",component:PatientComponent
   
 },{
-  path:"doctor",component:DoctorpageComponent,children:[{
-    path:":id",component:DoctorComponent
-  }]
+  path:"doctor",component:DoctorpageComponent
+},{
+  path:"doctor/:id",component:DoctorComponent
 },{
   path:"appointment",component:AppointmentpageComponent,children:[{
     path:":id",component:AppointmentComponent

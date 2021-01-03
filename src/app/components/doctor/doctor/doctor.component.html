@@ -1,1 +1,93 @@
-<p>doctor works!</p>
+<div id="bg-Doctor" class=" p-4 mb-0 pb-0" style="color:white!important;">
+    
+    <div class="container text-info">
+        <div class="row">
+            <div class="col-md-10 col-lg-7">
+                <h1 class="display-2">Welcome to the doctor page</h1>
+            <p>Here you will find all the information about the doctor and his appointments.</p>
+            </div>
+        </div>
+
+  
+    </div>
+
+</div>
+<div *ngIf="Doctor" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
+    <div class="row justify-content-center ">
+        <div class="col-md-10">
+
+            <div  class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-end align-middle ">
+                            <h3 class="mb-0 col-6 ">Doctor Information</h3>
+                            <button class="btn btn-info col-3" (click)="openUpdateDoctorInformationDialog()" >Update Information</button>
+                        </div>
+                    </div>
+                 
+                </div>
+               <div class="row p-4">
+                <div class="card-body  justify-content-center ">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Name</p>
+                            <p>{{Doctor.name}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Code</p>
+                            <p>{{Doctor.code}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Age</p>
+                            <p>{{Doctor.age}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Mobile</p>
+                            <p>{{Doctor.mobile}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Email</p>
+                            <p>{{Doctor.email}}</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Gender</p>
+                            <p>{{Doctor.gender}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="form-control-label">Speciality</p>
+                            <p>{{Doctor.speciality}}</p>
+                        </div>
+                    
+                    </div>
+
+                    <div class="">
+                        <hr class="my-4"/>
+    
+                    </div>
+                    <div class="card-header  bg-white p-3">
+                        <h3 class="mb-0">Appointments History</h3>
+                    </div>
+                    <app-doctor-appointment-table  [appointments]="Doctor.appointments"></app-doctor-appointment-table>
+
+                    
+
+                  
+                </div>
+             
+               </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
