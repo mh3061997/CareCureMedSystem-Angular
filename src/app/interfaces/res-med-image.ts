@@ -5,5 +5,8 @@ export interface ResMedImage {
     image:string;
     type:string;
     dateAdded:string;
+    dateMade:string;
+    subType:string;
+    organ:string;
     patient?:ResPatient;
 }

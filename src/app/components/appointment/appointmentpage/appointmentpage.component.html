@@ -1,1 +1,25 @@
-<p>appointmentpage works!</p>
+<div id="appointmentInfo" class="m-0 p-5 container justify-content-center" >
+    
+
+    <div  class="text-left  text-white mb-4">
+    
+        <div class="row">
+            <div class="col-lg-7 col-md-10 text-danger">
+                <h1>Appointment Information</h1>
+                <p class="mt-0 mb-5 bg-gradient-primary">Welcome to the appointment information page. Here you will find all the appointments and  add a new appointment.</p>
+
+            </div> 
+           
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="openNewAppointmentDialog()">Add New Appointment</button>
+
+        </div>
+    </div>
+
+    <div class="row bg-sec-light">
+        <div *ngIf="appointments" class="col-sm-12">
+            <app-appointment-table  [appointments]="appointments"></app-appointment-table>
+        </div>
+    </div>
+</div>

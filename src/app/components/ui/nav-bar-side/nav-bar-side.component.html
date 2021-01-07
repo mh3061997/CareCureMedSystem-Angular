@@ -15,7 +15,7 @@
       
    
     <mat-nav-list class="text-medgray">
-      <a mat-list-item routerLink="patient" routerLinkActive="active">
+      <a mat-list-item routerLink="patient" [queryParams]="{allowedit:'1'}" routerLinkActive="active">
         <fa-icon class="mr-2" [icon]="faProcedures"  style="color:lightcoral;"></fa-icon>
 
                 Patients</a>

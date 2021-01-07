@@ -9,7 +9,7 @@ import { ResMembership } from 'src/app/interfaces/res-membership';
   templateUrl: './package-membership-table.component.html',
   styleUrls: ['./package-membership-table.component.css']
 })
-export class PackageMembershipTableComponent implements OnChanges {
+export class PackageMembershipTableComponent implements OnChanges,AfterViewInit {
 
   @Input()
   memberships:ResMembership[];

@@ -1,1 +1,140 @@
-<p>appointment works!</p>
+<div id="bg-patient" class=" p-5 mb-0 " style="color:white!important;">
+
+    <div class="container text-danger ">
+        <div class="row">
+            <div class="col-md-10 col-lg-7">
+                <h1 class="display-2">Welcome to the Appointment page</h1>
+                <p>Here you will find all the information about the appointment. </p>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+<div *ngIf="patient && doctor" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+
+            <div class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-end align-middle ">
+                            <h3 class="mb-0  col-6">Patient Information</h3>
+                            <button class="btn btn-primary col-3" (click)="goToPatient()">Go</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4">
+                    <div class="card-body  justify-content-center ">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Name</p>
+                                <p>{{patient.name}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Code</p>
+                                <p>{{patient.code}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Age</p>
+                                <p>{{patient.age}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Mobile</p>
+                                <p>{{patient.mobile}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Email</p>
+                                <p>{{patient.email}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Gender</p>
+                                <p>{{patient.gender}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-end align-middle ">
+                            <h3 class="mb-0 col-6">Doctor Information</h3>
+                            <button class="btn btn-primary col-3" (click)="goToDoctor()">Go</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4">
+                    <div class="card-body  justify-content-center ">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Name</p>
+                                <p>{{doctor.name}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Code</p>
+                                <p>{{doctor.code}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Age</p>
+                                <p>{{doctor.age}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Mobile</p>
+                                <p>{{doctor.mobile}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Email</p>
+                                <p>{{doctor.email}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Gender</p>
+                                <p>{{doctor.gender}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Speciality</p>
+                                <p>{{doctor.speciality}}</p>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

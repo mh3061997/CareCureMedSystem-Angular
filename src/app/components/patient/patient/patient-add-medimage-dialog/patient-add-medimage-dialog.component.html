@@ -1,0 +1,69 @@
+<h1 class="mat-dialog-title bg-info ">Add New {{medImageType}} Image</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form *ngIf="patient" (ngSubmit)="onNewMedImageSubmit()" #newMedImageForm="ngForm">
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Type</label>
+                            <input matInput type="text" name="type" class="form-control" ngModel #type="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter type
+                                !<br></span>
+
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Organ</label>
+                            <input matInput type="text" name="organ" class="form-control" ngModel #organ="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="organ.touched && organ.invalid">Please enter organ
+                                !<br></span>
+
+
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose Image Date</mat-label>
+                            <input matInput name="dateMade" required ngModel #dateMade="ngModel" [matDatepicker]="dp1">
+
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker required #dp1></mat-datepicker>
+
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+
+
+                        <input type="file" class="" (change)="onFileChanged($event)" id="upload">
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <button class="btn btn-success" [disabled]="!(newMedImageForm.valid && base64Image)" type="submit">Add</button>
+        </div>
+    </form>
+</div>

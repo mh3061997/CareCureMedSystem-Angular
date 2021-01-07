@@ -9,23 +9,23 @@ import {ResPatient} from 'src/app/interfaces/res-patient'
 import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-@Component({
-  selector: 'app-appointment-patient-table',
-  templateUrl: './appointment-patient-table.component.html',
-  styleUrls: ['./appointment-patient-table.component.css']
-})
-export class AppointmentPatientTableComponent implements AfterViewInit ,OnChanges{
 
+@Component({
+  selector: 'app-appointment-table',
+  templateUrl: './appointment-table.component.html',
+  styleUrls: ['./appointment-table.component.css']
+})
+export class AppointmentTableComponent implements AfterViewInit,OnChanges {
 
   @Input()
   appointments:ResAppointment[];
 
-
   constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
-
+        
+     
    }
 
-  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','Status','notes','Doctor Name'];
+  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','Status','notes','Doctor Name','Patient Name','Patient Code',' '];
 
   dataSource: MatTableDataSource<ResAppointment>;
 
@@ -36,7 +36,7 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
 
 
   ngAfterViewInit() {
-    console.log('apps',this.appointments);
+    //console.log('apps',this.appointments);
            // Assign the data to the data source for the table to render
            this.dataSource = new MatTableDataSource(this.appointments);
            this.dataSource.paginator = this.paginator;
@@ -55,19 +55,19 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
     }
   }
 
-  
-  goToAppointment(code:number){
-    console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
-  }
-
-  
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
     if (changes['appointments']) {
       this.dataSource = new MatTableDataSource(this.appointments);
     }
+}
+
+goToAppointment(code:number){
+  console.log(this.route);
+  this.router.navigate([code.toString()],{relativeTo:this.route});
+}
+
 
 }
 
-}
+

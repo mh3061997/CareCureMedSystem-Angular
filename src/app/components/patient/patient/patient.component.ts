@@ -10,6 +10,13 @@ import {MatDialog} from '@angular/material/dialog';
 import { PatientAddMembershipDialogComponent } from '../patient-add-membership-dialog/patient-add-membership-dialog.component';
 import { PatientUpdateInformationDialogComponent } from '../patient-update-information-dialog/patient-update-information-dialog.component';
 import { NgForm } from '@angular/forms';
+import { faFileMedical } from '@fortawesome/free-solid-svg-icons';
+import { faMicroscope } from '@fortawesome/free-solid-svg-icons';
+import { faIdCard } from '@fortawesome/free-solid-svg-icons';
+import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { ResMedImage } from 'src/app/interfaces/res-med-image';
+import { PatientAddMedimageDialogComponent } from './patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 
 @Component({
   selector: 'app-patient',
@@ -17,21 +24,49 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./patient.component.css']
 })
 export class PatientComponent implements OnInit {
-  
+  //icons
+  faFileMedical=faFileMedical;
+  faMicroscope=faMicroscope;
+  faIdCard=faIdCard;
+  faFlask=faFlask;
+
+  //data members
   patient:ResPatient;
   patientId:number;
 
+  medImagesLab:ResMedImage[]=[];
+  medImagesRadiology:ResMedImage[]=[];
+  medImagesPresc:ResMedImage[]=[];
+  medImagesOfficial:ResMedImage[]=[];
 
-  
-  constructor(public dialogAddMembership:MatDialog,public dialogUpdatePatientInformation:MatDialog,private currentRoute:ActivatedRoute,private servPatient:ServPatientService) {
+  currentSelectedMedImageTab="Lab Tests"
+
+  onTabChange(event:MatTabChangeEvent){
+    this.currentSelectedMedImageTab=event.tab.textLabel;
+  }
+
+
+  constructor(public dialogAddMedImage:MatDialog,public dialogAddMembership:MatDialog,public dialogUpdatePatientInformation:MatDialog,private currentRoute:ActivatedRoute,private servPatient:ServPatientService) {
 
     this.getPatientCode();
 
     servPatient.getPatientByID(this.patientId).subscribe(patient =>{
 
     this.patient = patient;
-    console.log(this.patient);
+    // console.log(this.patient);
+
+     //generates 4 types of medimages arrays
+      this.medImagesLab = this.patient.medImages.filter(medImage => medImage.type=="Lab");
+      this.medImagesRadiology = this.patient.medImages.filter(medImage => medImage.type=="Radiology");
+      this.medImagesOfficial = this.patient.medImages.filter(medImage => medImage.type=="Official");
+      this.medImagesPresc = this.patient.medImages.filter(medImage => medImage.type=="Prescription");
+
+      // console.log(this.medImagesLab);
+    
+
     });
+
+    
   }
 
   private getPatientCode(){
@@ -41,7 +76,31 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+  openAddMedImageDialog(){
 
+    const dialogRef =  this.dialogAddMedImage.open(PatientAddMedimageDialogComponent,{
+      data:{
+        patient:this.patient,
+        medImageType:this.currentSelectedMedImageTab
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(closed =>{
+   
+      this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+
+        this.patient = patient;
+        this.medImagesLab = this.patient.medImages.filter(medImage => medImage.type=="Lab");
+        this.medImagesRadiology = this.patient.medImages.filter(medImage => medImage.type=="Radiology");
+        this.medImagesOfficial = this.patient.medImages.filter(medImage => medImage.type=="Official");
+        this.medImagesPresc = this.patient.medImages.filter(medImage => medImage.type=="Prescription");
+  
+        });
+
+    });
+
+  }
  
   openUpdatePatientInformationDialog(){
    const dialogRef =  this.dialogUpdatePatientInformation.open(PatientUpdateInformationDialogComponent,{

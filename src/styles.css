@@ -29,3 +29,7 @@ table.mat-table {
 .header {
     position: relative;
 }
+
+/* .mat-column-select {
+    overflow: initial;
+  } */

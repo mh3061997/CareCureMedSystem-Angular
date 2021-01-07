@@ -1,49 +1,50 @@
-import {AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ResMedImage } from 'src/app/interfaces/res-med-image';
 import { ResMembership } from 'src/app/interfaces/res-membership';
-import { ServPatientService } from 'src/app/services/serv-patient.service';
-import {ResPatient} from 'src/app/interfaces/res-patient'
-import { ResAppointment } from 'src/app/interfaces/res-appointment';
-import { ChangeDetectorRef } from '@angular/core';
+import { ServDoctorService } from 'src/app/services/serv-doctor.service';
+import {ResDoctor} from 'src/app/interfaces/res-doctor'
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
-  selector: 'app-appointment-patient-table',
-  templateUrl: './appointment-patient-table.component.html',
-  styleUrls: ['./appointment-patient-table.component.css']
+  selector: 'app-doctor-table',
+  templateUrl: './doctor-table.component.html',
+  styleUrls: ['./doctor-table.component.css']
 })
-export class AppointmentPatientTableComponent implements AfterViewInit ,OnChanges{
+export class DoctorTableComponent  implements AfterViewInit, OnChanges {
 
-
+  
   @Input()
-  appointments:ResAppointment[];
+  doctors:ResDoctor[];
 
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
 
-   }
+  
+  displayedColumns: string[] = ['code', 'name', 'speciality','gender', 'email', 'mobile','age',' '];
 
-  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','Status','notes','Doctor Name'];
-
-  dataSource: MatTableDataSource<ResAppointment>;
+  dataSource: MatTableDataSource<ResDoctor>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
+  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
 
-
+  }
+  
   ngAfterViewInit() {
-    console.log('apps',this.appointments);
+  
            // Assign the data to the data source for the table to render
-           this.dataSource = new MatTableDataSource(this.appointments);
+           this.dataSource = new MatTableDataSource(this.doctors);
            this.dataSource.paginator = this.paginator;
            this.dataSource.sort = this.sort;
      // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.cdr.detectChanges();
+
   }
 
   applyFilter(event: Event) {
@@ -55,8 +56,7 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
     }
   }
 
-  
-  goToAppointment(code:number){
+  goToDoctor(code:number){
     console.log(this.route);
     this.router.navigate([code.toString()],{relativeTo:this.route});
   }
@@ -64,10 +64,22 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
   
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['appointments']) {
-      this.dataSource = new MatTableDataSource(this.appointments);
+    if (changes['doctors']) {
+      this.dataSource = new MatTableDataSource(this.doctors);
     }
-
 }
 
 }
+
+
+
+
+
+
+
+ 
+   
+
+
+
+

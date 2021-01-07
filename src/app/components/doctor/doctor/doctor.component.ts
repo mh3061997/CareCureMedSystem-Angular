@@ -13,8 +13,8 @@ import { DoctorUpdateInformationDialogComponent } from '../doctor/doctor-update-
 })
 export class DoctorComponent  {
 
-  Doctor:ResDoctor;
-  DoctorId:number;
+  doctor:ResDoctor;
+  doctorId:number;
 
  
 
@@ -22,15 +22,15 @@ export class DoctorComponent  {
 
     this.getDoctorCode();
 
-    servDoctor.getDoctorByID(this.DoctorId).subscribe(Doctor =>{
+    servDoctor.getDoctorByID(this.doctorId).subscribe(doctor =>{
 
-    this.Doctor = Doctor;
+    this.doctor = doctor;
 
   });
   }
 
   private getDoctorCode(){
-  this.DoctorId = this.currentRoute.snapshot.params['id'];
+  this.doctorId = this.currentRoute.snapshot.params['id'];
   }
 
  
@@ -40,15 +40,15 @@ export class DoctorComponent  {
   openUpdateDoctorInformationDialog(){
    const dialogRef =  this.dialogUpdateDoctorInformation.open(DoctorUpdateInformationDialogComponent,{
       data:{
-        Doctor:this.Doctor
+        doctor:this.doctor
       }
     });
   
     dialogRef.afterClosed().subscribe(closed =>{
    
-      this.servDoctor.getDoctorByID(this.DoctorId).subscribe(Doctor =>{
+      this.servDoctor.getDoctorByID(this.doctorId).subscribe(doctor =>{
 
-        this.Doctor = Doctor;
+        this.doctor = doctor;
         });
 
     });

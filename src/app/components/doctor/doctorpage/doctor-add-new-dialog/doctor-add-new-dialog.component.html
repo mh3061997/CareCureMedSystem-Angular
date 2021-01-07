@@ -1,8 +1,7 @@
-
-<h1 class="mat-dialog-title bg-info ">Update Doctor Information</h1>
+<h1 class="mat-dialog-title bg-white ">Add New Doctor</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form *ngIf="doctor" (ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+    <form  (ngSubmit)="onNewDoctorSubmit()"  #newDoctorForm="ngForm" >
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
@@ -13,7 +12,7 @@
                         <input  matInput type="text" 
                         name="name"
                         class="form-control"
-                        [ngModel]="doctor.name"
+                        ngModel
                         #name="ngModel"
                         required>
                         <span
@@ -23,13 +22,14 @@
                         
                     </mat-form-field> 
                     </div>
+                  
                     <div class="col-md-6">
                         <mat-form-field> 
                         <label for="input-name" class="form-control-label">Speciality</label>
                         <mat-select
                         
-                        [(ngModel)]="doctor.speciality" 
-                        name="speciality"
+                        ngModel
+                         name="speciality"
                         class="form-control"
                         required
                          #speciality="ngModel">
@@ -38,12 +38,12 @@
                         *ngIf="speciality.touched && speciality.invalid">Please enter speciality !<br></span>
                         <mat-option value="Dental">Dental</mat-option>
                         <mat-option value="Laser">Laser</mat-option>
-                        <mat-option value="Surgeon">Surgeon</mat-option>
-
+                        <mat-option value="Laser">Surgery</mat-option>
                         </mat-select >
                     </mat-form-field> 
 
                     </div>
+
                 </div>
                 
             </div>
@@ -57,7 +57,7 @@
                         name="email"
                          matInput type="text" 
                         class="form-control"
-                        [ngModel]="doctor.email"
+                        ngModel
                         required
                         email
                         #email="ngModel">
@@ -76,7 +76,7 @@
                         name="mobile"
                          matInput type="text" 
                         class="form-control"
-                        [ngModel]="doctor.mobile"
+                        ngModel
                         #mobile = "ngModel"
                         required>
                         <span
@@ -98,7 +98,7 @@
                         name="age"
                         matInput type="text" 
                         class="form-control"
-                        [ngModel]="doctor.age"
+                        ngModel
                         #age = "ngModel"
                         required>
                         <span
@@ -109,30 +109,31 @@
                     </mat-form-field>
 
                     </div>
-                    <div class="col-md-6">
-                        <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Gender</label>
-                        <mat-select
-                        
-                        [(ngModel)]="doctor.gender" 
-                        name="gender"
-                        class="form-control"
-                        required
-                         #gender="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
-                        <mat-option value="Male">Male</mat-option>
-                        <mat-option value="Female">Female</mat-option>
 
-                        </mat-select >
-                    </mat-form-field> 
-
-                    </div>
                 </div>
                 
+                <div class="col-md-6">
+                    <mat-form-field> 
+                    <label for="input-name" class="form-control-label">Gender</label>
+                    <mat-select
+                    
+                    ngModel
+                     name="gender"
+                    class="form-control"
+                    required
+                     #gender="ngModel">
+                    <span
+                    class="form-text text-muted" 
+                    *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
+                    <mat-option value="Male">Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                    </mat-select >
+                </mat-form-field> 
+
+                </div>
+
             </div>
-            <button class="btn btn-success" [disabled]="!updateInfoForm.valid" type="submit">Update</button>
+            <button class="btn btn-success" [disabled]="!newDoctorForm.valid" type="submit">Add</button>
         </div>
     </form>
 </div>

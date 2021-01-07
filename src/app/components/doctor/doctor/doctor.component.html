@@ -1,4 +1,4 @@
-<div id="bg-Doctor" class=" p-4 mb-0 pb-0" style="color:white!important;">
+<div id="bg-doctor" class=" p-4 mb-0 pb-0" style="color:white!important;">
     
     <div class="container text-info">
         <div class="row">
@@ -12,7 +12,7 @@
     </div>
 
 </div>
-<div *ngIf="Doctor" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
+<div *ngIf="doctor" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
     <div class="row justify-content-center ">
         <div class="col-md-10">
 
@@ -33,38 +33,38 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <p class="form-control-label">Name</p>
-                            <p>{{Doctor.name}}</p>
+                            <p>{{doctor.name}}</p>
                         </div>
                         <div class="col-lg-6">
                             <p class="form-control-label">Code</p>
-                            <p>{{Doctor.code}}</p>
+                            <p>{{doctor.code}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <p class="form-control-label">Age</p>
-                            <p>{{Doctor.age}}</p>
+                            <p>{{doctor.age}}</p>
                         </div>
                         <div class="col-lg-6">
                             <p class="form-control-label">Mobile</p>
-                            <p>{{Doctor.mobile}}</p>
+                            <p>{{doctor.mobile}}</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6">
                             <p class="form-control-label">Email</p>
-                            <p>{{Doctor.email}}</p>
+                            <p>{{doctor.email}}</p>
                         </div>
                         <div class="col-lg-6">
                             <p class="form-control-label">Gender</p>
-                            <p>{{Doctor.gender}}</p>
+                            <p>{{doctor.gender}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <p class="form-control-label">Speciality</p>
-                            <p>{{Doctor.speciality}}</p>
+                            <p>{{doctor.speciality}}</p>
                         </div>
                     
                     </div>
@@ -76,7 +76,7 @@
                     <div class="card-header  bg-white p-3">
                         <h3 class="mb-0">Appointments History</h3>
                     </div>
-                    <app-doctor-appointment-table  [appointments]="Doctor.appointments"></app-doctor-appointment-table>
+                    <app-doctor-appointment-table  [appointments]="doctor.appointments"></app-doctor-appointment-table>
 
                     
 

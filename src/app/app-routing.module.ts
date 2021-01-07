@@ -8,6 +8,7 @@ import { PatientComponent } from './components/patient/patient/patient.component
 import { PatientpageComponent } from './components/patient/patientpage/patientpage.component';
 import { PackagepageComponent  } from './components/packagebase/packagepage/packagepage.component'
 import { PackagebaseComponent } from './components/packagebase/packagebase/packagebase.component';
+import { NotFoundComponent } from './components/auth/not-found/not-found.component';
 
 const routes: Routes = [{
   path:"patient",component:PatientpageComponent},
@@ -18,13 +19,17 @@ const routes: Routes = [{
 },{
   path:"doctor/:id",component:DoctorComponent
 },{
-  path:"appointment",component:AppointmentpageComponent,children:[{
-    path:":id",component:AppointmentComponent
-  }]
+  path:"appointment",component:AppointmentpageComponent
+},{
+  path:"appointment/:id",component:AppointmentComponent
 },{
   path:"packagebases",component:PackagepageComponent
 },{
   path:"packagebases/:id",component:PackagebaseComponent
+},{
+  path:"not-found",component:NotFoundComponent
+},{
+path:"**",redirectTo:"not-found"
 }];
 
 @NgModule({
