@@ -5,6 +5,7 @@
         <div *ngIf="packageBases" class="row">
             <div class="col-10" *ngFor="let packageBase of packageBases">
                 <p>Code: {{packageBase.code}}</p>
+                <p>Name: {{packageBase.name}}</p>
                 <p>Type: {{packageBase.type}}</p>
                 <p>Unit Total: {{packageBase.unitTotal}}</p>
                 <p>Price: {{packageBase.price}}</p>

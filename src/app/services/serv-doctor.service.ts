@@ -20,7 +20,12 @@ export class ServDoctorService {
   getDoctorsAll():Observable<ResDoctor[]>{
     return this.http.get<ResDoctor[]>(this.servPath.getPathDoctor());
   }
-
+  
+  getDoctorsBySpeciality(speciality:string):Observable<ResDoctor[]>{
+    return this.http.get<ResDoctor[]>(this.servPath.getPathDoctor()+"/"+"speciality",{params:{
+    speciality:speciality
+    }});
+  }
   //get Doctor by ID
   getDoctorByID(code:number):Observable<ResDoctor>{
     return this.http.get<ResDoctor>(this.servPath.getPathDoctor()+"/"+code);

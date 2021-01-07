@@ -5,6 +5,7 @@ import { ResPatient } from 'src/app/interfaces/res-patient';
 import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
 import { ResMembership} from 'src/app/interfaces//res-membership'
 import { ServMembershipService } from 'src/app/services/serv-membership.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 @Component({
   selector: 'app-patient-add-membership-dialog',
   templateUrl: './patient-add-membership-dialog.component.html',
@@ -15,9 +16,12 @@ export class PatientAddMembershipDialogComponent implements OnInit {
   packageBases:ResPackageBase[];
   patient:ResPatient;
 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data:{patient:ResPatient},
   public dialogRef: MatDialogRef<PatientAddMembershipDialogComponent>,
-  private servPackageBase:ServPackageBaseService,private servMemberships:ServMembershipService) {
+  private servPackageBase:ServPackageBaseService,
+  private servMemberships:ServMembershipService) {
+
     console.log(data.patient);
     this.patient=data.patient;
 
@@ -28,6 +32,9 @@ export class PatientAddMembershipDialogComponent implements OnInit {
     }
 
     );
+    
+    
+    
    }
   
    addMembership(packageBaseChosen:ResPackageBase){

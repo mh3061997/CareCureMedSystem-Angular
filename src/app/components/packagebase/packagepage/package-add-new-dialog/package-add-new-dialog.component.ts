@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { ResPackageBase } from 'src/app/interfaces/res-package-base';
 import { ResPatient } from 'src/app/interfaces/res-patient';
 import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-package-add-new-dialog',
@@ -15,11 +16,14 @@ export class PackageAddNewDialogComponent implements OnInit {
   
   @ViewChild('newPackageBaseForm', { static: false }) newPackageBaseForm: NgForm;
 
-  
+  types:string[];
+
   constructor(
     public dialogRef: MatDialogRef<PackageAddNewDialogComponent>,
-    private servPackageBase:ServPackageBaseService) {
+    private servPackageBase:ServPackageBaseService,
+    private serUtils:ServUtilitiesService) {
       
+      this.types=this.serUtils.specialities;
 
     }
   

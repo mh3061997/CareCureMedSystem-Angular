@@ -1,7 +1,7 @@
 <h1 class="mat-dialog-title bg-white ">Add New Appointment</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form *ngIf="patients && doctors" (ngSubmit)="onNewAppointmentSubmit()" #newAppointmentForm="ngForm">
+    <form *ngIf="patients" (ngSubmit)="onNewAppointmentSubmit()" #newAppointmentForm="ngForm">
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
@@ -27,7 +27,29 @@
                     </div>
                     <div class="col-md-6">
 
-                        <mat-form-field class="example-full-width">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Speciality</label>
+                            <span class="form-text text-muted" *ngIf="speciality.touched && speciality.invalid">Please
+                                enter speciality
+                                !<br></span>
+                            <mat-select (selectionChange)="onSpecialityChange($event)" ngModel name="speciality" class="form-control" required #speciality="ngModel">
+
+                                <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
+                               
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                   
+
+                        <mat-form-field *ngIf="doctors" class="example-full-width">
                             <mat-label>Doctor</mat-label>
 
                             <input type="text" name="doctor" required matInput [formControl]="doctorFormControl"
@@ -42,26 +64,6 @@
 
                             </mat-autocomplete>
                         </mat-form-field>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <mat-form-field>
-                            <label for="input-name" class="form-control-label">Speciality</label>
-                            <span class="form-text text-muted" *ngIf="speciality.touched && speciality.invalid">Please
-                                enter speciality
-                                !<br></span>
-                            <mat-select ngModel name="speciality" class="form-control" required #speciality="ngModel">
-
-                                <mat-option value="Dental">Dental</mat-option>
-                                <mat-option value="Laser">Laser</mat-option>
-                                <mat-option value="Laser">Surgery</mat-option>
-                            </mat-select>
-                        </mat-form-field>
 
                     </div>
 
@@ -72,8 +74,8 @@
                                 status !<br></span>
                             <mat-select ngModel name="status" class="form-control" required #status="ngModel">
 
-                                <mat-option value="Reservation">Reservation</mat-option>
                                 <mat-option value="Visit">Visit</mat-option>
+                                <mat-option value="Revisit">Revisit</mat-option>
                             </mat-select>
                         </mat-form-field>
 

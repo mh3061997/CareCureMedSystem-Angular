@@ -10,6 +10,8 @@ import { ResPatient } from 'src/app/interfaces/res-patient';
 import { ResDoctor } from 'src/app/interfaces/res-doctor';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
 import { ServDoctorService } from 'src/app/services/serv-doctor.service';
+import { MatSelectChange } from '@angular/material/select';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-appointment-add-new-dialog',
@@ -20,35 +22,54 @@ export class AppointmentAddNewDialogComponent implements OnInit {
 
 
   @ViewChild('newAppointmentForm', { static: false }) newAppointmentForm: NgForm;
-
-  constructor(
-    public dialogRef: MatDialogRef<AppointmentAddNewDialogComponent>,
-    private servAppointment: ServAppointmentService,
-    private servPatient:ServPatientService,
-    private servDoctor:ServDoctorService) { 
-
-      servDoctor.getDoctorsAll().subscribe(doctors =>{
-
-        this.doctors = doctors;
-      });
-
-      servPatient.getPatientsAll().subscribe(patients =>{
-        this.patients = patients;
-      });
-
-    }
-
-     patients:ResPatient[];
-     doctors:ResDoctor[];
-
-
+  patients:ResPatient[];
+  doctors:ResDoctor[];
   patientFormControl = new FormControl();
   doctorFormControl = new FormControl();
 
   filteredpatients: Observable<ResPatient[]>;
   filtereddoctors: Observable<ResDoctor[]>;
+  
+  specialities:string[]=[];
 
+  constructor(
+    public dialogRef: MatDialogRef<AppointmentAddNewDialogComponent>,
+    private servAppointment: ServAppointmentService,
+    private servPatient:ServPatientService,
+    private servDoctor:ServDoctorService,
+    private servUtils:ServUtilitiesService) { 
 
+     
+
+      servPatient.getPatientsAll().subscribe(patients =>{
+        this.patients = patients;
+      });
+      
+      this.specialities=servUtils.specialities;
+    }
+
+  
+   
+     onSpecialityChange(event:MatSelectChange){
+      
+      this.servDoctor.getDoctorsBySpeciality(event.value).subscribe(doctors =>{
+      
+        console.log("doctors",typeof(doctors[0]));
+      if(doctors){
+        this.doctors = doctors;
+        this.filtereddoctors = this.doctorFormControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => typeof value === 'string' ? value : value.name),
+          map(name => name ? this._filterDoctor(name) : this.doctors.slice())
+        );
+      }
+        
+      });
+       
+     }
+
+ 
 
   ngOnInit() {
     this.filteredpatients = this.patientFormControl.valueChanges
@@ -58,12 +79,7 @@ export class AppointmentAddNewDialogComponent implements OnInit {
         map(name => name ? this._filterPatient(name) : this.patients.slice())
       );
 
-      this.filtereddoctors = this.doctorFormControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filterDoctor(name) : this.doctors.slice())
-      );
+     
   }
 
   
@@ -118,7 +134,7 @@ export class AppointmentAddNewDialogComponent implements OnInit {
 
   checkAddAppointmentFormValidity():boolean{
     
-   const check =  typeof(this.patientFormControl.value) == typeof(this.patients[0]) &&  typeof(this.doctorFormControl.value) == typeof(this.doctors[0]) ? true :  false;
+   const check =  typeof(this.patientFormControl.value) ==  'object' &&  typeof(this.doctorFormControl.value) == 'object' ? true :  false;
     return check;
   }
 
