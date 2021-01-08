@@ -25,7 +25,7 @@ export class PatientAddMembershipDialogComponent implements OnInit {
     console.log(data.patient);
     this.patient=data.patient;
 
-    servPackageBase.getPackageBasesAll().subscribe(
+    servPackageBase.getPackageBasesByStatus("Ongoing").subscribe(
     
     packages =>{
       this.packageBases=packages;

@@ -60,6 +60,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { ImageFullscreenDialogComponent } from './components/patient/patient/patient-medimages-table/image-fullscreen-dialog/image-fullscreen-dialog.component';
 import { PatientAddMedimageDialogComponent } from './components/patient/patient/patient-add-medimage-dialog/patient-add-medimage-dialog.component';
+import { PackagebaseUpdateInformationDialogComponent } from './components/packagebase/packagebase/packagebase-update-information-dialog/packagebase-update-information-dialog.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { PatientAddMedimageDialogComponent } from './components/patient/patient/
     AppointmentUpdateInformationDialogComponent,
     PatientMedimagesTableComponent,
     ImageFullscreenDialogComponent,
-    PatientAddMedimageDialogComponent
+    PatientAddMedimageDialogComponent,
+    PackagebaseUpdateInformationDialogComponent
 
   ],
   imports: [

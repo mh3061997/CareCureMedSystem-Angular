@@ -39,7 +39,7 @@
                         <mat-form-field>
 
                             <label for="input-name" class="form-control-label">Price</label>
-                            <input name="price" matInput type="text" class="form-control" ngModel required
+                            <input name="price" matInput type="number" class="form-control" ngModel required
                                 #price="ngModel">
                             <span class="form-text text-muted" *ngIf="price.touched && price.invalid">Please enter price
                                 !<br></span>
@@ -51,7 +51,7 @@
                         <mat-form-field>
 
                             <label for="input-name" class="form-control-label">Units</label>
-                            <input name="unitTotal" matInput type="text" class="form-control" ngModel
+                            <input name="unitTotal" matInput type="number" class="form-control" ngModel
                                 #unitTotal="ngModel" required>
                             <span class="form-text text-muted" *ngIf="unitTotal.touched && unitTotal.invalid">Please
                                 enter Number of units !<br></span>

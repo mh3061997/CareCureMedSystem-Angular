@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {ResDoctor} from 'src/app/interfaces/res-doctor';
 import { ServDoctorService } from 'src/app/services/serv-doctor.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-doctor-update-information-dialog',
@@ -13,15 +14,18 @@ import { ServDoctorService } from 'src/app/services/serv-doctor.service';
 export class DoctorUpdateInformationDialogComponent implements OnInit {
 
   doctor:ResDoctor;
+  specialities:string[];
 
   @ViewChild('updateInfoForm', { static: false }) updateInfoForm: NgForm;
 
   
   constructor(@Inject(MAT_DIALOG_DATA) public data:{doctor:ResDoctor},
               public dialogRef: MatDialogRef<DoctorUpdateInformationDialogComponent>,
-              private servDoctor:ServDoctorService) {
+              private servDoctor:ServDoctorService,
+              private servUtils:ServUtilitiesService) {
                 
     this.doctor=data.doctor;
+    this.specialities = this.servUtils.specialities;
   }
               
   updateDoctorInformation(updatedDoctor:ResDoctor){

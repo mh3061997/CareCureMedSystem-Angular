@@ -1,8 +1,8 @@
 
-<h1 class="mat-dialog-title bg-info ">Update Doctor Information</h1>
+<h1 class="mat-dialog-title bg-info ">Update Package Information</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form *ngIf="doctor" (ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+    <form *ngIf="packageBase" (ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
@@ -13,7 +13,7 @@
                         <input  matInput type="text" 
                         name="name"
                         class="form-control"
-                        [ngModel]="doctor.name"
+                        [ngModel]="packageBase.name"
                         #name="ngModel"
                         required>
                         <span
@@ -25,17 +25,17 @@
                     </div>
                     <div class="col-md-6">
                         <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Speciality</label>
+                        <label for="input-name" class="form-control-label">Type</label>
                         <mat-select
                         
-                        [(ngModel)]="doctor.speciality" 
-                        name="speciality"
+                        [ngModel]="packageBase.type" 
+                        name="type"
                         class="form-control"
                         required
-                         #speciality="ngModel">
+                         #type="ngModel">
                         <span
                         class="form-text text-muted" 
-                        *ngIf="speciality.touched && speciality.invalid">Please enter speciality !<br></span>
+                        *ngIf="type.touched && type.invalid">Please enter type !<br></span>
                         <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
 
                         </mat-select >
@@ -50,18 +50,18 @@
                     <div class="col-md-6">
                         <mat-form-field> 
 
-                        <label for="input-name" class="form-control-label">Email</label>
+                        <label for="input-name" class="form-control-label">Price</label>
                         <input
-                        name="email"
-                         matInput type="text" 
+                        name="price"
+                         matInput type="number" 
                         class="form-control"
-                        [ngModel]="doctor.email"
+                        [ngModel]="packageBase.price"
                         required
-                        email
-                        #email="ngModel">
+                        
+                        #price="ngModel">
                         <span
                         class="form-text text-muted" 
-                        *ngIf="email.touched && email.invalid">Please enter email !<br></span>
+                        *ngIf="price.touched && price.invalid">Please enter price !<br></span>
 
                     </mat-form-field>
 
@@ -69,17 +69,17 @@
                     <div class="col-md-6">
                         <mat-form-field> 
 
-                        <label for="input-name" class="form-control-label">Mobile</label>
+                        <label for="input-name" class="form-control-label">Unit Total</label>
                         <input
-                        name="mobile"
+                        name="units"
                          matInput   type="number"
                         class="form-control"
-                        [ngModel]="doctor.mobile"
-                        #mobile = "ngModel"
+                        [ngModel]="packageBase.unitTotal"
+                        #units = "ngModel"
                         required>
                         <span
                         class="form-text text-muted" 
-                        *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
+                        *ngIf="units.touched && units.invalid">Please enter units !<br></span>
                     </mat-form-field>
 
                     </div>
@@ -89,39 +89,42 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field> 
+                       
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose Expiration Date</mat-label>
+                            <input 
+                            matInput
+                           name="dateExpired"
 
-                        <label for="input-name" class="form-control-label">Age</label>
-                        <input 
-                        name="age"
-                        matInput   type="number"
-                        class="form-control"
-                        [ngModel]="doctor.age"
-                        #age = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="age.touched && age.invalid">Please enter age !<br></span>
-         
-                 
-                    </mat-form-field>
+                           required
+                           [ngModel]="packageBase.dateExpired"
+                           #dateExpired="ngModel"
+
+                             [matDatepicker]="dp1">
+                             
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker 
+                            required
+                            #dp1 ></mat-datepicker>
+                    
+                        </mat-form-field>
 
                     </div>
                     <div class="col-md-6">
                         <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Gender</label>
+                        <label for="input-name" class="form-control-label">Status</label>
                         <mat-select
                         
-                        [(ngModel)]="doctor.gender" 
-                        name="gender"
+                        [ngModel]="packageBase.status" 
+                        name="status"
                         class="form-control"
                         required
-                         #gender="ngModel">
+                         #status="ngModel">
                         <span
                         class="form-text text-muted" 
-                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
-                        <mat-option value="Male">Male</mat-option>
-                        <mat-option value="Female">Female</mat-option>
+                        *ngIf="status.touched && status.invalid">Please enter status !<br></span>
+                        <mat-option value="Ongoing">Ongoing</mat-option>
+                        <mat-option value="Expired">Expired</mat-option>
 
                         </mat-select >
                     </mat-form-field> 

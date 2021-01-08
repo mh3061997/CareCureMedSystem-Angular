@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ResDoctor } from 'src/app/interfaces/res-doctor';
 import { ServDoctorService } from 'src/app/services/serv-doctor.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-doctor-add-new-dialog',
@@ -13,10 +14,15 @@ export class DoctorAddNewDialogComponent implements OnInit {
 
  
   @ViewChild('newDoctorForm', { static: false }) newDoctorForm: NgForm;
+  specialities:string[];
 
   constructor(
   public dialogRef: MatDialogRef<DoctorAddNewDialogComponent>,
-  private servDoctor:ServDoctorService) {}
+  private servDoctor:ServDoctorService,
+  private servUtils:ServUtilitiesService) {
+
+    this.specialities = servUtils.specialities;
+  }
 
   ngOnInit(): void {
   }

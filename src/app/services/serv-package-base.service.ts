@@ -18,6 +18,14 @@ export class ServPackageBaseService {
     return this.http.get<ResPackageBase[]>(this.servPath.getPathPackageBase());
   }
 
+  getPackageBasesByStatus(status:string):Observable<ResPackageBase[]>{
+    return this.http.get<ResPackageBase[]>(this.servPath.getPathPackageBase()+"/"+"status",{
+      params:{
+        status:status
+      }
+    });
+  }
+
   //get PackageBase by ID
   getPackageBaseByID(code:number):Observable<ResPackageBase>{
     return this.http.get<ResPackageBase>(this.servPath.getPathPackageBase()+"/"+code);

@@ -36,9 +36,8 @@
                         <span
                         class="form-text text-muted" 
                         *ngIf="speciality.touched && speciality.invalid">Please enter speciality !<br></span>
-                        <mat-option value="Dental">Dental</mat-option>
-                        <mat-option value="Laser">Laser</mat-option>
-                        <mat-option value="Laser">Surgery</mat-option>
+                        <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
+                        
                         </mat-select >
                     </mat-form-field> 
 
@@ -74,10 +73,11 @@
                         <label for="input-name" class="form-control-label">Mobile</label>
                         <input
                         name="mobile"
-                         matInput type="text" 
+                         matInput
                         class="form-control"
                         ngModel
                         #mobile = "ngModel"
+                        type="number"
                         required>
                         <span
                         class="form-text text-muted" 
@@ -96,7 +96,7 @@
                         <label for="input-name" class="form-control-label">Age</label>
                         <input 
                         name="age"
-                        matInput type="text" 
+                        matInput   type="number"
                         class="form-control"
                         ngModel
                         #age = "ngModel"
