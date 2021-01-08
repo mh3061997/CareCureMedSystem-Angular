@@ -9,6 +9,7 @@ import { PatientpageComponent } from './components/patient/patientpage/patientpa
 import { PackagepageComponent  } from './components/packagebase/packagepage/packagepage.component'
 import { PackagebaseComponent } from './components/packagebase/packagebase/packagebase.component';
 import { NotFoundComponent } from './components/auth/not-found/not-found.component';
+import { ServicePriceListComponent } from './components/service-price-list/service-price-list.component';
 
 const routes: Routes = [{
   path:"patient",component:PatientpageComponent},
@@ -28,6 +29,8 @@ const routes: Routes = [{
   path:"packagebases/:id",component:PackagebaseComponent
 },{
   path:"not-found",component:NotFoundComponent
+},{
+  path:"servicepricelist",component:ServicePriceListComponent
 },{
 path:"**",redirectTo:"not-found"
 }];

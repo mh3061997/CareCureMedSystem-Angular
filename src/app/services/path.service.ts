@@ -23,6 +23,11 @@ export class PathService {
 
   private  invoicePath:string ="invoice";
 
+  private servicePriceListPath:string="servicePriceList";
+
+  public getPathServicePriceList(){
+    return this.approotPath+this.servicePriceListPath;
+  }
    public getPathPatient(){
      return this.approotPath+this.patientPath;
    }

@@ -6,6 +6,7 @@ import { faPercent, faUserNurse } from '@fortawesome/free-solid-svg-icons';
 import { faStethoscope } from '@fortawesome/free-solid-svg-icons';
 import { faProcedures } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav-bar-side',
@@ -20,6 +21,8 @@ export class NavBarSideComponent {
   faProcedures=faProcedures;//patient icon
   faFileAlt=faFileAlt;//invoice icon
   faPercent=faPercent;
+  faDollarSign=faDollarSign;
+  
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),

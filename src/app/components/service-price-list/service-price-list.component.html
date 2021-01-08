@@ -1,0 +1,41 @@
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="bg-white">
+                <h2 class="text-heading text-center">Dentistry Services</h2>
+                <ol *ngIf="servicePriceListDentistry">
+                    <li class="mb-3"*ngFor="let service of servicePriceListDentistry">
+                        <span>{{service.name}} </span>
+                       <div class="justify-content-end">
+                        <input  matInput type="number" 
+                        name="price"
+                        class=" col-4"
+                        [(ngModel)] = "service.price" 
+                        required>
+                        <button class="btn btn-success ml-2 col-4" (click)="updatePrice(service)">Update Price</button>
+                       </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="bg-white">
+                <h2 class="text-heading text-center">Dermatology Services</h2>
+                <ol *ngIf="servicePriceListDermatology">
+                    <li class="mb-3"*ngFor="let service of servicePriceListDermatology">
+                        <span>{{service.name}} </span>
+                       <div class="justify-content-end">
+                        <input  matInput type="number" 
+                        name="price"
+                        class=" col-4"
+                        [(ngModel)] = "service.price" 
+                        required>
+                        <button class="btn btn-success ml-2 col-4" (click)="updatePrice(service)">Update Price</button>
+                       </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

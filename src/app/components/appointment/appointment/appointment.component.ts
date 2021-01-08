@@ -6,6 +6,7 @@ import { ResDoctor } from 'src/app/interfaces/res-doctor';
 import { ResPatient } from 'src/app/interfaces/res-patient';
 import { PathService } from 'src/app/services/path.service';
 import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
+import { AppointmentUpdateInformationDialogComponent } from './appointment-update-information-dialog/appointment-update-information-dialog.component';
 
 @Component({
   selector: 'app-appointment',
@@ -21,7 +22,8 @@ export class AppointmentComponent implements OnInit {
   patient:ResPatient;
   doctor:ResDoctor;
   
-  constructor(public dialogAddMembership:MatDialog,public dialogUpdateAppointmentInformation:MatDialog,
+  constructor(public dialogAddMembership:MatDialog,
+    public dialogUpdateAppointmentInformation:MatDialog,
     private currentRoute:ActivatedRoute,
     private servAppointment:ServAppointmentService,
     private router: Router,
@@ -56,4 +58,23 @@ export class AppointmentComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+
+  
+  openUpdateAppointmentInformationDialog(){
+    const dialogRef =  this.dialogUpdateAppointmentInformation.open(AppointmentUpdateInformationDialogComponent,{
+       data:{
+         appointment:this.appointment
+       }
+     });
+   
+     dialogRef.afterClosed().subscribe(closed =>{
+    
+       this.servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment =>{
+ 
+         this.appointment = appointment;
+         });
+ 
+     });
+   
+   }
 }

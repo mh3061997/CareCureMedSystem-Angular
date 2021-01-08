@@ -1,4 +1,5 @@
 import { ResDoctor } from "./res-doctor"
+import { ResInvoice } from "./res-invoice"
 import { ResPatient } from "./res-patient"
 
 export interface ResAppointment {
@@ -10,5 +11,5 @@ export interface ResAppointment {
     notes:string;
     doctor:ResDoctor;
     patient:ResPatient;
-
+    invoice?:ResInvoice;
 }
