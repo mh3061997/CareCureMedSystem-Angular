@@ -130,6 +130,49 @@
                 </div>
                 
             </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field> 
+
+                        <label for="input-name" class="form-control-label">Price Visit</label>
+                        <input 
+                        name="priceVisit"
+                        matInput   type="number"
+                        class="form-control"
+                        [ngModel]="doctor.priceVisit"
+                        #priceVisit = "ngModel"
+                        required>
+                        <span
+                        class="form-text text-muted" 
+                        *ngIf="priceVisit.touched && priceVisit.invalid">Please enter visit price !<br></span>
+         
+                 
+                    </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field> 
+
+                            <label for="input-name" class="form-control-label">Price Revisit</label>
+                            <input 
+                            name="priceRevisit"
+                            matInput   type="number"
+                            class="form-control"
+                            [ngModel]="doctor.priceRevisit"
+                            #priceRevisit = "ngModel"
+                            required>
+                            <span
+                            class="form-text text-muted" 
+                            *ngIf="priceRevisit.touched && priceRevisit.invalid">Please enter Revisit price !<br></span>
+             
+                     
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                
+            </div>
             <button class="btn btn-success" [disabled]="!updateInfoForm.valid" type="submit">Update</button>
         </div>
     </form>

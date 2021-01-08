@@ -38,6 +38,8 @@ onNewDoctorSubmit(){
     mobile:this.newDoctorForm.value.mobile,
     email:this.newDoctorForm.value.email,
     speciality:this.newDoctorForm.value.speciality,
+    priceRevisit:this.newDoctorForm.value.priceRevisit,
+    priceVisit:this.newDoctorForm.value.priceVisit,
     appointments:[]
   }
   

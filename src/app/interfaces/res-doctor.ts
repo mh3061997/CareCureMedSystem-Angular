@@ -5,6 +5,8 @@ export interface ResDoctor {
     name:string;
     mobile:string;
     email:string;
+    priceVisit:number;
+    priceRevisit:number;
     gender:string;
     age:number;
     speciality:string;

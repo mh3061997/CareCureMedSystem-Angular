@@ -48,6 +48,8 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
     this.doctor.email=this.updateInfoForm.value.email;
     this.doctor.mobile=this.updateInfoForm.value.mobile;
     this.doctor.speciality=this.updateInfoForm.value.speciality;
+    this.doctor.priceRevisit=this.updateInfoForm.value.priceRevisit;
+    this.doctor.priceVisit=this.updateInfoForm.value.priceVisit;
 
     this.updateDoctorInformation(this.doctor);
   }

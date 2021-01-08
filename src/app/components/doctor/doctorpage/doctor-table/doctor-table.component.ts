@@ -23,7 +23,7 @@ export class DoctorTableComponent  implements AfterViewInit, OnChanges {
 
 
   
-  displayedColumns: string[] = ['code', 'name', 'speciality','gender', 'email', 'mobile','age',' '];
+  displayedColumns: string[] = ['code', 'name', 'speciality','gender', 'email', 'mobile','age','price visit','price revisit',' '];
 
   dataSource: MatTableDataSource<ResDoctor>;
 
