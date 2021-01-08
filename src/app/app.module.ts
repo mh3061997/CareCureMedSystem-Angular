@@ -62,6 +62,8 @@ import { ImageFullscreenDialogComponent } from './components/patient/patient/pat
 import { PatientAddMedimageDialogComponent } from './components/patient/patient/patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 import { PackagebaseUpdateInformationDialogComponent } from './components/packagebase/packagebase/packagebase-update-information-dialog/packagebase-update-information-dialog.component';
 import { ServicePriceListComponent } from './components/service-price-list/service-price-list.component';
+import { InvoiceNewPageComponent } from './components/invoice/invoice-new-page/invoice-new-page.component';
+import { InvoiceItemsTableComponent } from './components/invoice/invoice/invoice-items-table/invoice-items-table.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { ServicePriceListComponent } from './components/service-price-list/servi
     ImageFullscreenDialogComponent,
     PatientAddMedimageDialogComponent,
     PackagebaseUpdateInformationDialogComponent,
-    ServicePriceListComponent
+    ServicePriceListComponent,
+      InvoiceNewPageComponent,
+      InvoiceItemsTableComponent
 
   ],
   imports: [

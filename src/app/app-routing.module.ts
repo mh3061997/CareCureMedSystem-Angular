@@ -10,6 +10,9 @@ import { PackagepageComponent  } from './components/packagebase/packagepage/pack
 import { PackagebaseComponent } from './components/packagebase/packagebase/packagebase.component';
 import { NotFoundComponent } from './components/auth/not-found/not-found.component';
 import { ServicePriceListComponent } from './components/service-price-list/service-price-list.component';
+import { InvoiceComponent } from './components/invoice/invoice/invoice.component';
+import { InvoiceNewPageComponent } from './components/invoice/invoice-new-page/invoice-new-page.component';
+import { InvoicepageComponent } from './components/invoice/invoicepage/invoicepage.component';
 
 const routes: Routes = [{
   path:"patient",component:PatientpageComponent},
@@ -31,6 +34,12 @@ const routes: Routes = [{
   path:"not-found",component:NotFoundComponent
 },{
   path:"servicepricelist",component:ServicePriceListComponent
+},{
+  path:"invoice",component:InvoicepageComponent
+},{
+  path:"invoice/:id",component:InvoiceComponent
+},{
+  path:"invoice/:id/create",component:InvoiceNewPageComponent
 },{
 path:"**",redirectTo:"not-found"
 }];

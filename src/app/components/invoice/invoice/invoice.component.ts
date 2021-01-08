@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ResAppointment } from 'src/app/interfaces/res-appointment';
+import { ResInvoice } from 'src/app/interfaces/res-invoice';
+import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-invoice',
@@ -7,9 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoiceComponent implements OnInit {
 
-  constructor() { }
+  invoice:ResInvoice;
+  invoiceId:number;
+
+  constructor(private currentRoute:ActivatedRoute,private servInvoice:ServInvoiceService) {
+
+    this.getInvoiceCode();
+
+    servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice =>{
+
+    this.invoice = invoice;
+
+  });
+  }
+
+  private getInvoiceCode(){
+  this.invoiceId = this.currentRoute.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
   }
 
 }
+
+
+
+
