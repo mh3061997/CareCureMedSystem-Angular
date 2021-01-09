@@ -1,0 +1,80 @@
+<h1 class="mat-dialog-title bg-info ">Finalize Invoice</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form *ngIf="invoice"(ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>   
+
+                        <label for="input-name" class="form-control-label">Discount</label>
+                        <input  matInput 
+                        name="discount"
+                        class="form-control"
+                        [(ngModel)]="discountval"
+                        #discount="ngModel"
+                        required
+                        type="number"
+                        min="0"
+                        max="100">
+                        <span
+                        class="form-text text-muted" 
+                        *ngIf="discount.touched && discount.invalid">Please enter discount !<br></span>
+                        
+                        
+                    </mat-form-field> 
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field> 
+                            <label for="input-name" class="form-control-label">Total Paid</label>
+                            <input  matInput 
+                            name="totalPaid"
+                            class="form-control"
+                            [(ngModel)]="totalPaidval"
+                            #totalPaid="ngModel"
+                            required
+                            type="number" >
+                            <span
+                            class="form-text text-muted" 
+                            *ngIf="totalPaid.touched && totalPaid.invalid">Please enter total amount paid !<br></span>
+                            
+                    </mat-form-field> 
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field> 
+                            <label for="input-name" class="form-control-label">Payment Method</label>
+                            <mat-select
+                            
+                            [(ngModel)]="invoice.paymentMethod" 
+                            name="paymentMethod"
+                            class="form-control"
+                            required
+                             #paymentMethod="ngModel">
+                            <span
+                            class="form-text text-muted" 
+                            *ngIf="paymentMethod.touched && paymentMethod.invalid">Please enter payment method !<br></span>
+                            <mat-option value="Cash">Cash</mat-option>
+                            <mat-option value="Visa">Visa</mat-option>
+                            </mat-select >
+                        </mat-form-field> 
+
+                    </div>
+                    <div class="col-md-6">
+                       <p><span class="fw-bold">Total: </span> {{calculateTotalAfterDiscount()}}</p>
+
+                    </div>
+                </div>
+                
+            </div>
+       
+            <button class="btn btn-success" [disabled]="!updateInfoForm.valid" type="submit">Finalize</button>
+        </div>
+    </form>
+</div>

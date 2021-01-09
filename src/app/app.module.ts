@@ -61,11 +61,11 @@ import { ImageFullscreenDialogComponent } from './components/patient/patient/pat
 import { PatientAddMedimageDialogComponent } from './components/patient/patient/patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 import { PackagebaseUpdateInformationDialogComponent } from './components/packagebase/packagebase/packagebase-update-information-dialog/packagebase-update-information-dialog.component';
 import { ServicePriceListComponent } from './components/service-price-list/service-price-list.component';
-import { InvoiceNewPageComponent } from './components/invoice/invoice-new-page/invoice-new-page.component';
 import { InvoiceItemsTableComponent } from './components/invoice/invoice/invoice-items-table/invoice-items-table.component';
 import { InvoiceTableComponent } from './components/invoice/invoicepage/invoice-table/invoice-table.component';
 import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/finalized-invoice-dialog/finalized-invoice-dialog.component';
 
 @NgModule({
   declarations: [
@@ -105,10 +105,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     PatientAddMedimageDialogComponent,
     PackagebaseUpdateInformationDialogComponent,
     ServicePriceListComponent,
-      InvoiceNewPageComponent,
       InvoiceItemsTableComponent,
       InvoiceTableComponent,
-      MedicalOpsComponent
+      MedicalOpsComponent,
+      FinalizedInvoiceDialogComponent
       
 
   ],
@@ -155,7 +155,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AppointmentAddNewDialogComponent,
     AppointmentUpdateInformationDialogComponent,
     PatientAddMedimageDialogComponent,
-    ImageFullscreenDialogComponent
+    ImageFullscreenDialogComponent,
+    FinalizedInvoiceDialogComponent
   ],
   bootstrap: [AppComponent]
 })

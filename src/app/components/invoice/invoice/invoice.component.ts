@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
 import {MatDialog} from '@angular/material/dialog';
+import { FinalizedInvoiceDialogComponent } from './finalized-invoice-dialog/finalized-invoice-dialog.component';
 
 @Component({
   selector: 'app-invoice',
@@ -15,7 +15,10 @@ export class InvoiceComponent implements OnInit {
   invoice:ResInvoice;
   invoiceId:number;
 
-  constructor(private currentRoute:ActivatedRoute,private router:Router,private servInvoice:ServInvoiceService) {
+  constructor(private currentRoute:ActivatedRoute,
+    private router:Router,
+    private servInvoice:ServInvoiceService,
+    public dialogFinalizeInvoice:MatDialog) {
 
     this.getInvoiceCode();
 
@@ -33,10 +36,32 @@ export class InvoiceComponent implements OnInit {
   goToAppointment(code:number){
     this.router.navigate(['appointment',code.toString()])
   }
+
+  openFinalizedInvoiceDialog(){
+    const dialogRef =  this.dialogFinalizeInvoice.open(FinalizedInvoiceDialogComponent,{
+       data:{
+         invoice:this.invoice
+       }
+     });
+   
+     dialogRef.afterClosed().subscribe(closed =>{
+    
+       this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice =>{
+ 
+         this.invoice = invoice;
+         });
+ 
+     });
+   
+   }
   ngOnInit(): void {
   }
 
 }
+
+
+ 
+
 
 
 

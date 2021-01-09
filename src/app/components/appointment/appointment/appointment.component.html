@@ -24,8 +24,7 @@
                         <div class="row justify-content-end align-middle ">
                             <button *ngIf="appointment.status=='Reserved'"class="btn btn-danger col-3"
                             (click)="goToMedicalOps()">Enter Medical Operations</button>
-                            <button *ngIf="appointment.status=='Doctor Done'"class="btn btn-danger col-3"
-                            (click)="goToCreateInvoice()">Create Invoice</button>
+                           
                             <h3 class="mb-0  col-6">Appointment Information</h3>
                             <button class="btn btn-info col-3" (click)="openUpdateAppointmentInformationDialog()">Update Information</button>
                         </div>

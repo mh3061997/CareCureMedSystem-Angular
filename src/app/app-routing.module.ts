@@ -11,7 +11,6 @@ import { PackagebaseComponent } from './components/packagebase/packagebase/packa
 import { NotFoundComponent } from './components/auth/not-found/not-found.component';
 import { ServicePriceListComponent } from './components/service-price-list/service-price-list.component';
 import { InvoiceComponent } from './components/invoice/invoice/invoice.component';
-import { InvoiceNewPageComponent } from './components/invoice/invoice-new-page/invoice-new-page.component';
 import { InvoicepageComponent } from './components/invoice/invoicepage/invoicepage.component';
 import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
 
@@ -41,8 +40,6 @@ const routes: Routes = [{
   path:"invoice",component:InvoicepageComponent
 },{
   path:"invoice/:id",component:InvoiceComponent
-},{
-  path:"invoice/:id/create",component:InvoiceNewPageComponent
 },{
 path:"**",redirectTo:"not-found"
 }];
