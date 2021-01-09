@@ -99,6 +99,65 @@
                             <hr class="my-4" />
 
                         </div>
+                        
+                        <div class="row justify-content-end align-middle card-header  bg-white p-3 ">
+                            <h3 class="mb-0 col-6 ">Appointment Information</h3>
+                            <button class="btn btn-primary col-3" (click)="goToAppointment(invoice.appointment.code)">Go</button>
+                        </div>
+
+                        <div class="row align-middle justify-content-center">
+                            <div class="col-md-10 justify-content-center">
+                                <div class="row p-4">
+                                    <div class="card-body  justify-content-center ">
+                                        <div class="row">
+                
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Code</p>
+                                                <p>{{invoice.appointment.code}}</p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Speciality</p>
+                                                <p>{{invoice.appointment.speciality}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Date of Creation</p>
+                                                <p>{{invoice.appointment.dateCreated}}</p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Date of Visit</p>
+                                                <p>{{invoice.appointment.dateToVisit}}</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Status</p>
+                                                <p>{{invoice.appointment.status}}</p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Patient Name</p>
+                                                <p>{{invoice.appointment.patient.name}}</p>
+                                            </div>
+                                        </div>
+                
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p class="form-control-label">Doctor Name</p>
+                                                <p>{{invoice.appointment.doctor.name}}</p>
+                                            </div>
+                                         
+                                        </div>
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <hr class="my-4" />
+
+                        </div>
                         <div class="card-header  bg-white p-3">
                             <h3 class="mb-0">Invoice Items</h3>
                         </div>

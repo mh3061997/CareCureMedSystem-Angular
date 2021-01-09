@@ -27,7 +27,7 @@
         Appointments
       </a>
 
-      <a mat-list-item routerLink="appointment" routerLinkActive="active">
+      <a mat-list-item routerLink="invoice" routerLinkActive="active">
         <fa-icon class="mr-2" [icon]="faFileAlt"></fa-icon>
         Invoices
       </a>
@@ -43,12 +43,12 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>carecure-app</span>
+      <!-- <span>carecure-app</span> -->
     </mat-toolbar>
 
     <router-outlet></router-outlet>

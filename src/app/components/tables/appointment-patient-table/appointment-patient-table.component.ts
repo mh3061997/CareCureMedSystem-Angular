@@ -25,7 +25,7 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
 
    }
 
-  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','Status','notes','Doctor Name'];
+  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','notes','Doctor Name'];
 
   dataSource: MatTableDataSource<ResAppointment>;
 

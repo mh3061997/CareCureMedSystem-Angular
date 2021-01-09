@@ -57,13 +57,15 @@ import { AppointmentUpdateInformationDialogComponent } from './components/appoin
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PatientMedimagesTableComponent } from './components/patient/patient/patient-medimages-table/patient-medimages-table.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { ImageFullscreenDialogComponent } from './components/patient/patient/patient-medimages-table/image-fullscreen-dialog/image-fullscreen-dialog.component';
 import { PatientAddMedimageDialogComponent } from './components/patient/patient/patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 import { PackagebaseUpdateInformationDialogComponent } from './components/packagebase/packagebase/packagebase-update-information-dialog/packagebase-update-information-dialog.component';
 import { ServicePriceListComponent } from './components/service-price-list/service-price-list.component';
 import { InvoiceNewPageComponent } from './components/invoice/invoice-new-page/invoice-new-page.component';
 import { InvoiceItemsTableComponent } from './components/invoice/invoice/invoice-items-table/invoice-items-table.component';
+import { InvoiceTableComponent } from './components/invoice/invoicepage/invoice-table/invoice-table.component';
+import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,10 @@ import { InvoiceItemsTableComponent } from './components/invoice/invoice/invoice
     PackagebaseUpdateInformationDialogComponent,
     ServicePriceListComponent,
       InvoiceNewPageComponent,
-      InvoiceItemsTableComponent
+      InvoiceItemsTableComponent,
+      InvoiceTableComponent,
+      MedicalOpsComponent
+      
 
   ],
   imports: [
@@ -133,7 +138,7 @@ import { InvoiceItemsTableComponent } from './components/invoice/invoice/invoice
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatTabsModule,
-    NgImageFullscreenViewModule
+    MatCheckboxModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

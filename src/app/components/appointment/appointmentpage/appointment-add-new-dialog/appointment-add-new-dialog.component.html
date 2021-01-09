@@ -69,10 +69,10 @@
 
                     <div class="col-md-6">
                         <mat-form-field>
-                            <label for="input-name" class="form-control-label">Status</label>
-                            <span class="form-text text-muted" *ngIf="status.touched && status.invalid">Please enter
-                                status !<br></span>
-                            <mat-select ngModel name="status" class="form-control" required #status="ngModel">
+                            <label for="input-name" class="form-control-label">Type</label>
+                            <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
+                                type !<br></span>
+                            <mat-select ngModel name="type" class="form-control" required #type="ngModel">
 
                                 <mat-option value="Visit">Visit</mat-option>
                                 <mat-option value="Revisit">Revisit</mat-option>

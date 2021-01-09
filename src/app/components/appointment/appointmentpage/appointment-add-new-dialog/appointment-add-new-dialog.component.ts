@@ -118,10 +118,11 @@ export class AppointmentAddNewDialogComponent implements OnInit {
         speciality:this.newAppointmentForm.value.speciality,
         dateCreated:new Date().toISOString(),
         dateToVisit:this.newAppointmentForm.value.dateToVisit.toISOString(),
-        status:this.newAppointmentForm.value.status,
+        type:this.newAppointmentForm.value.type,
         notes:this.newAppointmentForm.value.note,
         patient:this.patientFormControl.value,
-        doctor:this.doctorFormControl.value
+        doctor:this.doctorFormControl.value,
+        status:"Reserved"
       }
       
       

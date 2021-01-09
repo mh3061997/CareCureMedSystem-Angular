@@ -42,6 +42,7 @@ export class PatientUpdateInformationDialogComponent implements OnInit {
     this.patient.email=this.updateInfoForm.value.email;
     this.patient.mobile=this.updateInfoForm.value.mobile;
     
+    console.log(this.patient);
     this.updatePatientInformation(this.patient);
   }
 

@@ -22,6 +22,10 @@
                 <div class="card-header  bg-white p-3">
                     <div class="container-fluid">
                         <div class="row justify-content-end align-middle ">
+                            <button *ngIf="appointment.status=='Reserved'"class="btn btn-danger col-3"
+                            (click)="goToMedicalOps()">Enter Medical Operations</button>
+                            <button *ngIf="appointment.status=='Doctor Done'"class="btn btn-danger col-3"
+                            (click)="goToCreateInvoice()">Create Invoice</button>
                             <h3 class="mb-0  col-6">Appointment Information</h3>
                             <button class="btn btn-info col-3" (click)="openUpdateAppointmentInformationDialog()">Update Information</button>
                         </div>
@@ -54,15 +58,21 @@
 
                         <div class="row">
                             <div class="col-lg-6">
-                                <p class="form-control-label">Status</p>
-                                <p>{{appointment.status}}</p>
+                                <p class="form-control-label">Type</p>
+                                <p>{{appointment.type}}</p>
                             </div>
                             <div class="col-lg-6">
                                 <p class="form-control-label">Notes</p>
                                 <p>{{appointment.notes}}</p>
                             </div>
                         </div>
-
+                        <div class="row">
+                           
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Status</p>
+                                <p>{{appointment.status}}</p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

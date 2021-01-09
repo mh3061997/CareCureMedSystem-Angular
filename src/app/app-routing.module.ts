@@ -13,6 +13,7 @@ import { ServicePriceListComponent } from './components/service-price-list/servi
 import { InvoiceComponent } from './components/invoice/invoice/invoice.component';
 import { InvoiceNewPageComponent } from './components/invoice/invoice-new-page/invoice-new-page.component';
 import { InvoicepageComponent } from './components/invoice/invoicepage/invoicepage.component';
+import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
 
 const routes: Routes = [{
   path:"patient",component:PatientpageComponent},
@@ -26,6 +27,8 @@ const routes: Routes = [{
   path:"appointment",component:AppointmentpageComponent
 },{
   path:"appointment/:id",component:AppointmentComponent
+},{
+  path:"appointment/:id/medops",component:MedicalOpsComponent
 },{
   path:"packagebases",component:PackagepageComponent
 },{

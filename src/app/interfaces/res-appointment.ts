@@ -8,6 +8,7 @@ export interface ResAppointment {
     dateCreated:string;
     dateToVisit:string;
     status:string;
+    type:string;
     notes:string;
     doctor:ResDoctor;
     patient:ResPatient;

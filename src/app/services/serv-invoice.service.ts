@@ -28,8 +28,8 @@ export class ServInvoiceService {
   }
 
   //Add a new Invoice
-  addInvoice(newInvoice:ResInvoice){
-    return this.http.post(this.servPath.getPathInvoice(),newInvoice);
+  addInvoice(newInvoice:ResInvoice):Observable<ResInvoice>{
+    return this.http.post<ResInvoice>(this.servPath.getPathInvoice(),newInvoice);
   }
   
   //update an existing Invoice

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
@@ -15,7 +15,7 @@ export class InvoiceComponent implements OnInit {
   invoice:ResInvoice;
   invoiceId:number;
 
-  constructor(private currentRoute:ActivatedRoute,private servInvoice:ServInvoiceService) {
+  constructor(private currentRoute:ActivatedRoute,private router:Router,private servInvoice:ServInvoiceService) {
 
     this.getInvoiceCode();
 
@@ -29,7 +29,10 @@ export class InvoiceComponent implements OnInit {
   private getInvoiceCode(){
   this.invoiceId = this.currentRoute.snapshot.params['id'];
   }
-
+  
+  goToAppointment(code:number){
+    this.router.navigate(['appointment',code.toString()])
+  }
   ngOnInit(): void {
   }
 

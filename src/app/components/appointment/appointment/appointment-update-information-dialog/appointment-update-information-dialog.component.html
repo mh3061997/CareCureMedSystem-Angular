@@ -25,11 +25,11 @@
                     </div>
                     <div class="col-md-6">
                         <mat-form-field>
-                            <label for="input-name" class="form-control-label">Status</label>
-                            <mat-select [ngModel]="appointment.status" name="status" class="form-control" required
-                                #status="ngModel">
-                                <span class="form-text text-muted" *ngIf="status.touched && status.invalid">Please enter
-                                    status !<br></span>
+                            <label for="input-name" class="form-control-label">Type</label>
+                            <mat-select [ngModel]="appointment.type" name="type" class="form-control" required
+                                #type="ngModel">
+                                <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
+                                    type !<br></span>
                                 <mat-option value="Visit">Visit</mat-option>
                                 <mat-option value="Revisit">Revisit</mat-option>
 

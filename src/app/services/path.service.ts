@@ -25,8 +25,13 @@ export class PathService {
 
   private servicePriceListPath:string="servicePriceList";
 
+  private invoiceItemPath:string="invoiceItem";
+  
   public getPathServicePriceList(){
     return this.approotPath+this.servicePriceListPath;
+  }
+  public getPathInvoiceItem(){
+    return this.approotPath+this.invoiceItemPath;
   }
    public getPathPatient(){
      return this.approotPath+this.patientPath;

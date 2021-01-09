@@ -63,13 +63,19 @@ export class AppointmentUpdateInformationDialogComponent implements OnInit,After
 
     this.appointment.notes=this.updateInfoForm.value.notes;
     this.appointment.speciality=this.updateInfoForm.value.speciality;
-    this.appointment.status=this.updateInfoForm.value.status;
+    this.appointment.type=this.updateInfoForm.value.type;
     const timeZoneOffset = new Date().getTimezoneOffset()*60*1000;
     let dateToVisit = new Date(this.updateInfoForm.value.dateToVisit);
     timeZoneOffset >0 ? dateToVisit.setTime(dateToVisit.getTime() + timeZoneOffset) : dateToVisit.setTime(dateToVisit.getTime() - timeZoneOffset);
 
     this.appointment.dateToVisit=dateToVisit.toISOString();
     this.appointment.doctor=this.doctorFormControl.value;
+
+    //to prevent nulls
+   if(this.appointment.invoice){
+     delete this.appointment.invoice;
+   }
+  
 
     console.log(this.appointment);
     

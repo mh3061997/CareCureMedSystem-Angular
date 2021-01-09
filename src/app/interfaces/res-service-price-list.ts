@@ -1,6 +1,6 @@
 export interface ResServicePriceList {
     code:number;
     name:string;
-    price:string;
+    price:number;
     speciality:string;
 }
