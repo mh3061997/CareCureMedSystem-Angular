@@ -125,6 +125,9 @@ export class AppointmentAddNewDialogComponent implements OnInit {
         status:"Reserved"
       }
       
+      //console.log(this.newAppointmentForm.value.dateToVisit.toString());
+      
+      // console.log(this.servUtils.formatDateTime(this.newAppointmentForm.value.dateToVisit));
       
       this.servAppointment.addAppointment(newAppointment).subscribe(response =>{
         this.dialogRef.close();

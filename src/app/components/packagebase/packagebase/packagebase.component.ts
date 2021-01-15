@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ResPackageBase } from 'src/app/interfaces/res-package-base';
 import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 import { PackagebaseUpdateInformationDialogComponent } from './packagebase-update-information-dialog/packagebase-update-information-dialog.component';
 
 @Component({
@@ -15,7 +16,10 @@ export class PackagebaseComponent implements OnInit {
   packageCode:number;
   packageBase:ResPackageBase;
 
-  constructor(public dialogUpdatePackage:MatDialog,private currentRoute:ActivatedRoute,private servPackageBase:ServPackageBaseService) {
+  constructor(public dialogUpdatePackage:MatDialog,
+    private currentRoute:ActivatedRoute,
+    private servPackageBase:ServPackageBaseService,
+    public servUtils:ServUtilitiesService) {
 
     this.getPackageCode();
 

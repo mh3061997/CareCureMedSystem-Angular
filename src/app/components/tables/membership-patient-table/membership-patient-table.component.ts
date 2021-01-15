@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ResMembership } from 'src/app/interfaces/res-membership';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-membership-patient-table',
@@ -14,7 +15,8 @@ export class MembershipPatientTableComponent implements AfterViewInit ,OnChanges
   @Input()
   memberships:ResMembership[];
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef,
+    public servUtils:ServUtilitiesService) {
         
      
    }

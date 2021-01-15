@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ResPatient} from 'src/app/interfaces/res-patient'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-invoice-table',
@@ -25,7 +26,8 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
+  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute,
+    public servUtils:ServUtilitiesService){
 
   }
   

@@ -14,7 +14,7 @@
   
       <ng-container matColumnDef="dateCreated">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-        <td mat-cell *matCellDef="let row"> {{row.dateCreated}} </td>
+        <td mat-cell *matCellDef="let row"> {{servUtils.formatDateTime(row.dateCreated)}} </td>
       </ng-container>
   
       <ng-container matColumnDef="totalPaid">

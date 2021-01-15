@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResPackageBase } from 'src/app/interfaces/res-package-base';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-package-base-table',
@@ -28,7 +29,9 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
+  constructor(private cdr: ChangeDetectorRef,private router: Router,
+     private route: ActivatedRoute,
+     public servUtils:ServUtilitiesService){
 
   }
   

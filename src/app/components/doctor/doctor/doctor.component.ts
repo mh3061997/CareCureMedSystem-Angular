@@ -5,6 +5,7 @@ import { ResDoctor } from 'src/app/interfaces/res-doctor';
 import { ServDoctorService } from 'src/app/services/serv-doctor.service';
 import {MatDialog} from '@angular/material/dialog';
 import { DoctorUpdateInformationDialogComponent } from '../doctor/doctor-update-information-dialog/doctor-update-information-dialog.component';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-doctor',
@@ -18,7 +19,10 @@ export class DoctorComponent  {
 
  
 
-  constructor(public dialogUpdateDoctorInformation:MatDialog,private currentRoute:ActivatedRoute,private servDoctor:ServDoctorService) {
+  constructor(public dialogUpdateDoctorInformation:MatDialog,
+    private currentRoute:ActivatedRoute,
+    private servDoctor:ServDoctorService,
+    public servUtils:ServUtilitiesService) {
 
     this.getDoctorCode();
 

@@ -1,6 +1,7 @@
 import { summaryFileName } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
@@ -35,7 +36,7 @@ export class MedicalOpsComponent implements OnInit {
     this.getAppointmentCode();
     servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
       this.appointment = appointment;
-
+    console.log(appointment);
       switch (this.appointment.speciality) {
         case "Dentistry":
           servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(services => {
@@ -78,6 +79,10 @@ export class MedicalOpsComponent implements OnInit {
         break;
     }
     console.log(this.selectedServices);
+  }
+
+  onSpecialityChange(event:MatSelectChange){
+
   }
    CreateInvoice() {
 

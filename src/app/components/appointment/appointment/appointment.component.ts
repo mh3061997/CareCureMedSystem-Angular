@@ -6,6 +6,7 @@ import { ResDoctor } from 'src/app/interfaces/res-doctor';
 import { ResPatient } from 'src/app/interfaces/res-patient';
 import { PathService } from 'src/app/services/path.service';
 import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 import { AppointmentUpdateInformationDialogComponent } from './appointment-update-information-dialog/appointment-update-information-dialog.component';
 
 @Component({
@@ -27,7 +28,7 @@ export class AppointmentComponent implements OnInit {
     private currentRoute:ActivatedRoute,
     private servAppointment:ServAppointmentService,
     private router: Router,
-    private servPath:PathService) {
+    public servUtils:ServUtilitiesService) {
 
     this.getAppointmentCode();
 

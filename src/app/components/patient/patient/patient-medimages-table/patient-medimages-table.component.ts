@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageFullscreenDialogComponent } from './image-fullscreen-dialog/image-fullscreen-dialog.component';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-patient-medimages-table',
@@ -38,7 +39,8 @@ export class PatientMedimagesTableComponent implements AfterViewInit, OnChanges 
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,public dialogImageFullScreen:MatDialog){
+  constructor(private cdr: ChangeDetectorRef,public dialogImageFullScreen:MatDialog,
+    public servUtils:ServUtilitiesService){
 
   }
   

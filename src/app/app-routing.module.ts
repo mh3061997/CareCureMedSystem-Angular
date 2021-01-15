@@ -41,7 +41,7 @@ const routes: Routes = [{
 },{
   path:"invoice/:id",component:InvoiceComponent
 },{
-path:"**",redirectTo:"not-found"
+path:"**",redirectTo:"patient"
 }];
 
 @NgModule({

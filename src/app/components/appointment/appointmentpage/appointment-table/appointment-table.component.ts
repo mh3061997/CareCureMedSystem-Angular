@@ -9,6 +9,7 @@ import {ResPatient} from 'src/app/interfaces/res-patient'
 import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-appointment-table',
@@ -20,7 +21,10 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
   @Input()
   appointments:ResAppointment[];
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
+  constructor(private cdr: ChangeDetectorRef,private router: Router,
+     private route: ActivatedRoute,
+     public servUtils:ServUtilitiesService
+    ){
         
      
    }

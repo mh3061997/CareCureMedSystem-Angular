@@ -7,7 +7,8 @@ export class PathService {
 
   constructor() { }
 
-   private approotPath:string ="http://localhost:8080/";
+  //  private approotPath:string ="http://18.159.60.62:8080/medsystem-0.0.1-SNAPSHOT/";
+  private approotPath:string ="http://localhost:8080/";
 
    private patientPath:string ="patient";
 
@@ -31,6 +32,7 @@ export class PathService {
     return this.approotPath+this.servicePriceListPath;
   }
   public getPathInvoiceItem(){
+    console.log(this.approotPath);
     return this.approotPath+this.invoiceItemPath;
   }
    public getPathPatient(){

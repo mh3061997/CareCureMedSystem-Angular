@@ -4,6 +4,7 @@ import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
 import {MatDialog} from '@angular/material/dialog';
 import { FinalizedInvoiceDialogComponent } from './finalized-invoice-dialog/finalized-invoice-dialog.component';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-invoice',
@@ -18,7 +19,8 @@ export class InvoiceComponent implements OnInit {
   constructor(private currentRoute:ActivatedRoute,
     private router:Router,
     private servInvoice:ServInvoiceService,
-    public dialogFinalizeInvoice:MatDialog) {
+    public dialogFinalizeInvoice:MatDialog,
+    public servUtils:ServUtilitiesService) {
 
     this.getInvoiceCode();
 

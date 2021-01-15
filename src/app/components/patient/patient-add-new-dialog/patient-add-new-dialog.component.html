@@ -71,11 +71,12 @@
                         <label for="input-name" class="form-control-label">Mobile</label>
                         <input
                         name="mobile"
-                         matInput type="text" 
+                         matInput type="number" 
                         class="form-control"
                         ngModel
                         #mobile = "ngModel"
-                        required>
+                        required
+                        min="11">
                         <span
                         class="form-text text-muted" 
                         *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
