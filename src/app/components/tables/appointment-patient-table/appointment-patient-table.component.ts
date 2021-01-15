@@ -27,7 +27,7 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
 
    }
 
-  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','notes','Doctor Name'];
+  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','notes','Doctor Name',' '];
 
   dataSource: MatTableDataSource<ResAppointment>;
 
@@ -60,7 +60,7 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
   
   goToAppointment(code:number){
     console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
+    this.router.navigate(['appointment',code.toString()]);
   }
 
   

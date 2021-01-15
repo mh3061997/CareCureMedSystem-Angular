@@ -27,7 +27,7 @@ export class DoctorAppointmentTableComponent implements AfterViewInit ,OnChanges
 
   }
 
-   displayedColumns: string[] = ['code','patient code','patient name', 'dateCreated', 'dateToVisit','type'];
+   displayedColumns: string[] = ['code','patient code','patient name', 'dateCreated', 'dateToVisit','type',' '];
 
    dataSource: MatTableDataSource<ResAppointment>;
  
@@ -58,10 +58,11 @@ export class DoctorAppointmentTableComponent implements AfterViewInit ,OnChanges
    }
 
    
-  goToAppointment(code:number){
+   goToAppointment(code:number){
     console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
+    this.router.navigate(['appointment',code.toString()]);
   }
+
 
   
   ngOnChanges(changes: SimpleChanges) {

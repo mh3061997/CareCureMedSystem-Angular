@@ -10,6 +10,7 @@ import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
 
 @Component({
   selector: 'app-appointment-table',
@@ -23,13 +24,14 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
 
   constructor(private cdr: ChangeDetectorRef,private router: Router,
      private route: ActivatedRoute,
-     public servUtils:ServUtilitiesService
+     public servUtils:ServUtilitiesService,
+     public servAppointment:ServAppointmentService
     ){
         
      
    }
 
-  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','Status','notes','Doctor Name','Patient Name','Patient Code',' '];
+  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','Status','notes','Doctor Name','Patient Name','Patient Code',' ','  ','   '];
 
   dataSource: MatTableDataSource<ResAppointment>;
 
@@ -68,10 +70,27 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
 
 goToAppointment(code:number){
   console.log(this.route);
-  this.router.navigate([code.toString()],{relativeTo:this.route});
+  this.router.navigate(['appointment',code.toString()]);
 }
 
+cancelAppointment(appointment:ResAppointment){
+  let cancelledAppointment = appointment;
+  cancelledAppointment.status="Cancelled";
+  this.servAppointment.updateAppointment(cancelledAppointment).subscribe(res=>{
+    appointment=cancelledAppointment;
+    //free doctor time
+  });
+}
 
+confirmAppointment(appointment:ResAppointment){
+
+  let confirmedAppointment = appointment;
+  confirmedAppointment.status="Confirmed";
+  this.servAppointment.updateAppointment(confirmedAppointment).subscribe(res=>{
+    appointment=confirmedAppointment;
+  });
+
+}
 }
 
 

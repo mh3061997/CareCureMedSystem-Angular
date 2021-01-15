@@ -15,10 +15,11 @@
                         class="form-control"
                         [ngModel]="doctor.name"
                         #name="ngModel"
+                        pattern="[a-zA-Z ]*"
                         required>
                         <span
                         class="form-text text-muted" 
-                        *ngIf="name.touched && name.invalid">Please enter name !<br></span>
+                        *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
                         
                         
                     </mat-form-field> 

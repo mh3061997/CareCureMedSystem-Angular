@@ -14,10 +14,11 @@
                         class="form-control"
                         ngModel
                         #name="ngModel"
+                        pattern="[a-zA-Z ]*"
                         required>
                         <span
                         class="form-text text-muted" 
-                        *ngIf="name.touched && name.invalid">Please enter name !<br></span>
+                        *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
                         
                         
                     </mat-form-field> 
@@ -94,7 +95,7 @@
                         <label for="input-name" class="form-control-label">Age</label>
                         <input 
                         name="age"
-                        matInput type="text" 
+                        matInput type="number" 
                         class="form-control"
                         ngModel
                         #age = "ngModel"
