@@ -5,9 +5,12 @@
     </div>
 
     <div *ngIf="services" class="row p-3">
-        <div class="col-md-6" *ngFor="let service of services">
-            <mat-checkbox color="primary" (change)="onChange($event,service)">
-                {{service.name}}, Price:{{service.price}}</mat-checkbox>
+        <div class="col-md-6 justify-content-between" *ngFor="let service of services">
+           <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
+           <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
+           <button class="btn btn-sm btn-danger m-1"
+            (click)="removeServiceQuantity(service)"
+            [disabled]="serviceQuantityMap.get(service) <=0">-</button>
         </div>
     </div>
     <!-- <div *ngIf="appointment.speciality=='Dermatology'" class="row p-3">

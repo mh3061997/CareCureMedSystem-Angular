@@ -25,7 +25,9 @@ export class MedicalOpsComponent implements OnInit {
   invoice: ResInvoice;
   invoiceId: number;
   selectedServices: ResInvoiceItem[] = [];
-
+  
+  serviceQuantityMap = new Map();
+  
   constructor(private servAppointment: ServAppointmentService,
     private servInvoice: ServInvoiceService,
     private servInvoiceItem: ServInvoiceItemService,
@@ -34,7 +36,7 @@ export class MedicalOpsComponent implements OnInit {
     private router: Router) {
 
     this.getAppointmentCode();
-    
+    console.log(this.serviceQuantityMap.get('3ff'));
     servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
       this.appointment = appointment;
     console.log(appointment);
@@ -42,11 +44,17 @@ export class MedicalOpsComponent implements OnInit {
         case "Dentistry":
           servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(services => {
             this.services = services;
+            this.services.forEach(service=>{
+              this.serviceQuantityMap.set(service,0);
+            })
             console.log(this.services);
           });
           break;
         case "Dermatology": servServicePriceList.getServicePriceListBySpeciality("Dermatology").subscribe(services => {
           this.services = services;
+          this.services.forEach(service=>{
+            this.serviceQuantityMap.set(service,0);
+          });
           console.log(this.services);
         });
           break;
@@ -62,7 +70,7 @@ export class MedicalOpsComponent implements OnInit {
       }
     });
   }
-  onChange(event: MatCheckboxChange, service: ResServicePriceList) {
+ addServiceQuantity(service: ResServicePriceList) {
     const serviceInvoiceItem:ResInvoiceItem={
       code:0,
       name:service.name,
@@ -70,21 +78,28 @@ export class MedicalOpsComponent implements OnInit {
       invoice:this.invoice
     }
 
-    switch (event.checked) {
-      case true:
-        this.selectedServices.push(serviceInvoiceItem); //speciality is ignored when sending resinvoiceitem json
-        break;
-      case false:
-        const index = this.selectedServices.indexOf(serviceInvoiceItem);
-        this.selectedServices.splice(index,1); //remove 1 element starting from index
-        break;
+    this.selectedServices.push(serviceInvoiceItem); //speciality is ignored when sending resinvoiceitem json
+    this.serviceQuantityMap.set(service,this.serviceQuantityMap.get(service)+1);
+  }
+
+  removeServiceQuantity(service:ResServicePriceList){
+
+    const serviceInvoiceItem:ResInvoiceItem={
+      code:0,
+      name:service.name,
+      price:service.price,
+      invoice:this.invoice
     }
-    console.log(this.selectedServices);
-  }
+      const index = this.selectedServices.indexOf(serviceInvoiceItem);
+      this.selectedServices.splice(index,1); //remove 1 element starting from index
+      this.serviceQuantityMap.set(service,this.serviceQuantityMap.get(service)-1);
 
-  onSpecialityChange(event:MatSelectChange){
-
   }
+  
+  
+
+ 
+
    CreateInvoice() {
 
     if(!this.selectedServices.length){
@@ -113,7 +128,7 @@ export class MedicalOpsComponent implements OnInit {
       totalPaid: 0,
       totalRemaining: totalprice
     };
-
+   
     this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
       this.updateAppointmentStatus(); //doctor done
       this.invoice = invoiceWithCode;
