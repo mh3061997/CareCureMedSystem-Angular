@@ -18,7 +18,7 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
   @Input()
   invoices:ResInvoice[];
 
-  displayedColumns: string[] = ['code', 'dateCreated', 'totalPaid','discount', 'status' ,'appointmentCode','paymentMethod',' '];
+  displayedColumns: string[] = ['code','patientName', 'dateCreated', 'totalPaid','discount', 'status' ,'appointmentCode','paymentMethod',' '];
 
   dataSource: MatTableDataSource<ResInvoice>;
 

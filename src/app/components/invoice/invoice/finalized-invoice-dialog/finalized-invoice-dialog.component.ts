@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import {ResPatient} from 'src/app/interfaces/res-patient';
+import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
 
@@ -24,7 +25,8 @@ export class FinalizedInvoiceDialogComponent implements OnInit {
   
   constructor(@Inject(MAT_DIALOG_DATA) public data:{invoice:ResInvoice},
               public dialogRef: MatDialogRef<FinalizedInvoiceDialogComponent>,
-              private servInvoice:ServInvoiceService) {
+              private servInvoice:ServInvoiceService,
+              private servAppointment:ServAppointmentService) {
 
     this.invoice=data.invoice;
     this.totalAfterDiscount=this.invoice.totalAfterDiscount;
@@ -43,11 +45,19 @@ export class FinalizedInvoiceDialogComponent implements OnInit {
 
   updateInvoiceInformation(updatedInvoice:ResInvoice){
     
-    //console.log(this.updateInfoForm);
+  
 
     this.servInvoice.updateInvoice(updatedInvoice).subscribe(response =>{
+      
+      let updatedAppointment=this.invoice.appointment;
+      updatedAppointment.status="Invoiced";
+      delete updatedAppointment.invoice;
 
-      this.dialogRef.close();
+      this.servAppointment.updateAppointment(updatedAppointment).subscribe(response=>{
+        
+        this.dialogRef.close();
+
+      });
 
     });
   }

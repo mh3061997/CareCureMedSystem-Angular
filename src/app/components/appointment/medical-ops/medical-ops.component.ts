@@ -34,6 +34,7 @@ export class MedicalOpsComponent implements OnInit {
     private router: Router) {
 
     this.getAppointmentCode();
+    
     servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
       this.appointment = appointment;
     console.log(appointment);

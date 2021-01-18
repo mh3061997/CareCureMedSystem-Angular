@@ -14,6 +14,13 @@ export class AppointmentpageComponent implements OnInit {
   
   appointments:ResAppointment[];
 
+  
+ 
+  selectedDate: Date;
+  dateChanged(event:Event) {
+    console.log(`Selected: ${event}`);
+  }
+
   constructor(public dialogAddAppointment:MatDialog,private servAppointment:ServAppointmentService) {
 
     servAppointment.getAppointmentsAll().subscribe(appointments =>{

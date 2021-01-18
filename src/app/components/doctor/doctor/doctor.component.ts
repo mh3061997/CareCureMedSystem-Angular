@@ -6,6 +6,7 @@ import { ServDoctorService } from 'src/app/services/serv-doctor.service';
 import {MatDialog} from '@angular/material/dialog';
 import { DoctorUpdateInformationDialogComponent } from '../doctor/doctor-update-information-dialog/doctor-update-information-dialog.component';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { MatCalendar } from '@angular/material/datepicker/calendar';
 
 @Component({
   selector: 'app-doctor',
@@ -16,9 +17,7 @@ export class DoctorComponent  {
 
   doctor:ResDoctor;
   doctorId:number;
-
- 
-
+  
   constructor(public dialogUpdateDoctorInformation:MatDialog,
     private currentRoute:ActivatedRoute,
     private servDoctor:ServDoctorService,
