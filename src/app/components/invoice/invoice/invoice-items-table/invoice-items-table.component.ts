@@ -1,10 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {ResPatient} from 'src/app/interfaces/res-patient'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResInvoiceItem } from 'src/app/interfaces/res-invoice-item';
+import { ServInvoiceItemService } from 'src/app/services/serv-invoice-item.service';
+import { EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-invoice-items-table',
@@ -16,8 +19,12 @@ export class InvoiceItemsTableComponent  implements AfterViewInit, OnChanges  {
  
   @Input()
   invoiceItems:ResInvoiceItem[];
+  @Input()
+  invoiceStatus:string;
+  @Output()
+  itemRemovedEvent =new EventEmitter();
 
-  displayedColumns: string[] = ['code', 'name', 'price'];
+  displayedColumns: string[] = ['code', 'name', 'price',' '];
 
   dataSource: MatTableDataSource<ResInvoiceItem>;
 
@@ -25,10 +32,17 @@ export class InvoiceItemsTableComponent  implements AfterViewInit, OnChanges  {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef){
-
+  constructor(private cdr: ChangeDetectorRef,
+    public servInvoiceItem:ServInvoiceItemService){
+      
   }
   
+  deleteInvoiceItem(code:number){
+    this.servInvoiceItem.deleteInvoiceItem(code).subscribe(res=>{
+      this.itemRemovedEvent.emit();
+    });
+  }
+
   ngAfterViewInit() {
   
            // Assign the data to the data source for the table to render

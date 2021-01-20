@@ -26,17 +26,21 @@ export class InvoiceComponent implements OnInit {
 
     this.getInvoiceCode();
 
-    servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice =>{
-
-    this.invoice = invoice;
-
-  });
+    this.getInvoice();
   }
 
   private getInvoiceCode(){
   this.invoiceId = this.currentRoute.snapshot.params['id'];
   }
   
+  public getInvoice(){
+    this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice =>{
+
+      this.invoice = invoice;
+  
+    });
+  }
+
   goToAppointment(code:number){
     this.router.navigate(['appointment',code.toString()])
   }

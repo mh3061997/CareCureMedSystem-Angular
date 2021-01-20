@@ -22,7 +22,7 @@
                 <div class="card-header  bg-white p-3">
                     <div class="container-fluid">
                         <div class="row justify-content-end align-middle ">
-                            <button *ngIf="appointment.status=='Reserved'" class="btn btn-danger col-3"
+                            <button *ngIf="appointment.status=='Reserved' || appointment.status=='Confirmed'" class="btn btn-danger col-3"
                                 (click)="goToMedicalOps()">Enter Medical Operations</button>
 
                             <h3 class="mb-0  col-6">Appointment Information</h3>

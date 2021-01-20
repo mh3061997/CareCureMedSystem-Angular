@@ -67,6 +67,7 @@ import { MedicalOpsComponent } from './components/appointment/medical-ops/medica
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/finalized-invoice-dialog/finalized-invoice-dialog.component';
 import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
+import { AddCustomItemMedopsDialogComponent } from './components/appointment/medical-ops/add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-c
       InvoiceTableComponent,
       MedicalOpsComponent,
       FinalizedInvoiceDialogComponent,
-      AddCustomItemDialogComponent
+      AddCustomItemDialogComponent,
+      AddCustomItemMedopsDialogComponent
       
 
   ],
@@ -159,7 +161,8 @@ import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-c
     PatientAddMedimageDialogComponent,
     ImageFullscreenDialogComponent,
     FinalizedInvoiceDialogComponent,
-    AddCustomItemDialogComponent
+    AddCustomItemDialogComponent,
+    AddCustomItemMedopsDialogComponent
   ],
   bootstrap: [AppComponent]
 })

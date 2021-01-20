@@ -171,7 +171,11 @@
                             </div>
                         </div>   
                         </div>
-                        <app-invoice-items-table [invoiceItems]="invoice.invoiceItems"></app-invoice-items-table>
+                        <app-invoice-items-table 
+                        [invoiceItems]="invoice.invoiceItems"
+                        [invoiceStatus]="invoice.status"
+                        (itemRemovedEvent)="getInvoice()"
+                        ></app-invoice-items-table>
 
                     </div>
 

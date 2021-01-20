@@ -1,10 +1,10 @@
-<div class="container p-5" *ngIf="services">
+<div class="container p-5">
     <div *ngIf="appointment" class="row col-md-12 col-lg-6 text-left p-3 mb-1 text-danger">
-        <h1>Hello Dr.{{appointment.doctor.name}}<br> Please Select the performed medical services from below.</h1>
-        <h3 class="text-heading mb-3">{{appointment.speciality}} Services</h3>
+        <h1>Hello Dr.{{appointment.doctor.name}}<br> Please Enter the performed medical services.</h1>
     </div>
 
     <div *ngIf="services" class="row p-3">
+        <h3 class="text-heading mb-3">{{appointment.speciality}} Services</h3>
         <div class="col-md-6 justify-content-between" *ngFor="let service of services">
            <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
            <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
@@ -50,7 +50,12 @@
 
         </div>
     </div> -->
+    <div class="row justify-content-end p-3">
+        <button class="btn btn-success"(click)="openAddCustomInvoiceItemDialog()">Add Custom Item</button>
+
+      </div>
   <div class="row justify-content-center ">
+      
     <fa-icon class="" [icon]="faPencilAlt" style="color:purple"></fa-icon>
    
         <mat-form-field class="col-md-10 col-10" appearance="fill">
@@ -65,7 +70,6 @@
     <div class="row mt-5 justify-content-center">
         <div class="col-5">
             <button class="btn btn-danger" (click)="CreateInvoice()">Finalize Appointment</button>
-
         </div>
     </div>
 

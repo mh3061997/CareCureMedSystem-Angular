@@ -15,6 +15,9 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { ServNoteAppointmentService } from 'src/app/services/serv-note-appointment.service';
 import { ResNoteAppointment } from 'src/app/interfaces/res-note-appointment';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCustomItemDialogComponent } from '../../invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
+import { AddCustomItemMedopsDialogComponent } from './add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
 
 @Component({
   selector: 'app-medical-ops',
@@ -41,6 +44,7 @@ export class MedicalOpsComponent implements OnInit {
     private servInvoice: ServInvoiceService,
     private servInvoiceItem: ServInvoiceItemService,
     private servServicePriceList: ServServicePriceListService,
+    public dialogAddCustomInvoiceItem:MatDialog,
     private currentRoute: ActivatedRoute,
     private router: Router,
     private servNoteAppointment:ServNoteAppointmentService) {
@@ -68,14 +72,7 @@ export class MedicalOpsComponent implements OnInit {
           console.log(this.services);
         });
           break;
-        default: if (this.appointment.type == "Visit") {
-          this.selectedServices.push({ code: 0, name: "Visit", price: this.appointment.doctor.priceVisit });
-        } else {
-
-          this.selectedServices.push({ code: 0, name: "Revisit", price: this.appointment.doctor.priceRevisit });
-        }
-          this.CreateInvoice();
-          console.log(this.selectedServices);
+      
 
       }
     });
@@ -180,6 +177,16 @@ export class MedicalOpsComponent implements OnInit {
     this.appointmentId = this.currentRoute.snapshot.params['id'];
   }
 
+  openAddCustomInvoiceItemDialog(){
+    
+    const dialogRef =  this.dialogAddCustomInvoiceItem.open(AddCustomItemMedopsDialogComponent);
+  
+    dialogRef.afterClosed().subscribe(CustomItem =>{
+     //console.log(CustomItem);
+     this.selectedServices.push(CustomItem);
+
+    });
+   }
 
   ngOnInit(): void {
   }
