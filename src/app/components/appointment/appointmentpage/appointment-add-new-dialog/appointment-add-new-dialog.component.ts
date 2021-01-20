@@ -97,10 +97,13 @@ export class AppointmentAddNewDialogComponent implements OnInit {
     return patient && patient.name ? patient.name : '';
   }
 
-  private _filterPatient(name: string): ResPatient[] {
-    const filterValue = name.toLowerCase();
+  private _filterPatient(nameOrMobile: string): ResPatient[] {
+    const filterValue = nameOrMobile.toLowerCase();
 
-    return this.patients.filter(patient => patient.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.patients.filter(patient => 
+      patient.name.toLowerCase().indexOf(filterValue) === 0
+      || patient.mobile.indexOf(filterValue) ===0
+    );
   }
 
 
