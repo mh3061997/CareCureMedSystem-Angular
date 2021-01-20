@@ -66,6 +66,7 @@ import { InvoiceTableComponent } from './components/invoice/invoicepage/invoice-
 import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/finalized-invoice-dialog/finalized-invoice-dialog.component';
+import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/fi
       InvoiceItemsTableComponent,
       InvoiceTableComponent,
       MedicalOpsComponent,
-      FinalizedInvoiceDialogComponent
+      FinalizedInvoiceDialogComponent,
+      AddCustomItemDialogComponent
       
 
   ],
@@ -156,7 +158,8 @@ import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/fi
     AppointmentUpdateInformationDialogComponent,
     PatientAddMedimageDialogComponent,
     ImageFullscreenDialogComponent,
-    FinalizedInvoiceDialogComponent
+    FinalizedInvoiceDialogComponent,
+    AddCustomItemDialogComponent
   ],
   bootstrap: [AppComponent]
 })

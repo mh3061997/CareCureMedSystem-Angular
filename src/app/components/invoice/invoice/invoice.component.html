@@ -162,8 +162,14 @@
                             <hr class="my-4" />
 
                         </div>
-                        <div class="card-header  bg-white p-3">
-                            <h3 class="mb-0">Invoice Items</h3>
+                        <div class="card-header justify-content-end bg-white p-3">
+                        <div class="container-fluid">
+                            <div class="row justify-content-end align-middle">
+                                <h3 class="mb-0 col-6">Invoice Items</h3>
+                                <button class="btn btn-success col-3" (click)="openAddCustomInvoiceItemDialog()">Add Item</button>
+                            
+                            </div>
+                        </div>   
                         </div>
                         <app-invoice-items-table [invoiceItems]="invoice.invoiceItems"></app-invoice-items-table>
 

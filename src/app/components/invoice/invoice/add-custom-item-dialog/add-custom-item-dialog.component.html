@@ -1,0 +1,47 @@
+<h1 class="mat-dialog-title">Add Custom Invoice Item</h1>
+<div class="container mat-dialog-content bg-white">
+  <form *ngIf="invoice" (ngSubmit)="onAddCustomItemSubmit()" #addCustomItemForm="ngForm">
+      <div class="row">
+       
+            <mat-form-field>   
+
+                <label for="input-name" class="form-control-label">Item Name</label>
+                <input  matInput 
+                name="name"
+                class="form-control col-12"
+                ngModel
+                #name="ngModel"
+                required
+                type="text">
+                <span
+                class="form-text text-muted" 
+                *ngIf="name.touched && name.invalid">Please enter item name !<br></span>
+                
+                
+            </mat-form-field> 
+          
+      </div>
+      <div class="row">
+        
+            <mat-form-field>   
+
+                <label for="input-name" class="form-control-label">Price</label>
+                <input  matInput 
+                name="price"
+                class="form-control"
+                ngModel
+                #price="ngModel"
+                required
+                type="number">
+                <span
+                class="form-text text-muted" 
+                *ngIf="price.touched && price.invalid">Please enter item price !<br></span>
+                
+                
+            </mat-form-field> 
+          
+      </div>
+      <button class="btn btn-success" [disabled]="!addCustomItemForm.valid" type="submit">Add Item</button>
+
+  </form>
+</div>

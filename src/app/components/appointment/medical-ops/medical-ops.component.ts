@@ -1,5 +1,5 @@
 import { summaryFileName } from '@angular/compiler/src/aot/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +11,10 @@ import { ServAppointmentService } from 'src/app/services/serv-appointment.servic
 import { ServInvoiceItemService } from 'src/app/services/serv-invoice-item.service';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
 import { ServServicePriceListService } from 'src/app/services/serv-service-price-list.service';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { ServNoteAppointmentService } from 'src/app/services/serv-note-appointment.service';
+import { ResNoteAppointment } from 'src/app/interfaces/res-note-appointment';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-medical-ops',
@@ -18,6 +22,8 @@ import { ServServicePriceListService } from 'src/app/services/serv-service-price
   styleUrls: ['./medical-ops.component.css']
 })
 export class MedicalOpsComponent implements OnInit {
+
+  faPencilAlt=faPencilAlt;
 
   appointment: ResAppointment;
   appointmentId: number;
@@ -28,18 +34,22 @@ export class MedicalOpsComponent implements OnInit {
   
   serviceQuantityMap = new Map();
   
+  @ViewChild('noteAppointment', { static: false }) newNoteAppointment: ElementRef;
+
+  
   constructor(private servAppointment: ServAppointmentService,
     private servInvoice: ServInvoiceService,
     private servInvoiceItem: ServInvoiceItemService,
     private servServicePriceList: ServServicePriceListService,
     private currentRoute: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private servNoteAppointment:ServNoteAppointmentService) {
 
     this.getAppointmentCode();
-    console.log(this.serviceQuantityMap.get('3ff'));
+    
     servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
       this.appointment = appointment;
-    console.log(appointment);
+   
       switch (this.appointment.speciality) {
         case "Dentistry":
           servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(services => {
@@ -131,17 +141,27 @@ export class MedicalOpsComponent implements OnInit {
    
     this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
       this.updateAppointmentStatus(); //doctor done
+      this.CreateNoteAppointment();
       this.invoice = invoiceWithCode;
       this.invoiceId = invoiceWithCode.code;
       this.CreateInvoiceItems();
     });
 
   }
+  
+  private CreateNoteAppointment(){
+    const newNoteAppointmentObj:ResNoteAppointment = {
+      code:0,
+      note:this.newNoteAppointment.nativeElement.value,
+      appointment:this.appointment
+    };
+    this.servNoteAppointment.addNoteAppointment(newNoteAppointmentObj).subscribe(res=>{});
 
+  }
   private updateAppointmentStatus() {
     this.appointment.status = "Doctor Done";
     this.servAppointment.updateAppointment(this.appointment).subscribe(res => {
-
+    
     });
   }
   private CreateInvoiceItems() {

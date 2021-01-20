@@ -5,6 +5,7 @@ import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
 import {MatDialog} from '@angular/material/dialog';
 import { FinalizedInvoiceDialogComponent } from './finalized-invoice-dialog/finalized-invoice-dialog.component';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { AddCustomItemDialogComponent } from './add-custom-item-dialog/add-custom-item-dialog.component';
 
 @Component({
   selector: 'app-invoice',
@@ -20,6 +21,7 @@ export class InvoiceComponent implements OnInit {
     private router:Router,
     private servInvoice:ServInvoiceService,
     public dialogFinalizeInvoice:MatDialog,
+    public dialogAddCustomInvoiceItem:MatDialog,
     public servUtils:ServUtilitiesService) {
 
     this.getInvoiceCode();
@@ -55,6 +57,23 @@ export class InvoiceComponent implements OnInit {
  
      });
    
+   }
+   openAddCustomInvoiceItemDialog(){
+    
+    const dialogRef =  this.dialogAddCustomInvoiceItem.open(AddCustomItemDialogComponent,{
+      data:{
+        invoice:this.invoice
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(closed =>{
+   
+      this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice =>{
+
+        this.invoice = invoice;
+        });
+
+    });
    }
   ngOnInit(): void {
   }
