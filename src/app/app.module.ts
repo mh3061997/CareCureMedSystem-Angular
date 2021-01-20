@@ -68,6 +68,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/finalized-invoice-dialog/finalized-invoice-dialog.component';
 import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
 import { AddCustomItemMedopsDialogComponent } from './components/appointment/medical-ops/add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
+import { ServiceSearchPipe } from './pipes/service-search.pipe';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { AddCustomItemMedopsDialogComponent } from './components/appointment/med
       MedicalOpsComponent,
       FinalizedInvoiceDialogComponent,
       AddCustomItemDialogComponent,
-      AddCustomItemMedopsDialogComponent
+      AddCustomItemMedopsDialogComponent,
+      ServiceSearchPipe
       
 
   ],

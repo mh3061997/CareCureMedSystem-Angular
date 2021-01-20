@@ -17,18 +17,18 @@
         <td mat-cell *matCellDef="let row"> {{row.speciality}} </td>
       </ng-container>
       
-      <ng-container matColumnDef="Doctor Name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor Name </th>
+      <ng-container matColumnDef="doctor.name">
+        <th mat-header-cell *matHeaderCellDef > Doctor Name </th>
         <td mat-cell *matCellDef="let row"> {{row.doctor.name}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Patient Name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </th>
+      <ng-container matColumnDef="patient.name">
+        <th mat-header-cell *matHeaderCellDef > Patient Name </th>
         <td mat-cell *matCellDef="let row"> {{row.patient.name}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Patient Code">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient Code </th>
+      <ng-container matColumnDef="patient.code">
+        <th mat-header-cell *matHeaderCellDef > Patient Code </th>
         <td mat-cell *matCellDef="let row"> {{row.patient.code}} </td>
       </ng-container>
 
@@ -45,28 +45,28 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
         <td mat-cell *matCellDef="let row"> {{row.type}} </td>
       </ng-container>
-      <ng-container matColumnDef="Status">
+      <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
         <td mat-cell *matCellDef="let row"> {{row.status}} </td>
       </ng-container>
 
       <ng-container matColumnDef="notes">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> notes </th>
+        <th mat-header-cell *matHeaderCellDef> notes </th>
         <td mat-cell *matCellDef="let row"> {{row.notes}} </td>
       </ng-container>
 
       <ng-container matColumnDef=" ">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let row"> 
           <button *ngIf="row.status!='Cancelled' && row.status!='Confirmed' && row.status!='Doctor Done' && row.status!='Invoiced' "class="btn btn-success btn-sm" (click)="confirmAppointment(row)">Confirm</button> </td>
       </ng-container>
       <ng-container matColumnDef="  ">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let row"> 
           <button *ngIf="row.status!='Cancelled' && row.status!='Doctor Done' && row.status!='Invoiced'" class="btn btn-danger btn-sm" (click)="cancelAppointment(row)">Cancel</button> </td>
       </ng-container>
       <ng-container matColumnDef="   ">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+        <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let row"> 
           <button class="btn btn-primary btn-sm" (click)="goToAppointment(row.code)">Go</button> </td>
       </ng-container>

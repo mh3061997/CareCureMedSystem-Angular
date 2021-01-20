@@ -26,13 +26,7 @@ export class AppointmentpageComponent implements OnInit {
     servAppointment.getAppointmentsAll().subscribe(appointments =>{
 
       this.appointments = appointments;
-      let tempmap = new Map();
-      tempmap.set(appointments[0],0);
-      tempmap.set(appointments[0],tempmap.get(appointments[0])+1);
-      tempmap.set(appointments[1],5);
-      tempmap.set(appointments[1],5698);
-      tempmap.set(appointments[0],22);
-      console.log(tempmap);
+
     });
   }
 

@@ -3,69 +3,47 @@
         <h1>Hello Dr.{{appointment.doctor.name}}<br> Please Enter the performed medical services.</h1>
     </div>
 
-    <div *ngIf="services" class="row p-3">
+    <div *ngIf="services" class="row p-3 justify-content-lg-center">
         <h3 class="text-heading mb-3">{{appointment.speciality}} Services</h3>
-        <div class="col-md-6 justify-content-between" *ngFor="let service of services">
-           <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
-           <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
-           <button class="btn btn-sm btn-danger m-1"
-            (click)="removeServiceQuantity(service)"
-            [disabled]="serviceQuantityMap.get(service) <=0">-</button>
-        </div>
     </div>
-    <!-- <div *ngIf="appointment.speciality=='Dermatology'" class="row p-3">
-        <h3>Use Membership</h3>
-        <h1 class="mat-dialog-title bg-info ">Update Patient Information</h1>
-        <div class="mat-dialog-content bg-white">
+    <div *ngIf="services" class=" p-3">
 
-            <form *ngIf="appointment">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <mat-form-field>
-                                    <label for="input-name" class="form-control-label">Membership</label>
-                                    <span class="form-text text-muted"
-                                        *ngIf="membership.touched && membership.invalid">Please
-                                        select membership
-                                        !<br></span>
-                                    <mat-select (selectionChange)="onSpecialityChange($event)" ngModel name="membership"
-                                        class="form-control" required #membership="ngModel">
-
-                                        <mat-option *ngFor="let membership of appointment.patient.memberships"
-                                            [value]="membership">{{membership.packageBase.name}}| Remaining:
-                                            {{membership.remainingAmount}}</mat-option>
-
-                                    </mat-select>
-
-
-                                </mat-form-field>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-
+        
+            <div class="row">
+                <mat-form-field>
+                    <mat-label>Search</mat-label>
+                    <input type="text" name="service" matInput type="search" [(ngModel)]="searchText" placeholder="Service Name">
+                </mat-form-field>
+            </div>
+           
+        
+      <div class="row">
+        <div class="col-md-6 justify-content-between" *ngFor="let service of services | serviceSearch : searchText">
+            <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
+            <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
+            <button class="btn btn-sm btn-danger m-1" (click)="removeServiceQuantity(service)"
+                [disabled]="serviceQuantityMap.get(service) <=0">-</button>
         </div>
-    </div> -->
-    <div class="row justify-content-end p-3">
-        <button class="btn btn-success"(click)="openAddCustomInvoiceItemDialog()">Add Custom Item</button>
-
       </div>
-  <div class="row justify-content-center ">
-      
-    <fa-icon class="" [icon]="faPencilAlt" style="color:purple"></fa-icon>
-   
+        
+    </div>
+
+    <div class="row justify-content-end p-3">
+        <button class="btn btn-success" (click)="openAddCustomInvoiceItemDialog()">Add Custom Item</button>
+
+    </div>
+    <div class="row justify-content-center ">
+
+        <fa-icon class="" [icon]="faPencilAlt" style="color:purple"></fa-icon>
+
         <mat-form-field class="col-md-10 col-10" appearance="fill">
-       
+
             <mat-label>Add Note</mat-label>
-            <textarea  matInput #noteAppointment></textarea>
-          </mat-form-field>
-  
-  
-  </div>
+            <textarea matInput #noteAppointment></textarea>
+        </mat-form-field>
+
+
+    </div>
 
     <div class="row mt-5 justify-content-center">
         <div class="col-5">

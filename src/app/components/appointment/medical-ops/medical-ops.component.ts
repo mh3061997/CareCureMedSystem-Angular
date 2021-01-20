@@ -14,11 +14,13 @@ import { ServServicePriceListService } from 'src/app/services/serv-service-price
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { ServNoteAppointmentService } from 'src/app/services/serv-note-appointment.service';
 import { ResNoteAppointment } from 'src/app/interfaces/res-note-appointment';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomItemDialogComponent } from '../../invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
 import { AddCustomItemMedopsDialogComponent } from './add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
-
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { ServiceSearchPipe} from 'src/app/pipes/service-search.pipe';
 @Component({
   selector: 'app-medical-ops',
   templateUrl: './medical-ops.component.html',
@@ -34,9 +36,8 @@ export class MedicalOpsComponent implements OnInit {
   invoice: ResInvoice;
   invoiceId: number;
   selectedServices: ResInvoiceItem[] = [];
-  
   serviceQuantityMap = new Map();
-  
+  searchText:string='';
   @ViewChild('noteAppointment', { static: false }) newNoteAppointment: ElementRef;
 
   
@@ -188,7 +189,10 @@ export class MedicalOpsComponent implements OnInit {
     });
    }
 
+   
+
   ngOnInit(): void {
+
   }
 
 }
