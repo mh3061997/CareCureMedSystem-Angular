@@ -22,7 +22,13 @@ export class AddCustomItemMedopsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddCustomItemMedopsDialogComponent>) {
-
+  
+         //to disable intended dialog action to fire on backclick
+    //i return false and check it on parent to execute afterclosed action or not
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
 
  }
   

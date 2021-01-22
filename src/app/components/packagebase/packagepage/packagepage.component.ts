@@ -29,14 +29,16 @@ export class PackagepageComponent implements OnInit {
 
 
   openNewPackageDialog(){
-    const dialogRef =  this.dialogAddPackage.open(PackageAddNewDialogComponent);
+    const dialogRef =  this.dialogAddPackage.open(PackageAddNewDialogComponent,{disableClose:true});
    
      dialogRef.afterClosed().subscribe(closed =>{
     
-       this.servPackageBase.getPackageBasesAll().subscribe(packages =>{
+      if(closed){
+        this.servPackageBase.getPackageBasesAll().subscribe(packages =>{
  
-         this.packageBases = packages;
-         });
+          this.packageBases = packages;
+          });
+      }
  
      });
    

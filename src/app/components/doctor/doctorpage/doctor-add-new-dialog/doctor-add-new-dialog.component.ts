@@ -22,6 +22,11 @@ export class DoctorAddNewDialogComponent implements OnInit {
   private servUtils:ServUtilitiesService) {
 
     this.specialities = servUtils.specialities;
+
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
   }
 
   ngOnInit(): void {
@@ -44,7 +49,7 @@ onNewDoctorSubmit(){
   }
   
   this.servDoctor.addDoctor(newDoctor).subscribe(response =>{
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   })
 }
 

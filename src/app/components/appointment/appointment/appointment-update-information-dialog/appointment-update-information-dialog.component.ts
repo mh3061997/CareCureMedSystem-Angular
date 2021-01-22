@@ -39,6 +39,14 @@ export class AppointmentUpdateInformationDialogComponent implements OnInit,After
     this.doctorFormControl = new FormControl(this.appointment.doctor);
     this.specialities = this.servUtils.specialities;
     console.log(this.doctorFormControl);
+  
+    //to disable intended dialog action to fire on backclick
+    //i return false and check it on parent to execute afterclosed action or not
+    dialogRef.backdropClick().subscribe(result => {
+     dialogRef.close(false);
+    // console.log("backclick")
+    });
+
   }
   ngAfterViewInit(){
     // this.updateInfoForm.form.patchValue({"doctor":this.appointment.doctor.name});
@@ -52,9 +60,10 @@ export class AppointmentUpdateInformationDialogComponent implements OnInit,After
 
     this.servAppointment.updateAppointment(updatedAppointment).subscribe(response =>{
 
-      this.dialogRef.close();
+      this.dialogRef.close(true);
 
     });
+    
   }
    
    

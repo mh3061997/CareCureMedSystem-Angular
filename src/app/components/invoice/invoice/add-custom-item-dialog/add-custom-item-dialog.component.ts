@@ -26,6 +26,11 @@ export class AddCustomItemDialogComponent implements OnInit {
 
     this.invoice = data.invoice;
 
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
+
   }
 
   onAddCustomItemSubmit() {
@@ -37,7 +42,7 @@ export class AddCustomItemDialogComponent implements OnInit {
       invoice:this.invoice
     }
     this.servInvoiceItem.addInvoiceItem(newCustomInvoiceItem).subscribe(response =>{
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     });
   }
 

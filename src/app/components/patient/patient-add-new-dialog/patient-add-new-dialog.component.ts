@@ -15,7 +15,12 @@ export class PatientAddNewDialogComponent implements OnInit {
 
   constructor(
   public dialogRef: MatDialogRef<PatientAddNewDialogComponent>,
-  private servPatient:ServPatientService) {}
+  private servPatient:ServPatientService) {
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
+  }
 
   ngOnInit(): void {
   }
@@ -38,7 +43,7 @@ onNewPatientSubmit(){
   }
   
   this.servPatient.addPatient(newPatient).subscribe(response =>{
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   })
 }
 

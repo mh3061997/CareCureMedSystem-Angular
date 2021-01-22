@@ -46,6 +46,13 @@ export class AppointmentAddNewDialogComponent implements OnInit {
       });
       
       this.specialities=servUtils.specialities;
+
+      //to disable intended dialog action to fire on backclick
+    //i return false and check it on parent to execute afterclosed action or not
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
     }
 
   
@@ -133,7 +140,7 @@ export class AppointmentAddNewDialogComponent implements OnInit {
       // console.log(this.servUtils.formatDateTime(this.newAppointmentForm.value.dateToVisit));
       
       this.servAppointment.addAppointment(newAppointment).subscribe(response =>{
-        this.dialogRef.close();
+        this.dialogRef.close(true);
       });
     
     //console.log(this.newAppointmentForm,this.patientFormControl,this.doctorFormControl);

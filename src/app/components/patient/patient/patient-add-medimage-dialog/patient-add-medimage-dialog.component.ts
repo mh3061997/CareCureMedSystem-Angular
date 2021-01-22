@@ -29,6 +29,12 @@ export class PatientAddMedimageDialogComponent implements OnInit {
 
     this.medImageType = data.medImageType;
     this.patient = data.patient;
+
+
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
   }
 
 
@@ -72,7 +78,7 @@ export class PatientAddMedimageDialogComponent implements OnInit {
 
     this.servMedImage.addMedImage(newMedImage).subscribe(response => {
 
-      this.dialogRef.close();
+      this.dialogRef.close(true);
 
     });
   }

@@ -26,6 +26,13 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
                 
     this.doctor=data.doctor;
     this.specialities = this.servUtils.specialities;
+
+       //to disable intended dialog action to fire on backclick
+    //i return false and check it on parent to execute afterclosed action or not
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
   }
               
   updateDoctorInformation(updatedDoctor:ResDoctor){
@@ -34,7 +41,7 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
 
     this.servDoctor.updateDoctor(updatedDoctor).subscribe(response =>{
 
-      this.dialogRef.close();
+      this.dialogRef.close(true);
 
     });
   }

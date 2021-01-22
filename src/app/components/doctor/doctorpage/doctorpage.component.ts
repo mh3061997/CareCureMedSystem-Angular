@@ -25,15 +25,16 @@ export class DoctorpageComponent implements OnInit {
   
   
   openNewDoctorDialog(){
-    const dialogRef =  this.dialogAddDoctor.open(DoctorAddNewDialogComponent);
+    const dialogRef =  this.dialogAddDoctor.open(DoctorAddNewDialogComponent,{disableClose:true});
    
      dialogRef.afterClosed().subscribe(closed =>{
     
-       this.servDoctor.getDoctorsAll().subscribe(doctors =>{
+      if(closed){  this.servDoctor.getDoctorsAll().subscribe(doctors =>{
  
-         this.doctors = doctors;
-         });
- 
+        this.doctors = doctors;
+        });
+}
+     
      });
    
    }

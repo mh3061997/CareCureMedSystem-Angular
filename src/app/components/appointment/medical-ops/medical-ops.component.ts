@@ -20,7 +20,7 @@ import { AddCustomItemDialogComponent } from '../../invoice/invoice/add-custom-i
 import { AddCustomItemMedopsDialogComponent } from './add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { ServiceSearchPipe} from 'src/app/pipes/service-search.pipe';
+import { ServiceSearchPipe } from 'src/app/pipes/service-search.pipe';
 @Component({
   selector: 'app-medical-ops',
   templateUrl: './medical-ops.component.html',
@@ -28,7 +28,7 @@ import { ServiceSearchPipe} from 'src/app/pipes/service-search.pipe';
 })
 export class MedicalOpsComponent implements OnInit {
 
-  faPencilAlt=faPencilAlt;
+  faPencilAlt = faPencilAlt;
 
   appointment: ResAppointment;
   appointmentId: number;
@@ -37,80 +37,80 @@ export class MedicalOpsComponent implements OnInit {
   invoiceId: number;
   selectedServices: ResInvoiceItem[] = [];
   serviceQuantityMap = new Map();
-  searchText:string='';
+  searchText: string = '';
   @ViewChild('noteAppointment', { static: false }) newNoteAppointment: ElementRef;
 
-  
+
   constructor(private servAppointment: ServAppointmentService,
     private servInvoice: ServInvoiceService,
     private servInvoiceItem: ServInvoiceItemService,
     private servServicePriceList: ServServicePriceListService,
-    public dialogAddCustomInvoiceItem:MatDialog,
+    public dialogAddCustomInvoiceItem: MatDialog,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private servNoteAppointment:ServNoteAppointmentService) {
+    private servNoteAppointment: ServNoteAppointmentService) {
 
     this.getAppointmentCode();
-    
+
     servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
       this.appointment = appointment;
-   
+
       switch (this.appointment.speciality) {
         case "Dentistry":
           servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(services => {
             this.services = services;
-            this.services.forEach(service=>{
-              this.serviceQuantityMap.set(service,0);
+            this.services.forEach(service => {
+              this.serviceQuantityMap.set(service, 0);
             })
             console.log(this.services);
           });
           break;
         case "Dermatology": servServicePriceList.getServicePriceListBySpeciality("Dermatology").subscribe(services => {
           this.services = services;
-          this.services.forEach(service=>{
-            this.serviceQuantityMap.set(service,0);
+          this.services.forEach(service => {
+            this.serviceQuantityMap.set(service, 0);
           });
           console.log(this.services);
         });
           break;
-      
+
 
       }
     });
   }
- addServiceQuantity(service: ResServicePriceList) {
-    const serviceInvoiceItem:ResInvoiceItem={
-      code:0,
-      name:service.name,
-      price:service.price,
-      invoice:this.invoice
+  addServiceQuantity(service: ResServicePriceList) {
+    const serviceInvoiceItem: ResInvoiceItem = {
+      code: 0,
+      name: service.name,
+      price: service.price,
+      invoice: this.invoice
     }
 
     this.selectedServices.push(serviceInvoiceItem); //speciality is ignored when sending resinvoiceitem json
-    this.serviceQuantityMap.set(service,this.serviceQuantityMap.get(service)+1);
+    this.serviceQuantityMap.set(service, this.serviceQuantityMap.get(service) + 1);
   }
 
-  removeServiceQuantity(service:ResServicePriceList){
+  removeServiceQuantity(service: ResServicePriceList) {
 
-    const serviceInvoiceItem:ResInvoiceItem={
-      code:0,
-      name:service.name,
-      price:service.price,
-      invoice:this.invoice
+    const serviceInvoiceItem: ResInvoiceItem = {
+      code: 0,
+      name: service.name,
+      price: service.price,
+      invoice: this.invoice
     }
-      const index = this.selectedServices.indexOf(serviceInvoiceItem);
-      this.selectedServices.splice(index,1); //remove 1 element starting from index
-      this.serviceQuantityMap.set(service,this.serviceQuantityMap.get(service)-1);
+    const index = this.selectedServices.indexOf(serviceInvoiceItem);
+    this.selectedServices.splice(index, 1); //remove 1 element starting from index
+    this.serviceQuantityMap.set(service, this.serviceQuantityMap.get(service) - 1);
 
   }
-  
-  
 
- 
 
-   CreateInvoice() {
 
-    if(!this.selectedServices.length){
+
+
+  CreateInvoice() {
+
+    if (!this.selectedServices.length) {
       if (this.appointment.type == "Visit") {
         this.selectedServices.push({ code: 0, name: "Visit", price: this.appointment.doctor.priceVisit });
       } else {
@@ -118,9 +118,9 @@ export class MedicalOpsComponent implements OnInit {
         this.selectedServices.push({ code: 0, name: "Revisit", price: this.appointment.doctor.priceRevisit });
       }
     }
-    let totalprice=0;
-    this.selectedServices.forEach(service=>{
-      totalprice+=service.price;
+    let totalprice = 0;
+    this.selectedServices.forEach(service => {
+      totalprice += service.price;
     })
     const newInvoice: ResInvoice = {
       code: 0,
@@ -136,7 +136,7 @@ export class MedicalOpsComponent implements OnInit {
       totalPaid: 0,
       totalRemaining: totalprice
     };
-   
+
     this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
       this.updateAppointmentStatus(); //doctor done
       this.CreateNoteAppointment();
@@ -146,31 +146,31 @@ export class MedicalOpsComponent implements OnInit {
     });
 
   }
-  
-  private CreateNoteAppointment(){
-    const newNoteAppointmentObj:ResNoteAppointment = {
-      code:0,
-      note:this.newNoteAppointment.nativeElement.value,
-      appointment:this.appointment
+
+  private CreateNoteAppointment() {
+    const newNoteAppointmentObj: ResNoteAppointment = {
+      code: 0,
+      note: this.newNoteAppointment.nativeElement.value,
+      appointment: this.appointment
     };
-    this.servNoteAppointment.addNoteAppointment(newNoteAppointmentObj).subscribe(res=>{});
+    this.servNoteAppointment.addNoteAppointment(newNoteAppointmentObj).subscribe(res => { });
 
   }
   private updateAppointmentStatus() {
     this.appointment.status = "Doctor Done";
     this.servAppointment.updateAppointment(this.appointment).subscribe(res => {
-    
+
     });
   }
   private CreateInvoiceItems() {
-    this.selectedServices.map(service=>{service.invoice=this.invoice});
+    this.selectedServices.map(service => { service.invoice = this.invoice });
     this.servInvoiceItem.addInvoiceItemMulti(this.selectedServices).subscribe(res => {
       this.goToDoctor();
     });
   }
 
   private goToDoctor() {
-    
+
     this.router.navigate(['doctor', this.appointment.doctor.code.toString()]);
   }
 
@@ -178,18 +178,20 @@ export class MedicalOpsComponent implements OnInit {
     this.appointmentId = this.currentRoute.snapshot.params['id'];
   }
 
-  openAddCustomInvoiceItemDialog(){
-    
-    const dialogRef =  this.dialogAddCustomInvoiceItem.open(AddCustomItemMedopsDialogComponent);
-  
-    dialogRef.afterClosed().subscribe(CustomItem =>{
-     console.log("closed",CustomItem);
-     this.selectedServices.push(CustomItem);
-      console.log(this.selectedServices);
-    });
-   }
+  openAddCustomInvoiceItemDialog() {
 
-   
+    const dialogRef = this.dialogAddCustomInvoiceItem.open(AddCustomItemMedopsDialogComponent, { disableClose: true });
+
+    dialogRef.afterClosed().subscribe(CustomItem => {
+      if (CustomItem) {
+        console.log("closed", CustomItem);
+        this.selectedServices.push(CustomItem);
+        console.log(this.selectedServices);
+      }
+    });
+  }
+
+
 
   ngOnInit(): void {
 

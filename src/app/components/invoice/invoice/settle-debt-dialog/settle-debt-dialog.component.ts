@@ -25,6 +25,11 @@ export class SettleDebtDialogComponent implements  OnInit{
     this.invoice = data.invoice;
     this.totalDebt = data.totalDebt;
 
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
+     
   }
 
   onAddCustomItemSubmit() {

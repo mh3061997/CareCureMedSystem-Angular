@@ -25,6 +25,11 @@ export class PackageAddNewDialogComponent implements OnInit {
       
       this.types=this.serUtils.specialities;
 
+      dialogRef.backdropClick().subscribe(result => {
+        dialogRef.close(false);
+       // console.log("backclick")
+       });
+
     }
   
   ngOnInit(): void {
@@ -52,7 +57,7 @@ onNewPackageSubmit(){
   }
   
   this.servPackageBase.addPackageBase(newPackageBase).subscribe(response =>{
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   })
 }
 

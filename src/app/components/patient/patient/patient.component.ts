@@ -83,20 +83,23 @@ export class PatientComponent implements OnInit {
       data:{
         patient:this.patient,
         medImageType:this.currentSelectedMedImageTab
-      }
+      },
+      disableClose:true
     });
   
     dialogRef.afterClosed().subscribe(closed =>{
    
-      this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+if(closed){
+  this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
 
-        this.patient = patient;
-        this.medImagesLab = this.patient.medImages.filter(medImage => medImage.type=="Lab");
-        this.medImagesRadiology = this.patient.medImages.filter(medImage => medImage.type=="Radiology");
-        this.medImagesOfficial = this.patient.medImages.filter(medImage => medImage.type=="Official");
-        this.medImagesPresc = this.patient.medImages.filter(medImage => medImage.type=="Prescription");
-  
-        });
+    this.patient = patient;
+    this.medImagesLab = this.patient.medImages.filter(medImage => medImage.type=="Lab");
+    this.medImagesRadiology = this.patient.medImages.filter(medImage => medImage.type=="Radiology");
+    this.medImagesOfficial = this.patient.medImages.filter(medImage => medImage.type=="Official");
+    this.medImagesPresc = this.patient.medImages.filter(medImage => medImage.type=="Prescription");
+
+    });
+}
 
     });
 
@@ -106,15 +109,18 @@ export class PatientComponent implements OnInit {
    const dialogRef =  this.dialogUpdatePatientInformation.open(PatientUpdateInformationDialogComponent,{
       data:{
         patient:this.patient
-      }
+      },
+      disableClose:true
     });
   
     dialogRef.afterClosed().subscribe(closed =>{
    
+     if(closed){
       this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
 
         this.patient = patient;
         });
+     }
 
     });
   
@@ -124,16 +130,19 @@ export class PatientComponent implements OnInit {
     const dialogRef =  this.dialogAddMembership.open(PatientAddMembershipDialogComponent,{
        data:{
          patient:this.patient
-       }
+       },
+       disableClose:true
      });
    
      dialogRef.afterClosed().subscribe(closed =>{
     
-       this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+     if(closed){
+      this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
  
-         this.patient = patient;
-         });
- 
+        this.patient = patient;
+        });
+
+     }
      });
    
    }

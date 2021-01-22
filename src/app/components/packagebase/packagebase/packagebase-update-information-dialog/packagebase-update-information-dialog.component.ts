@@ -29,6 +29,12 @@ export class PackagebaseUpdateInformationDialogComponent implements OnInit {
                 
     this.packageBase=data.packageBase;
     this.specialities = this.servUtils.specialities;
+
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
+
   }
               
   updatePackageBaseInformation(updatedPackage:ResPackageBase){
@@ -37,7 +43,7 @@ export class PackagebaseUpdateInformationDialogComponent implements OnInit {
 
     this.servPackageBase.updatePackageBase(updatedPackage).subscribe(response =>{
 
-      this.dialogRef.close();
+      this.dialogRef.close(true);
 
     });
   }

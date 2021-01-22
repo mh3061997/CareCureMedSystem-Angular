@@ -69,16 +69,19 @@ export class AppointmentComponent implements OnInit {
     const dialogRef =  this.dialogUpdateAppointmentInformation.open(AppointmentUpdateInformationDialogComponent,{
        data:{
          appointment:this.appointment
-       }
+       },
+       disableClose:true
      });
    
      dialogRef.afterClosed().subscribe(closed =>{
     
-       this.servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment =>{
+     if(closed){
+      this.servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment =>{
  
-         this.appointment = appointment;
-         });
- 
+        this.appointment = appointment;
+        });
+
+     }
      });
    
    }

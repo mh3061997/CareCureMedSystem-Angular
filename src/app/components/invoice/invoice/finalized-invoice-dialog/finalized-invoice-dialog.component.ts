@@ -36,6 +36,12 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
     this.totalDue = this.invoice.totalDue;
     this.discountval = this.invoice.discount;
 
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
+     
+
   }
 
   calculateTotalAfterDiscount() {
@@ -63,7 +69,7 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
 
       this.servAppointment.updateAppointment(updatedAppointment).subscribe(response => {
 
-        this.dialogRef.close();
+        this.dialogRef.close(true);
 
       });
 

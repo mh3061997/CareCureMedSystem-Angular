@@ -44,15 +44,18 @@ export class DoctorComponent  {
    const dialogRef =  this.dialogUpdateDoctorInformation.open(DoctorUpdateInformationDialogComponent,{
       data:{
         doctor:this.doctor
-      }
+      },
+      disableClose:true
     });
   
     dialogRef.afterClosed().subscribe(closed =>{
    
+     if(closed) {
       this.servDoctor.getDoctorByID(this.doctorId).subscribe(doctor =>{
 
         this.doctor = doctor;
         });
+     }
 
     });
   

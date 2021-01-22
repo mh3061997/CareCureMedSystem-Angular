@@ -20,6 +20,11 @@ export class PatientUpdateInformationDialogComponent implements OnInit {
               private servPatient:ServPatientService) {
 
     this.patient=data.patient;
+    
+    dialogRef.backdropClick().subscribe(result => {
+      dialogRef.close(false);
+     // console.log("backclick")
+     });
   }
               
   updatePatientInformation(updatedPatient:ResPatient){
@@ -28,7 +33,7 @@ export class PatientUpdateInformationDialogComponent implements OnInit {
 
     this.servPatient.updatePatient(updatedPatient).subscribe(response =>{
 
-      this.dialogRef.close();
+      this.dialogRef.close(true);
 
     });
   }

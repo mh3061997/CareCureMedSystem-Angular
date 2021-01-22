@@ -42,15 +42,18 @@ export class PackagebaseComponent implements OnInit {
     const dialogRef =  this.dialogUpdatePackage.open(PackagebaseUpdateInformationDialogComponent,{
        data:{
          packageBase:this.packageBase
-       }
+       },
+       disableClose:true
      });
    
      dialogRef.afterClosed().subscribe(closed =>{
     
-       this.servPackageBase.getPackageBaseByID(this.packageCode).subscribe(packageBase =>{
+  if(closed){
+    this.servPackageBase.getPackageBaseByID(this.packageCode).subscribe(packageBase =>{
  
-         this.packageBase = packageBase;
-         });
+      this.packageBase = packageBase;
+      });
+  }
  
      });
    
