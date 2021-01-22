@@ -140,16 +140,23 @@
                                                 <p class="form-control-label">Status</p>
                                                 <p>{{invoice.appointment.status}}</p>
                                             </div>
+                                          
                                             <div class="col-lg-6">
-                                                <p class="form-control-label">Patient Name</p>
-                                                <p>{{invoice.appointment.patient.name}}</p>
+                                                <p class="form-control-label">Doctor Name</p>
+                                                <p>{{invoice.appointment.doctor.name}}</p>
                                             </div>
                                         </div>
                 
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="form-control-label">Doctor Name</p>
-                                                <p>{{invoice.appointment.doctor.name}}</p>
+                                                <p class="form-control-label">Patient Name</p>
+                                                <p>{{invoice.appointment.patient.name}}</p>
+                                                
+                                            </div>
+                                            <div *ngIf="invoice.appointment.patient.totalDebt>0" class="col-lg-6 ">
+                                                <p class="form-control-label">Patient Debt</p>
+                                                <p class="text-white fw-bold bg-danger p-2">{{invoice.appointment.patient.totalDebt}}</p>
+                                                
                                             </div>
                                          
                                         </div>
@@ -165,6 +172,11 @@
                         <div class="card-header justify-content-end bg-white p-3">
                         <div class="container-fluid">
                             <div class="row justify-content-end align-middle">
+                                <button class="btn btn-danger col-3" 
+                                (click)="openFinalizedDebtDialog()"
+                                *ngIf="invoice.appointment.patient.totalDebt > 0"
+                                >Settle Debt</button>
+
                                 <h3 class="mb-0 col-6">Invoice Items</h3>
                                 <button class="btn btn-success col-3" 
                                 (click)="openAddCustomInvoiceItemDialog()"

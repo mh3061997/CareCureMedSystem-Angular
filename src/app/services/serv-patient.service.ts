@@ -10,6 +10,9 @@ import { PathService } from './path.service';
   providedIn: 'root'
 })
 export class ServPatientService {
+  settlePatientDebt(code: number, debtTotal: number) {
+   return this.http.put(this.servPath.getPathPatient()+"/"+code+"/debt/"+debtTotal,null);
+  }
 
   constructor(private http:HttpClient,private servPath:PathService) { }
 

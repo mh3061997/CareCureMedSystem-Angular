@@ -1,0 +1,34 @@
+<h1 class="mat-dialog-title">Settle Debt</h1>
+<div class="container mat-dialog-content bg-white">
+  <form *ngIf="invoice" (ngSubmit)="onAddCustomItemSubmit()" #settleDebtForm="ngForm">
+      <div class="row text-left">
+       
+           <p class="col-12">Total Patient Debt: {{totalDebt}}</p>
+      </div>
+      <div class="row">
+        
+            <mat-form-field class="col-12">   
+
+                <label for="input-name" class="form-control-label">Debt Deduction</label>
+                <input  matInput 
+                name="debtDeducted"
+                class="form-control"
+                ngModel
+                #debtDeducted="ngModel"
+                required
+                type="number"
+                [minlimit]="0"
+                [maxlimit]="totalDebt">
+                <span
+                class="form-text text-muted" 
+                *ngIf="debtDeducted.touched && debtDeducted.invalid">Please enter debt deduction amount 
+                between 0 and {{totalDebt}}!<br></span>
+                
+                
+            </mat-form-field> 
+          
+      </div>
+      <button class="btn btn-success" [disabled]="!settleDebtForm.valid" type="submit">Deduct Debt</button>
+
+  </form>
+</div>

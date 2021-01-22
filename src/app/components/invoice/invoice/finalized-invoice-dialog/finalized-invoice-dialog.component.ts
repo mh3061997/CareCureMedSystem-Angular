@@ -44,6 +44,12 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
     this.totalAfterDiscount = Math.floor(this.totalDue * (100 - this.discountval) / 100);
     return this.totalAfterDiscount;
   }
+  calculateTotalRemaining() {
+    //console.log(1);
+
+   
+    return this.totalAfterDiscount-this.totalPaidval;
+  }
 
   updateInvoiceInformation(updatedInvoice: ResInvoice) {
 

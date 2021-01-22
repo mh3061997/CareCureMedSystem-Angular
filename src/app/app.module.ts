@@ -71,6 +71,7 @@ import { AddCustomItemMedopsDialogComponent } from './components/appointment/med
 import { ServiceSearchPipe } from './pipes/service-search.pipe';
 import { MinNumberDirectiveDirective } from './directives/min-number-directive.directive';
 import { MaxNumberDirectiveDirective } from './directives/max-number-directive.directive';
+import { SettleDebtDialogComponent } from './components/invoice/invoice/settle-debt-dialog/settle-debt-dialog.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import { MaxNumberDirectiveDirective } from './directives/max-number-directive.d
       AddCustomItemMedopsDialogComponent,
       ServiceSearchPipe,
       MinNumberDirectiveDirective,
-      MaxNumberDirectiveDirective
+      MaxNumberDirectiveDirective,
+      SettleDebtDialogComponent
       
 
   ],
@@ -168,7 +170,8 @@ import { MaxNumberDirectiveDirective } from './directives/max-number-directive.d
     ImageFullscreenDialogComponent,
     FinalizedInvoiceDialogComponent,
     AddCustomItemDialogComponent,
-    AddCustomItemMedopsDialogComponent
+    AddCustomItemMedopsDialogComponent,
+    SettleDebtDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -183,9 +183,9 @@ export class MedicalOpsComponent implements OnInit {
     const dialogRef =  this.dialogAddCustomInvoiceItem.open(AddCustomItemMedopsDialogComponent);
   
     dialogRef.afterClosed().subscribe(CustomItem =>{
-     //console.log(CustomItem);
+     console.log("closed",CustomItem);
      this.selectedServices.push(CustomItem);
-
+      console.log(this.selectedServices);
     });
    }
 
