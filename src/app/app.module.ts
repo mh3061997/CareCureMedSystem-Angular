@@ -69,6 +69,8 @@ import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/fi
 import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
 import { AddCustomItemMedopsDialogComponent } from './components/appointment/medical-ops/add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
 import { ServiceSearchPipe } from './pipes/service-search.pipe';
+import { MinNumberDirectiveDirective } from './directives/min-number-directive.directive';
+import { MaxNumberDirectiveDirective } from './directives/max-number-directive.directive';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,9 @@ import { ServiceSearchPipe } from './pipes/service-search.pipe';
       FinalizedInvoiceDialogComponent,
       AddCustomItemDialogComponent,
       AddCustomItemMedopsDialogComponent,
-      ServiceSearchPipe
+      ServiceSearchPipe,
+      MinNumberDirectiveDirective,
+      MaxNumberDirectiveDirective
       
 
   ],

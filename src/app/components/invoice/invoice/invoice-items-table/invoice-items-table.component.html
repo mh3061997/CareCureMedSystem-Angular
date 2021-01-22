@@ -26,7 +26,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let row"> 
           <button class="btn-sm btn btn-danger float-right" 
-          *ngIf="invoiceStatus !='Finalized'"
+          *ngIf="invoiceStatus !='Finalized' && invoiceStatus !='Debt'"
           (click)="deleteInvoiceItem(row.code)">x</button> </td>
       </ng-container>
 

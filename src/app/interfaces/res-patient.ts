@@ -9,6 +9,7 @@ export interface ResPatient {
     email:string;
     mobile:string;
     age:number;
+    totalDebt:number;
     notes:string,
     memberships:ResMembership[];
     appointments:ResAppointment[];

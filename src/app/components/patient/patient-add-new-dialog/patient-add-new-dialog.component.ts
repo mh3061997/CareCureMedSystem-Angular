@@ -30,6 +30,7 @@ onNewPatientSubmit(){
     age:this.newPatientForm.value.age,
     mobile:this.newPatientForm.value.mobile,
     email:this.newPatientForm.value.email,
+    totalDebt:0,
     notes:"",
     appointments:[],
     medImages:[],

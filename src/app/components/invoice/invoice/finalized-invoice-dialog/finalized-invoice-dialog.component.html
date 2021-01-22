@@ -16,11 +16,12 @@
                         #discount="ngModel"
                         required
                         type="number"
-                        min="0"
-                        max="100">
+                       [minlimit]="0"
+                       [maxlimit]="100"
+                        >
                         <span
                         class="form-text text-muted" 
-                        *ngIf="discount.touched && discount.invalid">Please enter discount !<br></span>
+                        *ngIf="discount.touched && discount.invalid">Please enter a discount between 0 and 100!<br></span>
                         
                         
                     </mat-form-field> 
@@ -34,10 +35,12 @@
                             [(ngModel)]="totalPaidval"
                             #totalPaid="ngModel"
                             required
-                            type="number" >
+                            type="number" 
+                            [minlimit]="0"
+                            [maxlimit]="totalAfterDiscount">
                             <span
                             class="form-text text-muted" 
-                            *ngIf="totalPaid.touched && totalPaid.invalid">Please enter total amount paid !<br></span>
+                            *ngIf="totalPaid.touched && totalPaid.invalid">Please enter amount between 0 and {{totalAfterDiscount}} !<br></span>
                             
                     </mat-form-field> 
 
@@ -57,12 +60,13 @@
                             class="form-control"
                             required
                              #paymentMethod="ngModel">
-                            <span
-                            class="form-text text-muted" 
-                            *ngIf="paymentMethod.touched && paymentMethod.invalid">Please enter payment method !<br></span>
+                           
                             <mat-option value="Cash">Cash</mat-option>
                             <mat-option value="Visa">Visa</mat-option>
                             </mat-select >
+                            <span
+                            class="form-text text-muted" 
+                            *ngIf="paymentMethod.touched && paymentMethod.invalid">Please enter payment method !<br></span>
                         </mat-form-field> 
 
                     </div>
