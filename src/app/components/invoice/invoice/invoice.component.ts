@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
@@ -21,7 +21,7 @@ export class InvoiceComponent implements OnInit {
   invoiceId: number;
   debtDeductionTotal: number = 0;
   totalDebt: number;
-
+  
   constructor(private currentRoute: ActivatedRoute,
     private router: Router,
     private servInvoice: ServInvoiceService,
@@ -29,13 +29,15 @@ export class InvoiceComponent implements OnInit {
     public dialogAddCustomInvoiceItem: MatDialog,
     public SettleDebtDialogComponent: MatDialog,
     public servUtils: ServUtilitiesService,
-    public servPatient: ServPatientService) {
+    public servPatient: ServPatientService,
+    public cdRef:ChangeDetectorRef) {
 
     this.getInvoiceCode();
 
     this.getInvoice();
   }
 
+ 
   private getInvoiceCode() {
     this.invoiceId = this.currentRoute.snapshot.params['id'];
   }
@@ -50,6 +52,8 @@ export class InvoiceComponent implements OnInit {
         .forEach(item => {
           this.totalDebt -= item.price;
           //console.log(this.totalDebt)
+          this.cdRef.detectChanges();
+
         });
     });
   }
@@ -62,19 +66,29 @@ export class InvoiceComponent implements OnInit {
     const dialogRef = this.dialogFinalizeInvoice.open(FinalizedInvoiceDialogComponent, {
       data: {
         invoice: this.invoice
-      }
+      },
+      disableClose:true
     });
 
     dialogRef.afterClosed().subscribe(closed => {
 
-      this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
+    if(closed){
 
-        this.servPatient.settlePatientDebt(this.invoice.appointment.patient.code, this.debtDeductionTotal)
-          .subscribe(res => {
-            this.invoice = invoice;
-          });
+      this.servPatient.settlePatientDebt(this.invoice.appointment.patient.code, this.debtDeductionTotal)
+      .subscribe(res => {
+        this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
 
+          this.invoice = invoice;
+          this.cdRef.detectChanges();
+          console.log("new debt:",   this.invoice.appointment.patient.totalDebt);
+  
+
+        });
+      
       });
+
+     
+    }
 
     });
 
@@ -84,16 +98,22 @@ export class InvoiceComponent implements OnInit {
       data: {
         invoice: this.invoice,
         totalDebt: this.totalDebt
-      }
+      },
+      disableClose:true
     });
     dialogRef.afterClosed().subscribe(newDebtDeductionAmount => {
 
+     if(newDebtDeductionAmount){
       this.debtDeductionTotal += newDebtDeductionAmount;
       this.totalDebt -= newDebtDeductionAmount;
+
       this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
 
         this.invoice = invoice;
+        this.cdRef.detectChanges();
+
       });
+     }
 
     });
 
@@ -103,15 +123,20 @@ export class InvoiceComponent implements OnInit {
     const dialogRef = this.dialogAddCustomInvoiceItem.open(AddCustomItemDialogComponent, {
       data: {
         invoice: this.invoice
-      }
+      },
+      disableClose:true
     });
 
     dialogRef.afterClosed().subscribe(closed => {
 
+     if(closed){
       this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
 
         this.invoice = invoice;
+        this.cdRef.detectChanges();
+
       });
+     }
 
     });
   }

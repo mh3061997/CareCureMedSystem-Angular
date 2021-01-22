@@ -174,7 +174,7 @@
                             <div class="row justify-content-end align-middle">
                                 <button class="btn btn-danger col-3" 
                                 (click)="openFinalizedDebtDialog()"
-                                *ngIf="invoice.appointment.patient.totalDebt > 0"
+                                *ngIf="invoice.status=='Not Paid' && invoice.appointment.patient.totalDebt > 0"
                                 >Settle Debt</button>
 
                                 <h3 class="mb-0 col-6">Invoice Items</h3>
