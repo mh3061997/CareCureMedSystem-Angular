@@ -23,7 +23,7 @@ export class MembershipPatientTableComponent implements AfterViewInit ,OnChanges
 
  
    
-  displayedColumns: string[] = ['code', 'Date of Subscription', 'Amount Used', 'Remaining Amount','Package Code','Package Type','Package Total','Price'];
+  displayedColumns: string[] = ['code', 'dateSubscriped', 'usedAmount', 'remainingAmount','Package Code','Package Type','Package Total','Price'];
 
   dataSource: MatTableDataSource<ResMembership>;
 

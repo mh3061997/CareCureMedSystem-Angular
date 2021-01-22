@@ -12,17 +12,17 @@
         <td mat-cell *matCellDef="let row"> {{row.code}} </td>
       </ng-container>
  
-      <ng-container matColumnDef="Date of Subscription">
+      <ng-container matColumnDef="dateSubscriped">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Subscription </th>
         <td mat-cell *matCellDef="let row"> {{servUtils.formatDate(row.dateSubscriped)}} </td>
       </ng-container>
   
-      <ng-container matColumnDef="Amount Used">
+      <ng-container matColumnDef="usedAmount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount Used </th>
         <td mat-cell *matCellDef="let row"> {{row.usedAmount}} </td>
       </ng-container>
   
-      <ng-container matColumnDef="Remaining Amount">
+      <ng-container matColumnDef="remainingAmount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Remaining Amount </th>
         <td mat-cell *matCellDef="let row"> {{row.remainingAmount}} </td>
       </ng-container>
