@@ -37,7 +37,9 @@ export class MedicalOpsComponent implements OnInit {
   invoiceId: number;
   selectedServices: ResInvoiceItem[] = [];
   serviceQuantityMap = new Map();
+  serviceContinuationMap = new Map();
   searchText: string = '';
+  labelPosition:'before'|'after' = 'before';
   @ViewChild('noteAppointment', { static: false }) newNoteAppointment: ElementRef;
 
 
@@ -61,16 +63,19 @@ export class MedicalOpsComponent implements OnInit {
             this.services = services;
             this.services.forEach(service => {
               this.serviceQuantityMap.set(service, 0);
-            })
-            console.log(this.services);
+              this.serviceContinuationMap.set(service,false);
+            });
+           // console.log(this.services);
           });
           break;
         case "Dermatology": servServicePriceList.getServicePriceListBySpeciality("Dermatology").subscribe(services => {
           this.services = services;
           this.services.forEach(service => {
             this.serviceQuantityMap.set(service, 0);
+            this.serviceContinuationMap.set(service,false);
+
           });
-          console.log(this.services);
+         // console.log(this.services);
         });
           break;
 
@@ -104,7 +109,11 @@ export class MedicalOpsComponent implements OnInit {
 
   }
 
+onCheckChanged(service:ResServicePriceList,checked:boolean){
+ // console.log(service,checked);
+  this.serviceContinuationMap.set(service.name+service.price.toString(),checked);
 
+}
 
 
 
@@ -119,6 +128,7 @@ export class MedicalOpsComponent implements OnInit {
       }
     }
     let totalprice = 0;
+    this.formatSelectedServicesContinuation()
     this.selectedServices.forEach(service => {
       totalprice += service.price;
     })
@@ -142,12 +152,14 @@ export class MedicalOpsComponent implements OnInit {
       this.CreateNoteAppointment();
       this.invoice = invoiceWithCode;
       this.invoiceId = invoiceWithCode.code;
+      this.formatSelectedServicesInvoice();
       this.CreateInvoiceItems();
     });
 
   }
 
   private CreateNoteAppointment() {
+   if(this.newNoteAppointment.nativeElement.value !=""){
     const newNoteAppointmentObj: ResNoteAppointment = {
       code: 0,
       note: this.newNoteAppointment.nativeElement.value,
@@ -155,6 +167,7 @@ export class MedicalOpsComponent implements OnInit {
     };
     this.servNoteAppointment.addNoteAppointment(newNoteAppointmentObj).subscribe(res => { });
 
+   }
   }
   private updateAppointmentStatus() {
     this.appointment.status = "Doctor Done";
@@ -162,8 +175,29 @@ export class MedicalOpsComponent implements OnInit {
 
     });
   }
+
+  private formatSelectedServicesContinuation(){
+    this.selectedServices.map(service => { 
+
+      if(this.serviceContinuationMap.get(service.name+service.price.toString())){
+        service.name+=" Continuation"
+        service.price=0
+      }
+    
+   
+    });
+  }
+  private formatSelectedServicesInvoice(){
+    this.selectedServices.map(service => { 
+
+  
+      service.invoice = this.invoice;
+   
+    });
+  }
   private CreateInvoiceItems() {
-    this.selectedServices.map(service => { service.invoice = this.invoice });
+
+    console.log(this.selectedServices);
     this.servInvoiceItem.addInvoiceItemMulti(this.selectedServices).subscribe(res => {
       this.goToDoctor();
     });
@@ -184,9 +218,9 @@ export class MedicalOpsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(CustomItem => {
       if (CustomItem) {
-        console.log("closed", CustomItem);
+       // console.log("closed", CustomItem);
         this.selectedServices.push(CustomItem);
-        console.log(this.selectedServices);
+      //  console.log(this.selectedServices);
       }
     });
   }

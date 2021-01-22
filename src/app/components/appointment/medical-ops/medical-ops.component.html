@@ -23,6 +23,13 @@
             <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
             <button class="btn btn-sm btn-danger m-1" (click)="removeServiceQuantity(service)"
                 [disabled]="serviceQuantityMap.get(service) <=0">-</button>
+                <mat-checkbox class=""
+                 [labelPosition] = 'labelPosition'
+                 color="primary"
+                 [ngModel]="serviceContinuationMap.get(service)"
+                  (change)="onCheckChanged(service,$event.checked)">
+      continuation
+    </mat-checkbox>
         </div>
       </div>
         
