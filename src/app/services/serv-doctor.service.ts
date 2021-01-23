@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ResDoctor } from 'src/app/interfaces/res-doctor'
 import { Observable } from 'rxjs';
 import { PathService } from './path.service';
+import { ResReservedTime } from '../interfaces/res-reserved-time';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,13 @@ export class ServDoctorService {
   
   }
 
+  getDoctorReservedTimes(code:number,date:string):Observable<ResReservedTime[]>{
+    return  this.http.get<ResReservedTime[]>(this.servPath.getPathDoctor()+"/"+code+"/reservedTimes",{
+      params:{
+        date:date
+      }
+    });
+  }
   //Add a new Doctor
   addDoctor(newDoctor:ResDoctor){
     return this.http.post(this.servPath.getPathDoctor(),newDoctor);
@@ -47,6 +55,7 @@ export class ServDoctorService {
     return this.http.delete(this.servPath.getPathDoctor()+"/"+code.toString())
   }
 
+ 
 }
 
   

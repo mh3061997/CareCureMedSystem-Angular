@@ -87,19 +87,39 @@
 
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field appearance="fill">
+                        <mat-form-field *ngIf="doctorFormControl.value" appearance="fill">
                             <mat-label>Choose Visit Date</mat-label>
-                            <input matInput name="dateToVisit" required ngModel #dateCreated="ngModel"
+                            <input (dateInput)="onDateChange($event.target.value)" matInput name="dateToVisit" required ngModel #dateCreated="ngModel"
                                 [matDatepicker]="dp1">
 
                             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                            <mat-datepicker required #dp1></mat-datepicker>
+                            <mat-datepicker  required #dp1></mat-datepicker>
 
                         </mat-form-field>
 
                     </div>
                     <div class="col-md-6">
+                        <mat-form-field *ngIf="newAppointmentForm.value.dateToVisit && reservedDoctorTimes">
+                            <label for="input-name" class="form-control-label">Time of Visit</label>
+                            <span class="form-text text-muted" *ngIf="timeToVisit.touched && timeToVisit.invalid">Please enter
+                                time !<br></span>
+                            <mat-select ngModel name="timeToVisit" class="form-control" required #timeToVisit="ngModel">
 
+                                <mat-option
+                                 *ngFor="let time of timeIntervals" 
+                                [value]="time" 
+                                [disabled]="isTimeClash(time)">
+                                {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+                                
+                            </mat-select>
+                        </mat-form-field>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
                         <mat-form-field>
 
                             <label for="input-name" class="form-control-label">Note</label>

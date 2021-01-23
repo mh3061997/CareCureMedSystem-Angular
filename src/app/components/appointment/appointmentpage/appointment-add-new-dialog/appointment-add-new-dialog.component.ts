@@ -5,13 +5,16 @@ import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, min, startWith} from 'rxjs/operators';
 import { ResPatient } from 'src/app/interfaces/res-patient';
 import { ResDoctor } from 'src/app/interfaces/res-doctor';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
 import { ServDoctorService } from 'src/app/services/serv-doctor.service';
 import { MatSelectChange } from '@angular/material/select';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { ResReservedTime } from 'src/app/interfaces/res-reserved-time';
+import { ResTimeDecomposed } from 'src/app/interfaces/res-time-decomposed';
 
 @Component({
   selector: 'app-appointment-add-new-dialog',
@@ -31,6 +34,8 @@ export class AppointmentAddNewDialogComponent implements OnInit {
   filtereddoctors: Observable<ResDoctor[]>;
   
   specialities:string[]=[];
+  timeIntervals:ResTimeDecomposed[];
+  reservedDoctorTimes:ResTimeDecomposed[];
 
   constructor(
     public dialogRef: MatDialogRef<AppointmentAddNewDialogComponent>,
@@ -53,15 +58,18 @@ export class AppointmentAddNewDialogComponent implements OnInit {
       dialogRef.close(false);
      // console.log("backclick")
      });
+   this.timeIntervals =  this.servUtils.getTimeIntervals();
+
     }
 
   
    
      onSpecialityChange(event:MatSelectChange){
-      
+      //clear existing selected doctor
+      this.doctorFormControl.reset();
+
       this.servDoctor.getDoctorsBySpeciality(event.value).subscribe(doctors =>{
       
-        console.log("doctors",typeof(doctors[0]));
       if(doctors){
         this.doctors = doctors;
         this.filtereddoctors = this.doctorFormControl.valueChanges
@@ -114,20 +122,14 @@ export class AppointmentAddNewDialogComponent implements OnInit {
   }
 
 
-  // "code": 1,
-  // "speciality": "laser",
-  // "dateCreated": "2017-01-01T02:02:58.000+00:00",
-  // "dateToVisit": "2020-05-08T17:54:20.000+00:00",
-  // "status": "res only",
-  // "notes": "vip",
-
   onNewAppointmentSubmit() {
+    const dateToVisit = this.servUtils.createDateTimeObject(this.newAppointmentForm.value.dateToVisit.toISOString(),this.newAppointmentForm.value.timeToVisit);
       const newAppointment:ResAppointment ={
         code:0, //code must ALWAYS be 0 when inserting bec. it wont insert if code is existing and 
         //it starts from 1 so 0 always available
         speciality:this.newAppointmentForm.value.speciality,
         dateCreated:new Date().toISOString(),
-        dateToVisit:this.newAppointmentForm.value.dateToVisit.toISOString(),
+        dateToVisit:dateToVisit,
         type:this.newAppointmentForm.value.type,
         notes:this.newAppointmentForm.value.note,
         patient:this.patientFormControl.value,
@@ -135,15 +137,16 @@ export class AppointmentAddNewDialogComponent implements OnInit {
         status:"Reserved"
       }
       
-      //console.log(this.newAppointmentForm.value.dateToVisit.toString());
-      
-      // console.log(this.servUtils.formatDateTime(this.newAppointmentForm.value.dateToVisit));
-      
+    
+    
+
+     console.log(newAppointment);
+     
+  
       this.servAppointment.addAppointment(newAppointment).subscribe(response =>{
         this.dialogRef.close(true);
       });
     
-    //console.log(this.newAppointmentForm,this.patientFormControl,this.doctorFormControl);
   }
 
   checkAddAppointmentFormValidity():boolean{
@@ -152,6 +155,31 @@ export class AppointmentAddNewDialogComponent implements OnInit {
     return check;
   }
 
+
+  onDateChange(date:Date){
+    
+  
+    console.log("here",date.toISOString());
+   if(this.doctorFormControl.value && date){
+     console.log("form date ",date.toISOString());
+     
+    this.servDoctor.getDoctorReservedTimes(this.doctorFormControl.value.code,date.toISOString()).subscribe(
+      reservedTimes=>{
+        this.reservedDoctorTimes = this.servUtils.getDecomposedTimeFromDateObj(reservedTimes);
+       console.log("reservedtimes ",reservedTimes);
+       
+       
+      }
+    );
+   }
+  
+  }
+
+  isTimeClash(time:ResTimeDecomposed):boolean{
+    return this.reservedDoctorTimes.filter(doctorTime=>
+      doctorTime.AMPM===time.AMPM && doctorTime.hour ===time.hour && doctorTime.minute === time.minute
+    ).length >0;
+  }
 }
 
 
