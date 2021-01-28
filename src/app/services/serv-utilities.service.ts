@@ -32,6 +32,10 @@ export class ServUtilitiesService {
     return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', timeZone: "Africa/Cairo" })
 
   }
+
+  public getWeekDayString(date:Date):string{
+    return date.toLocaleDateString('en-US',{weekday:'long'}).toLowerCase();
+  }
   public getTimeIntervals(): ResTimeDecomposed[] {
     const intervals = ['00', '30'];
     const AMPM = ['AM', 'PM'];

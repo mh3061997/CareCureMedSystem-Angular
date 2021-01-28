@@ -152,6 +152,33 @@ export class AppointmentAddNewDialogComponent implements OnInit {
     
   }
 
+  checkAddAppointmentFormValidity():boolean{
+    
+   const check =  typeof(this.patientFormControl.value) ==  'object' &&  typeof(this.doctorFormControl.value) == 'object' ? true :  false;
+    return check;
+  }
+
+
+  onDateChange(date:Date | null){
+    
+  
+    if(this.doctorFormControl.value && date){
+     //console.log("here",date.toISOString());
+    // console.log("form date ",date.toISOString());
+     
+    this.servDoctor.getDoctorReservedTimes(this.doctorFormControl.value.code,date.toISOString()).subscribe(
+      reservedTimes=>{
+        this.reservedDoctorTimes = this.servUtils.getDecomposedTimeFromDateObj(reservedTimes);
+       //console.log("reservedtimes ",reservedTimes);
+       
+       
+      }
+    );
+   }
+  
+  }
+
+  
   datePickerDoctorDaysFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     // Prevent Sunday and  Saturday from being selected.
@@ -187,41 +214,34 @@ export class AppointmentAddNewDialogComponent implements OnInit {
     return dayAvailableMap.get(day) == 1;
   }
 
-  checkAddAppointmentFormValidity():boolean{
-    
-   const check =  typeof(this.patientFormControl.value) ==  'object' &&  typeof(this.doctorFormControl.value) == 'object' ? true :  false;
-    return check;
-  }
-
-
-  onDateChange(date:Date | null){
-    
   
-    if(this.doctorFormControl.value && date){
-     //console.log("here",date.toISOString());
-    // console.log("form date ",date.toISOString());
-     
-    this.servDoctor.getDoctorReservedTimes(this.doctorFormControl.value.code,date.toISOString()).subscribe(
-      reservedTimes=>{
-        this.reservedDoctorTimes = this.servUtils.getDecomposedTimeFromDateObj(reservedTimes);
-       //console.log("reservedtimes ",reservedTimes);
-       
-       
-      }
-    );
-   }
-  
-  }
-
   isTimeClash(time:ResTimeDecomposed):boolean{
     return this.reservedDoctorTimes.filter(doctorTime=>
       doctorTime.AMPM===time.AMPM && doctorTime.hour ===time.hour && doctorTime.minute === time.minute
     ).length >0;
   }
 
-  // isWithinWorkingHours(time:ResTimeDecomposed):boolean{
-  //  const doctorStartTime =  this.servUtils.decomposeDoctorDayAvail()
-  // }
+  isWithinWorkingHours(time:ResTimeDecomposed):boolean{
+  const date:Date = this.newAppointmentForm.value.dateToVisit;
+  //console.log(this.servUtils.getWeekDayString(date));
+   const doctor:ResDoctor= this.doctorFormControl.value;
+  
+  const day :ResDoctorDayAvail =  doctor.availableDays.filter(day=>day.day==this.servUtils.getWeekDayString(date))[0];
+
+  const doctorStartTime =  this.servUtils.decomposeDoctorDayAvail(day,'start');
+  const doctorEndTime =  this.servUtils.decomposeDoctorDayAvail(day,'end');
+  
+
+  const isWithin:boolean = this.timeIntervals.findIndex((interval)=>
+    interval.hour === doctorStartTime.hour && interval.minute === doctorStartTime.minute && interval.AMPM === doctorStartTime.AMPM
+  ) <= this.timeIntervals.indexOf(time)
+  && this.timeIntervals.findIndex((interval)=>
+    interval.hour === doctorEndTime.hour && interval.minute === doctorEndTime.minute && interval.AMPM === doctorEndTime.AMPM
+  ) > this.timeIntervals.indexOf(time);
+
+ 
+  return  isWithin;
+  }
 }
 
 

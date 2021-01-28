@@ -108,7 +108,7 @@
                                 <mat-option
                                  *ngFor="let time of timeIntervals" 
                                 [value]="time" 
-                                [disabled]="isTimeClash(time)">
+                                [disabled]="!isWithinWorkingHours(time) || isTimeClash(time)">
                                 {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
                                 
                             </mat-select>

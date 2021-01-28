@@ -1,4 +1,4 @@
-<h1 class="mat-dialog-title bg-info ">Update Package Information</h1>
+<h1 class="mat-dialog-title bg-info ">Update Appointment Information</h1>
 <div class="mat-dialog-content bg-white">
 
     <form *ngIf="appointment" (ngSubmit)="onUpdateInfoSubmit()" #updateInfoForm="ngForm">
@@ -6,38 +6,65 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field appearance="fill">
-                      
-                          
-                     
-
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <label for="input-name" class="form-control-label">Type</label>
+                                <mat-select [ngModel]="appointment.type" name="type" class="form-control" required
+                                    #type="ngModel"
+                                    >
+                                    <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
+                                        type !<br></span>
+                                    <mat-option value="Visit">Visit</mat-option>
+                                    <mat-option value="Revisit">Revisit</mat-option>
+    
+                                </mat-select>
+                            </mat-form-field>
+    
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field *ngIf="doctorFormControl.value" appearance="fill">
+              
                             <mat-label>Choose Visit Date</mat-label>
-                            <input matInput name="dateToVisit" required [ngModel]="appointment.dateToVisit"
-                                #dateToVisit="ngModel" [matDatepicker]="dp1">
+                            <input 
+                            (dateInput)="onDateChange($event.target.value)"
+                            matInput name="dateToVisit" required [ngModel]="appointment.dateToVisit"
+                                #dateToVisit="ngModel" [matDatepicker]="dp1"
+                                [matDatepickerFilter]="datePickerDoctorDaysFilter"
+                                >
 
                             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                             <mat-datepicker required #dp1></mat-datepicker>
 
                         </mat-form-field>
 
-
+                        <div class="col-md-6"> 
+                            <mat-form-field *ngIf="updateInfoForm.value.dateToVisit && reservedDoctorTimes">
+                                <label for="input-name" class="form-control-label">Time of Visit</label>
+                                <span class="form-text text-muted" *ngIf="timeToVisit.touched && timeToVisit.invalid">Please enter
+                                    time !<br></span>
+                                <mat-select  name="timeToVisit"
+                                [compareWith]="compareTimeDecomposedObjects"
+                                [(ngModel)]="appointmentTime"
+                                 class="form-control" required #timeToVisit="ngModel">
+    
+                                    <mat-option
+                                     *ngFor="let time of timeIntervals" 
+                                    [value]="time" 
+                                    [disabled]="!isWithinWorkingHours(time) || isTimeClash(time)">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+                                    
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
                        
                     </div>
-                    <div class="col-md-6">
-                        <mat-form-field>
-                            <label for="input-name" class="form-control-label">Type</label>
-                            <mat-select [ngModel]="appointment.type" name="type" class="form-control" required
-                                #type="ngModel">
-                                <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
-                                    type !<br></span>
-                                <mat-option value="Visit">Visit</mat-option>
-                                <mat-option value="Revisit">Revisit</mat-option>
-
-                            </mat-select>
-                        </mat-form-field>
-
-
-                    </div>
+                   
                 </div>
 
             </div>

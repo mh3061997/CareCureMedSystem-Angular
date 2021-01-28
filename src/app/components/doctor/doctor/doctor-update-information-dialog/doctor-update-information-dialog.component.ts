@@ -153,7 +153,9 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
 
 
   compareTimeDecomposedObjects(Obj1 :ResTimeDecomposed,Obj2:ResTimeDecomposed){
-
+    
+    if(!Obj1 || !Obj2) 
+    return false;
     return Obj1.AMPM === Obj2.AMPM && Obj1.hour === Obj2.hour && Obj1.minute ===Obj2.minute
 
   }
@@ -164,96 +166,131 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
   recomposeDoctorDayAvail():ResDoctorDayAvail[]{
     
     let dayArr:ResDoctorDayAvail[] =[];
+    
+    if(this.updateInfoForm.value.sundaycheck){
 
-    const sunday:ResDoctorDayAvail={
-      code:0,
-      day:'sunday',
-      startTimeAMPM:this.sundayStartDecomposed.AMPM,
-      startTimeHour:this.sundayStartDecomposed.hour,
-      startTimeMinute:this.sundayStartDecomposed.minute,
-      endTimeAMPM:this.sundayEndDecomposed.AMPM,
-      endTimeHour:this.sundayEndDecomposed.hour,
-      endTimeMinute:this.sundayEndDecomposed.minute,
-      doctor:this.doctor
+      const sunday:ResDoctorDayAvail={
+        code:0,
+        day:'sunday',
+        startTimeAMPM:this.sundayStartDecomposed.AMPM,
+        startTimeHour:this.sundayStartDecomposed.hour,
+        startTimeMinute:this.sundayStartDecomposed.minute,
+        endTimeAMPM:this.sundayEndDecomposed.AMPM,
+        endTimeHour:this.sundayEndDecomposed.hour,
+        endTimeMinute:this.sundayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(sunday);
+  
     }
-    dayArr.push(sunday);
+    if(this.updateInfoForm.value.mondaycheck){
 
-    const monday:ResDoctorDayAvail={
-      code:0,
-      day:'monday',
-      startTimeAMPM:this.mondayStartDecomposed.AMPM,
-      startTimeHour:this.mondayStartDecomposed.hour,
-      startTimeMinute:this.mondayStartDecomposed.minute,
-      endTimeAMPM:this.mondayEndDecomposed.AMPM,
-      endTimeHour:this.mondayEndDecomposed.hour,
-      endTimeMinute:this.mondayEndDecomposed.minute,
-      doctor:this.doctor
-    }
-    dayArr.push(monday);   
-     const tuesday:ResDoctorDayAvail={
-      code:0,
-      day:'tuesday',
-      startTimeAMPM:this.tuesdayStartDecomposed.AMPM,
-      startTimeHour:this.tuesdayStartDecomposed.hour,
-      startTimeMinute:this.tuesdayStartDecomposed.minute,
-      endTimeAMPM:this.tuesdayEndDecomposed.AMPM,
-      endTimeHour:this.tuesdayEndDecomposed.hour,
-      endTimeMinute:this.tuesdayEndDecomposed.minute,
-      doctor:this.doctor
-    }
-    dayArr.push(tuesday);
+      const monday:ResDoctorDayAvail={
+        code:0,
+        day:'monday',
+        startTimeAMPM:this.mondayStartDecomposed.AMPM,
+        startTimeHour:this.mondayStartDecomposed.hour,
+        startTimeMinute:this.mondayStartDecomposed.minute,
+        endTimeAMPM:this.mondayEndDecomposed.AMPM,
+        endTimeHour:this.mondayEndDecomposed.hour,
+        endTimeMinute:this.mondayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(monday);   
 
-    const wednesday:ResDoctorDayAvail={
-      code:0,
-      day:'wednesday',
-      startTimeAMPM:this.wednesdayStartDecomposed.AMPM,
-      startTimeHour:this.wednesdayStartDecomposed.hour,
-      startTimeMinute:this.wednesdayStartDecomposed.minute,
-      endTimeAMPM:this.wednesdayEndDecomposed.AMPM,
-      endTimeHour:this.wednesdayEndDecomposed.hour,
-      endTimeMinute:this.wednesdayEndDecomposed.minute,
-      doctor:this.doctor
     }
-    dayArr.push(wednesday);
+    if(this.updateInfoForm.value.tuesdaycheck){
 
-    const thursday:ResDoctorDayAvail={
-      code:0,
-      day:'thursday',
-      startTimeAMPM:this.thursdayStartDecomposed.AMPM,
-      startTimeHour:this.thursdayStartDecomposed.hour,
-      startTimeMinute:this.thursdayStartDecomposed.minute,
-      endTimeAMPM:this.thursdayEndDecomposed.AMPM,
-      endTimeHour:this.thursdayEndDecomposed.hour,
-      endTimeMinute:this.thursdayEndDecomposed.minute,
-      doctor:this.doctor
-    }
-    dayArr.push(thursday);
+      const tuesday:ResDoctorDayAvail={
+        code:0,
+        day:'tuesday',
+        startTimeAMPM:this.tuesdayStartDecomposed.AMPM,
+        startTimeHour:this.tuesdayStartDecomposed.hour,
+        startTimeMinute:this.tuesdayStartDecomposed.minute,
+        endTimeAMPM:this.tuesdayEndDecomposed.AMPM,
+        endTimeHour:this.tuesdayEndDecomposed.hour,
+        endTimeMinute:this.tuesdayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(tuesday);
 
-    const friday:ResDoctorDayAvail={
-      code:0,
-      day:'friday',
-      startTimeAMPM:this.fridayStartDecomposed.AMPM,
-      startTimeHour:this.fridayStartDecomposed.hour,
-      startTimeMinute:this.fridayStartDecomposed.minute,
-      endTimeAMPM:this.fridayEndDecomposed.AMPM,
-      endTimeHour:this.fridayEndDecomposed.hour,
-      endTimeMinute:this.fridayEndDecomposed.minute,
-      doctor:this.doctor
     }
-    dayArr.push(friday);
 
-    const saturday:ResDoctorDayAvail={
-      code:0,
-      day:'saturday',
-      startTimeAMPM:this.saturdayStartDecomposed.AMPM,
-      startTimeHour:this.saturdayStartDecomposed.hour,
-      startTimeMinute:this.saturdayStartDecomposed.minute,
-      endTimeAMPM:this.saturdayEndDecomposed.AMPM,
-      endTimeHour:this.saturdayEndDecomposed.hour,
-      endTimeMinute:this.saturdayEndDecomposed.minute,
-      doctor:this.doctor
+   
+
+    if(this.updateInfoForm.value.wednesdaycheck){
+
+      const wednesday:ResDoctorDayAvail={
+        code:0,
+        day:'wednesday',
+        startTimeAMPM:this.wednesdayStartDecomposed.AMPM,
+        startTimeHour:this.wednesdayStartDecomposed.hour,
+        startTimeMinute:this.wednesdayStartDecomposed.minute,
+        endTimeAMPM:this.wednesdayEndDecomposed.AMPM,
+        endTimeHour:this.wednesdayEndDecomposed.hour,
+        endTimeMinute:this.wednesdayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(wednesday);
+
     }
-    dayArr.push(saturday);
+
+   
+    if(this.updateInfoForm.value.thursdaycheck){
+      
+
+      const thursday:ResDoctorDayAvail={
+        code:0,
+        day:'thursday',
+        startTimeAMPM:this.thursdayStartDecomposed.AMPM,
+        startTimeHour:this.thursdayStartDecomposed.hour,
+        startTimeMinute:this.thursdayStartDecomposed.minute,
+        endTimeAMPM:this.thursdayEndDecomposed.AMPM,
+        endTimeHour:this.thursdayEndDecomposed.hour,
+        endTimeMinute:this.thursdayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(thursday);
+      
+    }
+
+    
+    if(this.updateInfoForm.value.fridaycheck){
+
+      const friday:ResDoctorDayAvail={
+        code:0,
+        day:'friday',
+        startTimeAMPM:this.fridayStartDecomposed.AMPM,
+        startTimeHour:this.fridayStartDecomposed.hour,
+        startTimeMinute:this.fridayStartDecomposed.minute,
+        endTimeAMPM:this.fridayEndDecomposed.AMPM,
+        endTimeHour:this.fridayEndDecomposed.hour,
+        endTimeMinute:this.fridayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(friday);
+
+    }
+
+   
+    if(this.updateInfoForm.value.saturdaycheck){
+
+      const saturday:ResDoctorDayAvail={
+        code:0,
+        day:'saturday',
+        startTimeAMPM:this.saturdayStartDecomposed.AMPM,
+        startTimeHour:this.saturdayStartDecomposed.hour,
+        startTimeMinute:this.saturdayStartDecomposed.minute,
+        endTimeAMPM:this.saturdayEndDecomposed.AMPM,
+        endTimeHour:this.saturdayEndDecomposed.hour,
+        endTimeMinute:this.saturdayEndDecomposed.minute,
+        doctor:this.doctor
+      }
+      dayArr.push(saturday);
+
+    }
+
+   
 
     return dayArr;
    

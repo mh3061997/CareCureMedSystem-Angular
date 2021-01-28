@@ -178,7 +178,7 @@ export class DoctorAddNewDialogComponent implements OnInit {
           doctor: doctor
         }
       
-       // days.push(day);
+        days.push(day);
 
       }
       //console.log(days);
