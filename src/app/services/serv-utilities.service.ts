@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ResDoctorDayAvail } from '../interfaces/res-doctor-day-avail';
 import { ResReservedTime } from '../interfaces/res-reserved-time';
 import { ResTimeDecomposed } from '../interfaces/res-time-decomposed';
 
@@ -91,19 +92,17 @@ export class ServUtilitiesService {
     console.log("decomposed ",reservedDecomposedTime)
     return reservedDecomposedTime;
   }
+
+  
+  decomposeDoctorDayAvail(day:ResDoctorDayAvail,type:string):ResTimeDecomposed{
+
+    if(type=='start'){
+      return {hour:day.startTimeHour,minute:day.startTimeMinute,AMPM:day.startTimeAMPM}
+    }else{
+      return {hour:day.endTimeHour,minute:day.endTimeMinute,AMPM:day.endTimeAMPM}
+  
+    }
+    }
+    
 }
 
-// export namespace ServUtilitiesService{
-
-//   export enum weekDays {
-
-//     sunday=0,
-//     monday=1,
-//     tuesday=2,
-//     wednesday=3,
-//     thursday=4,
-//     friday=5,
-//     saturday=6
-    
-//   }
-// }

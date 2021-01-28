@@ -16,6 +16,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ResReservedTime } from 'src/app/interfaces/res-reserved-time';
 import { ResTimeDecomposed } from 'src/app/interfaces/res-time-decomposed';
 import { weekdays } from 'moment';
+import { ResDoctorDayAvail } from 'src/app/interfaces/res-doctor-day-avail';
 
 @Component({
   selector: 'app-appointment-add-new-dialog',
@@ -153,8 +154,37 @@ export class AppointmentAddNewDialogComponent implements OnInit {
 
   datePickerDoctorDaysFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    // Prevent Sunday and  Saturday from being selected.
+    let dayMap = new Map();
+
+    dayMap.set('sunday',0);
+    dayMap.set('monday',1);
+    dayMap.set('tuesday',2);
+    dayMap.set('wednesday',3);
+    dayMap.set('thursday',4);
+    dayMap.set('friday',5);
+    dayMap.set('saturday',6);
+  
+    let dayAvailableMap = new Map();
+
+    dayAvailableMap.set('0',0);
+    dayAvailableMap.set('1',0);
+    dayAvailableMap.set('2',0);
+    dayAvailableMap.set('3',0);
+    dayAvailableMap.set('4',0);
+    dayAvailableMap.set('5',0);
+    dayAvailableMap.set('6',0);
+  
+
+   const doctor:ResDoctor = this.doctorFormControl.value;
+
+   doctor.availableDays.forEach(dayAvail => {
+    dayAvailableMap.set(dayMap.get(dayAvail.day),1);
+    });
+    
+    //console.log(dayAvailableMap,doctor.availableDays);
+    
+    return dayAvailableMap.get(day) == 1;
   }
 
   checkAddAppointmentFormValidity():boolean{
@@ -169,12 +199,12 @@ export class AppointmentAddNewDialogComponent implements OnInit {
   
     if(this.doctorFormControl.value && date){
      //console.log("here",date.toISOString());
-     console.log("form date ",date.toISOString());
+    // console.log("form date ",date.toISOString());
      
     this.servDoctor.getDoctorReservedTimes(this.doctorFormControl.value.code,date.toISOString()).subscribe(
       reservedTimes=>{
         this.reservedDoctorTimes = this.servUtils.getDecomposedTimeFromDateObj(reservedTimes);
-       console.log("reservedtimes ",reservedTimes);
+       //console.log("reservedtimes ",reservedTimes);
        
        
       }
@@ -188,6 +218,10 @@ export class AppointmentAddNewDialogComponent implements OnInit {
       doctorTime.AMPM===time.AMPM && doctorTime.hour ===time.hour && doctorTime.minute === time.minute
     ).length >0;
   }
+
+  // isWithinWorkingHours(time:ResTimeDecomposed):boolean{
+  //  const doctorStartTime =  this.servUtils.decomposeDoctorDayAvail()
+  // }
 }
 
 

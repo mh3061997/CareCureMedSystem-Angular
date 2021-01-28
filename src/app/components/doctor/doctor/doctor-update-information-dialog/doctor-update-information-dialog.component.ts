@@ -65,44 +65,44 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
    
     this.saturday =  this.getDay('saturday');
     if(this.saturday){
-      this.saturdayStartDecomposed = this.decomposeDoctorDayAvail(this.saturday,'start');
-      this.saturdayEndDecomposed = this.decomposeDoctorDayAvail(this.saturday,'end');
+      this.saturdayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.saturday,'start');
+      this.saturdayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.saturday,'end');
     }
 
     this.sunday =  this.getDay('sunday');
     if(this.sunday){
-      this.sundayStartDecomposed = this.decomposeDoctorDayAvail(this.sunday,'start');
-      this.sundayEndDecomposed = this.decomposeDoctorDayAvail(this.sunday,'end');
+      this.sundayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.sunday,'start');
+      this.sundayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.sunday,'end');
     }
 
     this.monday =  this.getDay('monday');
     if(this.monday){
-      this.mondayStartDecomposed = this.decomposeDoctorDayAvail(this.monday,'start');
-      this.mondayEndDecomposed = this.decomposeDoctorDayAvail(this.monday,'end');
+      this.mondayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.monday,'start');
+      this.mondayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.monday,'end');
     }
 
     this.tuesday =  this.getDay('tuesday');
     if(this.tuesday){
-      this.tuesdayStartDecomposed = this.decomposeDoctorDayAvail(this.tuesday,'start');
-      this.tuesdayEndDecomposed = this.decomposeDoctorDayAvail(this.tuesday,'end');
+      this.tuesdayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.tuesday,'start');
+      this.tuesdayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.tuesday,'end');
     }
 
     this.wednesday =  this.getDay('wednesday');
     if(this.wednesday){
-      this.wednesdayStartDecomposed = this.decomposeDoctorDayAvail(this.wednesday,'start');
-      this.wednesdayEndDecomposed = this.decomposeDoctorDayAvail(this.wednesday,'end');
+      this.wednesdayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.wednesday,'start');
+      this.wednesdayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.wednesday,'end');
     }
 
     this.thursday =  this.getDay('thursday');
     if(this.thursday){
-      this.thursdayStartDecomposed = this.decomposeDoctorDayAvail(this.thursday,'start');
-      this.thursdayEndDecomposed = this.decomposeDoctorDayAvail(this.thursday,'end');
+      this.thursdayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.thursday,'start');
+      this.thursdayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.thursday,'end');
     }
 
     this.friday =  this.getDay('friday');
     if(this.friday){
-      this.fridayStartDecomposed = this.decomposeDoctorDayAvail(this.friday,'start');
-      this.fridayEndDecomposed = this.decomposeDoctorDayAvail(this.friday,'end');
+      this.fridayStartDecomposed = this.servUtils.decomposeDoctorDayAvail(this.friday,'start');
+      this.fridayEndDecomposed = this.servUtils.decomposeDoctorDayAvail(this.friday,'end');
     }
    
 
@@ -151,15 +151,6 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
     return this.doctor.availableDays.filter(dayAvail =>dayAvail.day == dayString)[0];
   }
 
-  decomposeDoctorDayAvail(day:ResDoctorDayAvail,type:string):ResTimeDecomposed{
-
-  if(type=='start'){
-    return {hour:day.startTimeHour,minute:day.startTimeMinute,AMPM:day.startTimeAMPM}
-  }else{
-    return {hour:day.endTimeHour,minute:day.endTimeMinute,AMPM:day.endTimeAMPM}
-
-  }
-  }
 
   compareTimeDecomposedObjects(Obj1 :ResTimeDecomposed,Obj2:ResTimeDecomposed){
 
@@ -167,6 +158,8 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
 
   }
 
+
+  
 
   recomposeDoctorDayAvail():ResDoctorDayAvail[]{
     
