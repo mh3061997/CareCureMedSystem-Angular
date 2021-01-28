@@ -1,4 +1,5 @@
 import { ResAppointment } from "./res-appointment"
+import { ResDoctorDayAvail } from "./res-doctor-day-avail";
 
 export interface ResDoctor {
     code:number;
@@ -11,6 +12,6 @@ export interface ResDoctor {
     age:number;
     speciality:string;
     appointments:ResAppointment[];
-
+    availableDays:ResDoctorDayAvail[];
     
 }

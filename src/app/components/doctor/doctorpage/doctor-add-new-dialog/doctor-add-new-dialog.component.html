@@ -1,135 +1,97 @@
 <h1 class="mat-dialog-title bg-white ">Add New Doctor</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form  (ngSubmit)="onNewDoctorSubmit()"  #newDoctorForm="ngForm" >
+    <form (ngSubmit)="onNewDoctorSubmit()" #newDoctorForm="ngForm">
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field>   
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Name</label>
-                        <input  matInput type="text" 
-                        name="name"
-                        class="form-control"
-                        ngModel
-                        #name="ngModel"
-                        pattern="[a-zA-Z ]*"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
-                        
-                        
-                    </mat-form-field> 
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput type="text" name="name" class="form-control" ngModel #name="ngModel"
+                                pattern="[a-zA-Z ]*" required>
+                            <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name
+                                correctly!<br></span>
+
+
+                        </mat-form-field>
                     </div>
-                  
+
                     <div class="col-md-6">
-                        <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Speciality</label>
-                        <mat-select
-                        
-                        ngModel
-                         name="speciality"
-                        class="form-control"
-                        required
-                         #speciality="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="speciality.touched && speciality.invalid">Please enter speciality !<br></span>
-                        <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
-                        
-                        </mat-select >
-                    </mat-form-field> 
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Speciality</label>
+                            <mat-select ngModel name="speciality" class="form-control" required #speciality="ngModel">
+                                <span class="form-text text-muted"
+                                    *ngIf="speciality.touched && speciality.invalid">Please enter speciality
+                                    !<br></span>
+                                <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
 
                     </div>
 
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Email</label>
-                        <input
-                        name="email"
-                         matInput type="text" 
-                        class="form-control"
-                        ngModel
-                        required
-                        email
-                        #email="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="email.touched && email.invalid">Please enter email !<br></span>
+                            <label for="input-name" class="form-control-label">Email</label>
+                            <input name="email" matInput type="text" class="form-control" ngModel required email
+                                #email="ngModel">
+                            <span class="form-text text-muted" *ngIf="email.touched && email.invalid">Please enter email
+                                !<br></span>
 
-                    </mat-form-field>
+                        </mat-form-field>
 
                     </div>
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Mobile</label>
-                        <input
-                        name="mobile"
-                         matInput
-                        class="form-control"
-                        ngModel
-                        #mobile = "ngModel"
-                        type="number"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
-                    </mat-form-field>
+                            <label for="input-name" class="form-control-label">Mobile</label>
+                            <input name="mobile" matInput class="form-control" ngModel #mobile="ngModel" type="number"
+                                required>
+                            <span class="form-text text-muted" *ngIf="mobile.touched && mobile.invalid">Please enter
+                                mobile number !<br></span>
+                        </mat-form-field>
 
                     </div>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Age</label>
-                        <input 
-                        name="age"
-                        matInput   type="number"
-                        class="form-control"
-                        ngModel
-                        #age = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="age.touched && age.invalid">Please enter age !<br></span>
-         
-                 
-                    </mat-form-field>
+                            <label for="input-name" class="form-control-label">Age</label>
+                            <input name="age" matInput type="number" class="form-control" ngModel #age="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="age.touched && age.invalid">Please enter age
+                                !<br></span>
+
+
+                        </mat-form-field>
 
                     </div>
 
                 </div>
-                
+
                 <div class="col-md-6">
-                    <mat-form-field> 
-                    <label for="input-name" class="form-control-label">Gender</label>
-                    <mat-select
-                    
-                    ngModel
-                     name="gender"
-                    class="form-control"
-                    required
-                     #gender="ngModel">
-                    <span
-                    class="form-text text-muted" 
-                    *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
-                    <mat-option value="Male">Male</mat-option>
-                    <mat-option value="Female">Female</mat-option>
-                    </mat-select >
-                </mat-form-field> 
+                    <mat-form-field>
+                        <label for="input-name" class="form-control-label">Gender</label>
+                        <mat-select ngModel name="gender" class="form-control" required #gender="ngModel">
+                            <span class="form-text text-muted" *ngIf="gender.touched && gender.invalid">Please enter
+                                gender !<br></span>
+                            <mat-option value="Male">Male</mat-option>
+                            <mat-option value="Female">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
                 </div>
 
@@ -137,47 +99,317 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Price Visit</label>
-                        <input 
-                        name="priceVisit"
-                        matInput   type="number"
-                        class="form-control"
-                        ngModel
-                        #priceVisit = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="priceVisit.touched && priceVisit.invalid">Please enter visit price !<br></span>
-         
-                 
-                    </mat-form-field>
+                            <label for="input-name" class="form-control-label">Price Visit</label>
+                            <input name="priceVisit" matInput type="number" class="form-control" ngModel
+                                #priceVisit="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="priceVisit.touched && priceVisit.invalid">Please
+                                enter visit price !<br></span>
+
+
+                        </mat-form-field>
 
                     </div>
 
                 </div>
-                
+
                 <div class="col-md-6">
-                    <mat-form-field> 
+                    <mat-form-field>
 
                         <label for="input-name" class="form-control-label">Price Revisit</label>
-                        <input 
-                        name="priceRevisit"
-                        matInput   type="number"
-                        class="form-control"
-                        ngModel
-                        #priceRevisit = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="priceRevisit.touched && priceRevisit.invalid">Please enter revisit price !<br></span>
-         
-                 
+                        <input name="priceRevisit" matInput type="number" class="form-control" ngModel
+                            #priceRevisit="ngModel" required>
+                        <span class="form-text text-muted" *ngIf="priceRevisit.touched && priceRevisit.invalid">Please
+                            enter revisit price !<br></span>
+
+
                     </mat-form-field>
 
                 </div>
 
+            </div>
+            <hr>
+            <h3 class="mati-dialog-title">Available Working Hours</h3>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Sunday</label>
+                        <mat-checkbox name="sundaycheck" #sundaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="sundayStart" class="form-control" required #sundayStart="ngModel"
+                                [disabled]="!sundaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="sundayEnd" class="form-control" required #sundayEnd="ngModel"
+                                [disabled]="!sundaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Monday</label>
+                        <mat-checkbox name="mondaycheck" #mondaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="mondayStart" class="form-control" required #mondayStart="ngModel"
+                                [disabled]="!mondaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="mondayEnd" class="form-control" required #mondayEnd="ngModel"
+                                [disabled]="!mondaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Tuesday</label>
+                        <mat-checkbox name="tuesdaycheck" #tuesdaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="tuesdayStart" class="form-control" required
+                                #tuesdayStart="ngModel" [disabled]="!tuesdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="tuesdayEnd" class="form-control" required #tuesdayEnd="ngModel"
+                                [disabled]="!tuesdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Wednesday</label>
+                        <mat-checkbox name="wednesdaycheck" #wednesdaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="wednesdayStart" class="form-control" required
+                                #wednesdayStart="ngModel" [disabled]="!wednesdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="wednesdayEnd" class="form-control" required
+                                #wednesdayEnd="ngModel" [disabled]="!wednesdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Thursday</label>
+                        <mat-checkbox name="thursdaycheck" #thursdaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="thursdayStart" class="form-control" required
+                                #thursdayStart="ngModel" [disabled]="!thursdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="thursdayEnd" class="form-control" required #thursdayEnd="ngModel"
+                                [disabled]="!thursdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Friday</label>
+                        <mat-checkbox name="fridaycheck" #fridaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="fridayStart" class="form-control" required #fridayStart="ngModel"
+                                [disabled]="!fridaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="fridayEnd" class="form-control" required #fridayEnd="ngModel"
+                                [disabled]="!fridaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="input-name" class="form-control-label">Saturday</label>
+                        <mat-checkbox name="saturdaycheck" #saturdaycheck="ngModel" [ngModel]="true" color="primary">
+                        </mat-checkbox>
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Start time</label>
+                            <mat-select ngModel name="saturdayStart" class="form-control" required
+                                #saturdayStart="ngModel" [disabled]="!saturdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">End time</label>
+
+                            <mat-select ngModel name="saturdayEnd" class="form-control" required #saturdayEnd="ngModel"
+                                [disabled]="!saturdaycheck.value">
+                                <!-- <span
+                        class="form-text text-muted" 
+                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span> -->
+
+                                <mat-option *ngFor="let time of timeIntervals" [value]="time">
+                                    {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
+
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
             <button class="btn btn-success" [disabled]="!newDoctorForm.valid" type="submit">Add</button>
         </div>

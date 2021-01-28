@@ -7,6 +7,16 @@ import { ResTimeDecomposed } from '../interfaces/res-time-decomposed';
 })
 export class ServUtilitiesService {
 
+  
+  weekdays = {
+    sunday:0,
+    monday:1,
+    tuesday:2,
+    wednesday:3,
+    thursday:4,
+    friday:5,
+    saturday:6
+  }
   specialities: string[] = ['Surgery', 'Plastic Surgery', 'Dermatology', 'Nutrition', 'Internal Medicine',
     'Obstetrics', 'Dentistry'];
   constructor() { }
@@ -82,3 +92,18 @@ export class ServUtilitiesService {
     return reservedDecomposedTime;
   }
 }
+
+// export namespace ServUtilitiesService{
+
+//   export enum weekDays {
+
+//     sunday=0,
+//     monday=1,
+//     tuesday=2,
+//     wednesday=3,
+//     thursday=4,
+//     friday=5,
+//     saturday=6
+    
+//   }
+// }

@@ -15,6 +15,7 @@ import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ResReservedTime } from 'src/app/interfaces/res-reserved-time';
 import { ResTimeDecomposed } from 'src/app/interfaces/res-time-decomposed';
+import { weekdays } from 'moment';
 
 @Component({
   selector: 'app-appointment-add-new-dialog',
@@ -145,8 +146,15 @@ export class AppointmentAddNewDialogComponent implements OnInit {
   
       this.servAppointment.addAppointment(newAppointment).subscribe(response =>{
         this.dialogRef.close(true);
+        
       });
     
+  }
+
+  datePickerDoctorDaysFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
   }
 
   checkAddAppointmentFormValidity():boolean{
@@ -156,11 +164,11 @@ export class AppointmentAddNewDialogComponent implements OnInit {
   }
 
 
-  onDateChange(date:Date){
+  onDateChange(date:Date | null){
     
   
-    console.log("here",date.toISOString());
-   if(this.doctorFormControl.value && date){
+    if(this.doctorFormControl.value && date){
+     //console.log("here",date.toISOString());
      console.log("form date ",date.toISOString());
      
     this.servDoctor.getDoctorReservedTimes(this.doctorFormControl.value.code,date.toISOString()).subscribe(

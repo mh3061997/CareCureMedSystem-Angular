@@ -41,8 +41,8 @@ export class ServDoctorService {
     });
   }
   //Add a new Doctor
-  addDoctor(newDoctor:ResDoctor){
-    return this.http.post(this.servPath.getPathDoctor(),newDoctor);
+  addDoctor(newDoctor:ResDoctor):Observable<ResDoctor>{
+    return this.http.post<ResDoctor>(this.servPath.getPathDoctor(),newDoctor);
   }
   
   //update an existing Doctor

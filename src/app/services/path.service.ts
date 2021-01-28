@@ -30,6 +30,11 @@ export class PathService {
   
   private noteAppointmentPath:string="noteAppointment"
 
+  private doctorDayAvail:string="doctorDayAvail"
+
+  public getPathDoctorDayAvail(){
+    return this.approotPath+this.doctorDayAvail;
+  }
   public getPathNoteAppointment(){
     return this.approotPath+this.noteAppointmentPath;
   }

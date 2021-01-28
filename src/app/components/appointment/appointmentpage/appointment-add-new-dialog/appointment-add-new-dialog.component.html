@@ -90,7 +90,7 @@
                         <mat-form-field *ngIf="doctorFormControl.value" appearance="fill">
                             <mat-label>Choose Visit Date</mat-label>
                             <input (dateInput)="onDateChange($event.target.value)" matInput name="dateToVisit" required ngModel #dateCreated="ngModel"
-                                [matDatepicker]="dp1">
+                                [matDatepicker]="dp1" [matDatepickerFilter]="datePickerDoctorDaysFilter">
 
                             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                             <mat-datepicker  required #dp1></mat-datepicker>
