@@ -23,6 +23,14 @@ export class ServAppointmentService {
   
   }
 
+  getAppointmentsPatientDoctor(doctorCode:number,patientCode:number):Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/patientdoctor",{
+      params:{
+        patientCode:patientCode.toString(),
+        doctorCode:doctorCode.toString()
+      }
+    });
+  }
   //Add a new Appointment
   addAppointment(newAppointment:ResAppointment){
     return this.http.post(this.servPath.getPathAppointment(),newAppointment);

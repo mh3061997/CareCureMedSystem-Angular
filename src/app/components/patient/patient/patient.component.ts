@@ -17,6 +17,7 @@ import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ResMedImage } from 'src/app/interfaces/res-med-image';
 import { PatientAddMedimageDialogComponent } from './patient-add-medimage-dialog/patient-add-medimage-dialog.component';
+import { PatientAddOfficialdocDialogComponent } from './patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
 
 @Component({
   selector: 'app-patient',
@@ -105,6 +106,33 @@ if(closed){
 
   }
  
+  openAddOfficialImageDialog(){
+
+    const dialogRef =  this.dialogAddMedImage.open(PatientAddOfficialdocDialogComponent,{
+      data:{
+        patient:this.patient,
+        medImageType:this.currentSelectedMedImageTab
+      },
+      disableClose:true
+    });
+  
+    dialogRef.afterClosed().subscribe(closed =>{
+   
+if(closed){
+  this.servPatient.getPatientByID(this.patientId).subscribe(patient =>{
+
+    this.patient = patient;
+    this.medImagesLab = this.patient.medImages.filter(medImage => medImage.type=="Lab");
+    this.medImagesRadiology = this.patient.medImages.filter(medImage => medImage.type=="Radiology");
+    this.medImagesOfficial = this.patient.medImages.filter(medImage => medImage.type=="Official");
+    this.medImagesPresc = this.patient.medImages.filter(medImage => medImage.type=="Prescription");
+
+    });
+}
+
+    });
+
+  }
   openUpdatePatientInformationDialog(){
    const dialogRef =  this.dialogUpdatePatientInformation.open(PatientUpdateInformationDialogComponent,{
       data:{

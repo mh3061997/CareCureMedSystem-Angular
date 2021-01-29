@@ -22,8 +22,9 @@
                 <div class="card-header  bg-white p-3">
                     <div class="container-fluid">
                         <div class="row justify-content-end align-middle ">
-                            <button *ngIf="appointment.status=='Reserved' || appointment.status=='Confirmed'" class="btn btn-danger col-3"
-                                (click)="goToMedicalOps()">Enter Medical Operations</button>
+                            <button *ngIf="appointment.status=='Reserved' || appointment.status=='Confirmed'"
+                                class="btn btn-danger col-3" (click)="goToMedicalOps()">Enter Medical
+                                Operations</button>
 
                             <h3 class="mb-0  col-6">Appointment Information</h3>
                             <button class="btn btn-info col-3" (click)="openUpdateAppointmentInformationDialog()">Update
@@ -73,19 +74,19 @@
                                 <p>{{appointment.status}}</p>
                             </div>
                         </div>
-                       <div *ngIf="appointment.doctorNotes">
-                        <div class="row  justify-content-center">
-                            <p class="form-control-label">Doctor Note</p>
-                            
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class=" col-md-10">
-                                <div class="card m-2 p-1" *ngFor="let note of appointment.doctorNotes">
-                                    {{note.note}}
+                        <div *ngIf="appointment.doctorNotes">
+                            <div class="row  justify-content-center">
+                                <p class="form-control-label">Doctor Note</p>
+
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class=" col-md-10">
+                                    <div class="card m-2 p-1" *ngFor="let note of appointment.doctorNotes">
+                                        {{note.note}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                       </div>
                     </div>
 
                 </div>
@@ -95,6 +96,38 @@
         </div>
 
     </div>
+  
+   
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+
+            <div class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center align-middle ">
+                            <h3 class="mb-0  col-6">ِPrevious Appointments With Dr.{{doctor.name}}</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4">
+                    <div class="card-body  justify-content-center ">
+                        <app-doctor-appointment-table *ngIf="appointmentsPatientDoctor" [appointments]="appointmentsPatientDoctor">
+                        </app-doctor-appointment-table>
+            
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
     <div class="row justify-content-center mb-4">
         <div class="col-md-10">
 

@@ -22,7 +22,8 @@ export class AppointmentComponent implements OnInit {
 
   patient:ResPatient;
   doctor:ResDoctor;
-  
+  appointmentsPatientDoctor:ResAppointment[];
+
   constructor(public dialogAddMembership:MatDialog,
     public dialogUpdateAppointmentInformation:MatDialog,
     private currentRoute:ActivatedRoute,
@@ -30,15 +31,27 @@ export class AppointmentComponent implements OnInit {
     private router: Router,
     public servUtils:ServUtilitiesService) {
 
-    this.getAppointmentCode();
+ 
 
-    servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment =>{
+    this.currentRoute.params.subscribe(params=>{
 
-    this.appointment = appointment;
-    this.patient = appointment.patient;
-    this.doctor = appointment.doctor;
+      this.getAppointmentCode();
 
-    console.log(this.appointment);
+      servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment =>{
+  
+      this.appointment = appointment;
+      this.patient = appointment.patient;
+      this.doctor = appointment.doctor;
+  
+     servAppointment.getAppointmentsPatientDoctor(this.patient.code,this.doctor.code)
+     .subscribe((appointmentsPatientDoctor)=>{
+        
+      this.appointmentsPatientDoctor = appointmentsPatientDoctor;
+  
+     });
+      
+      });
+      
     });
   }
 

@@ -72,6 +72,10 @@ import { ServiceSearchPipe } from './pipes/service-search.pipe';
 import { MinNumberDirectiveDirective } from './directives/min-number-directive.directive';
 import { MaxNumberDirectiveDirective } from './directives/max-number-directive.directive';
 import { SettleDebtDialogComponent } from './components/invoice/invoice/settle-debt-dialog/settle-debt-dialog.component';
+import { AppointmentPatientDoctorTableComponent } from './components/appointment/appointment/appointment-patient-doctor-table/appointment-patient-doctor-table.component';
+import { ServiceAddDialogComponent } from './components/service-price-list/service-add-dialog/service-add-dialog.component';
+import { PatientAddOfficialdocDialogComponent } from './components/patient/patient/patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
+import { PatientOfficialImageTableComponent } from './components/patient/patient/patient-official-image-table/patient-official-image-table.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +124,11 @@ import { SettleDebtDialogComponent } from './components/invoice/invoice/settle-d
       ServiceSearchPipe,
       MinNumberDirectiveDirective,
       MaxNumberDirectiveDirective,
-      SettleDebtDialogComponent
+      SettleDebtDialogComponent,
+      AppointmentPatientDoctorTableComponent,
+      ServiceAddDialogComponent,
+      PatientAddOfficialdocDialogComponent,
+      PatientOfficialImageTableComponent
       
 
   ],

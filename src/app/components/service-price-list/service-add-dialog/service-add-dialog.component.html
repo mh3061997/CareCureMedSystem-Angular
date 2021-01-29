@@ -1,0 +1,58 @@
+<h1 class="mat-dialog-title bg-white ">Add New Service</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form (ngSubmit)="onNewServiceSubmit()" #newServicePriceListForm="ngForm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Service name</label>
+                            <input matInput type="text" name="name" class="form-control" ngModel #name="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter service name
+                                !<br></span>
+
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Speciality</label>
+                            <mat-select ngModel name="speciality" class="form-control" required #speciality="ngModel">
+                                <span class="form-text text-muted" *ngIf="speciality.touched && speciality.invalid">Please enter
+                                    speciality !<br></span>
+                                <mat-option value="Dentistry">Dentistry</mat-option>
+                                <mat-option value="Dermatology">Dermatology</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Price</label>
+                            <input name="price" matInput type="number" class="form-control" ngModel required
+                                #price="ngModel">
+                            <span class="form-text text-muted" *ngIf="price.touched && price.invalid">Please enter price
+                                !<br></span>
+
+                        </mat-form-field>
+
+                    </div>
+                   
+                </div>
+
+            </div>
+           
+            <button class="btn btn-success" [disabled]="!newServicePriceListForm.valid" type="submit">Add</button>
+        </div>
+    </form>
+</div>

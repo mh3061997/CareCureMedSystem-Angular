@@ -156,11 +156,11 @@
                                     </ng-template>
                                    
                                     <div class="row bg-sec-light justify-content-end">
-                                        <button  class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Official Document Image</button>
+                                        <button  class="btn btn-success m-3" (click)="openAddOfficialImageDialog()">Add Official Document Image</button>
                                        
                                         <div *ngIf="medImagesOfficial.length!=0" class="col-sm-12">
                                  
-                                            <app-patient-medimages-table  [medImages]="medImagesOfficial"></app-patient-medimages-table>
+                                            <app-patient-official-image-table  [medImages]="medImagesOfficial"></app-patient-official-image-table>
                                         </div>
                                     </div>
 

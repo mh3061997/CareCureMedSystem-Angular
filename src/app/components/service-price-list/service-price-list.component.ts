@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ResServicePriceList } from 'src/app/interfaces/res-service-price-list';
 import { ServServicePriceListService } from 'src/app/services/serv-service-price-list.service';
+import { ServiceAddDialogComponent } from './service-add-dialog/service-add-dialog.component';
 
 @Component({
   selector: 'app-service-price-list',
@@ -9,11 +11,12 @@ import { ServServicePriceListService } from 'src/app/services/serv-service-price
 })
 export class ServicePriceListComponent implements OnInit {
 
-  
-  servicePriceListDermatology:ResServicePriceList[];
-  servicePriceListDentistry:ResServicePriceList[];
 
-  constructor(private servServicePriceList:ServServicePriceListService) { 
+  servicePriceListDermatology: ResServicePriceList[];
+  servicePriceListDentistry: ResServicePriceList[];
+
+  constructor(private servServicePriceList: ServServicePriceListService,
+    private dialogAddService: MatDialog) {
     servServicePriceList.getServicePriceListBySpeciality("Dermatology").subscribe(
       services => {
         this.servicePriceListDermatology = services;
@@ -21,18 +24,45 @@ export class ServicePriceListComponent implements OnInit {
     )
     servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(
       services => {
-        this.servicePriceListDentistry= services;
+        this.servicePriceListDentistry = services;
       }
     )
   }
 
-  updatePrice(updatedService:ResServicePriceList){
+  updatePrice(updatedService: ResServicePriceList) {
     this.servServicePriceList.updateServicePriceList(updatedService).subscribe(
-      res=>{}
+      res => { }
     );
   }
 
   ngOnInit(): void {
+  }
+
+
+  openNewServiceDialog() {
+    const dialogRef = this.dialogAddService.open(ServiceAddDialogComponent, { disableClose: true });
+
+    dialogRef.afterClosed().subscribe((closed) => {
+
+      if (closed) {
+
+        this.servServicePriceList.getServicePriceListBySpeciality("Dermatology").subscribe(
+          services => {
+            this.servicePriceListDermatology = services;
+          }
+        );
+        this.servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(
+          services => {
+            this.servicePriceListDentistry = services;
+          }
+        );
+
+      }
+
+
+    });
+
+
   }
 
 }

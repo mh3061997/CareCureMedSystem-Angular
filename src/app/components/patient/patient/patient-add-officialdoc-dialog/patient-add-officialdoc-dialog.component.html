@@ -1,0 +1,39 @@
+<h1 class="mat-dialog-title bg-info ">Add New {{medImageType}} Image</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form *ngIf="patient" (ngSubmit)="onNewMedImageSubmit()" #newMedImageForm="ngForm">
+        <div class="container">
+        
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Type</label>
+                            <input matInput type="text" name="type" class="form-control" ngModel #type="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter type
+                                !<br></span>
+
+
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="col-md-6">
+
+
+                        <input type="file" class="" (change)="onFileChanged($event)" id="upload">
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <button class="btn btn-success" [disabled]="!(newMedImageForm.valid && base64Image)" type="submit">Add</button>
+        </div>
+    </form>
+</div>
