@@ -56,6 +56,8 @@ export class PackageMembershipTableComponent implements OnChanges,AfterViewInit 
      // only run when property "data" changed
      if (changes['memberships']) {
        this.dataSource = new MatTableDataSource(this.memberships);
+       this.dataSource.paginator = this.paginator;
+       this.dataSource.sort = this.sort;
      }
  }
 

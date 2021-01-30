@@ -66,6 +66,8 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
     // only run when property "data" changed
     if (changes['packages']) {
       this.dataSource = new MatTableDataSource(this.packages);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
 }
 

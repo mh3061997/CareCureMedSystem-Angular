@@ -65,6 +65,8 @@ export class AppointmentPatientDoctorTableComponent implements AfterViewInit ,On
     // only run when property "data" changed
     if (changes['appointments']) {
       this.dataSource = new MatTableDataSource(this.appointments);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
 }
 
