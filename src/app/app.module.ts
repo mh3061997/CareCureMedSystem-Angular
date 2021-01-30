@@ -76,7 +76,7 @@ import { AppointmentPatientDoctorTableComponent } from './components/appointment
 import { ServiceAddDialogComponent } from './components/service-price-list/service-add-dialog/service-add-dialog.component';
 import { PatientAddOfficialdocDialogComponent } from './components/patient/patient/patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
 import { PatientOfficialImageTableComponent } from './components/patient/patient/patient-official-image-table/patient-official-image-table.component';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,7 +158,8 @@ import { PatientOfficialImageTableComponent } from './components/patient/patient
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonToggleModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

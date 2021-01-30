@@ -31,6 +31,22 @@ export class ServAppointmentService {
       }
     });
   }
+
+   getAppointmentsUpcoming():Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/upcoming");
+  }
+
+   getAppointmentsPast():Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/past");
+  }
+
+ getAppointmentsByDate(date:Date):Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/date",{
+      params:{
+        date:date.toISOString()
+      }
+    });
+  }
   //Add a new Appointment
   addAppointment(newAppointment:ResAppointment){
     return this.http.post(this.servPath.getPathAppointment(),newAppointment);
