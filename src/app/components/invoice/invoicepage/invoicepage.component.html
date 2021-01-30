@@ -16,7 +16,34 @@
 
     <div class="row bg-sec-light">
         <div *ngIf="invoices" class="col-sm-12">
- 
+            
+            <mat-form-field appearance="fill" class="m-2">
+                <mat-label>Choose Visit Date</mat-label>
+                <input matInput name="dateToVisit"  ngModel #dateCreated="ngModel"
+                [(ngModel)]="currentDate" 
+                    [matDatepicker]="dp1"
+                    disabled="true"
+                    (dateChange)="onDateChange($event)"
+                   disabled
+                    >
+                
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker
+                 required #dp1 [disabled]="buttonGroup.value !='ByDate'"></mat-datepicker>
+
+            </mat-form-field>
+
+            <mat-button-toggle-group #buttonGroup="ngModel"
+            ngModel="All"
+            name="fontStyle" aria-label="Font Style" 
+            
+            (change)="onButtonToggleChange($event)"
+            class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+                <mat-button-toggle value="All">All</mat-button-toggle>
+                <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
+              </mat-button-toggle-group>
+
+
             <app-invoice-table [invoices]="invoices"></app-invoice-table>
         </div>
     </div>

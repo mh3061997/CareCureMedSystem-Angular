@@ -62,6 +62,8 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
     // only run when property "data" changed
     if (changes['invoices']) {
       this.dataSource = new MatTableDataSource(this.invoices);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
 }
 

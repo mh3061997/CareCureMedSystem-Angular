@@ -21,6 +21,15 @@ export class ServInvoiceService {
     return this.http.get<ResInvoice[]>(this.servPath.getPathInvoice());
   }
 
+   //get all Invoices
+   getInvoicesByDate(date:Date):Observable<ResInvoice[]>{
+    return this.http.get<ResInvoice[]>(this.servPath.getPathInvoice()+"/date",{
+      params:{
+        date:date.toISOString()
+      }
+    });
+  }
+
   //get Invoice by ID
   getInvoiceByID(code:number):Observable<ResInvoice>{
     return this.http.get<ResInvoice>(this.servPath.getPathInvoice()+"/"+code);
