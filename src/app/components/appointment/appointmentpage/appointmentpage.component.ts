@@ -52,7 +52,7 @@ export class AppointmentpageComponent implements OnInit {
   }
 
   onButtonToggleChange(event: MatButtonToggleChange) {
-    console.log(event);
+   // console.log(event);
 
     switch (event.value) {
       case 'Upcoming':
@@ -80,7 +80,7 @@ export class AppointmentpageComponent implements OnInit {
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
-    console.log(event);
+   // console.log(event);
 
     if (event.value) {
       this.servAppointment.getAppointmentsByDate(event.value).subscribe(dateAppointments => {

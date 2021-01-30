@@ -47,6 +47,24 @@ export class ServAppointmentService {
       }
     });
   }
+
+  getDoctorUpcomingAppointments(doctorCode:number):Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/upcoming/doctor/"+doctorCode);
+  }
+
+  getDoctorPastAppointments(doctorCode:number):Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/past/doctor/"+doctorCode);
+  }
+
+  getDoctorAppointmentsByDate(doctorCode:number,date:Date):Observable<ResAppointment[]>{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/date/"+doctorCode,{
+      params:{
+        date:date.toISOString()
+      }
+    });
+  }
+
+
   //Add a new Appointment
   addAppointment(newAppointment:ResAppointment){
     return this.http.post(this.servPath.getPathAppointment(),newAppointment);
