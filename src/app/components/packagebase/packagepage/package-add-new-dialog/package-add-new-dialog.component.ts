@@ -47,9 +47,9 @@ onNewPackageSubmit(){
     code:0, //code must ALWAYS be 0 when inserting bec. it wont insert if code is existing and 
     //it starts from 1 so 0 always available
     name:this.newPackageBaseForm.value.name,
-    dateCreated:this.newPackageBaseForm.value.dateCreated.toISOString(), //in correct format after install moment.js
-    dateExpired:this.newPackageBaseForm.value.dateExpired.toISOString(),
-    status:this.newPackageBaseForm.value.status,
+    dateCreated:(new Date()).toISOString(), //in correct format after install moment.js
+    // dateExpired:this.newPackageBaseForm.value.dateExpired.toISOString(),
+    status:"Ongoing",
     price:this.newPackageBaseForm.value.price,
     unitTotal:this.newPackageBaseForm.value.unitTotal,
     type:this.newPackageBaseForm.value.type,

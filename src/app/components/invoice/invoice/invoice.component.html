@@ -88,7 +88,7 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div *ngIf="invoice.appointment" class="col-lg-6">
                                 <p class="form-control-label">Appointment Code</p>
                                 <p>{{invoice.appointment.code}}</p>
                             </div>
@@ -104,13 +104,13 @@
 
                         </div>
                         
-                        <div class="row justify-content-end align-middle card-header  bg-white p-3 ">
+                        <div *ngIf="invoice.appointment" class="row justify-content-end align-middle card-header  bg-white p-3 ">
                             <h3 class="mb-0 col-6 ">Appointment Information</h3>
                             <button class="btn btn-primary col-3" (click)="goToAppointment(invoice.appointment.code)">Go</button>
                         </div>
 
                         <div class="row align-middle justify-content-center">
-                            <div class="col-md-10 justify-content-center">
+                            <div  *ngIf="invoice.appointment" class="col-md-10 justify-content-center">
                                 <div class="row p-4">
                                     <div class="card-body  justify-content-center ">
                                         <div class="row">
@@ -172,10 +172,11 @@
                         <div class="card-header justify-content-end bg-white p-3">
                         <div class="container-fluid">
                             <div class="row justify-content-end align-middle">
-                                <button class="btn btn-danger col-3" 
-                                (click)="openFinalizedDebtDialog()"
-                                *ngIf="invoice.status=='Not Paid' && invoice.appointment.patient.totalDebt > 0"
-                                >Settle Debt</button>
+                                <div class="col-3" *ngIf="invoice.appointment">
+                                    <button  class="btn btn-danger " 
+                                    (click)="openFinalizedDebtDialog()"
+                                    *ngIf="invoice.status=='Not Paid' && invoice.appointment.patient.totalDebt > 0"
+                                    >Settle Debt</button></div>
 
                                 <h3 class="mb-0 col-6">Invoice Items</h3>
                                 <button class="btn btn-success col-3" 

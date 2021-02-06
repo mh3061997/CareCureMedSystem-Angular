@@ -6,6 +6,11 @@ import { ServPackageBaseService } from 'src/app/services/serv-package-base.servi
 import { ResMembership } from 'src/app/interfaces//res-membership'
 import { ServMembershipService } from 'src/app/services/serv-membership.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { ResInvoice } from 'src/app/interfaces/res-invoice';
+import { ServInvoiceItemService } from 'src/app/services/serv-invoice-item.service';
+import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
+import { ResInvoiceItem } from 'src/app/interfaces/res-invoice-item';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-patient-add-membership-dialog',
   templateUrl: './patient-add-membership-dialog.component.html',
@@ -20,7 +25,10 @@ export class PatientAddMembershipDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { patient: ResPatient },
     public dialogRef: MatDialogRef<PatientAddMembershipDialogComponent>,
     private servPackageBase: ServPackageBaseService,
-    private servMemberships: ServMembershipService) {
+    private servMemberships: ServMembershipService,
+    private servInvoice : ServInvoiceService,
+    private servInvoiceItem:ServInvoiceItemService,
+    private router :Router) {
 
     console.log(data.patient);
     this.patient = data.patient;
@@ -53,8 +61,48 @@ export class PatientAddMembershipDialogComponent implements OnInit {
     };
 
     this.servMemberships.addMembership(newMembership).subscribe(response => {
+      this.CreateInvoice(packageBaseChosen);
 
       this.dialogRef.close(true);
+    });
+  }
+
+  
+  CreateInvoice(packageBaseChosen:ResPackageBase) {
+
+    let newInvoice: ResInvoice = {
+      code: 0,
+      dateCreated: new Date().toISOString(),
+      dateFinalized: new Date().toISOString(),
+      discount: 0,
+      invoiceItems: [],
+      paymentMethod: "",
+      status: "Not Paid",
+      totalAfterDiscount: packageBaseChosen.price,
+      totalDue: packageBaseChosen.price,
+      totalPaid: 0,
+      totalRemaining: packageBaseChosen.price
+    };
+    
+    this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
+
+     newInvoice = invoiceWithCode;
+      this.CreateInvoiceItem(newInvoice,packageBaseChosen);
+
+    });
+
+  }
+
+  private CreateInvoiceItem(newInvoice:ResInvoice,packageBaseChosen:ResPackageBase) {
+    
+    const item :ResInvoiceItem = {
+      code:0,
+      price:newInvoice.totalDue,
+      name:packageBaseChosen.name,
+      invoice:newInvoice
+    }
+    this.servInvoiceItem.addInvoiceItem(item).subscribe(() => {
+      this.router.navigate(['invoice',newInvoice.code]);
     });
   }
 

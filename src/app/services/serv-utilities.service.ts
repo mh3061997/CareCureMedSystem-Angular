@@ -22,15 +22,22 @@ export class ServUtilitiesService {
     'Obstetrics', 'Dentistry'];
   constructor() { }
 
-  public formatDateTime(dateString: string): string {
+  public formatDateTime(dateString: string | null | undefined): string {
+   if(dateString){
     const dateObj = new Date(dateString);
-    return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour12: true, hour: "2-digit", minute: "2-digit", timeZone: "Africa/Cairo" });
+    return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour12: true, hour: "2-digit", minute: "2-digit", timeZone: "Africa/Cairo" }); 
+   }else{
+     return " "
+   }
   }
 
-  public formatDate(dateString: string): string {
-    const dateObj = new Date(dateString);
+  public formatDate(dateString: string | null | undefined): string {
+    if(dateString){
+      const dateObj = new Date(dateString);
     return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', timeZone: "Africa/Cairo" })
-
+    }else{
+      return " "
+    }
   }
 
   public getWeekDayString(date:Date):string{

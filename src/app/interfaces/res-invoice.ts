@@ -12,7 +12,7 @@ totalPaid:number;
 totalRemaining:number;
 discount:number;
 status:string;
-appointment:ResAppointment;
+appointment?:ResAppointment;
 usedMembership?:ResMembership;
 paymentMethod:string;
 invoiceItems:ResInvoiceItem[];

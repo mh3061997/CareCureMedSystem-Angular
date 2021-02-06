@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResPackageBase } from 'src/app/interfaces/res-package-base';
+import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
 
 
 
-  displayedColumns: string[] = ['code', 'name', 'dateCreated', 'dateExpired', 'status','price','unitTotal','type',' '];
+  displayedColumns: string[] = ['code', 'name', 'dateCreated', 'dateExpired', 'status','price','unitTotal','type',' ','  '];
 
   dataSource: MatTableDataSource<ResPackageBase>;
 
@@ -31,6 +32,7 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
 
   constructor(private cdr: ChangeDetectorRef,private router: Router,
      private route: ActivatedRoute,
+     public servPackageBase:ServPackageBaseService,
      public servUtils:ServUtilitiesService){
 
   }
@@ -61,7 +63,15 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
     this.router.navigate([code.toString()],{relativeTo:this.route});
   }
 
-  
+  packageBaseStatusExpire(packageBase:ResPackageBase){
+    let updatedPackageBase = packageBase;
+    updatedPackageBase.status="Expired";
+    updatedPackageBase.dateExpired= (new Date()).toISOString();
+    this.servPackageBase.updatePackageBase(packageBase).subscribe(()=>{
+      packageBase=updatedPackageBase;
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
     if (changes['packages']) {

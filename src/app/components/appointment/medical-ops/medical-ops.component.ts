@@ -21,6 +21,8 @@ import { AddCustomItemMedopsDialogComponent } from './add-custom-item-medops-dia
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ServiceSearchPipe } from 'src/app/pipes/service-search.pipe';
+import { ResMembership } from 'src/app/interfaces/res-membership';
+import { ServMembershipService } from 'src/app/services/serv-membership.service';
 @Component({
   selector: 'app-medical-ops',
   templateUrl: './medical-ops.component.html',
@@ -36,11 +38,16 @@ export class MedicalOpsComponent implements OnInit {
   invoice: ResInvoice;
   invoiceId: number;
   selectedServices: ResInvoiceItem[] = [];
+  customItems:ResInvoiceItem[] = [];
   serviceQuantityMap = new Map();
   serviceContinuationMap = new Map();
   searchText: string = '';
   labelPosition:'before'|'after' = 'before';
+  membershipChosen:ResMembership;
+  chosenMembershipUsedUnits:number;
+
   @ViewChild('noteAppointment', { static: false }) newNoteAppointment: ElementRef;
+
 
 
   constructor(private servAppointment: ServAppointmentService,
@@ -50,13 +57,15 @@ export class MedicalOpsComponent implements OnInit {
     public dialogAddCustomInvoiceItem: MatDialog,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private servNoteAppointment: ServNoteAppointmentService) {
+    private servNoteAppointment: ServNoteAppointmentService,
+    private servMembership:ServMembershipService) {
 
     this.getAppointmentCode();
 
     servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
       this.appointment = appointment;
-
+    console.log(appointment);
+    
       switch (this.appointment.speciality) {
         case "Dentistry":
           servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(services => {
@@ -127,11 +136,18 @@ onCheckChanged(service:ResServicePriceList,checked:boolean){
         this.selectedServices.push({ code: 0, name: "Revisit", price: this.appointment.doctor.priceRevisit });
       }
     }
+    if(this.chosenMembershipUsedUnits && this.membershipChosen){
+      this.selectedServices.push({ code: 0, name:"Package "+ this.membershipChosen.packageBase.name + ", used units: "+this.chosenMembershipUsedUnits, price: 0 });
+
+    }
     let totalprice = 0;
     this.formatSelectedServicesContinuation()
     this.selectedServices.forEach(service => {
       totalprice += service.price;
-    })
+    });
+    this.customItems.forEach(service => {
+      totalprice += service.price;
+    });
     const newInvoice: ResInvoice = {
       code: 0,
       appointment: this.appointment,
@@ -176,6 +192,15 @@ onCheckChanged(service:ResServicePriceList,checked:boolean){
     });
   }
 
+  private updateMembershipDeductUnits(unitsUsed:number,membership:ResMembership){
+    membership.remainingAmount -=unitsUsed;
+   let tempPatient = this.appointment.patient;
+     tempPatient.memberships=[];
+    membership.patient=tempPatient;
+    this.servMembership.updateMembership(membership).subscribe(()=>{
+      this.goToDoctor();
+    });
+  }
   private formatSelectedServicesContinuation(){
     this.selectedServices.map(service => { 
 
@@ -194,12 +219,19 @@ onCheckChanged(service:ResServicePriceList,checked:boolean){
       service.invoice = this.invoice;
    
     });
+    this.customItems.map(service=>{
+    service.invoice=this.invoice;
+    });
   }
   private CreateInvoiceItems() {
 
-    console.log(this.selectedServices);
-    this.servInvoiceItem.addInvoiceItemMulti(this.selectedServices).subscribe(res => {
-      this.goToDoctor();
+    console.log(this.selectedServices.concat(this.customItems));
+    this.servInvoiceItem.addInvoiceItemMulti(this.selectedServices.concat(this.customItems)).subscribe(res => {
+     
+      if(this.chosenMembershipUsedUnits && this.membershipChosen){
+       this.updateMembershipDeductUnits(this.chosenMembershipUsedUnits,this.membershipChosen);
+      }
+     else{ this.goToDoctor();}
     });
   }
 
@@ -219,7 +251,7 @@ onCheckChanged(service:ResServicePriceList,checked:boolean){
     dialogRef.afterClosed().subscribe(CustomItem => {
       if (CustomItem) {
        // console.log("closed", CustomItem);
-        this.selectedServices.push(CustomItem);
+        this.customItems.push(CustomItem);
       //  console.log(this.selectedServices);
       }
     });

@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-lg-6">
                             <p class="form-control-label">Date of Expiry</p>
-                            <p>{{servUtils.formatDate(packageBase.dateExpired)}}</p>
+                            <p *ngIf="packageBase.status=='Expired'">{{servUtils.formatDate(packageBase.dateExpired)}}</p>
                         </div>
                     </div>
 

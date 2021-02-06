@@ -1,5 +1,6 @@
-<div class="container p-5">
-    <div *ngIf="appointment" class="row col-md-12 col-lg-6 text-left p-3 mb-1 text-danger">
+<div  *ngIf="appointment" class="container p-5">
+    <form #usedMembershipForm="ngForm">
+    <div  class="row col-md-12 col-lg-6 text-left p-3 mb-1 text-danger">
         <h1>Hello Dr.{{appointment.doctor.name}}<br> Please Enter the performed medical services.</h1>
     </div>
 
@@ -8,30 +9,82 @@
     </div>
     <div *ngIf="services" class=" p-3">
 
-        
-            <div class="row">
-                <mat-form-field>
-                    <mat-label>Search</mat-label>
-                    <input type="text" name="service" matInput type="search" [(ngModel)]="searchText" placeholder="Service Name">
-                </mat-form-field>
-            </div>
-           
-        
-      <div class="row">
-        <div class="col-md-6 justify-content-between" *ngFor="let service of services | serviceSearch : searchText">
-            <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
-            <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
-            <button class="btn btn-sm btn-danger m-1" (click)="removeServiceQuantity(service)"
-                [disabled]="serviceQuantityMap.get(service) <=0">-</button>
-                <mat-checkbox class=""
-                 [labelPosition] = 'labelPosition'
-                 color="primary"
-                 [ngModel]="serviceContinuationMap.get(service)"
-                  (change)="onCheckChanged(service,$event.checked)">
-      continuation
-    </mat-checkbox>
+
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input type="text" name="service" matInput type="search" [(ngModel)]="searchText"
+                    placeholder="Service Name">
+            </mat-form-field>
         </div>
-      </div>
+
+
+        <div class="row">
+            <div class="col-md-6 justify-content-between" *ngFor="let service of services | serviceSearch : searchText">
+                <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
+                <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
+                <button class="btn btn-sm btn-danger m-1" (click)="removeServiceQuantity(service)"
+                    [disabled]="serviceQuantityMap.get(service) <=0">-</button>
+                <mat-checkbox class="" [labelPosition]='labelPosition' color="primary"
+                name="continuationCheck"
+                    [ngModel]="serviceContinuationMap.get(service)" (change)="onCheckChanged(service,$event.checked)">
+                    continuation
+                </mat-checkbox>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="appointment.speciality =='Dermatology' " class="p-3">
+
+       
+            <div class="row">
+                <label for="input-name" class="form-control-label">Use Dermatology Membership</label>
+            <mat-checkbox name="useMembershipCheck" ngModel #useMembershipCheck="ngModel" color="primary">
+            </mat-checkbox>
+            </div>
+    
+           <div class="row">
+            <mat-form-field>
+                <label for="input-name" class="form-control-label">Choose Membership</label>
+                <mat-select name="usedMembership" class="form-control" required
+                    [(ngModel)]="membershipChosen" #usedMembership="ngModel" [disabled]="!useMembershipCheck.value">
+        
+                    <mat-option *ngFor="let membership of appointment.patient.memberships" [value]="membership">
+                    {{membership.packageBase.name}} | Remaining : {{membership.remainingAmount}}    
+                    </mat-option>
+
+                 
+                </mat-select>
+    
+            </mat-form-field>
+           </div>
+           <div *ngIf="useMembershipCheck.value && membershipChosen"class="row">
+            <mat-form-field>
+                <label for="input-name" class="form-control-label">Used Units</label>
+
+                
+                <input  matInput type="text" 
+                style="background-color: white;border:2px solid black;"
+                name="usedUnits"
+                class="form-control"
+                [(ngModel)]="chosenMembershipUsedUnits"
+                #usedUnits="ngModel"
+                type="number"
+                [maxlimit]="membershipChosen.remainingAmount"
+                [minlimit]="0"
+                
+                required>
+                <span
+                class="form-text text-muted" 
+                *ngIf="usedUnits.touched && usedUnits.invalid">Please enter a number between 0 and  {{membershipChosen.remainingAmount}} !<br></span>
+                
+            </mat-form-field>
+
+           </div>
+          
+        
+
         
     </div>
 
@@ -54,9 +107,10 @@
 
     <div class="row mt-5 justify-content-center">
         <div class="col-5">
-            <button class="btn btn-danger" (click)="CreateInvoice()">Finalize Appointment</button>
+            <button class="btn btn-danger" (click)="CreateInvoice()" [disabled]="!usedMembershipForm.valid">Finalize Appointment</button>
         </div>
     </div>
 
-
+</form>
+      
 </div>

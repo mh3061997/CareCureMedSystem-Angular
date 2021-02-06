@@ -63,6 +63,7 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
 
     this.servInvoice.updateInvoice(updatedInvoice).subscribe(response => {
 
+     if(this.invoice.appointment){
       let updatedAppointment = this.invoice.appointment;
       updatedAppointment.status = "Invoiced";
       delete updatedAppointment.invoice;
@@ -72,7 +73,8 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
         this.dialogRef.close(true);
 
       });
-
+     }
+     this.dialogRef.close(true);
     });
   }
 
@@ -90,8 +92,9 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
     this.invoice.paymentMethod = this.updateInfoForm.value.paymentMethod;
 
 
-   // console.log(this.invoice);
+   //console.log(this.invoice);
     this.updateInvoiceInformation(this.invoice);
+    
   }
 
   ngOnInit(): void {

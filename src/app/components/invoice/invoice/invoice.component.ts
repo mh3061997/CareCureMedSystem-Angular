@@ -46,7 +46,9 @@ export class InvoiceComponent implements OnInit {
     this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
 
       this.invoice = invoice;
+     if(invoice.appointment){
       this.totalDebt = invoice.appointment.patient.totalDebt;
+     }
       this.invoice.invoiceItems
         .filter(item => { return item.name == "Settle Debt" })
         .forEach(item => {
@@ -74,18 +76,20 @@ export class InvoiceComponent implements OnInit {
 
     if(closed){
 
-      this.servPatient.settlePatientDebt(this.invoice.appointment.patient.code, this.debtDeductionTotal)
-      .subscribe(res => {
-        this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
+  if(this.invoice.appointment){
+    this.servPatient.settlePatientDebt(this.invoice.appointment.patient.code, this.debtDeductionTotal)
+    .subscribe(res => {
+      this.servInvoice.getInvoiceByID(this.invoiceId).subscribe(invoice => {
 
-          this.invoice = invoice;
-          this.cdRef.detectChanges();
-          console.log("new debt:",   this.invoice.appointment.patient.totalDebt);
-  
+        this.invoice = invoice;
+        this.cdRef.detectChanges();
+       // console.log("new debt:",   this.invoice.appointment.patient.totalDebt);
 
-        });
-      
+
       });
+    
+    });
+  }
 
      
     }
