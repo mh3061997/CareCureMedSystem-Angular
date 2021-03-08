@@ -1,0 +1,82 @@
+
+ 
+    <div class="invoice-box" *ngIf="invoice && invoice.appointment">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="../../../../assets/logo cropped.jpg" style="width:100%; max-width:250px;">
+                            </td>
+                            
+                            <td>
+                                Invoice #: {{invoice.code}}<br>
+                                Created: {{servUtils.formatDateTime(invoice.dateCreated)}}<br>
+                               
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                               Patient Name: {{invoice.appointment.patient.name}}<br>
+                               Doctor Name: {{invoice.appointment.doctor.name}}<br>
+                               Appointment Code: {{invoice.appointment.code}}<br>
+                               Speciality: {{invoice.appointment.speciality}}<br>
+                               Payment Method: {{invoice.paymentMethod}}<br>
+                               Status: {{invoice.status}}
+                            </td>
+                            
+                            <td>
+                                Total Due: {{invoice.totalDue}} EGP<br>
+                                <span *ngIf="invoice.discount">Discount: {{invoice.discount}}%</span><br>
+                                <span *ngIf="invoice.discount">Amount Discounted: {{invoice.totalDue-invoice.totalAfterDiscount}} EGP</span><br>
+                               <span *ngIf="invoice.discount">Total After Discount:{{invoice.totalAfterDiscount}} EGP</span><br>
+                               Total Paid: {{invoice.totalPaid}} EGP<br>
+                               Total Remaining: {{invoice.totalRemaining}} EGP
+                               
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+      
+            
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+                
+                <td>
+                    Price
+                </td>
+            </tr>
+            
+            <tr class="item" *ngFor=" let item of invoice.invoiceItems">
+                <td>
+                    {{item.name}}
+                </td>
+                
+                <td>
+                    {{item.price}} EGP
+                </td>
+            </tr>
+            
+          
+            
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   Total: {{invoice.totalDue}} EGP
+                </td>
+            </tr>
+        </table>
+    </div>

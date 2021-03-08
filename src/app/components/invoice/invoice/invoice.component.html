@@ -1,3 +1,5 @@
+<app-print-layout-invoice id="print-section" [hidden]="false" [invoice]="invoice"></app-print-layout-invoice>
+
 <div class=" p-4 mb-0 pb-0 text-danger">
 
     <div class="container text-info">
@@ -12,7 +14,7 @@
     </div>
 
 </div>
-<div *ngIf="invoice" class="container-fluid p-3 text-medgray" style="">
+<div *ngIf="invoice"  class="container-fluid p-3 text-medgray" style="">
     <div class="row justify-content-center ">
         <div class="col-md-10">
 
@@ -24,8 +26,10 @@
                         <div class="row justify-content-center align-middle ">
                             <button *ngIf="invoice.status=='Not Paid'"class="btn btn-danger col-3"
                             (click)="openFinalizedInvoiceDialog()">Finalize Invoice</button>
-                            <button *ngIf="invoice.status=='Finalized'"class="btn btn-info col-3"
-                            >Print Invoice</button>
+                            <button *ngIf="invoice.status=='Finalized' || invoice.status=='Debt'"class="btn btn-info col-3"
+                             printSectionId="print-section" ngxPrint   [useExistingCss]="true"
+                            >
+                             Print Invoice</button>
                             <h3 class="mb-0 col-6 ">Invoice Information</h3>
                         </div>
                     </div>
@@ -203,3 +207,4 @@
 
     </div>
 </div>
+
