@@ -2,11 +2,17 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { faPercent, faUserNurse } from '@fortawesome/free-solid-svg-icons';
-import { faStethoscope } from '@fortawesome/free-solid-svg-icons';
-import { faProcedures } from '@fortawesome/free-solid-svg-icons';
-import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
-import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPercent,
+  faUserNurse,
+  faStethoscope,
+  faProcedures,
+  faFileAlt,
+  faDollarSign,
+  faUsers
+} from '@fortawesome/free-solid-svg-icons';
+
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-nav-bar-side',
@@ -17,11 +23,12 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 export class NavBarSideComponent {
   //Icon variables
   faUserNurse = faUserNurse; //doctor icon 
-  faStethoscope=faStethoscope;//appointment icon
-  faProcedures=faProcedures;//patient icon
-  faFileAlt=faFileAlt;//invoice icon
-  faPercent=faPercent;
-  faDollarSign=faDollarSign;
+  faStethoscope = faStethoscope;//appointment icon
+  faProcedures = faProcedures;//patient icon
+  faFileAlt = faFileAlt;//invoice icon
+  faPercent = faPercent;
+  faDollarSign = faDollarSign;
+  faUsers = faUsers;
   
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,6 +36,6 @@ export class NavBarSideComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(public authService: AuthService, private breakpointObserver: BreakpointObserver) { }
 
 }

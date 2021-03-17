@@ -11,36 +11,46 @@
 
 
 
-
-    <mat-nav-list class="text-medgray">
-      <a mat-list-item routerLink="patient" [queryParams]="{allowedit:'1'}" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faProcedures" style="color:lightcoral;"></fa-icon>
-
-        Patients
-      </a>
-      <a mat-list-item routerLink="doctor" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faUserNurse" style="color:rgb(22, 150, 230);"></fa-icon>
-        Doctors
-      </a>
-      <a mat-list-item routerLink="appointment" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faStethoscope" style="color:rgb(153, 26, 26);"></fa-icon>
-        Appointments
-      </a>
-
-      <a mat-list-item routerLink="invoice" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faFileAlt"></fa-icon>
-        Invoices
-      </a>
-
-      <a mat-list-item routerLink="packagebases" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faPercent"></fa-icon>
-        Packages
-      </a>
-      <a mat-list-item routerLink="servicepricelist" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faDollarSign" style="color:green"></fa-icon>
-        Price List
-      </a>
-    </mat-nav-list>
+  
+      <mat-nav-list class="text-medgray pb-5">
+        <a mat-list-item routerLink="patient" [queryParams]="{allowedit:'1'}" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faProcedures" style="color:lightcoral;"></fa-icon>
+  
+          Patients
+        </a>
+        <a mat-list-item routerLink="doctor" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faUserNurse" style="color:rgb(22, 150, 230);"></fa-icon>
+          Doctors
+        </a>
+        <a mat-list-item routerLink="appointment" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faStethoscope" style="color:rgb(153, 26, 26);"></fa-icon>
+          Appointments
+        </a>
+  
+        <a mat-list-item routerLink="invoice" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faFileAlt"></fa-icon>
+          Invoices
+        </a>
+  
+        <a mat-list-item routerLink="packagebases" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faPercent"></fa-icon>
+          Packages
+        </a>
+        <a mat-list-item routerLink="servicepricelist" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faDollarSign" style="color:green"></fa-icon>
+          Price List
+        </a>
+  
+        <a mat-list-item routerLink="userpanel" routerLinkActive="active">
+          <fa-icon class="mr-2" [icon]="faUsers" style="color:pink"></fa-icon>
+          Users Panel
+        </a>
+      </mat-nav-list>
+      <div class="row justify-content-center mx-auto mt-5 pt-5">
+        <button mat-raised-button color="primary" class="btn text-center text-white mt-5" (click)="authService.logOut()">Logout</button>
+      </div>
+   
+    
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="">

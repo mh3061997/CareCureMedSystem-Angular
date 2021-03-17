@@ -1,0 +1,26 @@
+<div id="patientInfo" class="m-0 p-5 container justify-content-center" >
+    
+
+    <div  class="text-left  text-white mb-4">
+    
+        <div class="row">
+            <div class="col-lg-7 col-md-10 text-danger">
+                <h1>User Panel</h1>
+                <p class="mt-0 mb-5 bg-gradient-primary">Welcome to the User Panel. Here you can add new users and change access privileges for existing users.</p>
+
+            </div> 
+           
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="openNewUserDialog()">Add New User</button>
+
+        </div>
+    </div>
+
+    <div class="row bg-sec-light">
+        <div  class="col-sm-12">
+ 
+            <app-usertable [users]="this.users" ></app-usertable>
+        </div>
+    </div>
+</div>

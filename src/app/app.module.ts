@@ -24,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { PatienttableComponent } from './components/patient/patienttable/patienttable/patienttable.component'
@@ -77,6 +78,14 @@ import { ServiceAddDialogComponent } from './components/service-price-list/servi
 import { PatientAddOfficialdocDialogComponent } from './components/patient/patient/patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
 import { PatientOfficialImageTableComponent } from './components/patient/patient/patient-official-image-table/patient-official-image-table.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { JwtAuthInterceptorService } from './services/auth/jwt-auth-interceptor.service';
+import { LogoutComponent } from './components/auth/logout/logout.component';
+import {NgxPrintModule} from 'ngx-print';
+import { PrintLayoutInvoiceComponent } from './components/invoice/print-layout-invoice/print-layout-invoice.component';
+import { UserPanelComponent } from './components/user-panel/user-panel.component';
+import { UsertableComponent } from './components/user-panel/usertable/usertable.component';
+import { UserAddNewDialogComponent } from './components/user-panel/user-add-new-dialog/user-add-new-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -128,7 +137,12 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
       AppointmentPatientDoctorTableComponent,
       ServiceAddDialogComponent,
       PatientAddOfficialdocDialogComponent,
-      PatientOfficialImageTableComponent
+      PatientOfficialImageTableComponent,
+      LogoutComponent,
+      PrintLayoutInvoiceComponent,
+      UserPanelComponent,
+      UsertableComponent,
+      UserAddNewDialogComponent
       
 
   ],
@@ -159,11 +173,18 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatAutocompleteModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
+    NgxPrintModule
+    
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorInterceptor,
+    multi: true
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtAuthInterceptorService,
     multi: true
   }],
   entryComponents: [

@@ -7,7 +7,7 @@ export class PathService {
 
   constructor() { }
 
-  //  private approotPath:string ="http://18.159.60.62:8080/medsystem-0.0.1-SNAPSHOT/";
+  // private approotPath:string ="http://18.159.60.62:8080/medsystem-0.0.1-SNAPSHOT/";
   private approotPath:string ="http://localhost:8080/";
 
    private patientPath:string ="patient";
@@ -32,6 +32,23 @@ export class PathService {
 
   private doctorDayAvail:string="doctorDayAvail"
 
+  private userDaoPath:string="userDao";
+
+  private registerPatientPath:string ="register";
+
+  private registerNonPatientPath:string ="registerNonPatient";
+
+  public getPathRegisterPatient(){
+    return this.approotPath+this.registerPatientPath;
+  }
+
+  public getPathRegisterNonPatient(){
+    return this.approotPath+this.registerNonPatientPath;
+  }
+  
+  public getPathUserDao(){
+    return this.approotPath+this.userDaoPath;
+  }
   public getPathDoctorDayAvail(){
     return this.approotPath+this.doctorDayAvail;
   }
