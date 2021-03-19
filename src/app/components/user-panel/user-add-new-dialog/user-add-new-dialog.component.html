@@ -91,6 +91,23 @@
                 </div>
 
             </div>
+            <div class="row" *ngIf="role.value=='ADMIN' || role.value=='RECEPTIONIST'">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput type="text" name="Name" class="form-control" ngModel #Name="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="Name.touched && Name.invalid">Please enter
+                                Name correctly!<br></span>
+
+                              
+                        </mat-form-field>
+                    </div>
+              
+                </div>
+            </div>
             <button class="btn btn-success" 
             [disabled]="!newUserForm.valid || (!isPatientChecked && role.value=='PATIENT') ||
             (!isDoctorChecked && role.value=='DOCTOR') 
