@@ -22,17 +22,40 @@ export class AuthService {
           sessionStorage.setItem("username", username);
           let tokenStr = "Bearer " + userData.token;
           sessionStorage.setItem("token", tokenStr);
+          this.isUserAdmin();
+         
           return userData;
         })
       );
+      
   }
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem("username");
-    console.log(!(user === null));
+    //console.log(!(user === null));
     return !(user === null);
   }
 
+  isUserAdmin(){
+    
+    let token = sessionStorage.getItem("token")?.substring(7);
+    if(token){
+      //console.log("token",token);
+    let obj = JSON.parse(atob(token.split('.')[1]));
+    return obj.role.authority==='ADMIN';
+    }
+    return false;
+  }
+
+  isUserReceptionist(){
+
+  }
+  isUserDoctor(){
+
+  }
+  isUserPatient(){
+
+  }
   logOut() {
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("token");

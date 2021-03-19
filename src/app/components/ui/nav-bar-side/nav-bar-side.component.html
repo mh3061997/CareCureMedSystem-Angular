@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav *ngIf="isPrivShowNav()" #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
     <!-- Brand -->
@@ -46,19 +46,23 @@
           Users Panel
         </a>
       </mat-nav-list>
-      <div class="row justify-content-center mx-auto mt-5 pt-5">
-        <button mat-raised-button color="primary" class="btn text-center text-white mt-5" (click)="authService.logOut()">Logout</button>
-      </div>
+      
    
     
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+    <mat-toolbar  color="">
+ 
+  <button type="button"  aria-label="Toggle sidenav" mat-icon-button #navToggleBtn
+  *ngIf="(isHandset$ | async) && isPrivShowNav()" (click)="toggleNav()">
+  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+</button>
+
       <!-- <span>carecure-app</span> -->
+      <button mat-raised-button color="primary" class="btn text-center text-white " (click)="authService.logOut()">Logout</button>
+
+      <!-- <div class="row justify-content-center mx-auto  pt-5">
+      </div> -->
     </mat-toolbar>
 
     <router-outlet></router-outlet>
