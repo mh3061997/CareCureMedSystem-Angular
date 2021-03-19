@@ -36,12 +36,12 @@
           <fa-icon class="mr-2" [icon]="faPercent"></fa-icon>
           Packages
         </a>
-        <a mat-list-item routerLink="servicepricelist" routerLinkActive="active">
+        <a  *ngIf="isUserAdmin()" mat-list-item routerLink="servicepricelist" routerLinkActive="active">
           <fa-icon class="mr-2" [icon]="faDollarSign" style="color:green"></fa-icon>
           Price List
         </a>
   
-        <a mat-list-item routerLink="userpanel" routerLinkActive="active">
+        <a *ngIf="isUserAdmin()" mat-list-item routerLink="userpanel" routerLinkActive="active">
           <fa-icon class="mr-2" [icon]="faUsers" style="color:pink"></fa-icon>
           Users Panel
         </a>
@@ -58,8 +58,10 @@
   <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 </button>
 
-      <!-- <span>carecure-app</span> -->
-      <button mat-raised-button color="primary" class="btn text-center text-white " (click)="authService.logOut()">Logout</button>
+      <span>{{authService.getLoggedInName()}}</span>
+
+  <button *ngIf="authService.isUserLoggedIn()" mat-raised-button color="primary" class="btn text-center text-white float-right " (click)="authService.logOut()">Logout</button>
+
 
       <!-- <div class="row justify-content-center mx-auto  pt-5">
       </div> -->

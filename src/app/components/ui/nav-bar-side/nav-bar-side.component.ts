@@ -52,6 +52,9 @@ export class NavBarSideComponent{
 // _clickHandler = this.clickHandler.bind(this);
 isPrivShowNav(){
  
+  return this.authService.isUserAdmin() || this.authService.isUserReceptionist();
+}
+isUserAdmin(){
   return this.authService.isUserAdmin();
 }
 

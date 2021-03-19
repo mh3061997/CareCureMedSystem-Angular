@@ -105,37 +105,31 @@ export class UserAddNewDialogComponent implements OnInit {
     if (this.isPatientChecked && this.newUserForm.value.role == 'PATIENT' && this.patient) {
       newUser.patient = this.patient;
 
-      console.log(newUser);
-      this.servUser.registerUser(newUser).subscribe((response) => {
-        if(response.status==226){
-          this.isUsernameTaken=true;
-          console.log(this.isUsernameTaken);
-          
-        }else
-        this.dialogRef.close(true);
-      });
+      this.registerUser(newUser);
+
 
     } else if (this.isDoctorChecked && this.newUserForm.value.role == 'DOCTOR'  && this.doctor) {
       newUser.doctor = this.doctor;
 
-      console.log(newUser);
-      this.servUser.registerUser(newUser).subscribe((response) => {
-        if(response.status==226){
-          this.isUsernameTaken=true;
-        }else
-        this.dialogRef.close(true);
-      });
+      this.registerUser(newUser);
+
     } else if(this.newUserForm.value.role == 'ADMIN' || this.newUserForm.value.role == 'RECEPTIONIST') {
-      this.servUser.registerUser(newUser).subscribe((response) => {
-        if(response.status==226){
-          this.isUsernameTaken=true;
-        }else
-        this.dialogRef.close(true);
-      });
+
+      this.registerUser(newUser);
+     
     }
 
  }
 
+ registerUser(newUser:ResUserDtoRegister){
+  this.servUser.registerUser(newUser).subscribe((response) => {
+    if(response.status==226){
+      this.isUsernameTaken=true;
+    }else
+    this.dialogRef.close(true);
+  });
+ }
+ 
   resetChoices(){
     console.log("resseting");
     

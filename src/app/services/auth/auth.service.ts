@@ -21,9 +21,7 @@ export class AuthService {
         map(userData => {
           sessionStorage.setItem("username", username);
           let tokenStr = "Bearer " + userData.token;
-          sessionStorage.setItem("token", tokenStr);
-          this.isUserAdmin();
-         
+          sessionStorage.setItem("token", tokenStr);   
           return userData;
         })
       );
@@ -47,18 +45,45 @@ export class AuthService {
     return false;
   }
 
-  isUserReceptionist(){
+  getLoggedInName(){
 
+  let token = sessionStorage.getItem("token")?.substring(7);
+    if(token){
+      //console.log("token",token);
+    let obj = JSON.parse(atob(token.split('.')[1]));
+    return obj.name;
+    }
+    return "";
+  }
+  isUserReceptionist(){
+    let token = sessionStorage.getItem("token")?.substring(7);
+    if(token){
+      //console.log("token",token);
+    let obj = JSON.parse(atob(token.split('.')[1]));
+    return obj.role.authority==='RECEPTIONIST';
+    }
+    return false;
   }
   isUserDoctor(){
-
+    let token = sessionStorage.getItem("token")?.substring(7);
+    if(token){
+      //console.log("token",token);
+    let obj = JSON.parse(atob(token.split('.')[1]));
+    return obj.role.authority==='DOCTOR';
+    }
+    return false;
   }
   isUserPatient(){
-
+    let token = sessionStorage.getItem("token")?.substring(7);
+    if(token){
+      //console.log("token",token);
+    let obj = JSON.parse(atob(token.split('.')[1]));
+    return obj.role.authority==='PATIENT';
+    }
+    return false;
   }
   logOut() {
-    sessionStorage.removeItem("username");
-    sessionStorage.removeItem("token");
+   sessionStorage.clear();
     this.router.navigate(['login']);
   }
 }

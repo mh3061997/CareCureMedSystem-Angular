@@ -15,45 +15,45 @@ import { InvoicepageComponent } from './components/invoice/invoicepage/invoicepa
 import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterUserComponent } from './components/auth/register-user/register-user.component';
-import { AuthGuardService } from './services/auth/auth-guard.service';
+import { IsLoggedInGuardService } from './services/auth/is-loggedin-guard.service';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 
 const routes: Routes = [{
-  path: "patient", component: PatientpageComponent,canActivate:[AuthGuardService]
+  path: "patient", component: PatientpageComponent,canActivate:[IsLoggedInGuardService]
 },
 {
-  path: "patient/:id", component: PatientComponent,canActivate:[AuthGuardService]
+  path: "patient/:id", component: PatientComponent,canActivate:[IsLoggedInGuardService]
 
 }, {
-  path: "doctor", component: DoctorpageComponent,canActivate:[AuthGuardService]
+  path: "doctor", component: DoctorpageComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "doctor/:id", component: DoctorComponent,canActivate:[AuthGuardService]
+  path: "doctor/:id", component: DoctorComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "appointment", component: AppointmentpageComponent,canActivate:[AuthGuardService]
+  path: "appointment", component: AppointmentpageComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "appointment/:id", component: AppointmentComponent,canActivate:[AuthGuardService]
+  path: "appointment/:id", component: AppointmentComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "appointment/:id/medops", component: MedicalOpsComponent,canActivate:[AuthGuardService]
+  path: "appointment/:id/medops", component: MedicalOpsComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "packagebases", component: PackagepageComponent,canActivate:[AuthGuardService]
+  path: "packagebases", component: PackagepageComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "packagebases/:id", component: PackagebaseComponent,canActivate:[AuthGuardService]
+  path: "packagebases/:id", component: PackagebaseComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "servicepricelist", component: ServicePriceListComponent,canActivate:[AuthGuardService]
+  path: "servicepricelist", component: ServicePriceListComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "invoice", component: InvoicepageComponent,canActivate:[AuthGuardService]
+  path: "invoice", component: InvoicepageComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "invoice/:id", component: InvoiceComponent,canActivate:[AuthGuardService]
+  path: "invoice/:id", component: InvoiceComponent,canActivate:[IsLoggedInGuardService]
 },{
-  path:"userpanel",component:UserPanelComponent,canActivate:[AuthGuardService]
+  path:"userpanel",component:UserPanelComponent,canActivate:[IsLoggedInGuardService]
 }, {
-  path: "not-found", component: NotFoundComponent
+  path: "notfound", component: NotFoundComponent
 }, {
   path: "login", component: LoginComponent
 }, {
   path: "register", component: RegisterUserComponent
 }, {
-  path: "**", redirectTo: "login"
+  path: "**", redirectTo: "notfound"
 }];
 
 @NgModule({
