@@ -31,8 +31,20 @@
 
   
       <ng-container matColumnDef=" ">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
-        <td mat-cell *matCellDef="let row"> 
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let row">
+          <button class="btn btn-sm btn-success" 
+          *ngIf="!row.patient && !row.doctor"
+          (click)="openChangeRoleDialog(row)">Change Role</button>
+
+          <button class="btn btn-sm btn-success" 
+          *ngIf="!row.patient && !row.doctor"
+          (click)="openChangeRoleDialog(row)">Enable</button>
+
+          <button class="btn btn-sm btn-danger" 
+          *ngIf="!row.patient && !row.doctor"
+          (click)="openChangeRoleDialog(row)">Disable</button>
+        </td>
           
       </ng-container>
   
