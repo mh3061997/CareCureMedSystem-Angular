@@ -114,7 +114,8 @@ export class UserAddNewDialogComponent implements OnInit {
       this.registerUser(newUser);
 
     } else if(this.newUserForm.value.role == 'ADMIN' || this.newUserForm.value.role == 'RECEPTIONIST') {
-
+  
+      newUser.name = this.newUserForm.value.name;
       this.registerUser(newUser);
      
     }

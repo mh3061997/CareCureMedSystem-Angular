@@ -8,5 +8,6 @@ export interface ResUserDtoRegister {
     password: string;
     patient?: ResPatient;
     doctor?: ResDoctor;
+    name?:string;
     roles: ResRole[];
 }
