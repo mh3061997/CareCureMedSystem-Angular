@@ -6,6 +6,9 @@ import {ResPatient} from 'src/app/interfaces/res-patient'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResUserDtoRegister } from 'src/app/interfaces/res-user-dto-register';
 import { ResUserDao } from 'src/app/interfaces/res-user-dao';
+import { UserChangeRoleDialogComponent } from './user-change-role-dialog/user-change-role-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ServUsersService } from 'src/app/services/serv-users.service';
 
 @Component({
   selector: 'app-usertable',
@@ -29,7 +32,9 @@ export class UsertableComponent implements AfterViewInit, OnChanges {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef){
+  constructor(private cdr: ChangeDetectorRef,
+    private dialogChangeUserRole:MatDialog,
+    private servUsers:ServUsersService){
 
   }
   
@@ -62,6 +67,33 @@ export class UsertableComponent implements AfterViewInit, OnChanges {
       this.dataSource = new MatTableDataSource(this.users);
     }
 }
+
+openChangeRoleDialog(user:ResUserDao){
+
+  const dialogRef =  this.dialogChangeUserRole.open(UserChangeRoleDialogComponent,{
+    data:{
+      user:user
+    },
+    disableClose:true
+  });
+
+  dialogRef.afterClosed().subscribe(closed =>{
+ 
+   if(closed){
+    this.servUsers.getUsersAll().subscribe(users =>{
+
+      this.users = users;
+      });
+   }
+
+  });
+
+}
+openEnableDisableDialog(){
+
+}
+
+
 }
 
 

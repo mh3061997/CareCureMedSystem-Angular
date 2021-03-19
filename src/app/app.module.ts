@@ -85,6 +85,8 @@ import { PrintLayoutInvoiceComponent } from './components/invoice/print-layout-i
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { UsertableComponent } from './components/user-panel/usertable/usertable.component';
 import { UserAddNewDialogComponent } from './components/user-panel/user-add-new-dialog/user-add-new-dialog.component';
+import { UserChangeRoleDialogComponent } from './components/user-panel/usertable/user-change-role-dialog/user-change-role-dialog.component';
+import { UserEnableDisableDialogComponent } from './components/user-panel/usertable/user-enable-disable-dialog/user-enable-disable-dialog.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +144,9 @@ import { UserAddNewDialogComponent } from './components/user-panel/user-add-new-
       PrintLayoutInvoiceComponent,
       UserPanelComponent,
       UsertableComponent,
-      UserAddNewDialogComponent
+      UserAddNewDialogComponent,
+      UserChangeRoleDialogComponent,
+      UserEnableDisableDialogComponent
       
 
   ],
