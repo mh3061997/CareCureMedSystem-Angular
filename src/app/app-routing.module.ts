@@ -17,44 +17,54 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterUserComponent } from './components/auth/register-user/register-user.component';
 import { IsLoggedInGuardService } from './services/auth/is-loggedin-guard.service';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
+import { AppComponent } from './app.component';
+import { NavBarSideComponent } from './components/ui/nav-bar-side/nav-bar-side.component';
+import { ClientContainerComponent } from './client-side/components/shared/client-container/client-container.component';
 
-const routes: Routes = [{
-  path: "patient", component: PatientpageComponent,canActivate:[IsLoggedInGuardService]
-},
-{
-  path: "patient/:id", component: PatientComponent,canActivate:[IsLoggedInGuardService]
+const routes: Routes = [
+  {path:'',component:ClientContainerComponent},
 
-}, {
-  path: "doctor", component: DoctorpageComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "doctor/:id", component: DoctorComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "appointment", component: AppointmentpageComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "appointment/:id", component: AppointmentComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "appointment/:id/medops", component: MedicalOpsComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "packagebases", component: PackagepageComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "packagebases/:id", component: PackagebaseComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "servicepricelist", component: ServicePriceListComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "invoice", component: InvoicepageComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "invoice/:id", component: InvoiceComponent,canActivate:[IsLoggedInGuardService]
-},{
-  path:"userpanel",component:UserPanelComponent,canActivate:[IsLoggedInGuardService]
-}, {
-  path: "notfound", component: NotFoundComponent
-}, {
-  path: "login", component: LoginComponent
-}, {
-  path: "register", component: RegisterUserComponent
-}, {
-  path: "**", redirectTo: "notfound"
-}];
+  {path:'admin',component:NavBarSideComponent,children:[
+    {
+      path: "patient", component: PatientpageComponent,canActivate:[IsLoggedInGuardService]
+    },
+    {
+      path: "patient/:id", component: PatientComponent,canActivate:[IsLoggedInGuardService]
+    
+    }, {
+      path: "doctor", component: DoctorpageComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "doctor/:id", component: DoctorComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "appointment", component: AppointmentpageComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "appointment/:id", component: AppointmentComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "appointment/:id/medops", component: MedicalOpsComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "packagebases", component: PackagepageComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "packagebases/:id", component: PackagebaseComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "servicepricelist", component: ServicePriceListComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "invoice", component: InvoicepageComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "invoice/:id", component: InvoiceComponent,canActivate:[IsLoggedInGuardService]
+    },{
+      path:"userpanel",component:UserPanelComponent,canActivate:[IsLoggedInGuardService]
+    }, {
+      path: "notfound", component: NotFoundComponent
+    }, {
+      path: "login", component: LoginComponent
+    }, {
+      path: "register", component: RegisterUserComponent
+    }, 
+    // {path: "**", redirectTo: "notfound"}
+  ]
+  
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

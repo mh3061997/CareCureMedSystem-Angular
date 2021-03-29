@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.showSpinner=true;
     (this.loginservice.authenticate(this.username, this.password).subscribe(
       data => {
-        this.router.navigate(['patient'])
+        this.router.navigate(['admin','patient'])
         this.invalidLogin = false
         this.showSpinner=false;
       },

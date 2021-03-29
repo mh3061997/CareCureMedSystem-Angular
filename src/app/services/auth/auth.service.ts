@@ -84,6 +84,6 @@ export class AuthService {
   }
   logOut() {
    sessionStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['admin','login']);
   }
 }

@@ -87,6 +87,7 @@ import { UsertableComponent } from './components/user-panel/usertable/usertable.
 import { UserAddNewDialogComponent } from './components/user-panel/user-add-new-dialog/user-add-new-dialog.component';
 import { UserChangeRoleDialogComponent } from './components/user-panel/usertable/user-change-role-dialog/user-change-role-dialog.component';
 import { UserEnableDisableDialogComponent } from './components/user-panel/usertable/user-enable-disable-dialog/user-enable-disable-dialog.component';
+import { ClientSideModule } from './client-side/client-side.module';
 
 @NgModule({
   declarations: [
@@ -179,7 +180,8 @@ import { UserEnableDisableDialogComponent } from './components/user-panel/userta
     MatCheckboxModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    NgxPrintModule
+    NgxPrintModule,
+    ClientSideModule
     
   ],
   providers: [{
