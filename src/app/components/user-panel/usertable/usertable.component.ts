@@ -2,13 +2,11 @@ import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleCha
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {ResPatient} from 'src/app/interfaces/res-patient'
-import { ActivatedRoute, Router } from '@angular/router';
-import { ResUserDtoRegister } from 'src/app/interfaces/res-user-dto-register';
 import { ResUserDao } from 'src/app/interfaces/res-user-dao';
 import { UserChangeRoleDialogComponent } from './user-change-role-dialog/user-change-role-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServUsersService } from 'src/app/services/serv-users.service';
+import { UserEnableDisableDialogComponent } from './user-enable-disable-dialog/user-enable-disable-dialog.component';
 
 @Component({
   selector: 'app-usertable',
@@ -24,7 +22,7 @@ export class UsertableComponent implements AfterViewInit, OnChanges {
 
 
   
-  displayedColumns: string[] = ['code', 'username', 'role', 'name',' '];
+  displayedColumns: string[] = ['code', 'username', 'role', 'name','enabled',' '];
 
   dataSource: MatTableDataSource<ResUserDao>;
 
@@ -34,6 +32,7 @@ export class UsertableComponent implements AfterViewInit, OnChanges {
 
   constructor(private cdr: ChangeDetectorRef,
     private dialogChangeUserRole:MatDialog,
+    private dialogEnableDisableUser:MatDialog,
     private servUsers:ServUsersService){
 
   }
@@ -89,7 +88,28 @@ openChangeRoleDialog(user:ResUserDao){
   });
 
 }
-openEnableDisableDialog(){
+
+openEnableDisableDialog(user:ResUserDao,enable:boolean){
+
+  const dialogRef =  this.dialogEnableDisableUser.open(UserEnableDisableDialogComponent,{
+    data:{
+      user:user,
+      enable:enable
+    },
+    disableClose:true
+  });
+
+  dialogRef.afterClosed().subscribe(closed =>{
+ 
+   if(closed){
+    this.servUsers.getUsersAll().subscribe(users =>{
+    
+      this.users = users;
+      });
+   }
+
+  });
+
 
 }
 

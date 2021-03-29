@@ -28,7 +28,15 @@
 
       </ng-container>
 
+      <ng-container matColumnDef="enabled">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Enabled </th>
+        <td mat-cell *matCellDef="let row">
+          <span *ngIf="row.enabled===true">Yes</span>
+          <span *ngIf="row.enabled===false">No</span>
 
+        </td>
+
+      </ng-container>
   
       <ng-container matColumnDef=" ">
         <th mat-header-cell *matHeaderCellDef>  </th>
@@ -38,12 +46,12 @@
           (click)="openChangeRoleDialog(row)">Change Role</button>
 
           <button class="btn btn-sm btn-success" 
-          *ngIf="!row.patient && !row.doctor"
-          (click)="openChangeRoleDialog(row)">Enable</button>
+          *ngIf="row.enabled===false"
+          (click)="openEnableDisableDialog(row,true)">Enable</button>
 
           <button class="btn btn-sm btn-danger" 
-          *ngIf="!row.patient && !row.doctor"
-          (click)="openChangeRoleDialog(row)">Disable</button>
+          *ngIf="row.enabled===true"
+          (click)="openEnableDisableDialog(row,false)">Disable</button>
         </td>
           
       </ng-container>
