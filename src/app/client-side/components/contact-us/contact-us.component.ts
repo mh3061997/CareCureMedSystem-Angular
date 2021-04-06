@@ -12,16 +12,17 @@ export class ContactUsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const myLatLng: google.maps.LatLngLiteral = {lat: 30.064309, lng: 31.325790};
+    const myLatLng: google.maps.LatLngLiteral = {lat: 30.063812, lng: 31.325563};
     const mapProperties = {
          center: myLatLng,
          zoom: 15,
          mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.mapElement.nativeElement,    mapProperties);
+
     new google.maps.Marker({
       position: myLatLng,
-      map:this.mapElement,
+      map:this.map,
       title: "Care & Cure Clinics",
     });
  }
