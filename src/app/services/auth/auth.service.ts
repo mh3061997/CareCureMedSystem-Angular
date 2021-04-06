@@ -55,6 +55,28 @@ export class AuthService {
     }
     return "";
   }
+
+  getLoggedInPatientCode(){
+
+    let token = sessionStorage.getItem("token")?.substring(7);
+      if(token){
+        //console.log("token",token);
+      let obj = JSON.parse(atob(token.split('.')[1]));
+      return obj.patientCode;
+      }
+      return "";
+    }
+
+    getLoggedInDoctorCode(){
+
+      let token = sessionStorage.getItem("token")?.substring(7);
+        if(token){
+          //console.log("token",token);
+        let obj = JSON.parse(atob(token.split('.')[1]));
+        return obj.doctorCode;
+        }
+        return "";
+      }
   isUserReceptionist(){
     let token = sessionStorage.getItem("token")?.substring(7);
     if(token){
