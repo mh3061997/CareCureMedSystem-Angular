@@ -7,11 +7,18 @@ import { ClientContainerComponent } from './components/shared/client-container/c
 import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { SpecializationsComponent } from './components/specializations/specializations.component';
+import { servicesComponent } from './components/med-services/services.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { DoctorsComponent } from './components/doctors/doctors.component';
 import { LoginClientComponent } from './components/login-client/login-client.component';
 import { SignupClientComponent } from './components/signup-client/signup-client.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BlogsComponent } from './components/blogs/blogs.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MyHistoryComponent } from './components/my-history/my-history.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -20,15 +27,23 @@ import { SignupClientComponent } from './components/signup-client/signup-client.
     HomeComponent,
     AboutUsComponent,
     ContactUsComponent,
-    SpecializationsComponent,
+    servicesComponent,
     FooterComponent,
     DoctorsComponent,
     LoginClientComponent,
-    SignupClientComponent
+    SignupClientComponent,
+    BlogsComponent,
+    MyHistoryComponent
   ],
   imports: [
     CommonModule,
-    ClientSideRoutingModule
-  ]
+    ClientSideRoutingModule,
+    FontAwesomeModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    CarouselModule 
+    ]
 })
 export class ClientSideModule { }

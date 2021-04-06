@@ -1,1 +1,71 @@
-<p>navbar works!</p>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-semi-transparent-bg ">
+    <!-- <img src="../../../../../assets/logo only.png" class="navbar-brand m-0 navbar-brand-logo " alt="care & cure clinics">
+  <img src="../../../../../assets/textonly.png" class="navbar-brand-text"> -->
+    <!-- <a class="navbar-brand" routerLink="home">CARE & CURE CLINICS</a> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-3 mb-2">
+                <img src="../../../../../assets/trogether.png" class="navbar-brand-logo" alt="">
+
+                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+
+            </div>
+
+            <div class="col-12 col-lg-4 my-auto mb-2">
+                <a class=" mx-1 badge badge-pill badge-light">
+                    <fa-icon class="" [icon]="faPhoneAlt" style=""></fa-icon>
+
+                    <span>+201122229498</span>
+                </a>
+                <a class=" mx-1 badge badge-pill badge-light">
+                    <span> Request an Appointment</span>
+                </a>
+            </div>
+            <div class="col-12 col-lg-5 my-auto mb-2">
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class=" navbar-nav mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="services">Blog</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="doctors">Doctors</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="services">Services</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="about-us">About&nbsp;Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="history">My&nbsp;History</a>
+                        </li>
+
+                        <li class="nav-item mx-1" *ngIf="!authService.isUserLoggedIn()">
+                            <a routerLink="login-client" class="btn nav-auth-btn">Login</a></li>
+                        <li class="nav-item " *ngIf="!authService.isUserLoggedIn()">
+                            <a routerLink="signup-client" class="btn nav-auth-btn">Sign&nbsp;up</a></li>
+                        <li class="nav-item " *ngIf="authService.isUserLoggedIn()">
+                            <a class="btn nav-auth-btn" (click)="authService.logOut()">Log&nbsp;Out</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</nav>

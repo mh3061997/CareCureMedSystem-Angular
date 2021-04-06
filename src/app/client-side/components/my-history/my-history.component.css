@@ -1,0 +1,78 @@
+.gradient_highlighter:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--client-primary);
+    background: -webkit-linear-gradient( 95deg, var(--client-primary) 0%, var(--client-secondary) 100%);
+    background: linear-gradient( 95deg, var(--client-primary)0%, var(--client-secondary) 100%);
+    transition: width .3s;
+    bottom: -20px;
+    left: calc(50% - 50px);
+}
+
+.service_title_line {
+    position: relative;
+    margin: 18px 0 40px;
+    text-align: center;
+    text-transform: capitalize;
+    min-height: 61px;
+}
+
+.h2 {
+    color: #00205B;
+    font-size: 48px;
+    font-family: 'Fsalbert Bold';
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.apps-container {
+    border-radius: 20px;
+    min-height: 100px;
+    max-height: 500px;
+    overflow-y: scroll;
+    background-color: grey;
+}
+
+.appointment-box {
+    background-color: white;
+}
+
+.banner_head {
+    background-image: url(../../../../assets/patient2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+section.banner_head {
+    position: relative;
+    height: 55vh;
+    padding: 0;
+}
+
+section.banner_head:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(64, 64, 64, 0.5);
+}
+
+.banner_h1 {
+    font-size: 48px;
+    color: #fff;
+    font-family: 'FSAlbert';
+    font-weight: normal;
+    align-items: flex-end;
+    min-height: 96px;
+    display: flex;
+    text-transform: capitalize;
+    align-items: flex-end;
+    min-height: 48vh;
+}

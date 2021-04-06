@@ -22,7 +22,7 @@ import { NavBarSideComponent } from './components/ui/nav-bar-side/nav-bar-side.c
 import { ClientContainerComponent } from './client-side/components/shared/client-container/client-container.component';
 
 const routes: Routes = [
-  {path:'',component:ClientContainerComponent},
+ 
 
   {path:'admin',component:NavBarSideComponent,children:[
     {
