@@ -1,5 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: cairofont;
+    src: url('assets/fonts/Cairo/Cairo-Light.ttf');
+}
+
+@font-face {
+    font-family: titanium;
+    src: url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf');
+}
+
+@font-face {
+    font-family: SourceSansPro;
+    src: url('assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('assets/fonts/Montserrat/Montserrat-Regular.ttf');
+}
+
+a,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: cairofont !important;
+}
+
 .text-medgray>* {
     color: #525f7f!important;
 }
@@ -210,4 +242,41 @@ input[type=number] {
     /* The height is 400 pixels */
     width: 100%;
     /* The width is the width of the web page */
+}
+
+
+/* SHARED*/
+
+.banner_head {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+section.banner_head {
+    position: relative;
+    height: 35vh;
+    padding: 0;
+}
+
+section.banner_head:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(64, 64, 64, 0.5);
+}
+
+.banner_h1 {
+    font-size: 48px;
+    color: #fff;
+    font-family: 'FSAlbert';
+    font-weight: normal;
+    align-items: flex-end;
+    min-height: 96px;
+    display: flex;
+    text-transform: capitalize;
+    align-items: flex-end;
+    min-height: 30vh;
 }
