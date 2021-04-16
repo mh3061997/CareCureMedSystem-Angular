@@ -1,0 +1,61 @@
+.banner_head {
+    background-image: url(../../../../assets/patient2.jpg);
+}
+
+.nav-auth-btn {
+    background-color: var(--client-primary);
+    color: white;
+    width: 160px;
+    padding: 11px;
+    border-radius: 56px !important;
+    margin: 25px;
+}
+
+.nav-auth-btn span {
+    font-size: 25px;
+    padding: 5px;
+    line-height: 15px;
+}
+
+.nav-auth-btn img {
+    max-width: 75%;
+    max-height: 87px;
+    margin-bottom: 23px;
+}
+
+.nav-auth-btn:hover {
+    background-color: #ad5e80;
+}
+
+.team .member {
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 12px 0px rgb(0 0 0 / 10%);
+    padding: 30px 20px;
+    background: #fff;
+}
+
+.team .member img {
+    max-width: 60%;
+    border-radius: 50%;
+    margin: 0 0 30px 0;
+}
+
+.team .member h4 {
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 18px;
+}
+
+.team .member span {
+    font-style: italic;
+    display: block;
+    font-size: 13px;
+}
+
+.team .member p {
+    padding-top: 10px;
+    font-size: 14px;
+    font-style: italic;
+    color: #aaaaaa;
+}

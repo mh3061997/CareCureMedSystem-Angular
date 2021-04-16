@@ -1,41 +1,26 @@
 .banner_head {
     background-image: url(../../../../assets/patient2.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-section.banner_head {
-    position: relative;
-    height: 55vh;
-    padding: 0;
-}
-
-section.banner_head:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(64, 64, 64, 0.5);
-}
-
-.banner_h1 {
-    font-size: 48px;
-    color: #fff;
-    font-family: 'FSAlbert';
-    font-weight: normal;
-    align-items: flex-end;
-    min-height: 96px;
-    display: flex;
-    text-transform: capitalize;
-    align-items: flex-end;
-    min-height: 48vh;
 }
 
 .nav-auth-btn {
     background-color: var(--client-primary);
     color: white;
+    width: 160px;
+    padding: 11px;
+    border-radius: 56px !important;
+    margin: 25px;
+}
+
+.nav-auth-btn span {
+    font-size: 25px;
+    padding: 5px;
+    line-height: 15px;
+}
+
+.nav-auth-btn img {
+    max-width: 75%;
+    max-height: 87px;
+    margin-bottom: 23px;
 }
 
 .nav-auth-btn:hover {
@@ -46,7 +31,7 @@ section.banner_head:before {
     text-align: center;
     margin-bottom: 20px;
     box-shadow: 0px 0px 12px 0px rgb(0 0 0 / 10%);
-    padding: 30px 20px;
+    padding: 30px 20px 0px 20px;
     background: #fff;
 }
 
@@ -73,4 +58,15 @@ section.banner_head:before {
     font-size: 14px;
     font-style: italic;
     color: #aaaaaa;
+}
+
+.team .member h4,
+.team .member span {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.team .member p {
+    font-size: 22px;
+    margin: 25px 0 9px 0;
 }

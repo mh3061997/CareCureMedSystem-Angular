@@ -44,35 +44,4 @@
 
 .banner_head {
     background-image: url(../../../../assets/patient2.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-section.banner_head {
-    position: relative;
-    height: 55vh;
-    padding: 0;
-}
-
-section.banner_head:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(64, 64, 64, 0.5);
-}
-
-.banner_h1 {
-    font-size: 48px;
-    color: #fff;
-    font-family: 'FSAlbert';
-    font-weight: normal;
-    align-items: flex-end;
-    min-height: 96px;
-    display: flex;
-    text-transform: capitalize;
-    align-items: flex-end;
-    min-height: 48vh;
 }

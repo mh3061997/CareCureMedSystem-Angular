@@ -8,6 +8,10 @@
     height: 100vh;
 }
 
+#cl-carousel video {
+    height: 100vh;
+}
+
 .carousel-caption p {
     font-size: 50px;
 }
@@ -74,4 +78,47 @@
 
 .bg-client-accent {
     background: var(--client-accent);
+}
+
+
+/*---------------------------------------------
+ #OWL CAROUSEL
+ -------------------------------------------- */
+
+ ::ng-deep .partners .owl-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+::ng-deep .partners .owl-item img {
+    width: 60%;
+    height: 60%;
+    min-height: 40px;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+::ng-deep .partners .owl-item img:hover {
+    opacity: 1;
+}
+
+::ng-deep .partners .owl-nav,
+::ng-deep .partners .owl-dots {
+    margin-top: 5px;
+    text-align: center;
+}
+
+::ng-deep .partners .owl-dot span {
+    display: inline-block;
+    margin: 0 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd !important;
+}
+
+::ng-deep .partners .owl-dot.active span {
+    background-color: var(--client-primary) !important;
 }

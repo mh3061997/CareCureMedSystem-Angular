@@ -12,7 +12,7 @@ export class ContactUsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const myLatLng: google.maps.LatLngLiteral = {lat: 30.063812, lng: 31.325563};
+    const myLatLng: google.maps.LatLngLiteral = {lat: 30.064309, lng: 31.325790};
     const mapProperties = {
          center: myLatLng,
          zoom: 15,

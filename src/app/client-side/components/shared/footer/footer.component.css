@@ -47,21 +47,21 @@
 
 .footer .icons a {
     display: inline-block;
-    width: 35px;
-    height: 35px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
-    background-color: #33383b;
-    border-radius: 2px;
-    font-size: 20px;
+    background-color: var(--client-primary);
+    border-radius: 20px;
+    font-size: 35px;
     color: #ffffff;
     text-align: center;
-    line-height: 35px;
-    margin-right: 3px;
+    line-height: 60px;
+    margin-right: 9px;
     margin-bottom: 5px;
 }
 
 .footer .icons a :hover {
-    color: var(--client-primary);
+    color: var(--client-accent);
 }
 
 .navbar-brand-logo {

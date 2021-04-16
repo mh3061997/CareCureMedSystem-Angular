@@ -12,8 +12,8 @@ export class BlogsComponent implements OnInit {
 
   constructor(HttpClient:HttpClient) { 
 
-    HttpClient.get<any[]>("http://localhost/blog/wp-json/wp/v2/posts").subscribe(posts => {
-      this.htmlString = posts[0].content.rendered;
+    HttpClient.get<any>("http://localhost/blog/wp-json/wp/v2/posts/25").subscribe(post => {
+      this.htmlString = post.content.rendered;
     })
   }
 

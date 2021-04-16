@@ -4,38 +4,57 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  
 })
 export class HomeComponent implements OnInit {
 
   customOptions: OwlOptions = {
+    autoplay:true,
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 600,
-    navText: ['&#8249', '&#8250;'],
+    dots: true,
+    navSpeed: 100,
+    dotsEach:true,
     responsive: {
       0: {
-        items: 1 
+        items: 2 
       },
       400: {
-        items: 2
-      },
-      760: {
         items: 3
       },
-      1000: {
+      768: {
         items: 4
+      },
+      900: {
+        items: 6
       }
     },
-    nav: true
+    nav: false
   }
   
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
+  
+  // // Clients carousel (uses the Owl Carousel library)
+  // $(".clients-carousel").owlCarousel({
+  //   autoplay: true,
+  //   dots: true,
+  //   loop: true,
+  //   responsive: {
+  //     0: {
+  //       items: 2
+  //     },
+  //     768: {
+  //       items: 4
+  //     },
+  //     900: {
+  //       items: 6
+  //     }
+  //   }
+  // });
 
 }
