@@ -280,3 +280,20 @@ section.banner_head:before {
     align-items: flex-end;
     min-height: 30vh;
 }
+
+h2,
+.h2 {
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    margin-bottom: 40px !important;
+    letter-spacing: -1px !important;
+    line-height: 1 !important;
+    min-height: 71px !important;
+}
+
+h4,
+.h4 {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.6px !important;
+}

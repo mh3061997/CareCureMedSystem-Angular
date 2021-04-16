@@ -77,7 +77,8 @@
     width: 30%;
 }
 
-.footer .footer-center i {
+.footer .footer-center i,
+.footer .footer-center fa-icon {
     background-color: #33383b;
     color: #ffffff;
     font-size: 25px;
