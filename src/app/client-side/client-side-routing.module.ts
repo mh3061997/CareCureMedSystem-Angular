@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/auth/login/login.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { BlogsComponent } from './components/blogs/blogs.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DoctorsComponent } from './components/doctors/doctors.component';
 import { HomeComponent } from './components/home/home.component';
@@ -29,7 +30,8 @@ const routes: Routes = [
       path:'services',component:servicesComponent
     },{
       path:'history',component:MyHistoryComponent
-    }
+    },
+    {path:'blog',component:BlogsComponent}
   ]}
   
 ];
