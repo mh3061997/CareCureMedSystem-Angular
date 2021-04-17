@@ -2,11 +2,31 @@
     <div class="container">
         <div class="row ">
             <div class="col-md-12 ">
-                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">About Us</h1>
+                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">Our News</h1>
             </div>
         </div>
     </div>
 
 </section>
 
-<div [innerHtml]="htmlString"></div>
+<section class="blog-posts p-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-5 blog_list_small mt-3" *ngFor="let post of postsHtmlArr">
+                <div class="blog_inner">
+                    <a href="https://www.ahdubai.com/news/risky-whipple-procedure-conducted-successfully-at-american-hospital-dubai">
+                        <div class="blog_inner_image">
+                            <img [src]="post.thumbnail ? post.thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
+                        <div class="blog_inner_content">
+                            <h3 [innerHtml]="post.title.rendered ? post.title.rendered : ''"></h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- <div *ngFor="let post of postsHtmlArr" [innerHtml]="post.content.rendered"></div> -->

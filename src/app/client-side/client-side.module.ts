@@ -20,6 +20,7 @@ import { MyHistoryComponent } from './components/my-history/my-history.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { PostComponent } from './components/blogs/post/post.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     SignupClientComponent,
     BlogsComponent,
     MyHistoryComponent,
-    GalleryComponent
+    GalleryComponent,
+    PostComponent
   ],
   imports: [
     CommonModule,

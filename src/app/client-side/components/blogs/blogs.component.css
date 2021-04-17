@@ -1,3 +1,215 @@
 .banner_head {
-    background-image: url('../../../../assets/upper background/pc/blog.png');
+    background-image: url('../../../../assets/upper background/pc/services 2.png');
+}
+
+.blog .col-md-5 {
+    flex: 0 0 37%;
+    max-width: 37%;
+    padding: 0px;
+}
+
+.blog_inner a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.blog .col-md-3 .blog_inner {
+    max-height: 415px;
+    border: 0px solid #e7e7e7;
+    padding: 0;
+    background: #ffffff;
+    position: relative;
+    border-radius: 3px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: auto;
+}
+
+.blog .col-md-3 .blog_inner+.blog_inner {
+    margin-top: 10px;
+}
+
+.invalid-feedback-g-recaptcha {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.blog .col-md-4 {
+    padding: 0px
+}
+
+.blog .col-md-3 .blog_inner a {
+    height: 205px;
+    position: relative;
+    border: 1px solid #e7e7e7;
+    padding: 0px;
+}
+
+.blog .col-md-3 .blog_inner a .blog_inner_content {
+    max-width: 100%;
+    padding: 15px 15px 0px 15px;
+}
+
+.blog_inner a img {
+    width: 100%;
+}
+
+.deep_sleep_clinic {
+    border: 0px;
+    padding: 0px;
+}
+
+.deep_sleep_clinic a {
+    border: 1px solid #e7e7e7;
+    padding: 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
+.deep_sleep_clinic a:last-child {
+    margin-bottom: 0px;
+}
+
+.blog_list_large {
+    padding: 0;
+}
+
+.blog_inner_content {
+    padding: 15px 20px 0px 20px;
+    margin-top: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
+
+.blog_inner_content:after {
+    content: '';
+    background: url(../../../../assets/white-gradient2.png) center no-repeat;
+    position: absolute;
+    top: 0;
+    transform: rotate(180deg);
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    opacity: 0.95;
+    border-radius: 3px;
+}
+
+.blog_inner_content h6 {
+    font-size: 10px;
+    border-bottom: 3px solid #bdc0ca;
+    padding-bottom: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    display: table-caption;
+    /*width: 100%;*/
+}
+
+.doctor_detail_table {
+    width: 70%;
+    /* margin: 1.8rem auto 0.5rem; */
+}
+
+.doctor-details-page p.text-uppercase {
+    background: linear-gradient(to right, #10AB5B 0%, #8BC541 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+tr.noBorder td:first-child {
+    background: linear-gradient(to right, #10AB5B 0%, #8BC541 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.blog_list_small .blog_inner_content:after {
+    height: 200px;
+}
+
+.blog_inner_content h3 {
+    line-height: 1;
+    max-width: 100%;
+    text-align: center;
+    font-size: 30px;
+    text-transform: capitalize;
+    word-break: break-word;
+    z-index: 1;
+    position: relative;
+}
+
+.blog_list_large .blog_inner_image img,
+.blog_list_small .blog_inner_image img {
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+}
+
+.blog_list_large .blog_inner_image {
+    height: 420px;
+}
+
+.blog_list_small .blog_inner_image {
+    height: 203px;
+}
+
+.blog_list_large h3 {
+    font-size: 36px;
+    padding-bottom: 30px;
+    margin-bottom: 0;
+}
+
+.blog_list_large h3,
+.blog_list_small h3 {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    color: #00205B;
+}
+
+.blog_list_large h3::after,
+.blog_list_small h3::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: rgb(0, 177, 64);
+    background: -webkit-linear-gradient(95deg, #00b140 0%, #00b140 50%, #92c740 100%);
+    background: linear-gradient(95deg, #00b140 0%, #00b140 50%, #92c740 100%);
+    transition: width .3s;
+    bottom: 15px;
+    left: calc(50% - 50px);
+}
+
+.blog_list_small h3 {
+    font-size: 20px !important;
+    width: 100% !important;
+}
+
+.blog_list_small h3::after {
+    width: 70px;
+    left: calc(50% - 35px);
+}
+
+.blog_detail_thumbnail {
+    height: 418px;
+    margin-bottom: 30px;
+}
+
+.blog_list_large .blog_inner_image img,
+.blog_list_large .blog_inner_image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }

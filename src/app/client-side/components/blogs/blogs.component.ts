@@ -1,20 +1,44 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { WordpressService } from '../wordpress.service';
 
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.css']
+  styleUrls: ['./blogs.component.css'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class BlogsComponent implements OnInit {
 
-  htmlString="";
+  postsHtmlArr:any[];
 
-  constructor(HttpClient:HttpClient) { 
+  constructor(private blogService:WordpressService) { 
 
-    HttpClient.get<any>("http://localhost/blog/wp-json/wp/v2/posts/25").subscribe(post => {
-      this.htmlString = post.content.rendered;
-    })
+    blogService.getAllPosts().subscribe(posts => {
+      console.log("posts",posts);
+      
+      this.postsHtmlArr=posts.map(post =>{
+        
+        post.thumbnail=this.extractImgTag(post.content.rendered);
+        return post;       
+      });
+    });
+
+    console.log(this.postsHtmlArr);
+    
+  }
+
+  extractImgTag(postHtml:any){
+     //console.log("html"+postHtml);
+    
+    // console.log(postHtml.match(/<img [^>]*src="[^"]*"[^>]*>/gm));
+    let imgTag = postHtml.match(/src="?([^"\s]+)(jp?g|png|gif)"/g);
+
+    if(imgTag && imgTag[0]){
+      return imgTag[0].split('=')[1].split('"')[1];
+    }else{
+      return null;
+    }
   }
 
   ngOnInit(): void {
