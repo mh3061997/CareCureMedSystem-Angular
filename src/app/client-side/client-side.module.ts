@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyHistoryComponent } from './components/my-history/my-history.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     LoginClientComponent,
     SignupClientComponent,
     BlogsComponent,
-    MyHistoryComponent
+    MyHistoryComponent,
+    GalleryComponent
   ],
   imports: [
     CommonModule,

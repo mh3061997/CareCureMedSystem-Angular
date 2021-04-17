@@ -8,39 +8,39 @@
     </div>
 </section>
 
-<section class="doctor-container">
-    <div class="container-fluid p-4">
+<section class="doctor-container p-5">
+    <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12 text-center">
-                <p>Choose a speciality to view services</p>
+                <h4 style="font-size:25px !important; color: var(--client-secondary);">Choose a speciality to view our doctors</h4>
                 <div class="btn-group " role="group" aria-label="Basic example">
-                    <button type="button" class="btn  nav-auth-btn">
+                    <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dermatology')">
                         <img src="../../../../assets/icons/Derma.png" alt="">
                         <span>Dermatology </span>
                     </button>
-                    <button type="button" class="btn  nav-auth-btn">
-                        <img src="../../../../assets/icons/Dental.png" alt="">
+                    <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dental')">
+                        <img src=" ../../../../assets/icons/Dental.png " alt=" ">
                         <span>Dentistry </span>
                     </button>
-                    <button type="button" class="btn  nav-auth-btn">
-                        <img src="../../../../assets/icons/Surgery.png" alt="">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('surgery')">
+                        <img src="../../../../assets/icons/Surgery.png " alt=" ">
                         <span>Surgery </span>
                     </button>
-                    <button type="button" class="btn  nav-auth-btn">
-                        <img src="../../../../assets/icons/plastic surgery.png" alt="">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('plastic')">
+                        <img src="../../../../assets/icons/plastic surgery.png " alt=" ">
                         <span>Plastic Surgery </span>
                         </button>
 
-                    <button type="button" class="btn  nav-auth-btn">
-                        <img src="../../../../assets/icons/NURTii.png" alt="">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('nutrition')">
+                        <img src="../../../../assets/icons/NURTii.png " alt=" ">
                         <span>Nutrition</span>
                         </button>
-                    <button type="button" class="btn  nav-auth-btn">
-                        <img src="../../../../assets/icons/Internal medcine.png" alt="">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('internal')">
+                        <img src="../../../../assets/icons/Internal medcine.png " alt=" ">
                         <span>Internal Medecine</span>
                         </button>
-                    <button type="button" class="btn  nav-auth-btn">
-                        <img src="../../../../assets/icons/obstetrics.png" alt="">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')">
+                        <img src="../../../../assets/icons/obstetrics.png " alt=" ">
                         <span>Obsetrics</span>
                         </button>
 
@@ -49,60 +49,24 @@
         </div>
     </div>
 </section>
-<section class="team">
-    <div class="container">
-        <div class="row justify-content-center">
-            <h1 class=" gradient_highlighter " style="color: var(--client-secondary);">Our Doctors</h1>
+<section class="team mb-5">
+    <div class="container ">
+        <div class="row justify-content-center ">
+            <h4 class=" service_title_line gradient_highlighter" style="color: var(--client-secondary); font-size: 25px; ">{{activeSpeciality}} Doctors</h4>
 
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <img src="../../../../assets/Prof Mohamed Khalfalla-Surgeon-profesor of surgical oncology in Ain Shams university.jpeg" alt="">
-                    <h4 style="color:var(--client-primary)">Mohamed Khalfalla</h4>
-                    <span style="color:var(--client-accent)">Surgeon</span>
-                    <p style="color:var(--client-secondary)">
-                        Profesor of surgical oncology in Ain Shams university </p>
-                    <div class="social">
-                        <a href=""><i class="bi bi-twitter"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
+        <div class="row justify-content-center pt-5">
+            <div *ngFor="let doctor of activeArr" class="col-lg-4 col-md-6 d-flex align-items-stretch ">
+                <div class="member ">
+                    <img [src]="doctor.img" alt=" ">
+                    <h4 style="color:var(--client-primary) ">{{doctor.name}}</h4>
+                    <span style="color:var(--client-accent) ">{{doctor.speciality}}</span>
+                    <p style="color:var(--client-secondary) ">
+                        {{doctor.bio}} </p>
+
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <img src="assets/img/team/team-1.jpg" alt="">
-                    <h4>Walter White</h4>
-                    <span>Chief Executive Officer</span>
-                    <p>
-                        Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                    </p>
-                    <div class="social">
-                        <a href=""><i class="bi bi-twitter"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <img src="assets/img/team/team-1.jpg" alt="">
-                    <h4>Walter White</h4>
-                    <span>Chief Executive Officer</span>
-                    <p>
-                        Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                    </p>
-                    <div class="social">
-                        <a href=""><i class="bi bi-twitter"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>

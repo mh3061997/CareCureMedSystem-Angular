@@ -269,11 +269,10 @@ section.banner_head:before {
 }
 
 .banner_h1 {
-    font-size: 48px;
+    font-size: 48px !important;
     color: #fff;
-    font-family: 'FSAlbert';
-    font-weight: normal;
-    align-items: flex-end;
+    font-weight: normal !important;
+    align-items: flex-end !important;
     min-height: 96px;
     display: flex;
     text-transform: capitalize;
@@ -296,4 +295,12 @@ h4,
     font-size: 22px !important;
     font-weight: 800 !important;
     letter-spacing: -0.6px !important;
+}
+
+.service_title_line {
+    position: relative;
+    margin: 18px 0 40px;
+    text-align: center;
+    text-transform: capitalize;
+    min-height: 25px;
 }
