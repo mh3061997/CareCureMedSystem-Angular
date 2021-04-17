@@ -282,12 +282,12 @@ section.banner_head:before {
 
 h2,
 .h2 {
-    font-size: 48px !important;
+    font-size: 28px !important;
     font-weight: 800 !important;
     margin-bottom: 40px !important;
     letter-spacing: -1px !important;
     line-height: 1 !important;
-    min-height: 71px !important;
+    /* min-height: 71px !important; */
 }
 
 h4,

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/auth/login/login.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
+import { PostComponent } from './components/blogs/post/post.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DoctorsComponent } from './components/doctors/doctors.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
@@ -35,6 +36,8 @@ const routes: Routes = [
       }, { path: 'blog', component: BlogsComponent
      },{
        path:'gallery', component:GalleryComponent
+     },{
+       path:'blog/:id',component:PostComponent
      }
     ]
   }

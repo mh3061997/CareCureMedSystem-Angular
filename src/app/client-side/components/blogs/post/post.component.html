@@ -1,3 +1,24 @@
-<section class="bg-gray">
-    <h1>{{post.title.rendered}}</h1>
+<section class="banner_head">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 ">
+                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">Our News</h1>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="bg-gray p-5 mb-5 text-center blog-title " style="color: var(--client-primary);">
+    <h1 class="gradient_highlighter">{{post.title.rendered}}</h1>
+</section>
+
+<section class="p-4 mb-5 pb-5">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div [innerHtml]="post.content.rendered" class="col-md-9 blog-content">
+
+            </div>
+        </div>
+    </div>
 </section>

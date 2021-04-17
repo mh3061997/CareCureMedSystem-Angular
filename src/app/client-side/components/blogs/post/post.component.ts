@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { WordpressService } from '../../wordpress.service';
 
 @Component({
@@ -10,10 +11,15 @@ import { WordpressService } from '../../wordpress.service';
 export class PostComponent implements OnInit {
 
   post:any;
+  postId:string;
 
-  constructor(private blogService:WordpressService) {
+  constructor(private blogService:WordpressService,private currentRoute:ActivatedRoute) {
     
-    blogService.getPost("25").subscribe(post=>{
+    this.currentRoute.params.subscribe(params =>{
+      this.postId=params['id'];
+    })
+    
+    blogService.getPost(this.postId).subscribe(post=>{
       this.post = post
     });
   

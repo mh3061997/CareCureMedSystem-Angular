@@ -4,9 +4,7 @@ import { WordpressService } from '../wordpress.service';
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.css'],
-  encapsulation: ViewEncapsulation.None,
-
+  styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
 
