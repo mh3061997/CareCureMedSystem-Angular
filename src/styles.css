@@ -293,3 +293,7 @@ h4,
     text-transform: capitalize;
     min-height: 25px;
 }
+
+.cursor-hover {
+    cursor: pointer;
+}
