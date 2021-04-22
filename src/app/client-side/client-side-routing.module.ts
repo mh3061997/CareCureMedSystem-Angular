@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/auth/login/login.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AppointmentClientDialogComponent } from './components/appointment-client-dialog/appointment-client-dialog.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { PostComponent } from './components/blogs/post/post.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';

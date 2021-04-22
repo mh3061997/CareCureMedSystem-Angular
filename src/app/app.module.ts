@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,37 +16,21 @@ import { NotFoundComponent } from './components/auth/not-found/not-found.compone
 import { RegisterUserComponent } from './components/auth/register-user/register-user.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { NavBarSideComponent } from './components/ui/nav-bar-side/nav-bar-side.component'
-import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 import { PatienttableComponent } from './components/patient/patienttable/patienttable/patienttable.component'
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatCardModule } from '@angular/material/card';
 import { AppointmentPatientTableComponent } from './components/tables/appointment-patient-table/appointment-patient-table.component';
 import { ErrorInterceptor } from './interceptors/error-interceptor.interceptor';
 import { MembershipPatientTableComponent } from './components/tables/membership-patient-table/membership-patient-table.component';
 import { PatientAddMembershipDialogComponent } from './components/patient/patient-add-membership-dialog/patient-add-membership-dialog.component'
-import { MatDialogModule } from '@angular/material/dialog';
 import { PatientUpdateInformationDialogComponent } from './components/patient/patient-update-information-dialog/patient-update-information-dialog.component';
-import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientAddNewDialogComponent } from './components/patient/patient-add-new-dialog/patient-add-new-dialog.component';
 import { PackageBaseTableComponent } from './components/packagebase/packagepage/package-base-table/package-base-table.component';
 import { PackageMembershipTableComponent } from './components/packagebase/packagebase/package-membership-table/package-membership-table.component';
 import { PackagepageComponent } from './components/packagebase/packagepage/packagepage.component';
 import { PackageAddNewDialogComponent } from './components/packagebase/packagepage/package-add-new-dialog/package-add-new-dialog.component'
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { DoctorUpdateInformationDialogComponent } from './components/doctor/doctor/doctor-update-information-dialog/doctor-update-information-dialog.component';
 import { DoctorAppointmentTableComponent } from './components/doctor/doctor/doctor-appointment-table/doctor-appointment-table.component';
 import { DoctorAddNewDialogComponent } from './components/doctor/doctorpage/doctor-add-new-dialog/doctor-add-new-dialog.component';
@@ -55,9 +38,7 @@ import { DoctorTableComponent } from './components/doctor/doctorpage/doctor-tabl
 import { AppointmentTableComponent } from './components/appointment/appointmentpage/appointment-table/appointment-table.component';
 import { AppointmentAddNewDialogComponent } from './components/appointment/appointmentpage/appointment-add-new-dialog/appointment-add-new-dialog.component';
 import { AppointmentUpdateInformationDialogComponent } from './components/appointment/appointment/appointment-update-information-dialog/appointment-update-information-dialog.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PatientMedimagesTableComponent } from './components/patient/patient/patient-medimages-table/patient-medimages-table.component';
-import { MatTabsModule } from '@angular/material/tabs';
 import { ImageFullscreenDialogComponent } from './components/patient/patient/patient-medimages-table/image-fullscreen-dialog/image-fullscreen-dialog.component';
 import { PatientAddMedimageDialogComponent } from './components/patient/patient/patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 import { PackagebaseUpdateInformationDialogComponent } from './components/packagebase/packagebase/packagebase-update-information-dialog/packagebase-update-information-dialog.component';
@@ -65,7 +46,6 @@ import { ServicePriceListComponent } from './components/service-price-list/servi
 import { InvoiceItemsTableComponent } from './components/invoice/invoice/invoice-items-table/invoice-items-table.component';
 import { InvoiceTableComponent } from './components/invoice/invoicepage/invoice-table/invoice-table.component';
 import { MedicalOpsComponent } from './components/appointment/medical-ops/medical-ops.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FinalizedInvoiceDialogComponent } from './components/invoice/invoice/finalized-invoice-dialog/finalized-invoice-dialog.component';
 import { AddCustomItemDialogComponent } from './components/invoice/invoice/add-custom-item-dialog/add-custom-item-dialog.component';
 import { AddCustomItemMedopsDialogComponent } from './components/appointment/medical-ops/add-custom-item-medops-dialog/add-custom-item-medops-dialog.component';
@@ -77,10 +57,9 @@ import { AppointmentPatientDoctorTableComponent } from './components/appointment
 import { ServiceAddDialogComponent } from './components/service-price-list/service-add-dialog/service-add-dialog.component';
 import { PatientAddOfficialdocDialogComponent } from './components/patient/patient/patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
 import { PatientOfficialImageTableComponent } from './components/patient/patient/patient-official-image-table/patient-official-image-table.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { JwtAuthInterceptorService } from './services/auth/jwt-auth-interceptor.service';
 import { LogoutComponent } from './components/auth/logout/logout.component';
-import {NgxPrintModule} from 'ngx-print';
+import { NgxPrintModule } from 'ngx-print';
 import { PrintLayoutInvoiceComponent } from './components/invoice/print-layout-invoice/print-layout-invoice.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { UsertableComponent } from './components/user-panel/usertable/usertable.component';
@@ -88,6 +67,7 @@ import { UserAddNewDialogComponent } from './components/user-panel/user-add-new-
 import { UserChangeRoleDialogComponent } from './components/user-panel/usertable/user-change-role-dialog/user-change-role-dialog.component';
 import { UserEnableDisableDialogComponent } from './components/user-panel/usertable/user-enable-disable-dialog/user-enable-disable-dialog.component';
 import { ClientSideModule } from './client-side/client-side.module';
+import { MaterialModule } from './sharedModules/material-module/material.module';
 
 @NgModule({
   declarations: [
@@ -127,68 +107,50 @@ import { ClientSideModule } from './client-side/client-side.module';
     PatientAddMedimageDialogComponent,
     PackagebaseUpdateInformationDialogComponent,
     ServicePriceListComponent,
-      InvoiceItemsTableComponent,
-      InvoiceTableComponent,
-      MedicalOpsComponent,
-      FinalizedInvoiceDialogComponent,
-      AddCustomItemDialogComponent,
-      AddCustomItemMedopsDialogComponent,
-      ServiceSearchPipe,
-      MinNumberDirectiveDirective,
-      MaxNumberDirectiveDirective,
-      SettleDebtDialogComponent,
-      AppointmentPatientDoctorTableComponent,
-      ServiceAddDialogComponent,
-      PatientAddOfficialdocDialogComponent,
-      PatientOfficialImageTableComponent,
-      LogoutComponent,
-      PrintLayoutInvoiceComponent,
-      UserPanelComponent,
-      UsertableComponent,
-      UserAddNewDialogComponent,
-      UserChangeRoleDialogComponent,
-      UserEnableDisableDialogComponent
-      
+    InvoiceItemsTableComponent,
+    InvoiceTableComponent,
+    MedicalOpsComponent,
+    FinalizedInvoiceDialogComponent,
+    AddCustomItemDialogComponent,
+    AddCustomItemMedopsDialogComponent,
+    ServiceSearchPipe,
+    MinNumberDirectiveDirective,
+    MaxNumberDirectiveDirective,
+    SettleDebtDialogComponent,
+    AppointmentPatientDoctorTableComponent,
+    ServiceAddDialogComponent,
+    PatientAddOfficialdocDialogComponent,
+    PatientOfficialImageTableComponent,
+    LogoutComponent,
+    PrintLayoutInvoiceComponent,
+    UserPanelComponent,
+    UsertableComponent,
+    UserAddNewDialogComponent,
+    UserChangeRoleDialogComponent,
+    UserEnableDisableDialogComponent
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
     LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
+    NgxPrintModule,
+    ClientSideModule,
+    FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    MatCardModule,
-    MatDialogModule,
-    MatSelectModule,
-    FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatTabsModule,
-    MatCheckboxModule,
-    MatButtonToggleModule,
-    MatProgressSpinnerModule,
-    NgxPrintModule,
-    ClientSideModule
-    
+    MaterialModule
+
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorInterceptor,
     multi: true
-  },{
+  }, {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtAuthInterceptorService,
     multi: true
