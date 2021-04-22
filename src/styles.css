@@ -1,23 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+mat-option.mat-option-disabled {
+    background-color: #ffe2e2;
+}
+
 @font-face {
     font-family: cairofont;
     src: url('assets/fonts/Cairo/Cairo-Light.ttf');
-}
-
-@font-face {
-    font-family: titanium;
-    src: url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf');
-}
-
-@font-face {
-    font-family: SourceSansPro;
-    src: url('assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf');
-}
-
-@font-face {
-    font-family: Montserrat;
-    src: url('assets/fonts/Montserrat/Montserrat-Regular.ttf');
 }
 
 a,

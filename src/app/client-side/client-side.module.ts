@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { PostComponent } from './components/blogs/post/post.component';
+import { AppointmentClientDialogComponent } from './components/appointment-client-dialog/appointment-client-dialog.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PostComponent } from './components/blogs/post/post.component';
     BlogsComponent,
     MyHistoryComponent,
     GalleryComponent,
-    PostComponent
+    PostComponent,
+    AppointmentClientDialogComponent
   ],
   imports: [
     CommonModule,
