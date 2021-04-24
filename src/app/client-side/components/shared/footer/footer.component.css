@@ -115,8 +115,8 @@
     text-decoration: none;
 }
 
-#email-a:hover {
-    color: var(--client-primary);
+.footer-center a:hover {
+    color: var(--client-primary) !important;
 }
 
 

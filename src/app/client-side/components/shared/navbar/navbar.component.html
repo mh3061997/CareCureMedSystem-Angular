@@ -2,9 +2,9 @@
     <!-- <img src="../../../../../assets/logo only.png" class="navbar-brand m-0 navbar-brand-logo " alt="care & cure clinics">
   <img src="../../../../../assets/textonly.png" class="navbar-brand-text"> -->
     <!-- <a class="navbar-brand" routerLink="home">CARE & CURE CLINICS</a> -->
-    <div class="container">
+    <div class="container-fluid justify-content-center">
         <div class="row">
-            <div class="col-12 col-lg-3 mb-2">
+            <div class="col-12 col-lg-4 mb-2">
                 <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo" alt="">
 
                 <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,13 +13,13 @@
 
             </div>
 
-            <div class="col-12 col-lg-4 my-auto mb-2">
-                <a class=" mx-1 badge badge-pill badge-light">
+            <div class="col-12 col-lg-3 my-auto mb-2 p-0">
+                <a href="tel:+201122229498" class=" mr-2 badge badge-pill badge-light cursor-hover">
                     <fa-icon class="" [icon]="faPhoneAlt" style=""></fa-icon>
 
                     <span>+201122229498</span>
                 </a>
-                <a class=" mx-1 badge badge-pill badge-light cursor-hover" (click)="openNewAppointmentDialog()">
+                <a class="  badge badge-pill badge-light cursor-hover" (click)="openNewAppointmentDialog()">
                     <span> Request an Appointment</span>
                 </a>
             </div>
@@ -54,8 +54,12 @@
                             <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" *ngIf="isShowMyHistory()">
                             <a class="nav-link" routerLink="history">My&nbsp;History</a>
+                        </li>
+
+                        <li class="nav-item" *ngIf="isShowAdminPanel()">
+                            <a class="nav-link" routerLink="admin/patient">Admin</a>
                         </li>
 
                         <li class="nav-item mx-1" *ngIf="!authService.isUserLoggedIn()">

@@ -29,9 +29,6 @@
 
 .team .member {
     text-align: center;
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 12px 0px rgb(0 0 0 / 10%);
-    padding: 30px 20px;
     background: #fff;
     width: 100%;
 }
@@ -44,19 +41,50 @@
 
 .team .member h4 {
     font-weight: 700;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
     font-size: 18px;
 }
 
 .team .member span {
     font-style: italic;
     display: block;
-    font-size: 13px;
+    font-size: 20px;
 }
 
 .team .member p {
-    padding-top: 10px;
-    font-size: 14px;
+    padding-top: 21px;
+    font-size: 19px;
     font-style: italic;
-    color: #aaaaaa;
+    line-height: 27px;
+    word-spacing: 6px;
+}
+
+.service_box {
+    box-shadow: 0 2px 4px 2px rgb(0 0 0 / 10%);
+    border-radius: 3px;
+    background: #fff;
+    padding: 30px 30px 40px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.service_box .col-md-3 {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.service_box .col-md-9 {
+    flex: 0 0 calc(100% - 250px);
+    max-width: calc(100% - 250px);
+}
+
+.service_photo {
+    position: relative;
+    float: left;
+    width: 220px;
+    height: 220px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }

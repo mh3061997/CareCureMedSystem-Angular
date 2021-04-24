@@ -51,20 +51,29 @@
 </section>
 
 <section class="team mb-5">
-    <div class="container ">
+    <div class="container-fluid ">
         <div class="row justify-content-center ">
             <h4 class=" service_title_line gradient_highlighter" style="color: var(--client-secondary); font-size: 25px; ">{{activeSpeciality}} Services</h4>
 
         </div>
         <div class="row justify-content-center pt-5">
-            <div *ngFor="let service of activeArr" class="col-lg-4 col-md-6 d-flex align-items-stretch ">
-                <div class="member">
+            <div *ngFor="let service of activeArr" class=" col-md-5 d-flex align-items-stretch ">
+                <div class="container service_box">
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <img [src]="service.img" class="service_photo">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="member">
 
-                    <h4 style="color:var(--client-primary) ">{{service.name}}</h4>
-                    <span style="color:var(--client-accent) ">{{service.nameAr}}</span>
-                    <p style="color:var(--client-secondary) ">
-                        {{service.description}} </p>
+                                <h4 style="color:var(--client-primary) ">{{service.name}}</h4>
+                                <span style="color:var(--client-accent) ">{{service.nameAr}}</span>
+                                <p style="color:var(--client-secondary) ">
+                                    {{service.description}} </p>
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

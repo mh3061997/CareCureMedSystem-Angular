@@ -30,5 +30,13 @@ export class NavbarComponent implements OnInit {
 
   }
 
+isShowMyHistory(){
+  return this.authService.isUserLoggedIn() && this.authService.isUserPatient();
+}
 
+isShowAdminPanel(){
+
+  return this.authService.isUserLoggedIn() && (this.authService.isUserAdmin() || this.authService.isUserDoctor());
+
+}
 }
