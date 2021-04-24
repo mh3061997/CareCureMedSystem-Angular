@@ -23,6 +23,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { PostComponent } from './components/blogs/post/post.component';
 import { AppointmentClientDialogComponent } from './components/appointment-client-dialog/appointment-client-dialog.component';
 import { MaterialModule } from '../sharedModules/material-module/material.module';
+import { VideoGalleryComponent } from './components/video-gallery/video-gallery.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MaterialModule } from '../sharedModules/material-module/material.module
     MyHistoryComponent,
     GalleryComponent,
     PostComponent,
-    AppointmentClientDialogComponent
+    AppointmentClientDialogComponent,
+    VideoGalleryComponent
   ],
   imports: [
     CommonModule,

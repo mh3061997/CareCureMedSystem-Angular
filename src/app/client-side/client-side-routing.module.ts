@@ -14,6 +14,7 @@ import { servicesComponent } from './components/med-services/services.component'
 import { MyHistoryComponent } from './components/my-history/my-history.component';
 import { ClientContainerComponent } from './components/shared/client-container/client-container.component';
 import { SignupClientComponent } from './components/signup-client/signup-client.component';
+import { VideoGalleryComponent } from './components/video-gallery/video-gallery.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,8 @@ const routes: Routes = [
        path:'gallery', component:GalleryComponent
      },{
        path:'blog/:id',component:PostComponent
+     },{
+       path:"video-gallery" , component:VideoGalleryComponent
      }
     ]
   }
