@@ -38,6 +38,17 @@ export class PathService {
 
   private registerNonPatientPath:string ="registerNonPatient";
 
+  private contactUsPath:string = "utils/email-contact-us";
+  
+  private contactAppointmentPath:string = "utils/email-contact-appointment";
+
+  public getContactUsPath(){
+    return this.approotPath+this.contactUsPath;
+  }
+  public getContactAppointmentPath(){
+    return this.approotPath+this.contactAppointmentPath;
+  }
+  
   public getPathRegisterPatient(){
     return this.approotPath+this.registerPatientPath;
   }
