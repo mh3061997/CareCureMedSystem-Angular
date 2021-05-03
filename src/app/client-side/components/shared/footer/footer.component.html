@@ -2,14 +2,14 @@
     <div class="footer-left col-md-4 col-sm-6">
         <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo" alt="">
         <p class="menu">
-            <a routerLink="home"> Home</a> |
+            <a routerLink=""> Home</a> |
             <a routerLink="blog"> Blog</a> |
             <a routerLink="doctors"> Doctors</a> |
             <a routerLink="services"> Services</a> |
             <a routerLink="gallery"> Gallery</a> |
             <a routerLink="about-us"> About Us</a> |
-            <a routerLink="contact-us"> Contact Us</a> |
-            <a routerLink="history"> My History</a>
+            <a routerLink="contact-us"> Contact Us</a>
+            <a routerLink="history" *ngIf="isShowMyHistory()">| My History</a>
 
         </p>
         <p class="name"> Care & Cure Clinics &copy; 2021</p>

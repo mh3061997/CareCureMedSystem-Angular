@@ -237,7 +237,7 @@ onCheckChanged(service:ResServicePriceList,checked:boolean){
 
   private goToDoctor() {
 
-    this.router.navigate(['doctor', this.appointment.doctor.code.toString()]);
+    this.router.navigate(['admin','doctor', this.appointment.doctor.code.toString()]);
   }
 
   private getAppointmentCode() {

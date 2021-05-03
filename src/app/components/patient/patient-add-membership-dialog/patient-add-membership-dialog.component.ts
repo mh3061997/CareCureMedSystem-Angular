@@ -102,7 +102,7 @@ export class PatientAddMembershipDialogComponent implements OnInit {
       invoice:newInvoice
     }
     this.servInvoiceItem.addInvoiceItem(item).subscribe(() => {
-      this.router.navigate(['invoice',newInvoice.code]);
+      this.router.navigate(['admin','invoice',newInvoice.code]);
     });
   }
 

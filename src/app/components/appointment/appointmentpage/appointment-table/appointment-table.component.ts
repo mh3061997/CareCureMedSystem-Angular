@@ -72,7 +72,7 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
 
 goToAppointment(code:number){
   console.log(this.route);
-  this.router.navigate(['appointment',code.toString()]);
+  this.router.navigate([code.toString()],{relativeTo:this.route});
 }
 
 cancelAppointment(appointment:ResAppointment){

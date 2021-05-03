@@ -60,7 +60,7 @@ export class AppointmentPatientTableComponent implements AfterViewInit ,OnChange
   
   goToAppointment(code:number){
     console.log(this.route);
-    this.router.navigate(['appointment',code.toString()]);
+    this.router.navigate(['admin','appointment',code.toString()]);
   }
 
   
