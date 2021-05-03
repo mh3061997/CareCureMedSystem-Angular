@@ -1,1 +1,83 @@
-<p>signup-client works!</p>
+<!-- <section class="banner_head">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 ">
+                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">Create Your Account</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sign_up_section">
+    <form (ngSubmit)="onNewPatientSubmit()" #newPatientForm="ngForm">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-6">
+                    <mat-form-field>
+
+                        <label for="input-name" class="form-control-label">Name</label>
+                        <input matInput type="text" name="name" class="form-control" ngModel #name="ngModel" pattern="[a-zA-Z ]*" required>
+                        <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
+
+
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <label for="input-name" class="form-control-label">Gender</label>
+                        <mat-select ngModel name="gender" class="form-control" required #gender="ngModel">
+                            <span class="form-text text-muted" *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
+                            <mat-option value="Male">Male</mat-option>
+                            <mat-option value="Female">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+
+                        <label for="input-name" class="form-control-label">Email</label>
+                        <input name="email" matInput type="text" class="form-control" ngModel required email #email="ngModel">
+                        <span class="form-text text-muted" *ngIf="email.touched && email.invalid">Please enter email !<br></span>
+
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+
+                        <label for="input-name" class="form-control-label">Mobile</label>
+                        <input name="mobile" matInput type="number" class="form-control" ngModel #mobile="ngModel" required min="11">
+                        <span class="form-text text-muted" *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
+                    </mat-form-field>
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <mat-form-field>
+
+                        <label for="input-name" class="form-control-label">Age</label>
+                        <input name="age" matInput type="number" class="form-control" ngModel #age="ngModel" required>
+                        <span class="form-text text-muted" *ngIf="age.touched && age.invalid">Please enter age !<br></span>
+
+
+                    </mat-form-field>
+
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <button class="btn btn-success" [disabled]="!newPatientForm.valid" type="submit">Add</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</section> -->
