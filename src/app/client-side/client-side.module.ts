@@ -24,6 +24,9 @@ import { PostComponent } from './components/blogs/post/post.component';
 import { AppointmentClientDialogComponent } from './components/appointment-client-dialog/appointment-client-dialog.component';
 import { MaterialModule } from '../sharedModules/material-module/material.module';
 import { VideoGalleryComponent } from './components/video-gallery/video-gallery.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { NgxSplideModule } from 'ngx-splide';
+import { SafePipe } from './safe.pipe';
 
 
 @NgModule({
@@ -42,7 +45,9 @@ import { VideoGalleryComponent } from './components/video-gallery/video-gallery.
     GalleryComponent,
     PostComponent,
     AppointmentClientDialogComponent,
-    VideoGalleryComponent
+    VideoGalleryComponent,
+    ForgotPasswordComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -53,7 +58,8 @@ import { VideoGalleryComponent } from './components/video-gallery/video-gallery.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CarouselModule,
-    MaterialModule
+    MaterialModule,
+    NgxSplideModule
     ]
 })
 export class ClientSideModule { }

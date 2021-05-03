@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: '', component: ClientContainerComponent, children: [
       {
-        path: 'home', component: HomeComponent
+        path: '', component: HomeComponent
       }, {
         path: 'about-us', component: AboutUsComponent
       }, {
