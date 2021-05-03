@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AppointmentClientDialogComponent } from '../appointment-client-dialog/appointment-client-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -32,29 +34,17 @@ export class HomeComponent implements OnInit {
     nav: false
   }
   
-  constructor() { }
+  constructor(public dialogAddAppointment: MatDialog) { }
 
   ngOnInit(): void {
   }
 
 
-  
-  // // Clients carousel (uses the Owl Carousel library)
-  // $(".clients-carousel").owlCarousel({
-  //   autoplay: true,
-  //   dots: true,
-  //   loop: true,
-  //   responsive: {
-  //     0: {
-  //       items: 2
-  //     },
-  //     768: {
-  //       items: 4
-  //     },
-  //     900: {
-  //       items: 6
-  //     }
-  //   }
-  // });
+  openNewAppointmentDialog() {
+    const dialogRef = this.dialogAddAppointment.open(AppointmentClientDialogComponent, { disableClose: true });
+
+    dialogRef.afterClosed().subscribe();
+
+  }
 
 }

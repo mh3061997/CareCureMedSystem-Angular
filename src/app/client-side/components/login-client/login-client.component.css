@@ -1,5 +1,5 @@
 .user_card {
-    height: 400px;
+    height: 500px;
     width: 350px;
     margin-top: auto;
     margin-bottom: auto;
@@ -13,6 +13,10 @@
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
+}
+
+div.container-fluid {
+    padding: 170px 0px 50px;
 }
 
 .brand_logo_container {
@@ -69,11 +73,11 @@
 }
 
 .highlight-pr {
-    color: var(--client-accent);
+    color: white;
 }
 
 .highlight-pr:hover {
-    color: white;
+    color: var(--client-primary);
 }
 
 .error {
@@ -81,4 +85,11 @@
     width: 300px;
     color: white;
     background-color: red;
+}
+
+.container-fluid {
+    background: url('../../../../assets/Backgrounds/19154.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: contain;
 }

@@ -4,8 +4,8 @@
     <!-- <a class="navbar-brand" routerLink="home">CARE & CURE CLINICS</a> -->
     <div class="container-fluid justify-content-center">
         <div class="row">
-            <div class="col-12 col-lg-4 mb-2">
-                <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo" alt="">
+            <div class="col-md-4 mb-2">
+                <a routerLink=""> <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo" alt=""></a>
 
                 <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon text-white"></span>
@@ -13,7 +13,7 @@
 
             </div>
 
-            <div class="col-12 col-lg-3 my-auto mb-2 p-0">
+            <div class="col-md-3 my-auto mb-2 p-0">
                 <a href="tel:+201122229498" class=" mr-2 badge badge-pill badge-light cursor-hover">
                     <fa-icon class="" [icon]="faPhoneAlt" style=""></fa-icon>
 
@@ -23,54 +23,54 @@
                     <span> Request an Appointment</span>
                 </a>
             </div>
-            <div class="col-12 col-lg-5 my-auto mb-2">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class=" navbar-nav mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
-                        </li>
+            <div class="col-md-5 my-auto mb-2 collapse navbar-collapse">
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="blog">Blog</a>
-                        </li>
+                <ul class=" navbar-nav mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="">Home</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="doctors">Doctors</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="blog">Blog</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="services">Services</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="doctors">Doctors</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="gallery">Gallery</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="services">Services</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="about-us">About&nbsp;Us</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="gallery">Gallery</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="about-us">About&nbsp;Us</a>
+                    </li>
 
-                        <li class="nav-item" *ngIf="isShowMyHistory()">
-                            <a class="nav-link" routerLink="history">My&nbsp;History</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
+                    </li>
 
-                        <li class="nav-item" *ngIf="isShowAdminPanel()">
-                            <a class="nav-link" routerLink="admin/patient">Admin</a>
-                        </li>
+                    <li class="nav-item" *ngIf="isShowMyHistory()">
+                        <a class="nav-link" routerLink="history">My&nbsp;History</a>
+                    </li>
 
-                        <li class="nav-item mx-1" *ngIf="!authService.isUserLoggedIn()">
-                            <a routerLink="login-client" class="btn nav-auth-btn">Login</a></li>
-                        <li class="nav-item " *ngIf="!authService.isUserLoggedIn()">
-                            <a routerLink="signup-client" class="btn nav-auth-btn">Sign&nbsp;up</a></li>
-                        <li class="nav-item " *ngIf="authService.isUserLoggedIn()">
-                            <a class="btn nav-auth-btn" (click)="authService.logOut()">Log&nbsp;Out</a></li>
+                    <li class="nav-item" *ngIf="isShowAdminPanel()">
+                        <a class="nav-link" routerLink="admin/patient">Admin</a>
+                    </li>
 
-                    </ul>
-                </div>
+                    <li class="nav-item mx-1" *ngIf="!authService.isUserLoggedIn()">
+                        <a routerLink="login-client" class="btn nav-auth-btn">Login</a></li>
+                    <li class="nav-item " *ngIf="!authService.isUserLoggedIn()">
+                        <a routerLink="signup-client" class="btn nav-auth-btn">Sign&nbsp;up</a></li>
+                    <li class="nav-item " *ngIf="authService.isUserLoggedIn()">
+                        <a class="btn nav-auth-btn" (click)="authService.logOut()">Log&nbsp;Out</a></li>
+
+                </ul>
+
             </div>
         </div>
 

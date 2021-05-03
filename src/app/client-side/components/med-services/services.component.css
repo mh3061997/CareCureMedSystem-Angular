@@ -46,15 +46,13 @@
 }
 
 .team .member span {
-    font-style: italic;
     display: block;
     font-size: 20px;
 }
 
 .team .member p {
-    padding-top: 21px;
+    /* padding-top: 21px; */
     font-size: 19px;
-    font-style: italic;
     line-height: 27px;
     word-spacing: 6px;
 }

@@ -49,13 +49,17 @@
         </div>
     </div>
 </section>
-
-<section class="team mb-5">
-    <div class="container-fluid ">
+<section>
+    <div class="container pb-5">
         <div class="row justify-content-center ">
             <h4 class=" service_title_line gradient_highlighter" style="color: var(--client-secondary); font-size: 25px; ">{{activeSpeciality}} Services</h4>
 
         </div>
+    </div>
+</section>
+<section class="team pb-5 bg-gray">
+    <div class="container-fluid ">
+
         <div class="row justify-content-center pt-5">
             <div *ngFor="let service of activeArr" class=" col-md-5 d-flex align-items-stretch ">
                 <div class="container service_box">
@@ -67,9 +71,9 @@
                             <div class="member">
 
                                 <h4 style="color:var(--client-primary) ">{{service.name}}</h4>
-                                <span style="color:var(--client-accent) ">{{service.nameAr}}</span>
-                                <p style="color:var(--client-secondary) ">
-                                    {{service.description}} </p>
+                                <span style="color:var(--client-accent);margin-bottom: 21px; ">{{service.nameAr}}</span>
+                                <p style="color:var(--client-secondary);  " *ngFor="let sentence of service.description.split('.')">
+                                    {{sentence}} </p>
 
                             </div>
                         </div>
