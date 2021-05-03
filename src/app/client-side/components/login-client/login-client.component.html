@@ -1,5 +1,7 @@
-<div class="container h-100">
+<div class="container-fluid  ">
+
     <div class="d-flex justify-content-center h-100">
+
         <div class="user_card">
             <div class="d-flex justify-content-center">
                 <div class="brand_logo_container">
@@ -7,7 +9,15 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
+
                 <form>
+                    <div class="alert alert-danger alert-dismissible fade show" *ngIf="error" role="alert" style="overflow: hidden; position: relative;">
+
+                        <strong>{{error}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text">
@@ -25,14 +35,8 @@
                         <input type="password" class="form-control input_pass" placeholder="password" [(ngModel)]="password" name="password" required>
                     </div>
                     <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customControlInline">
-                            <label class="custom-control-label" for="customControlInline">Remember me</label>
-                            <p *ngIf="error" class="error">
-                                {{ error }}
-                            </p>
-                            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-                        </div>
+
+
                     </div>
                     <div class="d-flex justify-content-center mt-3 login_container">
                         <button type="button" name="button" class="btn login_btn" (click)="checkLogin()">Login</button>
@@ -42,7 +46,7 @@
 
             <div class="mt-4">
                 <div class="d-flex justify-content-center links text-white">
-                    Don't have an account? <a routerLink="signup-client" class="ml-2 highlight-pr">Sign Up</a>
+                    Don't have an account? <a routerLink="/signup-client" class="ml-2 highlight-pr">Sign Up</a>
                 </div>
                 <div class="d-flex justify-content-center links text-white">
                     <a class="highlight-pr">Forgot your password?</a>
@@ -50,4 +54,8 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="spinner-wrapper" [style.display]="showSpinner ? 'block' : 'none'">
+    <div class="spinner">Loading...</div>
 </div>
