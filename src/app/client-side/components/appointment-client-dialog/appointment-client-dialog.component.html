@@ -117,47 +117,6 @@
                             </mat-form-field>
 
                         </div>
-
-
-
-
-                        <div class="col-md-6">
-
-
-                            <mat-form-field *ngIf="doctors" class="example-full-width">
-                                <label for="input-name" class="form-control-label">Doctor</label>
-
-                                <input type="text" name="doctor" required matInput [formControl]="doctorFormControl" [matAutocomplete]="doctorAutoComplete">
-                                <span class="form-text text-muted" *ngIf="doctorFormControl.touched && doctorFormControl.invalid">Please choose doctor name
-                                    !<br></span>
-                                <mat-autocomplete #doctorAutoComplete="matAutocomplete" [displayWith]="displayFnDoctor">
-                                    <mat-option *ngFor="let doctor of filtereddoctors | async" [value]="doctor">
-                                        {{doctor.name}} | Code: {{doctor.code}}
-                                    </mat-option>
-
-                                </mat-autocomplete>
-                            </mat-form-field>
-
-                        </div>
-
-                        <div class="col-md-6">
-                            <mat-form-field>
-                                <label for="input-name" class="form-control-label">Type</label>
-                                <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
-                                    type !<br></span>
-                                <mat-select ngModel name="type" class="form-control" required #type="ngModel">
-
-                                    <mat-option value="Visit">Visit</mat-option>
-                                    <mat-option value="Revisit">Revisit</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-
-                        </div>
-
-
-
-
-
                         <div class="col-md-6">
                             <mat-form-field appearance="fill" *ngIf="doctorFormControl.value">
                                 <mat-label>Choose Visit Date</mat-label>
@@ -178,6 +137,20 @@
                             </mat-form-field>
 
                         </div>
+                        <div class="col-md-6">
+                            <mat-form-field>
+                                <label for="input-name" class="form-control-label">Type</label>
+                                <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
+                                    type !<br></span>
+                                <mat-select ngModel name="type" class="form-control" required #type="ngModel">
+
+                                    <mat-option value="Visit">Visit</mat-option>
+                                    <mat-option value="Revisit">Revisit</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+
                         <div class="col-md-6">
                             <mat-form-field *ngIf="newAppointmentForm.value.dateToVisit && reservedDoctorTimes">
                                 <label for="input-name" class="form-control-label">Time of Visit</label>
@@ -201,6 +174,36 @@
                             </mat-form-field>
 
                         </div>
+
+
+
+
+                        <div class="col-md-6">
+
+
+                            <mat-form-field *ngIf="doctors" class="example-full-width">
+                                <label for="input-name" class="form-control-label">Doctor</label>
+
+                                <input type="text" name="doctor" required matInput [formControl]="doctorFormControl" [matAutocomplete]="doctorAutoComplete">
+                                <span class="form-text text-muted" *ngIf="doctorFormControl.touched && doctorFormControl.invalid">Please choose doctor name
+                                    !<br></span>
+                                <mat-autocomplete #doctorAutoComplete="matAutocomplete" [displayWith]="displayFnDoctor">
+                                    <mat-option *ngFor="let doctor of filtereddoctors | async" [value]="doctor">
+                                        {{doctor.name}} | Code: {{doctor.code}}
+                                    </mat-option>
+
+                                </mat-autocomplete>
+                            </mat-form-field>
+
+                        </div>
+
+
+
+
+
+
+
+
 
                     </div>
 
