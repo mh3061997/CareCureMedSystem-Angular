@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="doctor-container p-5">
+<section class="doctor-container p-5 ">
     <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -49,12 +49,17 @@
         </div>
     </div>
 </section>
-<section class="team mb-5">
-    <div class="container ">
+<section>
+    <div class="container pb-5">
         <div class="row justify-content-center ">
             <h4 class=" service_title_line gradient_highlighter" style="color: var(--client-secondary); font-size: 25px; ">{{activeSpeciality}} Doctors</h4>
 
         </div>
+    </div>
+</section>
+<section class="team pb-5 bg-gray">
+    <div class="container ">
+
         <div class="row justify-content-center pt-5">
             <div *ngFor="let doctor of activeArr" class="col-lg-4 col-md-6 d-flex align-items-stretch ">
                 <div class="member ">
