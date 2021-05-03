@@ -236,3 +236,28 @@ tr.noBorder td:first-child {
     color: white;
     border-color: var(--client-primary);
 }
+
+.nav-auth-btn {
+    background-color: var(--client-primary);
+    color: white;
+    width: 160px;
+    padding: 11px;
+    border-radius: 56px !important;
+    margin: 25px;
+}
+
+.nav-auth-btn span {
+    font-size: 25px;
+    padding: 5px;
+    line-height: 15px;
+}
+
+.nav-auth-btn img {
+    max-width: 75%;
+    max-height: 87px;
+    margin-bottom: 23px;
+}
+
+.nav-auth-btn:hover {
+    background-color: #ad5e80;
+}

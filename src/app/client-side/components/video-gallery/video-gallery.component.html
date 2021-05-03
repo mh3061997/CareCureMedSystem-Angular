@@ -22,23 +22,62 @@
         </div>
     </div>
 </section>
-<section class="blog-posts p-4">
+<section class="doctor-container p-5 ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h4 style="font-size:25px !important; color: var(--client-secondary);">Choose a speciality to view our videos</h4>
+                <div class="btn-group " role="group" aria-label="Basic example">
+                    <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dermatology')">
+                        <img src="../../../../assets/icons/Derma.png" alt="">
+                        <span>Dermatology </span>
+                    </button>
+                    <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dental')">
+                        <img src=" ../../../../assets/icons/Dental.png " alt=" ">
+                        <span>Dentistry </span>
+                    </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('surgery')">
+                        <img src="../../../../assets/icons/Surgery.png " alt=" ">
+                        <span>Surgery </span>
+                    </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('plastic')">
+                        <img src="../../../../assets/icons/plastic surgery.png " alt=" ">
+                        <span>Plastic Surgery </span>
+                        </button>
+
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('nutrition')">
+                        <img src="../../../../assets/icons/NURTii.png " alt=" ">
+                        <span>Nutrition</span>
+                        </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('internal')">
+                        <img src="../../../../assets/icons/Internal medcine.png " alt=" ">
+                        <span>Internal Medecine</span>
+                        </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')">
+                        <img src="../../../../assets/icons/obstetrics.png" alt=" ">
+                        <span>Obsetrics</span>
+                        </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container pb-5">
+        <div class="row justify-content-center ">
+            <h4 class=" service_title_line gradient_highlighter" style="color: var(--client-secondary); font-size: 25px; ">{{activeSpeciality}} Doctors</h4>
+
+        </div>
+    </div>
+</section>
+<section class="blog-posts p-4 bg-gray">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 mb-3 blog_list_small ">
-                <iframe width="100%" height="315px" src="https://www.youtube.com/embed/8UVNT4wvIGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            </div>
-            <div class="col-md-6 mb-3 blog_list_small ">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/tXsQJhoauxc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            </div>
-            <div class="col-md-6 mb-3 blog_list_small ">
-                <iframe width="100%" height="315px" src="https://www.youtube.com/embed/8UVNT4wvIGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            </div>
-            <div class="col-md-6 mb-3 blog_list_small ">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/TdrL3QxjyVw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="col-md-6 mb-3 blog_list_small " *ngFor="let videoUrl of activeArr">
+                <iframe width="100%" height="315" [src]="videoUrl | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
             </div>
         </div>
