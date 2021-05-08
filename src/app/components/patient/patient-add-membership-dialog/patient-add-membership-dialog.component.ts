@@ -78,10 +78,10 @@ export class PatientAddMembershipDialogComponent implements OnInit {
       invoiceItems: [],
       paymentMethod: "",
       status: "Not Paid",
-      totalAfterDiscount: packageBaseChosen.price,
-      totalDue: packageBaseChosen.price,
+      totalAfterDiscount: 0,
+      totalDue: 0,
       totalPaid: 0,
-      totalRemaining: packageBaseChosen.price
+      totalRemaining: 0
     };
     
     this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
@@ -97,7 +97,7 @@ export class PatientAddMembershipDialogComponent implements OnInit {
     
     const item :ResInvoiceItem = {
       code:0,
-      price:newInvoice.totalDue,
+      price:packageBaseChosen.price,
       name:packageBaseChosen.name,
       invoice:newInvoice
     }
