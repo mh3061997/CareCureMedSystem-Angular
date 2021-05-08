@@ -35,13 +35,28 @@
     min-height: 100px;
     max-height: 500px;
     overflow-y: scroll;
-    background-color: grey;
+    border: 10px solid var(--client-primary) !important;
 }
 
 .appointment-box {
     background-color: white;
+    border: 5px solid var(--client-primary) !important;
 }
 
 .banner_head {
     background-image: url('../../../../assets/upper background/pc/Patients.png');
+}
+
+.col-lg-6>p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.col-12>p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.col-lg-6 {
+    margin-bottom: 20px;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   faPhoneAlt
 } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +16,10 @@ export class NavbarComponent implements OnInit {
 
   faPhoneAlt=faPhoneAlt;
 
-  constructor(public dialogAddAppointment: MatDialog,public authService:AuthService) {
+  constructor(public dialogAddAppointment: MatDialog,
+    public authService:AuthService,
+    private currentRoute:ActivatedRoute,
+    private router:Router) {
     
   }
 
@@ -25,7 +29,11 @@ export class NavbarComponent implements OnInit {
 
   openNewAppointmentDialog() {
     const dialogRef = this.dialogAddAppointment.open(AppointmentClientDialogComponent, { disableClose: true });
-
+    
+    
+    if(this.router.url === '/login-client') {
+      this.router.navigate(['']);
+    }
     dialogRef.afterClosed().subscribe();
 
   }

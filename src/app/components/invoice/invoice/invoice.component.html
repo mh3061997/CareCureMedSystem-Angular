@@ -1,4 +1,4 @@
-<app-print-layout-invoice id="print-section" [hidden]="false" [invoice]="invoice"></app-print-layout-invoice>
+<app-print-layout-invoice id="print-section" [hidden]="true" [invoice]="invoice"></app-print-layout-invoice>
 
 <div class=" p-4 mb-0 pb-0 text-danger">
 
@@ -14,7 +14,7 @@
     </div>
 
 </div>
-<div *ngIf="invoice"  class="container-fluid p-3 text-medgray" style="">
+<div *ngIf="invoice" class="container-fluid p-3 text-medgray" style="">
     <div class="row justify-content-center ">
         <div class="col-md-10">
 
@@ -24,11 +24,8 @@
                 <div class="card-header  bg-white p-3">
                     <div class="container-fluid">
                         <div class="row justify-content-center align-middle ">
-                            <button *ngIf="invoice.status=='Not Paid'"class="btn btn-danger col-3"
-                            (click)="openFinalizedInvoiceDialog()">Finalize Invoice</button>
-                            <button *ngIf="invoice.status=='Finalized' || invoice.status=='Debt'"class="btn btn-info col-3"
-                             printSectionId="print-section" ngxPrint   [useExistingCss]="true"
-                            >
+                            <button *ngIf="invoice.status=='Not Paid'" class="btn btn-danger col-3" (click)="openFinalizedInvoiceDialog()">Finalize Invoice</button>
+                            <button *ngIf="invoice.status=='Finalized' || invoice.status=='Debt'" class="btn btn-info col-3" printSectionId="print-section" ngxPrint [useExistingCss]="true">
                              Print Invoice</button>
                             <h3 class="mb-0 col-6 ">Invoice Information</h3>
                         </div>
@@ -107,18 +104,18 @@
                             <hr class="my-4" />
 
                         </div>
-                        
+
                         <div *ngIf="invoice.appointment" class="row justify-content-end align-middle card-header  bg-white p-3 ">
                             <h3 class="mb-0 col-6 ">Appointment Information</h3>
                             <button class="btn btn-primary col-3" (click)="goToAppointment(invoice.appointment.code)">Go</button>
                         </div>
 
                         <div class="row align-middle justify-content-center">
-                            <div  *ngIf="invoice.appointment" class="col-md-10 justify-content-center">
+                            <div *ngIf="invoice.appointment" class="col-md-10 justify-content-center">
                                 <div class="row p-4">
                                     <div class="card-body  justify-content-center ">
                                         <div class="row">
-                
+
                                             <div class="col-lg-6">
                                                 <p class="form-control-label">Code</p>
                                                 <p>{{invoice.appointment.code}}</p>
@@ -138,34 +135,34 @@
                                                 <p>{{invoice.appointment.dateToVisit}}</p>
                                             </div>
                                         </div>
-                
+
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <p class="form-control-label">Status</p>
                                                 <p>{{invoice.appointment.status}}</p>
                                             </div>
-                                          
+
                                             <div class="col-lg-6">
                                                 <p class="form-control-label">Doctor Name</p>
                                                 <p>{{invoice.appointment.doctor.name}}</p>
                                             </div>
                                         </div>
-                
+
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <p class="form-control-label">Patient Name</p>
                                                 <p>{{invoice.appointment.patient.name}}</p>
-                                                
+
                                             </div>
                                             <div *ngIf="invoice.appointment.patient.totalDebt>0" class="col-lg-6 ">
                                                 <p class="form-control-label">Patient Debt</p>
                                                 <p class="text-white fw-bold bg-danger p-2">{{invoice.appointment.patient.totalDebt}}</p>
-                                                
+
                                             </div>
-                                         
+
                                         </div>
                                     </div>
-                
+
                                 </div>
                             </div>
                         </div>
@@ -174,28 +171,18 @@
 
                         </div>
                         <div class="card-header justify-content-end bg-white p-3">
-                        <div class="container-fluid">
-                            <div class="row justify-content-end align-middle">
-                                <div class="col-3" *ngIf="invoice.appointment">
-                                    <button  class="btn btn-danger " 
-                                    (click)="openFinalizedDebtDialog()"
-                                    *ngIf="invoice.status=='Not Paid' && invoice.appointment.patient.totalDebt > 0"
-                                    >Settle Debt</button></div>
+                            <div class="container-fluid">
+                                <div class="row justify-content-end align-middle">
+                                    <div class="col-3" *ngIf="invoice.appointment">
+                                        <button class="btn btn-danger " (click)="openFinalizedDebtDialog()" *ngIf="invoice.status=='Not Paid' && invoice.appointment.patient.totalDebt > 0">Settle Debt</button></div>
 
-                                <h3 class="mb-0 col-6">Invoice Items</h3>
-                                <button class="btn btn-success col-3" 
-                                (click)="openAddCustomInvoiceItemDialog()"
-                                *ngIf="invoice.status !='Finalized'"
-                                >Add Item</button>
-                            
+                                    <h3 class="mb-0 col-6">Invoice Items</h3>
+                                    <button class="btn btn-success col-3" (click)="openAddCustomInvoiceItemDialog()" *ngIf="invoice.status !='Finalized'">Add Item</button>
+
+                                </div>
                             </div>
-                        </div>   
                         </div>
-                        <app-invoice-items-table 
-                        [invoiceItems]="invoice.invoiceItems"
-                        [invoiceStatus]="invoice.status"
-                        (itemRemovedEvent)="getInvoice()"
-                        ></app-invoice-items-table>
+                        <app-invoice-items-table [invoiceItems]="invoice.invoiceItems" [invoiceStatus]="invoice.status" (itemRemovedEvent)="getInvoice()"></app-invoice-items-table>
 
                     </div>
 
@@ -207,4 +194,3 @@
 
     </div>
 </div>
-

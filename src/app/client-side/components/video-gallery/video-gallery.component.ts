@@ -9,7 +9,7 @@ export class VideoGalleryComponent implements OnInit {
 
   
 
-  DermatolgyArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw','https://www.youtube.com/embed/TdrL3QxjyVw','https://www.youtube.com/embed/TdrL3QxjyVw'];
+  DermatolgyArr:string[]=['https://www.youtube.com/embed/6LpJ2dz5uOM','https://www.youtube.com/embed/TdrL3QxjyVw','https://www.youtube.com/embed/TdrL3QxjyVw'];
   DentalArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
   InternalMedcineArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
   ObsArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
