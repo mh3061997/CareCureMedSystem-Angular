@@ -39,7 +39,7 @@
         </ng-container>
 
         <ng-container matColumnDef="enabled">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Enabled </th>
+            <th mat-header-cell *matHeaderCellDef> Enabled </th>
             <td mat-cell *matCellDef="let row">
                 <span *ngIf="row.enabled===true">Yes</span>
                 <span *ngIf="row.enabled===false">No</span>

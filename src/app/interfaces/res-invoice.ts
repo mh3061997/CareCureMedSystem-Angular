@@ -16,5 +16,6 @@ appointment?:ResAppointment;
 usedMembership?:ResMembership;
 paymentMethod:string;
 invoiceItems:ResInvoiceItem[];
+userFinalizedBy?:string;
 }
  

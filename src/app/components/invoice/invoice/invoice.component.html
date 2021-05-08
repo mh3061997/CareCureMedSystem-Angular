@@ -85,14 +85,16 @@
                                 <p class="form-control-label">Total Paid</p>
                                 <p>{{invoice.totalPaid}}</p>
                             </div>
+                            <div class="col-lg-6" *ngIf=" invoice.status!='Not Paid' ">
 
+                                <p class="form-control-label">Finalized By</p>
+                                <p>{{invoice.userFinalizedBy}}</p>
+
+                            </div>
 
                         </div>
                         <div class="row">
-                            <div *ngIf="invoice.appointment" class="col-lg-6">
-                                <p class="form-control-label">Appointment Code</p>
-                                <p>{{invoice.appointment.code}}</p>
-                            </div>
+
                             <div *ngIf="invoice.usedMembership" class="col-lg-6">
                                 <p class="form-control-label">Used Membership Code</p>
                                 <p>{{invoice.usedMembership.code}}</p>

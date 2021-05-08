@@ -50,6 +50,11 @@
             <td mat-cell *matCellDef="let row"> {{row.status}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="userLoggerName">
+            <th mat-header-cell *matHeaderCellDef> Created By </th>
+            <td mat-cell *matCellDef="let row"> {{row.userLoggerName}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="notes">
             <th mat-header-cell *matHeaderCellDef> notes </th>
             <td mat-cell *matCellDef="let row"> {{row.notes}} </td>

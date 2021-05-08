@@ -57,7 +57,7 @@ export class ServAppointmentService {
   }
 
   getDoctorAppointmentsByDate(doctorCode:number,date:Date):Observable<ResAppointment[]>{
-    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/date/"+doctorCode,{
+    return this.http.get<ResAppointment[]>(this.servPath.getPathAppointment()+"/date/doctor/"+doctorCode,{
       params:{
         date:date.toISOString()
       }
