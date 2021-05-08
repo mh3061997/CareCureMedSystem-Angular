@@ -177,7 +177,7 @@
                                         <button class="btn btn-danger " (click)="openFinalizedDebtDialog()" *ngIf="invoice.status=='Not Paid' && invoice.appointment.patient.totalDebt > 0">Settle Debt</button></div>
 
                                     <h3 class="mb-0 col-6">Invoice Items</h3>
-                                    <button class="btn btn-success col-3" (click)="openAddCustomInvoiceItemDialog()" *ngIf="invoice.status !='Finalized'">Add Item</button>
+                                    <button class="btn btn-success col-3" (click)="openAddCustomInvoiceItemDialog()" *ngIf="invoice.status == 'Not Paid'">Add Item</button>
 
                                 </div>
                             </div>
