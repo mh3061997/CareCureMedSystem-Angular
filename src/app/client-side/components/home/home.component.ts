@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppointmentClientDialogComponent } from '../appointment-client-dialog/appointment-client-dialog.component';
 
@@ -34,9 +35,12 @@ export class HomeComponent implements OnInit {
     nav: false
   }
   
-  constructor(public dialogAddAppointment: MatDialog) { }
+  constructor(public dialogAddAppointment: MatDialog,private router:Router) { }
 
   ngOnInit(): void {
+    if(history.state.openReserveDialog){
+      this.openNewAppointmentDialog();
+    }
   }
 
 

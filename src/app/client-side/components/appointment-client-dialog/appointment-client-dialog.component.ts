@@ -62,6 +62,7 @@ export class AppointmentClientDialogComponent implements OnInit {
     //to disable intended dialog action to fire on backclick
     //i return false and check it on parent to execute afterclosed action or not
     dialogRef.backdropClick().subscribe(result => {
+
       dialogRef.close(false);
       // console.log("backclick")
     });
@@ -116,6 +117,10 @@ export class AppointmentClientDialogComponent implements OnInit {
 
 
   ngOnInit() {
+    if(history.state.openReserveDialog) {
+      this.isReserveYourself=true;
+      
+    }
  
 
 
@@ -262,7 +267,7 @@ export class AppointmentClientDialogComponent implements OnInit {
       this.isReserveYourself=true;
     }else{
       this.dialogRef.close(false);
-      this.router.navigate(['login-client']);
+      this.router.navigate(['login-client'],{state:{openReserveDialog:true}});
     }
     console.log(this.isReserveYourself);
     

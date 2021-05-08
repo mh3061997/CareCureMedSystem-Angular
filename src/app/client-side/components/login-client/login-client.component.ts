@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  faKey,faUser
+  faKey, faUser
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
@@ -11,14 +11,14 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginClientComponent implements OnInit {
 
-  faKey=faKey;
-  faUser=faUser;
+  faKey = faKey;
+  faUser = faUser;
 
-  
+
   username = ''
   password = ''
   invalidLogin = false
-  showSpinner=false
+  showSpinner = false
 
   @Input() error: string | null;
   constructor(private router: Router,
@@ -53,7 +53,7 @@ export class LoginClientComponent implements OnInit {
 
     } else if (this.authService.isUserDoctor()) {
       const doctorCode = this.authService.getLoggedInDoctorCode();
-      this.router.navigate(['admin', 'doctor',doctorCode]);
+      this.router.navigate(['admin', 'doctor', doctorCode]);
 
 
     } else if (this.authService.isUserAdmin()) {
@@ -62,8 +62,14 @@ export class LoginClientComponent implements OnInit {
 
 
     } else if (this.authService.isUserPatient()) {
+   
+    
+      if (history.state.openReserveDialog) {
+        this.router.navigate([''], { state: { openReserveDialog: true } });
+      } else {
 
-      this.router.navigate(['history']);
+        this.router.navigate(['history']);
+      }
 
     }
 
