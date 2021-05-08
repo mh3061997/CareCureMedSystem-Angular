@@ -128,11 +128,15 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <p class="form-control-label">Date of Creation</p>
-                                                <p>{{invoice.appointment.dateCreated}}</p>
+                                                <p>
+                                                    {{servUtils.formatDateTime(invoice.appointment.dateCreated)}}
+                                                </p>
                                             </div>
                                             <div class="col-lg-6">
                                                 <p class="form-control-label">Date of Visit</p>
-                                                <p>{{invoice.appointment.dateToVisit}}</p>
+                                                <p>
+                                                    {{servUtils.formatDateTime(invoice.appointment.dateToVisit)}}
+                                                </p>
                                             </div>
                                         </div>
 
