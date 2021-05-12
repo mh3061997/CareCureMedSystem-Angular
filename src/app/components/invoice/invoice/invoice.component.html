@@ -100,7 +100,11 @@
                                 <p>{{invoice.usedMembership.code}}</p>
                             </div>
 
+                            <div class="col-lg-6" *ngIf="invoice.patientMembershipSubscriber">
+                                <p class="form-control-label">Patient Name</p>
+                                <p>{{invoice.patientMembershipSubscriber.name}}</p>
 
+                            </div>
                         </div>
                         <div class="">
                             <hr class="my-4" />
@@ -155,11 +159,12 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6" *ngIf="invoice.appointment">
                                                 <p class="form-control-label">Patient Name</p>
                                                 <p>{{invoice.appointment.patient.name}}</p>
 
                                             </div>
+
                                             <div *ngIf="invoice.appointment.patient.totalDebt>0" class="col-lg-6 ">
                                                 <p class="form-control-label">Patient Debt</p>
                                                 <p class="text-white fw-bold bg-danger p-2">{{invoice.appointment.patient.totalDebt}}</p>

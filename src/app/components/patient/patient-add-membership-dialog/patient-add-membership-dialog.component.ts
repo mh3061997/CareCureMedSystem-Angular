@@ -81,7 +81,8 @@ export class PatientAddMembershipDialogComponent implements OnInit {
       totalAfterDiscount: 0,
       totalDue: 0,
       totalPaid: 0,
-      totalRemaining: 0
+      totalRemaining: 0,
+      patientMembershipSubscriber:this.patient,
     };
     
     this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
