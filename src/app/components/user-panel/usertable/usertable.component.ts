@@ -83,7 +83,7 @@ export class UsertableComponent implements AfterViewInit, OnChanges {
 
     this.dataSource.filterPredicate =
     (user: ResUserDao, filter: string) => {
-      return user.code != null && user.code.toString() == filter;
+      return user.code != null && user.code.toString().trim().toLowerCase() == filter.trim().toLowerCase();
     };
 
   }else if(searchFilter === 'Username') {

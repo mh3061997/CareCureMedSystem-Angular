@@ -1,6 +1,17 @@
-<mat-form-field class="order-1 pb-1">
+<mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Name , code or mobile" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+</mat-form-field>
+
+<mat-form-field class="mx-4">
+    <mat-select ngModel="doctorName" (selectionChange)="onSearchFilterChange($event.value)">
+        <mat-option value="code">Code</mat-option>
+        <mat-option value="speciality">Speciality</mat-option>
+        <mat-option value="doctorName">Doctor Name</mat-option>
+        <mat-option value="patientName">Patient Name</mat-option>
+        <mat-option value="patientMobile">Patient Mobile</mat-option>
+
+    </mat-select>
 </mat-form-field>
 
 
