@@ -61,7 +61,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   goToAppointment(code: number) {
-    this.router.navigate(['appointment', code.toString()])
+    this.router.navigate(['admin','appointment', code.toString()])
   }
 
   openFinalizedInvoiceDialog() {
