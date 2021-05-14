@@ -76,6 +76,8 @@ export class PatienttableComponent implements AfterViewInit, OnChanges {
     // only run when property "data" changed
     if (changes['patients']) {
       this.dataSource = new MatTableDataSource(this.patients);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
 }
 }
