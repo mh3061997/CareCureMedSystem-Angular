@@ -1,15 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ResAppointment } from 'src/app/interfaces/res-appointment';
-import { ResMembership } from 'src/app/interfaces/res-membership';
 import { ResPatient } from 'src/app/interfaces/res-patient';
-import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
-import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
 import {MatDialog} from '@angular/material/dialog';
 import { PatientAddMembershipDialogComponent } from '../patient-add-membership-dialog/patient-add-membership-dialog.component';
 import { PatientUpdateInformationDialogComponent } from '../patient-update-information-dialog/patient-update-information-dialog.component';
-import { NgForm } from '@angular/forms';
 import { faFileMedical } from '@fortawesome/free-solid-svg-icons';
 import { faMicroscope } from '@fortawesome/free-solid-svg-icons';
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +13,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ResMedImage } from 'src/app/interfaces/res-med-image';
 import { PatientAddMedimageDialogComponent } from './patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 import { PatientAddOfficialdocDialogComponent } from './patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
+import { ResInvoice } from 'src/app/interfaces/res-invoice';
 
 @Component({
   selector: 'app-patient',
@@ -42,6 +38,8 @@ export class PatientComponent implements OnInit {
 
   currentSelectedMedImageTab="Lab Tests"
 
+  invoicesPatientAll:ResInvoice[]=[];
+
   onTabChange(event:MatTabChangeEvent){
     this.currentSelectedMedImageTab=event.tab.textLabel;
   }
@@ -63,7 +61,13 @@ export class PatientComponent implements OnInit {
       this.medImagesPresc = this.patient.medImages.filter(medImage => medImage.type=="Prescription");
 
       // console.log(this.medImagesLab);
-    
+      this.patient.appointments.forEach(appintment =>{
+        if(appintment.invoice)
+        this.invoicesPatientAll.push(appintment.invoice);
+      })
+      if(patient.invoiceMemberships){
+        this.invoicesPatientAll.push.apply(this.invoicesPatientAll,patient.invoiceMemberships);
+      }
 
     });
 

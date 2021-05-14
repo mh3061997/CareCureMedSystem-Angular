@@ -68,6 +68,7 @@ import { UserChangeRoleDialogComponent } from './components/user-panel/usertable
 import { UserEnableDisableDialogComponent } from './components/user-panel/usertable/user-enable-disable-dialog/user-enable-disable-dialog.component';
 import { ClientSideModule } from './client-side/client-side.module';
 import { MaterialModule } from './sharedModules/material-module/material.module';
+import { PatientInvoicesTableComponent } from './components/patient/patient/patient-invoices-table/patient-invoices-table.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +128,8 @@ import { MaterialModule } from './sharedModules/material-module/material.module'
     UsertableComponent,
     UserAddNewDialogComponent,
     UserChangeRoleDialogComponent,
-    UserEnableDisableDialogComponent
+    UserEnableDisableDialogComponent,
+    PatientInvoicesTableComponent,
 
 
   ],

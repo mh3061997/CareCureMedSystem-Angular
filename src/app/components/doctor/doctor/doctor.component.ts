@@ -6,10 +6,10 @@ import { ServDoctorService } from 'src/app/services/serv-doctor.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DoctorUpdateInformationDialogComponent } from '../doctor/doctor-update-information-dialog/doctor-update-information-dialog.component';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
-import { MatCalendar } from '@angular/material/datepicker/calendar';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
+import { ResInvoice } from 'src/app/interfaces/res-invoice';
 
 @Component({
   selector: 'app-doctor',
@@ -22,6 +22,7 @@ export class DoctorComponent {
   doctorId: number;
   currentDate: Date = new Date();
   appointments: ResAppointment[];
+  invoices:ResInvoice[]=[];
 
   constructor(public dialogUpdateDoctorInformation: MatDialog,
     private currentRoute: ActivatedRoute,
@@ -35,6 +36,13 @@ export class DoctorComponent {
 
       this.doctor = doctor;
       this.appointments = this.doctor.appointments;
+      this.appointments.forEach(appointment =>{
+        if(appointment.invoice){
+          this.invoices.push(appointment.invoice);
+        }
+      })
+      console.log(this.invoices);
+      
     });
   }
 
