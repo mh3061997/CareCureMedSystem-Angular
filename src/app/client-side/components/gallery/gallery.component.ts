@@ -12,14 +12,17 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
     document.addEventListener( 'DOMContentLoaded', function () {
-      new Splide( '.splide' ).mount();
+   
       var secondarySlider = new Splide( '#secondary-slider', {
         fixedWidth  : 100,
         height      : 60,
-        gap         : 10,
+        gap         : 2,
         cover       : true,
         isNavigation: true,
         focus       : 'center',
+        rewind: true,
+        arrows:false,
+        pagination:false,
         breakpoints : {
           '600': {
             fixedWidth: 66,
@@ -32,8 +35,10 @@ export class GalleryComponent implements OnInit {
         type       : 'fade',
         heightRatio: 0.5,
         pagination : false,
-        arrows     : false,
+        arrows     : true,
         cover      : true,
+        height:'90vh',
+        rewind:true
       } ); // do not call mount() here.
       
       primarySlider.sync( secondarySlider ).mount();
