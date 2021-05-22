@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ResAppointment } from 'src/app/interfaces/res-appointment';
@@ -115,16 +115,30 @@ export class AppointmentClientDialogComponent implements OnInit {
   }
 
 
+  public isMobileLayout = false;
 
   ngOnInit() {
+
     if(history.state.openReserveDialog) {
       this.isReserveYourself=true;
+      }
+      this.isMobileLayout = window.innerWidth <= 768;
+  
+     
       
-    }
+  }
+      @HostListener("window:resize", [])
+      onResize() {
+        var width = window.innerWidth;
+        this.isMobileLayout = width <= 768;
+        // console.log("mobile",this.isMobileLayout);
+    
+      }
+    
  
 
 
-  }
+  
 
 
   displayFnDoctor(doctor: ResDoctor): string {

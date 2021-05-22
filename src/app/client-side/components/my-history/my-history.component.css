@@ -45,6 +45,7 @@
 
 .banner_head {
     background-image: url('../../../../assets/upper background/pc/Patients.png');
+    background-position-x: center;
 }
 
 .col-lg-6>p {

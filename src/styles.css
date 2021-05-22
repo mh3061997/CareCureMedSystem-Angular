@@ -239,7 +239,7 @@ input[type=number] {
 .banner_head {
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: center;
+    /* background-position-x: center; */
 }
 
 section.banner_head {
@@ -344,6 +344,10 @@ h4,
     position: relative;
     margin: auto;
     z-index: 9999;
+}
+
+.cdk-overlay-container {
+    z-index: 9999 !important;
 }
 
 .local-spinner {

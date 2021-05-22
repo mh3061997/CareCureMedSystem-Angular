@@ -1,5 +1,6 @@
 .banner_head {
     background-image: url('../../../../assets/upper background/pc/services 2.png');
+    background-position-x: center;
 }
 
 .blog .col-md-5 {

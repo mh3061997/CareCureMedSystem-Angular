@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
     }
     this.isMobileLayout = window.innerWidth <= 768;
   
-  console.log("mobile",this.isMobileLayout);
+
   
   }
 

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 declare var Splide:any;
 @Component({
   selector: 'app-gallery',
@@ -7,10 +6,16 @@ declare var Splide:any;
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
+  
+  constructor(){}
 
-  constructor() { }
+  ngOnInit(){
+  
+      this.initSplide();
+ 
+  }
 
-  ngOnInit(): void {
+  initSplide():void {
     document.addEventListener( 'DOMContentLoaded', function () {
    
       var secondarySlider = new Splide( '#secondary-slider', {
@@ -45,6 +50,5 @@ export class GalleryComponent implements OnInit {
     } );
 
   }
-
 
 }
