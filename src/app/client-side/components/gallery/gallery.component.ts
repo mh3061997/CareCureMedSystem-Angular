@@ -16,7 +16,7 @@ export class GalleryComponent implements OnInit {
       var secondarySlider = new Splide( '#secondary-slider', {
         fixedWidth  : 100,
         height      : 60,
-        gap         : 2,
+        gap         : 10,
         cover       : true,
         isNavigation: true,
         focus       : 'center',
