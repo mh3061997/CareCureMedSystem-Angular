@@ -59,7 +59,8 @@ import { SafePipe } from './safe.pipe';
     BrowserAnimationsModule,
     CarouselModule,
     MaterialModule,
-    NgxSplideModule
+    NgxSplideModule,
+    
     ]
 })
 export class ClientSideModule { }

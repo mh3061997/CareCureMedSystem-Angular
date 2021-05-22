@@ -20,9 +20,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
+import { PatientOfficialImageTableComponent } from '../../components/patient/patient/patient-official-image-table/patient-official-image-table.component';
+import { PatientMedimagesTableComponent } from '../../components/patient/patient/patient-medimages-table/patient-medimages-table.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PatientMedimagesTableComponent,
+    PatientOfficialImageTableComponent,
+  ],
   imports: [
 
     MatButtonModule,
@@ -66,7 +71,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatTabsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PatientMedimagesTableComponent,
+    PatientOfficialImageTableComponent,
   ]
 })
 export class MaterialModule { }

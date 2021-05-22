@@ -38,7 +38,6 @@ import { DoctorTableComponent } from './components/doctor/doctorpage/doctor-tabl
 import { AppointmentTableComponent } from './components/appointment/appointmentpage/appointment-table/appointment-table.component';
 import { AppointmentAddNewDialogComponent } from './components/appointment/appointmentpage/appointment-add-new-dialog/appointment-add-new-dialog.component';
 import { AppointmentUpdateInformationDialogComponent } from './components/appointment/appointment/appointment-update-information-dialog/appointment-update-information-dialog.component';
-import { PatientMedimagesTableComponent } from './components/patient/patient/patient-medimages-table/patient-medimages-table.component';
 import { ImageFullscreenDialogComponent } from './components/patient/patient/patient-medimages-table/image-fullscreen-dialog/image-fullscreen-dialog.component';
 import { PatientAddMedimageDialogComponent } from './components/patient/patient/patient-add-medimage-dialog/patient-add-medimage-dialog.component';
 import { PackagebaseUpdateInformationDialogComponent } from './components/packagebase/packagebase/packagebase-update-information-dialog/packagebase-update-information-dialog.component';
@@ -56,7 +55,6 @@ import { SettleDebtDialogComponent } from './components/invoice/invoice/settle-d
 import { AppointmentPatientDoctorTableComponent } from './components/appointment/appointment/appointment-patient-doctor-table/appointment-patient-doctor-table.component';
 import { ServiceAddDialogComponent } from './components/service-price-list/service-add-dialog/service-add-dialog.component';
 import { PatientAddOfficialdocDialogComponent } from './components/patient/patient/patient-add-officialdoc-dialog/patient-add-officialdoc-dialog.component';
-import { PatientOfficialImageTableComponent } from './components/patient/patient/patient-official-image-table/patient-official-image-table.component';
 import { JwtAuthInterceptorService } from './services/auth/jwt-auth-interceptor.service';
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { NgxPrintModule } from 'ngx-print';
@@ -79,6 +77,7 @@ import { PatientInvoicesTableComponent } from './components/patient/patient/pati
     DoctorComponent,
     AppointmentComponent,
     AppointmentpageComponent,
+    PatientAddOfficialdocDialogComponent,
     PackagebaseComponent,
     InvoiceComponent,
     InvoicepageComponent,
@@ -103,7 +102,6 @@ import { PatientInvoicesTableComponent } from './components/patient/patient/pati
     AppointmentTableComponent,
     AppointmentAddNewDialogComponent,
     AppointmentUpdateInformationDialogComponent,
-    PatientMedimagesTableComponent,
     ImageFullscreenDialogComponent,
     PatientAddMedimageDialogComponent,
     PackagebaseUpdateInformationDialogComponent,
@@ -121,7 +119,6 @@ import { PatientInvoicesTableComponent } from './components/patient/patient/pati
     AppointmentPatientDoctorTableComponent,
     ServiceAddDialogComponent,
     PatientAddOfficialdocDialogComponent,
-    PatientOfficialImageTableComponent,
     LogoutComponent,
     PrintLayoutInvoiceComponent,
     UserPanelComponent,
