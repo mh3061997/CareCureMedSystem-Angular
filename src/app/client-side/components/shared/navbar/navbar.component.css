@@ -4,6 +4,10 @@
     max-height: 75px;
 }
 
+.navbar-nav .nav-link {
+    padding-right: 4px !important;
+}
+
 .navbar-brand-text {
     width: 250px;
     height: 70px;

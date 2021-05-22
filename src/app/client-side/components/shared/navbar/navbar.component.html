@@ -1,81 +1,79 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-semi-transparent-bg ">
-    <!-- <img src="../../../../../assets/logo only.png" class="navbar-brand m-0 navbar-brand-logo " alt="care & cure clinics">
-  <img src="../../../../../assets/textonly.png" class="navbar-brand-text"> -->
-    <!-- <a class="navbar-brand" routerLink="home">CARE & CURE CLINICS</a> -->
-    <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-4 mb-2  justify-content-center text-center">
-                <a routerLink=""> <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo mr-3 " alt=""></a>
+<div class="container justify-content-center text-center ">
+    <nav class="navbar fixed-top navbar-expand-xl navbar-dark navbar-semi-transparent-bg ">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        <div class=" mb-2  justify-content-center text-center" [ngClass]="isMobileLayout ? 'col-md-12':'col-md-3'">
+            <a routerLink=""> <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo mr-3 " alt=""></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
 
-            </div>
+        </div>
 
-            <div class="col-md-3 my-auto mb-2 p-0 justify-content-center text-center">
-                <a href="tel:+201122229498" class=" mr-2 badge badge-pill badge-light cursor-hover">
-                    <fa-icon class="" [icon]="faPhoneAlt" style=""></fa-icon>
+        <div class=" my-auto mb-2 p-0 justify-content-center text-center" [ngClass]="isMobileLayout ? 'col-md-12' : 'col-md-3'">
+            <a href="tel:+201122229498" class=" mr-2 badge badge-pill badge-light cursor-hover">
+                <fa-icon class="" [icon]="faPhoneAlt" style=""></fa-icon>
 
-                    <span>+201122229498</span>
-                </a>
-                <a class="  badge badge-pill badge-light cursor-hover" (click)="openNewAppointmentDialog()">
-                    <span> Request an Appointment</span>
-                </a>
-            </div>
-            <div class="col-md-5 my-auto mb-2 collapse navbar-collapse text-center" id="navbarSupportedContent">
+                <span>+201122229498</span>
+            </a>
+            <a class="  badge badge-pill badge-light cursor-hover" (click)="openNewAppointmentDialog()">
+                <span> Request an Appointment</span>
+            </a>
+        </div>
+        <div class=" my-auto mb-2 collapse navbar-collapse text-center" id="navbarSupportedContent" [ngClass]="isMobileLayout ? 'col-md-12':'col-md-5'">
 
-                <ul class=" navbar-nav mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="">Home</a>
-                    </li>
+            <ul class=" navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="">Home</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="video-gallery">Videos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="doctors">Doctors</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="video-gallery">Videos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="doctors">Doctors</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="services">Services</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="services">Services</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="gallery">Gallery</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery">Gallery</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="about-us">About&nbsp;Us</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="about-us">About&nbsp;Us</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
+                </li>
 
-                    <li class="nav-item" *ngIf="isShowMyHistory()">
-                        <a class="nav-link" routerLink="history">My&nbsp;History</a>
-                    </li>
+                <li class="nav-item" *ngIf="isShowMyHistory()">
+                    <a class="nav-link" routerLink="history">My&nbsp;History</a>
+                </li>
 
-                    <li class="nav-item" *ngIf="isShowAdminPanel()">
-                        <a class="nav-link" routerLink="admin/patient">Admin</a>
-                    </li>
+                <li class="nav-item" *ngIf="isShowAdminPanel()">
+                    <a class="nav-link" routerLink="admin/patient">Admin</a>
+                </li>
 
-                    <li class="nav-item m-1" *ngIf="!authService.isUserLoggedIn()">
-                        <a routerLink="login-client" class="btn nav-auth-btn">Login</a></li>
-                    <li class="nav-item " *ngIf="!authService.isUserLoggedIn()">
-                        <a routerLink="signup-client" class="btn nav-auth-btn">Sign&nbsp;up</a></li>
-                    <li class="nav-item " *ngIf="authService.isUserLoggedIn()">
-                        <a class="btn nav-auth-btn" (click)="authService.logOut()">Log&nbsp;Out</a></li>
+                <li class="nav-item m-1" *ngIf="!authService.isUserLoggedIn()">
+                    <a routerLink="login-client" class="btn nav-auth-btn">Login</a></li>
+                <li class="nav-item " *ngIf="!authService.isUserLoggedIn()">
+                    <a routerLink="signup-client" class="btn nav-auth-btn">Sign&nbsp;up</a></li>
+                <li class="nav-item " *ngIf="authService.isUserLoggedIn()">
+                    <a class="btn nav-auth-btn" (click)="authService.logOut()">Log&nbsp;Out</a></li>
 
-                </ul>
+            </ul>
 
-            </div>
         </div>
 
 
-    </div>
-</nav>
+
+    </nav>
+</div>
