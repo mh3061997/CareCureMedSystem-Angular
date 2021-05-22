@@ -10,56 +10,59 @@
 
 <section class="contact-form">
 
-    <div class="bg-contact100">
-        <div class="container-contact100">
-            <div class="wrap-contact100">
-                <div class="" data-tilt>
-                    <div class="footer-center">
-                        <div>
-                            <i class="fa fa-map-marker"></i>
-                            <span> 6 Tayaran Street, Madinet Nasr, Cairo</span>
-                        </div>
-                        <div>
-                            <i class="fa fa-phone"></i>
-                            <span> (+2) 01122229498</span>
-                        </div>
-                        <div>
-                            <i class="fa fa-envelope"></i>
-                            <span> <a id="email-a" href="mailto:webmaster@example.com">care.cure.clinics1@gmail.com</a> </span>
-                        </div>
+
+    <div class="container py-5 px-4">
+        <div class=" row ">
+            <div class="col-md-6" data-tilt>
+                <div class="footer-center">
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <span> 6 Tayaran Street, Madinet Nasr, Cairo</span>
                     </div>
-                    <div class="footer-social-link mt-5 text-center">
-                        <h3>Follow us</h3>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <span> (+2) 01122229498</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <span> <a id="email-a" href="mailto:webmaster@example.com">care.cure.clinics1@gmail.com</a> </span>
                     </div>
                 </div>
+                <div class="footer-social-link mt-5 pb-5 text-center">
+                    <h2>Follow us</h2>
+                    <ul>
+                        <li>
+                            <a href="http://www.facebook.com/CareCureClinics" target="_blank">
+                                <i class="fa fa-facebook"></i></a>
+                        </li>
 
+                        <li>
+                            <a href="https://instagram.com/care.cure.clinics" target="_blank">
+                                <i class="fa fa-instagram"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.youtube.com/channel/UC6PhWtPC1phYzi4CzXhmXdA" target="_blank">
+                                <i class="fa fa-youtube"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="https://vm.tiktok.com/ZMe5Q98au/" target="_blank">
+                                <fa-icon class="mr-2" [icon]="faTiktok"></fa-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://twitter.com/cure_clinics?s=08" target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
                 <form class="contact100-form validate-form" #contactUsForm="ngForm" *ngIf="!isContactFormSubmitted">
                     <span class="contact100-form-title">
 						Fill out your information and we will try to get back to you as soon as we can.
@@ -108,32 +111,25 @@
         </div>
     </div>
 
+
 </section>
 <section class="contact-info pb-5  mt-5">
     <div class="container-fluid ">
-        <div class="row">
+        <div class="row mb-5">
 
 
-            <div class="col-12 pb-5">
+            <div class="col-12  px-0">
                 <div id="googleMap" #map style="width:100%;height:400px"></div>
 
             </div>
         </div>
-        <div class="row py-4 justify-content-center">
-            <div class="col-lg-4 px-5 mr-5 text-center">
-                <span style="    display: block;
-                font-family: Montserrat-ExtraBold;
-                font-size: 24px;
-                color: #333333;
-                line-height: 1.2;
-                text-align: left;
-                padding-bottom: 36px;" class="">
-                    Scan the qr code to get our location.
-                </span>
+        <div class="row pb-4 justify-content-center text-center">
+            <div class="col-12 p-5  text-center bg-gray">
+                <h4 style="display: block;font-size: 24px;color: #333333; text-align: center;padding-bottom: 5px;margin-bottom: 3rem;" class="service_title_line gradient_highlighter"> Scan To Get Our Location </h4>
                 <img src="../../../../assets/qe.png" style="max-width: 200px;" alt="">
             </div>
-            <div class="col-lg-4 ml-5">
-                <img src="../../../../assets/map..png" style="max-width: 600px;" alt="">
+            <div class="col-12 mt-5 p-0">
+                <img src="../../../../assets/map..png" id="mapImg" alt="">
             </div>
         </div>
     </div>

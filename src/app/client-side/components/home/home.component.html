@@ -19,11 +19,13 @@
         <li data-target="#cl-carousel" data-slide-to="16"></li>
 
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner" *ngIf="!isMobileLayout">
 
-        <div class="carousel-item active" data-interval="3000">
-            <img src="../../../../assets/Slide Show/Images/pc/Derma.png" class="d-block w-100" alt="...">
+        <div class="carousel-item active">
+            <a routerLink="services" [queryParams]="{speciality:'dermatology'}">
+                <img src="../../../../assets/Slide Show/Images/pc/Derma.png" class="d-block w-100" alt="...">
 
+            </a>
 
         </div>
         <div class="carousel-item " data-interval="12000">
@@ -33,8 +35,9 @@
 
         </div>
         <div class="carousel-item ">
-            <img src="../../../../assets/Slide Show/Images/pc/Dental.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'dental'}">
+                <img src="../../../../assets/Slide Show/Images/pc/Dental.png" class="d-block w-100" alt="...">
+            </a>
         </div>
 
         <div class="carousel-item " data-interval="7000">
@@ -44,8 +47,9 @@
 
         </div>
         <div class="carousel-item">
-            <img src="../../../../assets/Slide Show/Images/pc/Nutri.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'nutrition'}">
+                <img src="../../../../assets/Slide Show/Images/pc/Nutri.png" class="d-block w-100" alt="...">
+            </a>
         </div>
         <div class="carousel-item " data-interval="7000">
             <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
@@ -54,8 +58,9 @@
 
         </div>
         <div class="carousel-item">
-            <img src="../../../../assets/Slide Show/Images/pc/laser.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'dermatology'}">
+                <img src="../../../../assets/Slide Show/Images/pc/laser.png" class="d-block w-100" alt="...">
+            </a>
         </div>
         <div class="carousel-item " data-interval="10000">
             <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
@@ -64,8 +69,9 @@
 
         </div>
         <div class="carousel-item">
-            <img src="../../../../assets/Slide Show/Images/pc/Plastic.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'plastic'}">
+                <img src="../../../../assets/Slide Show/Images/pc/Plastic.png" class="d-block w-100" alt="...">
+            </a>
         </div>
         <div class="carousel-item " data-interval="11000">
             <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
@@ -74,8 +80,9 @@
 
         </div>
         <div class="carousel-item">
-            <img src="../../../../assets/Slide Show/Images/pc/General surgery.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'surgery'}">
+                <img src="../../../../assets/Slide Show/Images/pc/General surgery.png" class="d-block w-100" alt="...">
+            </a>
         </div>
 
         <div class="carousel-item " data-interval="6000">
@@ -86,8 +93,9 @@
         </div>
 
         <div class="carousel-item">
-            <img src="../../../../assets/Slide Show/Images/pc/internal.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'internal'}">
+                <img src="../../../../assets/Slide Show/Images/pc/internal.png" class="d-block w-100" alt="...">
+            </a>
         </div>
 
         <div class="carousel-item " data-interval="10000">
@@ -98,13 +106,115 @@
         </div>
 
         <div class="carousel-item">
-            <img src="../../../../assets/Slide Show/Images/pc/obs.png" class="d-block w-100" alt="...">
-
+            <a routerLink="services" [queryParams]="{speciality:'obs'}">
+                <img src="../../../../assets/Slide Show/Images/pc/obs.png" class="d-block w-100" alt="...">
+            </a>
         </div>
 
         <div class="carousel-item " data-interval="10000">
             <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
                 <source src="../../../../assets/Slide Show/Videos/Website/obs.mp4" type="video/mp4">
+            </video>
+
+        </div>
+
+
+    </div>
+    <div class="carousel-inner" *ngIf="isMobileLayout">
+
+        <div class="carousel-item active">
+            <a routerLink="services" [queryParams]="{speciality:'dermatology'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/Derma.png" class="d-block w-100" alt="...">
+
+            </a>
+
+        </div>
+        <div class="carousel-item " data-interval="12000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/botox.mp4" type="video/mp4">
+            </video>
+
+        </div>
+        <div class="carousel-item ">
+            <a routerLink="services" [queryParams]="{speciality:'dental'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/Dental.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+
+        <div class="carousel-item " data-interval="7000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/Dental 1.mp4" type="video/mp4">
+            </video>
+
+        </div>
+        <div class="carousel-item">
+            <a routerLink="services" [queryParams]="{speciality:'nutrition'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/Nutri.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item " data-interval="7000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/nutri.mp4" type="video/mp4">
+            </video>
+
+        </div>
+        <div class="carousel-item">
+            <a routerLink="services" [queryParams]="{speciality:'dermatology'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/laser 1.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item " data-interval="10000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/Laser.mp4" type="video/mp4">
+            </video>
+
+        </div>
+        <div class="carousel-item">
+            <a routerLink="services" [queryParams]="{speciality:'plastic'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/plastic.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item " data-interval="11000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/Filler.mp4" type="video/mp4">
+            </video>
+
+        </div>
+        <div class="carousel-item">
+            <a routerLink="services" [queryParams]="{speciality:'surgery'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/Surgery.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+
+        <div class="carousel-item " data-interval="6000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/hydrafacial.mp4" type="video/mp4">
+            </video>
+
+        </div>
+
+        <div class="carousel-item">
+            <a routerLink="services" [queryParams]="{speciality:'internal'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/internal.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+
+        <div class="carousel-item " data-interval="10000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/internal.mp4" type="video/mp4">
+            </video>
+
+        </div>
+
+        <div class="carousel-item">
+            <a routerLink="services" [queryParams]="{speciality:'obs'}">
+                <img src="../../../../assets/Slide Show/Images/Mobile/Obs.png" class="d-block w-100" alt="...">
+            </a>
+        </div>
+
+        <div class="carousel-item " data-interval="10000">
+            <video class="d-block w-100" autoplay [muted]="true" playsinline loop>
+                <source src="../../../../assets/Slide Show/Videos/Mobile/obs.mp4" type="video/mp4">
             </video>
 
         </div>
@@ -129,7 +239,7 @@
             </div>
         </div>
         <div class="row pt-4">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-4">
                 <div class="service_listing_box">
                     <div class="service_listing_box_image">
                         <img src="../../../../assets/4 pic squares/doctors.png" alt="">
@@ -142,18 +252,20 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-4">
                 <div class="service_listing_box">
                     <div class="service_listing_box_image">
                         <img src="../../../../assets/4 pic squares/services.png" alt="">
                     </div>
                     <h4 class="service_title_line gradient_highlighter">Our Services</h4>
+
                     <p>All the medical service you need from different medical specialties in one place، all under one roof</p>
+
                     <a routerLink="/services" class="theme-btn trans-btn">More</a>
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-4">
                 <div class="service_listing_box">
                     <div class="service_listing_box_image">
                         <img src="../../../../assets/4 pic squares/Devices.png" alt="">
@@ -165,7 +277,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 mb-4">
                 <div class="service_listing_box">
                     <div class="service_listing_box_image">
                         <img src="../../../../assets/4 pic squares/place.png" alt="">
@@ -183,7 +295,7 @@
     </div>
 </div>
 
-<div id="cl-reserve  py-5 border-top container  ">
+<div id="cl-reserve">
     <div class="row  bg-client-secondary mt-5 mx-0" style="padding: 65px;">
         <div class="col-md-12 text-center">
             <a class="theme-btn trans-btn bg-white mb-0 p-5" style="min-width: 50%;min-height: 84px;font-size: 40px;" (click)="openNewAppointmentDialog()">Book Your Appointment Now</a>
@@ -193,6 +305,78 @@
     </div>
 
 </div>
+
+<section id="cl-blog" class="py-5  bg-gray" *ngIf="postsHtmlArr">
+
+    <div class="container ">
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="h2 service_title_line gradient_highlighter ">Our News</h1>
+
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-md-6 blog_list_large">
+                <div class="blog_inner">
+                    <a [routerLink]="postsHtmlArr[0].id">
+                        <div class="blog_inner_image">
+                            <img [src]="postsHtmlArr[0].thumbnail ? postsHtmlArr[0].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
+                        <div class="blog_inner_content">
+                            <h3 [innerHtml]="postsHtmlArr[0].title.rendered ? postsHtmlArr[0].title.rendered : ''"></h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 blog_list_small">
+                <div class="blog_inner">
+                    <a [routerLink]="postsHtmlArr[1].id">
+                        <div class="blog_inner_image">
+                            <img [src]="postsHtmlArr[1].thumbnail ? postsHtmlArr[1].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
+                        <div class="blog_inner_content">
+                            <h3 [innerHtml]="postsHtmlArr[1].title.rendered ? postsHtmlArr[1].title.rendered : ''"></h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="blog_inner" style="  margin-top: 10px;">
+                    <a [routerLink]="postsHtmlArr[2].id">
+                        <div class="blog_inner_image">
+                            <img [src]="postsHtmlArr[2].thumbnail ? postsHtmlArr[2].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
+                        <div class="blog_inner_content">
+                            <h3 [innerHtml]="postsHtmlArr[2].title.rendered ? postsHtmlArr[2].title.rendered : ''"></h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 blog_list_small">
+                <div class="blog_inner">
+                    <a [routerLink]="postsHtmlArr[3].id">
+                        <div class="blog_inner_image">
+                            <img [src]="postsHtmlArr[3].thumbnail ? postsHtmlArr[3].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
+                        <div class="blog_inner_content">
+                            <h3 [innerHtml]="postsHtmlArr[3].title.rendered ? postsHtmlArr[3].title.rendered : ''"></h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="blog_inner" style="  margin-top: 10px;">
+                    <a [routerLink]="postsHtmlArr[4].id">
+                        <div class="blog_inner_image">
+                            <img [src]="postsHtmlArr[4].thumbnail ? postsHtmlArr[4].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
+                        <div class="blog_inner_content">
+                            <h3 [innerHtml]="postsHtmlArr[4].title.rendered ? postsHtmlArr[4].title.rendered : ''"></h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 text-center pt-5">
+                <a routerLink="blog" class="theme-btn trans-btn bg-white">Read More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="cl-brands" class="partners py-5">
 
 

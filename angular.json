@@ -38,7 +38,8 @@
                         ],
                         "scripts": ["node_modules/jquery/dist/jquery.js",
                             "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-                            "node_modules/@splidejs/splide/dist/js/splide.min.js"
+                            "node_modules/@splidejs/splide/dist/js/splide.min.js",
+                            "src/assets/jssor.slider-28.1.0.min.js"
                         ]
                     },
                     "configurations": {

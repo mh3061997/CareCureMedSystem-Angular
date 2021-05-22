@@ -9,20 +9,23 @@ import { WordpressService } from '../wordpress.service';
 export class BlogsComponent implements OnInit {
 
   postsHtmlArr:any[];
+  showSpinner = false;
 
   constructor(private blogService:WordpressService) { 
 
+    this.showSpinner=true;
     blogService.getAllPosts().subscribe(posts => {
-      console.log("posts",posts);
+    
       
       this.postsHtmlArr=posts.map(post =>{
         
         post.thumbnail=this.extractImgTag(post.content.rendered);
         return post;       
       });
+      this.showSpinner=false;
     });
 
-    console.log(this.postsHtmlArr);
+ 
     
   }
 

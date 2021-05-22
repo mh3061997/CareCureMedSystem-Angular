@@ -15,6 +15,12 @@ export class WordpressService {
    getAllPosts(){
      return this.http.get<any[]>(this.servPath.getPathBlogJson());
    }
+   getLatestFivePosts(){
+    return this.http.get<any[]>(this.servPath.getPathBlogJson(),{params:{
+      order:"desc",
+      per_page:"5"
+    }});
+  }
 
    getPost(id:string){
      return this.http.get<any>(this.servPath.getPathBlogJson()+id);

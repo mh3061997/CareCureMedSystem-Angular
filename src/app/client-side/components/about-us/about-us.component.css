@@ -65,7 +65,7 @@ h4,
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 110px 0;
+    padding: 110px 40px;
     opacity: 50%;
 }
 
@@ -103,11 +103,14 @@ h4,
     margin-bottom: 0;
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 768px) {
+    .management_box {
+        text-align: center;
+        margin-top: 0px;
+    }
     .management_box .col-md-3 {
         flex: 0 0 100%;
         max-width: 100%;
-        text-align: center;
     }
     .management_photo {
         float: unset;
@@ -115,6 +118,9 @@ h4,
     .management_box .col-md-9 {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+    .stats_bg {
+        padding: 45px 40px;
     }
     .stats__numbers {
         width: 100%;

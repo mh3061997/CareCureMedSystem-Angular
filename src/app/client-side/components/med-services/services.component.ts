@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { param } from 'jquery';
 
 @Component({
   selector: 'app-services',
@@ -88,43 +90,63 @@ export class servicesComponent implements OnInit {
       name: "Laser Hair Removal",
       nameAr: "إزاله الشعر بالليزر ",
       description: "باحدث جهاز كانديلا برو بدون  , الم وبأقل عدد جلسات ,عن  طريق اطباء اخصائيين"
-          , img: "../../../../assets/services/Derma/laserhairremoval.png"
-}, {
+      , img: "../../../../assets/services/Derma/laserhairremoval.png"
+    }, {
       name: "Derma Pen",
       nameAr: " ديرما بن",
       description: "يعمل عن طريق ال micro needling لتحفير وتصنيع كولاجين وايلاستين جديد لينتج عنه بشره نضره خاليه من العيوب وعلامات الاجهاد"
-          , img: "../../../../assets/services/Derma/dermapen.png"
-}, {
+      , img: "../../../../assets/services/Derma/dermapen.png"
+    }, {
       name: "Botox Injection ",
       nameAr: " حقن البوتكس",
       description: "   لعلاج تجاعيد الجبهه  والتجاعيد الدقيقه وعلاج مشكله فرط التعرق "
-          , img: "../../../../assets/services/Derma/botox.png"
-}, {
+      , img: "../../../../assets/services/Derma/botox.png"
+    }, {
       name: "Filler Injection ",
       nameAr: " حقن الفيلر ",
       description: "لرسم الخدود وملئ تجويف  العين وتوريد الشفايف "
-          , img: "../../../../assets/services/Derma/filler.png"
-}, {
+      , img: "../../../../assets/services/Derma/filler.png"
+    }, {
       name: " Hydrofacial",
       nameAr: "الهيدرافيشيال  ",
       description: "للحصول على بشره جذابه صحيه نضره لامعه  والتخلص من الارهاق وشد الجلد  الجهاز يعمل على تنضيف البشره عن طريق ازاله طبقات الجلد   واستخدام أحدث أنواع الماسكات والسكراب  للحصول على جلد مشدود عن طريق  التردد الحراري و موجات فوق صوتيه للحصول على مظهر صحى  ومشرق"
-          , img: "../../../../assets/services/Derma/hydrofacial.png"
-}, {
+      , img: "../../../../assets/services/Derma/hydrofacial.png"
+    }, {
       name: " Dark Circles Treatment",
       nameAr: " الهالات السوده",
       description: " سواء كانت وراثية أو غير وراثيه الناتجه عن عدم مرور الدم بصورة غير منتظمه  ف الاوعيه الدمويه أو تحرك دهون تحت العين من مكانها أو فقدانها أو تصبغ ف طبقه الجلد الرقيقه نفسها .يعتبر حقن الميزوثيرابى الحل الامثل لعلاج الهالات السوداء عند طريق تنشيط الدورة الدموية بشكل سريع الذى يعمل على إخفاء اللون أو حقن الفيلر البديل الاسرع والأسهل والامن"
-          , img: "../../../../assets/services/Derma/darkcircles.png"
-}, {
+      , img: "../../../../assets/services/Derma/darkcircles.png"
+    }, {
       name: " Stretch Marks Treatment",
       nameAr: "ال سترتش مارك ",
       description: "يعتبر الميزوثيرابى الحل الافضل والاقرب لعلاج الاسترتش  مارك  عن طريق حقنه ف المكان المراد علاجه على فترات من الجلسات الذى يعمل على إنتاج خلايا جديدة ويمد  الجلد بكولاحين وايلاستين كى يعود بصوره طبيعيه كما  كان"
-          , img: "../../../../assets/services/Derma/stretchmarks.png"
-}, {
+      , img: "../../../../assets/services/Derma/stretchmarks.png"
+    }, {
       name: "Plasma ",
       nameAr: "البلازما ",
       description: "  عبارة عن صفائح دمويه موجوده بالدم بتركيز عالى   تعمل على حل مشاكل الشعر والبشره عن طريق  تجديد الكولاجين وتحفيز انقسام الخلايا الجذعية  المسؤوله عن تجديد الخلايا التالفه وتجديد الانسجه وتعزيز نمو الاوعيه الدمويه الجديدة وكل العناصر   اللازمه لشعر صحى بدون مشاكل وبشره ناضرة"
-          , img: "../../../../assets/services/Derma/plasma.png"
-}
+      , img: "../../../../assets/services/Derma/plasma.png"
+    },{
+      name:"Cellulite",
+      nameAr:"الســيلوليت",
+      description:"السلوليت عبارة عن تجمع دهون تحت الجلد بشكل غير منتظم ممايؤدى الى تجعد ف شكل الجلد وترهله ويعتبر حقن الميزوثيرابى الغنى بالفيتامينات  والمعادن الذى يعمل على شد الجلد وازاله الدهون الزائده كى يعود الجلد ف صورته الطبيعيه ",
+      img:"../../../../assets/services/Derma/cellulite.png"
+    },{
+      name:"Acne",
+      nameAr:"اثـار حب الشـباب",
+      description:" يستعمل ليزر          الشائع فى عيادات التجميل أيضا للعمل على علاج اثار حب الشباب بكفاءه لانه يساعد على تجديد البشره عن طريق ازاله الخلايا الميته التى يتم التخلص منها نتيجه الطاقه الحراريه الناتجه عن اشعه الليزر كما أن جهاز ليزر ثاني أكسيد الكربون يحفز أيضاً إنتاج الكولاجين، ويقلل من التجاعيد، ويزيل ندوب حب الشباب، ويقلل من علامات التقدم في العمر، ويعيد  لون البشرة النضره",
+      img:"../../../../assets/services/Derma/acne.png"
+    },{
+      name:"Open Pores",
+      nameAr:"",
+      description:"يتم استخدام تقنيه الفركشنال ليزر ف علاج المسام الواسعه لانه يعمل على تحفيز الكولاجين وتجديد الطبقه السطحيه للجلد ايضا  او تقنيه ميكرو نيديل لتحسين الطبقه السطحيه للجلد ",
+      img:"../../../../assets/services/Derma/openpores.png"
+    },{
+      name:"Dark Spots Treatment",
+      nameAr:"تفتيح الاماكن الداكنه",
+      description:"يعتبر التقشير الحل النهائى لعلاج اى غمقان ف الجلد  عن طريق وضع سائل بطريقه منتظمه على المكان  المراد علاجه ويتم غسله بعد مده من الوقت حيث  يتم تقشير الجلد ف خلال أيام من عمل الجلسه كى يعود الجلد الى لونه الطبيعى ",
+      img:"../../../../assets/services/Derma/darkspottreatement.png"
+    }
   ];
 
   plasticSurgeryServices: any[] = [
@@ -388,7 +410,31 @@ export class servicesComponent implements OnInit {
         break;
     }
   }
-  constructor() { }
+  constructor(private currentRouter:ActivatedRoute) {
+
+    let speciality="";
+    currentRouter.queryParams.subscribe(params=>{
+      speciality = params.speciality;
+    })
+
+    if (speciality == "dermatology") {
+      this.changeActiveArr("dermatology");
+    } else if (speciality == "dental") {
+      this.changeActiveArr("dental");
+    }
+    else if (speciality == "internal") {
+      this.changeActiveArr("internal");
+    } else if (speciality == "obs") {
+      this.changeActiveArr("obs");
+    } else if (speciality == "nutrition") {
+      this.changeActiveArr("nutrition");
+    } else if (speciality == "surgery") {
+      this.changeActiveArr("surgery");
+    } else if (speciality == "plastic") {
+      this.changeActiveArr("plastic");
+    }
+
+  }
 
   ngOnInit(): void {
   }

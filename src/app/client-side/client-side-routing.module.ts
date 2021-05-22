@@ -35,14 +35,15 @@ const routes: Routes = [
         path: 'services', component: servicesComponent
       }, {
         path: 'history', component: MyHistoryComponent
-      }, { path: 'blog', component: BlogsComponent
-     },{
-       path:'gallery', component:GalleryComponent
-     },{
-       path:'blog/:id',component:PostComponent
-     },{
-       path:"video-gallery" , component:VideoGalleryComponent
-     }
+      }, {
+        path: 'blog', component: BlogsComponent
+      }, {
+        path: 'gallery', component: GalleryComponent
+      }, {
+        path: 'blog/:id', component: PostComponent
+      }, {
+        path: "video-gallery", component: VideoGalleryComponent
+      }
     ]
   }
 

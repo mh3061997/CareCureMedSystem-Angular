@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { } from 'googlemaps';
 import { ResContactUs } from 'src/app/interfaces/res-contact-us';
 import { ContactService } from '../../services/contact.service';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons';
+
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
@@ -9,7 +11,7 @@ import { ContactService } from '../../services/contact.service';
 })
 export class ContactUsComponent implements OnInit {
   
-
+  faTiktok=faTiktok;
   isContactFormSubmitted=false;
 
   @ViewChild('map', { static: true }) mapElement: any;

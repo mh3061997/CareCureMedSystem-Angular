@@ -12,12 +12,14 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h4 style="font-size:25px !important; color: var(--client-secondary);">Choose a speciality to view our doctors</h4>
+                <h4 style="font-size:25px !important; margin-bottom:30px; color: var(--client-secondary);">Choose a speciality to view our doctors</h4>
                 <div class="btn-group " role="group" aria-label="Basic example">
+
                     <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dermatology')">
                         <img src="../../../../assets/icons/Derma.png" alt="">
                         <span>Dermatology </span>
                     </button>
+
                     <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dental')">
                         <img src=" ../../../../assets/icons/Dental.png " alt=" ">
                         <span>Dentistry </span>
@@ -39,7 +41,7 @@
                         <img src="../../../../assets/icons/Internal medcine.png " alt=" ">
                         <span>Internal Medecine</span>
                         </button>
-                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')" id="scrollAnchor">
                         <img src="../../../../assets/icons/obstetrics.png " alt=" ">
                         <span>Obsetrics</span>
                         </button>
@@ -57,7 +59,7 @@
         </div>
     </div>
 </section>
-<section class="team pb-5 bg-gray">
+<section id="doctorList" class="team pb-5 bg-gray">
     <div class="container ">
 
         <div class="row justify-content-center pt-5">

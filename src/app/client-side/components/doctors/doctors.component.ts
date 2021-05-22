@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -29,7 +30,9 @@ export class DoctorsComponent implements OnInit {
   ObsArr:any =[{name:'Prof. Ahmed El Hossieny',speciality:'',bio:'professor of obstetrics and gynecology in Ain Shams University',img:'../../../../assets/Doctors/Obs/Prof. Ahmed El Hossieny--professor of obstetrics and gynecology in Ain Shams University.png'},];
   
   PlasticSurgeyArr:any =[{name:'Dr. Helen El kaabi',speciality:'Plastic Surgeon',bio:'Master Degree of Plastic Surgery In Shams University ',img:'../../../../assets/Doctors/Plastic surgey/Dr. Helen El kaabi-Plastic Surgeon-Master Degree of Plastic Surgery In Shams University .png'},
-  {name:'Prof. Ayman Abo El Makarm',speciality:'Plastic Surgeon',bio:'Professor of Plastic Surgery In Shams University ',img:'../../../../assets/Doctors/Plastic surgey/Prof. Ayman Abo El Makarm-Plastic Surgeon-Professor of Plastic Surgery In Shams University .png'},];
+  {name:'Prof. Ayman Abo El Makarm',speciality:'Plastic Surgeon',bio:'Professor of Plastic Surgery In Shams University ',img:'../../../../assets/Doctors/Plastic surgey/Prof. Ayman Abo El Makarm-Plastic Surgeon-Professor of Plastic Surgery In Shams University .png'},
+  {name:'Dr. Hisham Ghoneim',speciality:'Plastic Surgeon',bio:'Professor of Plastic Surgery In MRCS England University ',img:'../../../../assets/Doctors/Plastic surgey/hisham ghoneim.jpeg'},
+];
   
   SurgeryArr:any =[{name:'Prof. Mohamed Khalfalla',speciality:'Surgeon',bio:'profesor of surgical oncology in Ain Shams university',img:'../../../../assets/Doctors/Surgery/Prof Mohamed Khalfalla-Surgeon-profesor of surgical oncology in Ain Shams university.jpeg'},];
   
@@ -73,8 +76,9 @@ export class DoctorsComponent implements OnInit {
 
     break;
   }
+  this.viewportScroller.scrollToAnchor("scrollAnchor");
   }
-constructor() { }
+  constructor(private viewportScroller: ViewportScroller) {}
 
 ngOnInit(): void {
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-md-12 ">
-                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">Our News</h1>
+                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">Our Videos</h1>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h4 style="font-size:25px !important; color: var(--client-secondary);">Choose a speciality to view our videos</h4>
+                <h4 style="font-size:25px !important; margin-bottom:30px; color: var(--client-secondary);">Choose a speciality to view our videos</h4>
                 <div class="btn-group " role="group" aria-label="Basic example">
                     <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dermatology')">
                         <img src="../../../../assets/icons/Derma.png" alt="">
@@ -53,7 +53,7 @@
                         <img src="../../../../assets/icons/Internal medcine.png " alt=" ">
                         <span>Internal Medecine</span>
                         </button>
-                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')">
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')" id="scrollAnchor">
                         <img src="../../../../assets/icons/obstetrics.png" alt=" ">
                         <span>Obsetrics</span>
                         </button>
@@ -72,13 +72,18 @@
         </div>
     </div>
 </section>
-<section class="blog-posts p-4 bg-gray">
+<section class="blog-posts p-4 pt-5 bg-gray">
     <div class="container">
         <div class="row justify-content-center">
 
-            <div class="col-md-6 mb-3 blog_list_small " *ngFor="let videoUrl of activeArr">
-                <iframe width="100%" height="315" [src]="videoUrl | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="col-md-6 my-3 blog_list_small  text-center" *ngFor="let video of activeArr">
+                <h4 style="color: var(--client-primary); " class="mb-4">{{video.title}}</h4>
+                <iframe width="100%" height="315" [src]="video.url | safe" [title]="video.title" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+            </div>
+
+            <div class="text-center" *ngIf="!activeArr.length">
+                <h1>Sorry No {{activeSpeciality}} Videos Yet. :(</h1>
             </div>
         </div>
     </div>

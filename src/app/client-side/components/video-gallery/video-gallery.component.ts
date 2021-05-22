@@ -1,68 +1,185 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-video-gallery',
-  templateUrl: './video-gallery.component.html',
-  styleUrls: ['./video-gallery.component.css']
+      selector: 'app-video-gallery',
+      templateUrl: './video-gallery.component.html',
+      styleUrls: ['./video-gallery.component.css']
 })
 export class VideoGalleryComponent implements OnInit {
 
-  
-
-  DermatolgyArr:string[]=['https://www.youtube.com/embed/6LpJ2dz5uOM','https://www.youtube.com/embed/TdrL3QxjyVw','https://www.youtube.com/embed/TdrL3QxjyVw'];
-  DentalArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
-  InternalMedcineArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
-  ObsArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
-  NutritionArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
-  SurgeryArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
-  PlasticSurgeyArr:string[]=['https://www.youtube.com/embed/TdrL3QxjyVw'];
-
-  activeArr:string[] = this.DermatolgyArr;
-  activeSpeciality:string="Dermatology";
 
 
-  changeActiveArr(speciality: string){
-    switch(speciality) {
-      case 'dermatology': this.activeArr = this.DermatolgyArr;
-      this.activeSpeciality="Dermatology";
+      DermatolgyArr: any[] = [
+            {
+                  title: " candela lase pro U 2020 كل الاسئلة الشائعة عن ازالة الشعر بجهاز ",
+                  url: "https://www.youtube.com/embed/07f8PZXsI4k"
+            },
+            {
+                  title: "استخدامات الفراكشنل ليزر",
+                  url: "https://www.youtube.com/embed/YyR3t90Ts1U"
+            },
+            {
+                  title: "نضارة البشرة",
+                  url: "https://www.youtube.com/embed/7Ahw-fm0My8"
+            },    {
+                  title: " candela lase pro U 2020 كل الاسئلة الشائعة عن ازالة الشعر بجهاز ",
+                  url: "https://www.youtube.com/embed/1BVcbkw74os"
+            },    {
+                  title: "حقن البوتكس",
+                  url: "https://www.youtube.com/embed/nYTBIV8kp1U"
+            },    {
+                  title: "الهالات السوداء",
+                  url: "https://www.youtube.com/embed/l9Oo7ZyiavU"
+            },    {
+                  title: "ازالة الشعر بالليزر",
+                  url: "https://www.youtube.com/embed/xF0AaxFSAuc"
+            },    {
+                  title: "ازالة الشعر بجهاز كانديلا ليز برو و استخدامات تا فراكشنل ليزر",
+                  url: "https://www.youtube.com/embed/6LpJ2dz5uOM"
+            }
+      ];
+      DentalArr: any[] = [
+            {
+                  title: "تبيض الاسنلن",
+                  url: "https://www.youtube.com/embed/gF-3QwpNL1I"
+            },
+            {
+                  title: "فينير الاسنان",
+                  url: "https://www.youtube.com/embed/c598_UYUTNY"
+            }, {
+                  title: "ضروس العقل المدفونة",
+                  url: "https://www.youtube.com/embed/T1Gi3FbPo3o"
+            }, {
+                  title: "أهمية تقويم الاسنان",
+                  url: "https://www.youtube.com/embed/KyGVgewj1Tk"
+            }, {
+                  title: "حشو العصب عند الأطفال",
+                  url: "https://www.youtube.com/embed/WyRoPSTSQfs"
+            }, {
+                  title: "الاسنان اللبنية عند الأطفال",
+                  url: "https://www.youtube.com/embed/oQqXH1mGAE4"
+            }, {
+                  title: "إبني وقع و سنانة اتكسرت",
+                  url: "https://www.youtube.com/embed/v8w_MdEB9zc"
+            },];
 
-    break;
-    case 'dental': this.activeArr = this.DentalArr;
-          this.activeSpeciality="Dentistry";
+      InternalMedcineArr: any[] = [];
 
-    break;
+      ObsArr: any[] = [
+            {
+                  title: "الفرق ما بين الحقن المجهري و التلقيح الصناعي",
+                  url: "https://www.youtube.com/embed/zqa3Gc-N5xo"
+            },
+            ];
 
-    case 'internal': this.activeArr = this.InternalMedcineArr;
-          this.activeSpeciality="Internal Medicine";
+      NutritionArr: any[] =  [
+        
+            {
 
-    break;
+                  title: "خطواط تحسسنا بالشبع دايما",
+                  url: "https://www.youtube.com/embed/6hp2xE66F7M"
+            },      {
+                  title: "عزومة رمضان",
+                  url: "https://www.youtube.com/embed/07XlAuwA4X8"
+            },      {
+                  title: "السوايل في رمضان",
+                  url: "https://www.youtube.com/embed/3Wnhd34ciCo"
+            },      {
+                  title: "نلعب رياضة امتي في رمضان",
+                  url: "https://www.youtube.com/embed/kbvGWvhfDjk"
+            },      {
+                  title: "افضل نصائح التغذية لشهر رمضان الكريم",
+                  url: "https://www.youtube.com/embed/BJz5LXL1K-Q"
+            },
+            ];
 
-    case 'obs': this.activeArr = this.ObsArr;
-          this.activeSpeciality="Obsetrics";
+      SurgeryArr: any[] = [
+            {
+                  title: "إفرازات الثدي أنواعها وأسبابها",
+                  url: "https://www.youtube.com/embed/qfn-gvKptwE"
+            },  {
+                  title: "اورام الثدي الحميدة - اعراض و تشخيص و علاج",
+                  url: "https://www.youtube.com/embed/mWt9sKTlLJo"
+            },  {
+                  title: "هل عينة ورم الثدي تساعد علي انتشاره ؟",
+                  url: "https://www.youtube.com/embed/k4bKOu-3gX8"
+            },  {
+                  title: "التشخيص المبكر لأورام الثدى",
+                  url: "https://www.youtube.com/embed/mRa2-HPFXe0"
+            },  {
+                  title: "حصوات المرارة.. أعراضها وأسبابها ومضاعفاتها",
+                  url: "https://www.youtube.com/embed/SzEUMX4kFIE"
+            },  {
+                  title: "الغده الدرقية , اسبابها و اعراضها و طرق علاجها",
+                  url: "https://www.youtube.com/embed/xf-XoS2TP5c"
+            },  {
+                  title: "الفرق كا بين القولون العصبي و اورام القولون",
+                  url: "https://www.youtube.com/embed/f8rGNsefRRc"
+            },
+      ];
 
-    break;
+      PlasticSurgeyArr: any[] =  [
+            {
+                  title: "إمتي ينفع نعمل شفط دهون وإمتى مينفعش",
+                  url: "https://www.youtube.com/embed/wNUK1RbJA4Q"
+            }, {
+                  title: "شد البطن",
+                  url: "https://www.youtube.com/embed/VSiMeQaQQ8E"
+            }, {
+                  title: "إعادة بناء الثدى",
+                  url: "https://www.youtube.com/embed/ZJV67Irhmf8"
+            },
+            ];
 
-    case 'nutrition': this.activeArr = this.NutritionArr;
-          this.activeSpeciality="Nutrition";
+      activeArr: any[] = this.DermatolgyArr;
+      activeSpeciality: any = "Dermatology";
 
-    break;
 
-    case 'surgery': this.activeArr = this.SurgeryArr;
-          this.activeSpeciality="Surgery";
+      changeActiveArr(speciality: string) {
+            switch (speciality) {
+                  case 'dermatology': this.activeArr = this.DermatolgyArr;
+                        this.activeSpeciality = "Dermatology";
 
-    break;
+                        break;
+                  case 'dental': this.activeArr = this.DentalArr;
+                        this.activeSpeciality = "Dentistry";
 
-    case 'plastic': this.activeArr = this.PlasticSurgeyArr;
-          this.activeSpeciality="Plastic Surgery";
+                        break;
 
-    break;
-  }
-  }
-  
-  constructor() { }
+                  case 'internal': this.activeArr = this.InternalMedcineArr;
+                        this.activeSpeciality = "Internal Medicine";
 
-  ngOnInit(): void {
-  }
+                        break;
+
+                  case 'obs': this.activeArr = this.ObsArr;
+                        this.activeSpeciality = "Obsetrics";
+
+                        break;
+
+                  case 'nutrition': this.activeArr = this.NutritionArr;
+                        this.activeSpeciality = "Nutrition";
+
+                        break;
+
+                  case 'surgery': this.activeArr = this.SurgeryArr;
+                        this.activeSpeciality = "Surgery";
+
+                        break;
+
+                  case 'plastic': this.activeArr = this.PlasticSurgeyArr;
+                        this.activeSpeciality = "Plastic Surgery";
+
+                        break;
+            }
+            this.viewportScroller.scrollToAnchor("scrollAnchor");
+
+      }
+
+      constructor(private viewportScroller: ViewportScroller) {}
+
+      ngOnInit(): void {
+      }
 
 }
 

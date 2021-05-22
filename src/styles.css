@@ -326,6 +326,27 @@ h4,
 }
 
 .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vh;
+    height: 100vh;
+    font-size: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/**/
+
+.local-spinner-wrapper {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    margin: auto;
+    z-index: 9999;
+}
+
+.local-spinner {
     color: var(--client-primary);
     font-size: 20px;
     margin: 100px auto;
@@ -339,12 +360,7 @@ h4,
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
     margin: auto;
-    position: fixed;
     background: none;
 }
 
