@@ -66,30 +66,123 @@
             </p>
 
         </div>
-        <div class="row p-4 my-5 border apps-container bg-gray shadow">
+        <div class="row p-4 my-5 border apps-container  shadow " *ngIf="patient && patient.appointments.length">
             <div class="col-12">
                 <div *ngFor="let app of patient.appointments" class="row appointment-box p-5 mb-4">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-2">
                                 <span class="h4" style="color: var(--client-secondary);">Code: </span>
                                 <span style="font-size: 25px;"> {{app.code}}</span>
                             </div>
-                            <div class="col-md-6">Date: {{app.dateToVisit}} </div>
+                            <span class="col-md-6 mt-2 h4" style="color: var(--client-secondary);">Date: {{servUtils.formatDateTime(app.dateToVisit)}} </span>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">Doctor Name: {{app.doctor.name}}</div>
-                            <div class="col-md-6">Speciality: {{app.speciality}}</div>
+                            <span class="col-md-6 mt-2 h4" style="color: var(--client-secondary);">Doctor Name: {{app.doctor.name}}</span>
+                            <span class="col-md-6 mt-2 h4" style="color: var(--client-secondary);">Speciality: {{app.speciality}}</span>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">Type: {{app.type}} </div>
-                            <div class="col-md-6" *ngIf="app.invoice">Total Amount: {{app.invoice.totalDue}} </div>
+                            <span class="col-md-6 mt-2 h4" style="color: var(--client-secondary);">Type: {{app.type}} </span>
+                            <span class="col-md-6 mt-2 h4" style="color: var(--client-secondary);" *ngIf="app.invoice">Total Amount: {{app.invoice.totalDue}} </span>
+                        </div>
+                        <div class="row">
+                            <span class="col-md-6 mt-2 h4" style="color: var(--client-secondary);">Status: {{app.status}} </span>
+
                         </div>
                         <div class="mt-4 row justify-content-end">
                             <button class="theme-btn trans-btn" *ngIf="app.invoice && app.invoice.status=='Finalized'">Print Invoice</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row p-4 text-center" *ngIf="!patient.appointments.length">
+            <div class="col-12">
+                <h2>No Appointments Yet</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <p class=" gradient_highlighter service_title_line h2">
+                My Medical Images
+            </p>
+
+
+
+        </div>
+        <div class="row">
+            <div *ngIf="medImagesLab" class="card-header col-12 bg-white p-3">
+
+                <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
+                    <mat-tab label="Lab Tests">
+                        <ng-template mat-tab-label>
+                            <fa-icon class="mr-3 mb-2" [icon]="faFlask" size="2x"></fa-icon>
+                            Lab Tests
+                        </ng-template>
+
+                        <div class="row bg-sec-light justify-content-end">
+                            <button class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Lab Image</button>
+
+                            <div *ngIf="medImagesLab.length!=0" class="col-sm-12">
+
+                                <app-patient-medimages-table [medImages]="medImagesLab"></app-patient-medimages-table>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+                    <mat-tab label="Radiology">
+                        <ng-template mat-tab-label>
+                            <fa-icon class="mr-3 mb-2" [icon]="faMicroscope" size="2x"></fa-icon>
+                            Radiology
+                        </ng-template>
+
+                        <div class="row bg-sec-light justify-content-end">
+                            <button class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Radiology Image</button>
+
+                            <div *ngIf="medImagesRadiology.length!=0" class="col-sm-12">
+
+                                <app-patient-medimages-table [medImages]="medImagesRadiology"></app-patient-medimages-table>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+                    <mat-tab label="Prescriptions">
+                        <ng-template mat-tab-label>
+                            <fa-icon class="mr-3 mb-2" [icon]="faFileMedical" size="2x"></fa-icon>
+                            Prescriptions
+                        </ng-template>
+
+                        <div class="row bg-sec-light justify-content-end">
+                            <button class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Prescription Image</button>
+
+                            <div *ngIf="medImagesPresc.length!=0" class="col-sm-12">
+
+                                <app-patient-medimages-table [medImages]="medImagesPresc"></app-patient-medimages-table>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+                    <mat-tab label="Official Documents">
+                        <ng-template mat-tab-label>
+                            <fa-icon class="mr-3 mb-2" [icon]="faIdCard" size="2x"></fa-icon>
+                            Official Documents
+                        </ng-template>
+
+                        <div class="row bg-sec-light justify-content-end">
+                            <button class="btn btn-success m-3" (click)="openAddOfficialImageDialog()">Add Official Document Image</button>
+
+                            <div *ngIf="medImagesOfficial.length!=0" class="col-sm-12">
+
+                                <app-patient-official-image-table [medImages]="medImagesOfficial"></app-patient-official-image-table>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+                </mat-tab-group>
             </div>
         </div>
     </div>

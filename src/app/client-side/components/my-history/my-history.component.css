@@ -32,15 +32,16 @@
 
 .apps-container {
     border-radius: 20px;
-    min-height: 100px;
-    max-height: 500px;
-    overflow-y: scroll;
+    min-height: 600px;
+    /* max-height: 500px; */
+    /* overflow-y: scroll; */
     border: 10px solid var(--client-primary) !important;
+    background: white;
 }
 
 .appointment-box {
     background-color: white;
-    border: 5px solid var(--client-primary) !important;
+    border-bottom: 3px solid var(--client-primary) !important;
 }
 
 .banner_head {
@@ -60,4 +61,8 @@
 
 .col-lg-6 {
     margin-bottom: 20px;
+}
+
+.service_title_line {
+    min-height: 29px !important;
 }
