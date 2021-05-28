@@ -2,12 +2,13 @@
 
 .x {
     display: block;
-    position: absolute;
+    position: sticky;
     right: 0;
     top: 0;
     width: 32px;
     height: 32px;
     transition: transform .25s ease-in-out;
+    z-index: 9999 !important;
 }
 
 .x:hover {
