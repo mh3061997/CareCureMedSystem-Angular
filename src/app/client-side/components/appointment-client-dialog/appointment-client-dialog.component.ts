@@ -30,20 +30,14 @@ export class AppointmentClientDialogComponent implements OnInit {
   @ViewChild('newAppointmentForm', { static: false }) newAppointmentForm: NgForm;
 
   doctors: ResDoctor[];
-  patientFormControl = new FormControl();
-  doctorFormControl = new FormControl();
-
-  filteredpatients: Observable<ResPatient[]>;
-  filtereddoctors: Observable<ResDoctor[]>;
-
   specialities: string[] = [];
   timeIntervals: ResTimeDecomposed[];
   reservedDoctorTimes: ResTimeDecomposed[];
-
-
-  isReserveYourself=false;
-  isContactDone=false;
-  isReserveYourselfDone=false;
+  patientCode: number;
+  doctor: ResDoctor;
+  isReserveYourself = false;
+  isContactDone = false;
+  isReserveYourselfDone = false;
 
   constructor(
     public dialogRef: MatDialogRef<AppointmentClientDialogComponent>,
@@ -51,14 +45,14 @@ export class AppointmentClientDialogComponent implements OnInit {
     private servDoctor: ServDoctorService,
     private servUtils: ServUtilitiesService,
     public servAuth: AuthService,
-    private servContact:ContactService,
-    private router:Router) {
+    private servContact: ContactService,
+    private router: Router) {
 
 
-    
-   
+
+
     this.specialities = servUtils.specialities;
-
+    this.patientCode = this.servAuth.getLoggedInPatientCode();
     //to disable intended dialog action to fire on backclick
     //i return false and check it on parent to execute afterclosed action or not
     dialogRef.backdropClick().subscribe(result => {
@@ -70,95 +64,78 @@ export class AppointmentClientDialogComponent implements OnInit {
 
   }
 
-  sendContactAppointmentEmail(contactAppointmentFormValue:any){
-  let contactAppointmentDataDTO :ResContactAppointment = {
-    name:contactAppointmentFormValue.nameContact,
-    mobile:contactAppointmentFormValue.mobileNumberContact,
-    speciality:contactAppointmentFormValue.specialityContact,
-    doctorName:this.doctorFormControl.value.name
+  sendContactAppointmentEmail(contactAppointmentFormValue: any) {
+    let contactAppointmentDataDTO: ResContactAppointment = {
+      name: contactAppointmentFormValue.nameContact,
+      mobile: contactAppointmentFormValue.mobileNumberContact,
+      speciality: contactAppointmentFormValue.specialityContact,
+      doctorName: contactAppointmentFormValue.doctor
 
-  }
-  
-  this.servContact.sendContactAppointmentEmail(contactAppointmentDataDTO).subscribe(()=>{
-    this.isContactDone=true;
+    }
 
-    setTimeout(() => {
-      this.dialogRef.close(true);
-    }, 4000);
+    this.servContact.sendContactAppointmentEmail(contactAppointmentDataDTO).subscribe(() => {
+      this.isContactDone = true;
 
-  });
-    
-  }
-  
-  isloggedin() {
-    return this.servAuth.isUserLoggedIn();
-  }
-
-  onSpecialityChange(event: MatSelectChange) {
-    //clear existing selected doctor
-    this.doctorFormControl.reset();
-
-    this.servDoctor.getDoctorsBySpeciality(event.value).subscribe(doctors => {
-
-      if (doctors) {
-        this.doctors = doctors;
-        this.filtereddoctors = this.doctorFormControl.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => typeof value === 'string' ? value : value.name),
-            map(name => name ? this._filterDoctor(name) : this.doctors.slice())
-          );
-      }
+      setTimeout(() => {
+        this.dialogRef.close(true);
+      }, 4000);
 
     });
 
   }
 
+  isloggedin() {
+    return this.servAuth.isUserLoggedIn();
+  }
+
+  onSpecialityChange(event: MatSelectChange) {
+
+
+    this.servDoctor.getDoctorsBySpeciality(event.value).subscribe(doctors => {
+
+
+      this.doctors = doctors;
+
+
+    });
+
+  }
+  onDoctorChange(event: MatSelectChange) {
+
+    this.doctor = event.value;
+
+  }
 
   public isMobileLayout = false;
 
   ngOnInit() {
 
-    if(history.state.openReserveDialog) {
-      this.isReserveYourself=true;
-      }
-      this.isMobileLayout = window.innerWidth <= 768;
-  
-     
-      
+    if (history.state.openReserveDialog) {
+      this.isReserveYourself = true;
+    }
+    this.isMobileLayout = window.innerWidth <= 768;
+
+
+
   }
-      @HostListener("window:resize", [])
-      onResize() {
-        var width = window.innerWidth;
-        this.isMobileLayout = width <= 768;
-        // console.log("mobile",this.isMobileLayout);
-    
-      }
-    
- 
+  @HostListener("window:resize", [])
+  onResize() {
+    var width = window.innerWidth;
+    this.isMobileLayout = width <= 768;
+    // console.log("mobile",this.isMobileLayout);
 
-
-  
-
-
-  displayFnDoctor(doctor: ResDoctor): string {
-    return doctor && doctor.name ? doctor.name : '';
   }
 
-  private _filterDoctor(name: string): ResDoctor[] {
-    const filterValue = name.toLowerCase();
 
-    return this.doctors.filter(doctor => doctor.name.toLowerCase().indexOf(filterValue) === 0);
-  }
 
-  displayFnPatient(patient: ResPatient): string {
-    return patient && patient.name ? patient.name : '';
-  }
+
+
+
 
 
   onNewAppointmentSubmit() {
     const dateToVisit = this.servUtils.createDateTimeObject(this.newAppointmentForm.value.dateToVisit.toISOString(), this.newAppointmentForm.value.timeToVisit);
-    
+
     const newAppointment: ResAppointment = {
       code: 0, //code must ALWAYS be 0 when inserting bec. it wont insert if code is existing and 
       //it starts from 1 so 0 always available
@@ -167,15 +144,15 @@ export class AppointmentClientDialogComponent implements OnInit {
       dateToVisit: dateToVisit,
       type: this.newAppointmentForm.value.type,
       notes: "Self-Reserved By Patient",
-      patient: {code:+this.servAuth.getLoggedInPatientCode(),age:0,appointments:[],email:"",gender:"",medImages:[],memberships:[],mobile:"",name:"",notes:"",totalDebt:0},
-      doctor: this.doctorFormControl.value,
+      patient: {code:+this.patientCode,age:0,appointments:[],email:"",gender:"",medImages:[],memberships:[],mobile:"",name:"",notes:"",totalDebt:0},
+      doctor: this.doctor,
       status: "Reserved"
     }
 
     console.log(newAppointment);
 
     this.servAppointment.addAppointment(newAppointment).subscribe(response => {
-      this.isReserveYourselfDone=true;
+      this.isReserveYourselfDone = true;
 
       setTimeout(() => {
         this.dialogRef.close(true);
@@ -187,7 +164,9 @@ export class AppointmentClientDialogComponent implements OnInit {
 
   checkAddAppointmentFormValidity(): boolean {
 
-    const check = typeof (this.patientFormControl.value) == 'object' && typeof (this.doctorFormControl.value) == 'object' ? true : false;
+//console.log(this.doctor,this.patient);
+
+    const check = this.doctor && this.patientCode? true : false;
     return check;
   }
 
@@ -195,11 +174,11 @@ export class AppointmentClientDialogComponent implements OnInit {
   onDateChange(date: Date | null) {
 
 
-    if (this.doctorFormControl.value && date) {
+    if (this.doctor && date) {
       //console.log("here",date.toISOString());
       // console.log("form date ",date.toISOString());
 
-      this.servDoctor.getDoctorReservedTimes(this.doctorFormControl.value.code, date.toISOString()).subscribe(
+      this.servDoctor.getDoctorReservedTimes(this.doctor.code, date.toISOString()).subscribe(
         reservedTimes => {
           this.reservedDoctorTimes = this.servUtils.getDecomposedTimeFromDateObj(reservedTimes);
           //console.log("reservedtimes ",reservedTimes);
@@ -213,6 +192,10 @@ export class AppointmentClientDialogComponent implements OnInit {
 
 
   datePickerDoctorDaysFilter = (d: Date | null): boolean => {
+
+    if(!this.doctor)
+    return false;
+
     const day = (d || new Date()).getDay();
     // Prevent Sunday and  Saturday from being selected.
     let dayMap = new Map();
@@ -236,7 +219,7 @@ export class AppointmentClientDialogComponent implements OnInit {
     dayAvailableMap.set('6', 0);
 
 
-    const doctor: ResDoctor = this.doctorFormControl.value;
+    const doctor: ResDoctor = this.doctor;
 
     doctor.availableDays.forEach(dayAvail => {
       dayAvailableMap.set(dayMap.get(dayAvail.day), 1);
@@ -257,7 +240,7 @@ export class AppointmentClientDialogComponent implements OnInit {
   isWithinWorkingHours(time: ResTimeDecomposed): boolean {
     const date: Date = this.newAppointmentForm.value.dateToVisit;
     //console.log(this.servUtils.getWeekDayString(date));
-    const doctor: ResDoctor = this.doctorFormControl.value;
+    const doctor: ResDoctor = this.doctor;
 
     const day: ResDoctorDayAvail = doctor.availableDays.filter(day => day.day == this.servUtils.getWeekDayString(date))[0];
 
@@ -276,17 +259,17 @@ export class AppointmentClientDialogComponent implements OnInit {
     return isWithin;
   }
 
-  toggleReserveYourself(){
-    if(this.isloggedin()){
-      this.isReserveYourself=true;
-    }else{
+  toggleReserveYourself() {
+    if (this.isloggedin()) {
+      this.isReserveYourself = true;
+    } else {
       this.dialogRef.close(false);
-      this.router.navigate(['login-client'],{state:{openReserveDialog:true}});
+      this.router.navigate(['login-client'], { state: { openReserveDialog: true } });
     }
     console.log(this.isReserveYourself);
-    
+
   }
- 
+
 }
 
 

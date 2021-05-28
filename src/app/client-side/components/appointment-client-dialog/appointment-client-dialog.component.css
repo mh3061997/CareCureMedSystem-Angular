@@ -2,7 +2,7 @@
 
 .x {
     display: block;
-    position: sticky;
+    position: absolute;
     right: 0;
     top: 0;
     width: 32px;
@@ -105,5 +105,11 @@
         width: 100%;
         height: 1px;
         left: 0%;
+    }
+    .col-md-12 {
+        padding: 0px !important;
+    }
+    .col-12 {
+        padding: 0px !important;
     }
 }
