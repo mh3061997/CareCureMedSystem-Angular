@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { param } from 'jquery';
 
@@ -436,7 +436,21 @@ export class servicesComponent implements OnInit {
 
   }
 
+  public isMobileLayout = false;
   ngOnInit(): void {
+    
+    this.isMobileLayout = window.innerWidth <= 768;
+  
+
+  
+  }
+
+  @HostListener("window:resize", [])
+  onResize() {
+    var width = window.innerWidth;
+    this.isMobileLayout = width <= 768;
+    console.log("mobile",this.isMobileLayout);
+
   }
 
 }

@@ -65,7 +65,7 @@
         <div class="row justify-content-center pt-5">
             <div *ngFor="let service of activeArr" class=" col-md-5 d-flex align-items-stretch ">
                 <div class="container service_box">
-                    <div class="row">
+                    <div class="row" *ngIf="!isMobileLayout">
                         <div class="col-md-3 ">
                             <img [src]="service.img" class="service_photo">
                         </div>
@@ -77,6 +77,26 @@
                                 <p style="color:var(--client-secondary);  " *ngFor="let sentence of service.description.split('.')">
                                     {{sentence}} </p>
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isMobileLayout">
+
+                        <div class="col-md-12 text-center">
+                            <div class="member">
+
+                                <h4 style="color:var(--client-primary) ">{{service.name}}</h4>
+                                <span style="color:var(--client-accent);margin-bottom: 21px; ">{{service.nameAr}}</span>
+
+
+                            </div>
+                            <img [src]="service.img" class="service_photo" style="float: none;">
+                        </div>
+                        <div class="col-md-10 ">
+
+                            <div class="member">
+                                <p style="color:var(--client-secondary);  " *ngFor="let sentence of service.description.split('.')">
+                                    {{sentence}} </p>
                             </div>
                         </div>
                     </div>
