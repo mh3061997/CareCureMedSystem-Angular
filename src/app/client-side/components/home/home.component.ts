@@ -90,7 +90,11 @@ export class HomeComponent implements OnInit {
   }
 
   openNewAppointmentDialog() {
-    const dialogRef = this.dialogAddAppointment.open(AppointmentClientDialogComponent, { disableClose: true });
+    const dialogRef = this.dialogAddAppointment.open(AppointmentClientDialogComponent, {
+       disableClose: true,
+       autoFocus: false,
+       maxHeight: '90vh' //you can adjust the value as per your view
+   });
 
     dialogRef.afterClosed().subscribe();
 

@@ -317,8 +317,8 @@
             </div>
         </div>
         <div class="row pt-4">
-            <div class="col-md-6 blog_list_large">
-                <div class="blog_inner">
+            <div *ngIf="postsHtmlArr[0]" [ngClass]="isMobileLayout ? 'col-md-3 blog_list_small' : 'col-md-6 blog_list_large'">
+                <div class="blog_inner mb-2">
                     <a [routerLink]="postsHtmlArr[0].id">
                         <div class="blog_inner_image">
                             <img [src]="postsHtmlArr[0].thumbnail ? postsHtmlArr[0].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
@@ -328,8 +328,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 blog_list_small">
-                <div class="blog_inner">
+            <div class="col-md-3 blog_list_small " *ngIf="postsHtmlArr[1]">
+                <div class="blog_inner mb-2">
                     <a [routerLink]="postsHtmlArr[1].id">
                         <div class="blog_inner_image">
                             <img [src]="postsHtmlArr[1].thumbnail ? postsHtmlArr[1].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
@@ -339,7 +339,7 @@
                     </a>
                 </div>
 
-                <div class="blog_inner" style="  margin-top: 10px;">
+                <div class="blog_inner mb-2" style="  margin-top: 10px;" *ngIf="postsHtmlArr[2]">
                     <a [routerLink]="postsHtmlArr[2].id">
                         <div class="blog_inner_image">
                             <img [src]="postsHtmlArr[2].thumbnail ? postsHtmlArr[2].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
@@ -349,8 +349,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 blog_list_small">
-                <div class="blog_inner">
+            <div class="col-md-3 blog_list_small" *ngIf="postsHtmlArr[3]">
+                <div class="blog_inner mb-2">
                     <a [routerLink]="postsHtmlArr[3].id">
                         <div class="blog_inner_image">
                             <img [src]="postsHtmlArr[3].thumbnail ? postsHtmlArr[3].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
@@ -360,7 +360,7 @@
                     </a>
                 </div>
 
-                <div class="blog_inner" style="  margin-top: 10px;">
+                <div class="blog_inner mb-2" style="  margin-top: 10px;" *ngIf="postsHtmlArr[4]">
                     <a [routerLink]="postsHtmlArr[4].id">
                         <div class="blog_inner_image">
                             <img [src]="postsHtmlArr[4].thumbnail ? postsHtmlArr[4].thumbnail : '../../../../assets/patient2.jpg'" alt=""> </div>
