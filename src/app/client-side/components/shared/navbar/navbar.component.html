@@ -25,49 +25,49 @@
 
             <ul class=" navbar-nav mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="">Home</a>
+                    <a class="nav-link" routerLink=""><span>Home</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="blog">Blog</a>
+                    <a class="nav-link" routerLink="blog"><span>Blog</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="video-gallery">Videos</a>
+                    <a class="nav-link" routerLink="video-gallery"><span>Videos</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="doctors">Doctors</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="services">Services</a>
+                    <a class="nav-link" routerLink="doctors"><span>Doctors</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="gallery">Gallery</a>
+                    <a class="nav-link" routerLink="services"><span>Services</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="about-us">About&nbsp;Us</a>
+                    <a class="nav-link" href="gallery"><span>Gallery</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="contact-us">Contact&nbsp;Us</a>
+                    <a class="nav-link" routerLink="about-us"><span>About&nbsp;Us</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="contact-us"><span>Contact&nbsp;Us</span></a>
                 </li>
 
                 <li class="nav-item" *ngIf="isShowMyHistory()">
-                    <a class="nav-link" routerLink="history">My&nbsp;History</a>
+                    <a class="nav-link" routerLink="history" [ngClass]="{'mb-3':isMobileLayout}"><span>My&nbsp;History</span></a>
                 </li>
 
                 <li class="nav-item" *ngIf="isShowAdminPanel()">
-                    <a class="nav-link" routerLink="admin/patient">Admin</a>
+                    <a class="nav-link" routerLink="admin/patient" style="padding-right: 8px !important;" [ngClass]="{'mb-3':isMobileLayout}"><span>Admin</span></a>
                 </li>
 
-                <li class="nav-item m-1" *ngIf="!authService.isUserLoggedIn()">
-                    <a routerLink="login-client" class="btn nav-auth-btn" [ngClass]="{'mb-2':isMobileLayout}">Login</a></li>
-                <li class="nav-item " *ngIf="!authService.isUserLoggedIn()">
-                    <a routerLink="signup-client" class="btn nav-auth-btn" [ngClass]="{'mb-2':isMobileLayout}">Sign&nbsp;up</a></li>
-                <li class="nav-item " *ngIf="authService.isUserLoggedIn()">
-                    <a class="btn nav-auth-btn" (click)="authService.logOut()">Log&nbsp;Out</a></li>
+                <li class=" nav-item m-1 " *ngIf="!authService.isUserLoggedIn() ">
+                    <a routerLink="login-client " class="btn nav-auth-btn " [ngClass]="{ 'mb-3':isMobileLayout} ">Login</a></li>
+                <li class="nav-item " *ngIf="!authService.isUserLoggedIn() ">
+                    <a routerLink="signup-client " class="btn nav-auth-btn " [ngClass]="{ 'mb-3':isMobileLayout} ">Sign&nbsp;up</a></li>
+                <li class="nav-item " *ngIf="authService.isUserLoggedIn() ">
+                    <a class="btn nav-auth-btn " (click)="authService.logOut() ">Log&nbsp;Out</a></li>
 
             </ul>
 

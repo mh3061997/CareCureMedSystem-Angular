@@ -22,7 +22,7 @@ a.badge {
 }
 
 a.nav-link :hover {
-    color: var(--client-primary) !important;
+    color: white;
 }
 
 nav-link {
@@ -69,4 +69,23 @@ a.badge-pill:hover {
 
 .container {
     margin-left: 15%;
+}
+
+@media (max-width:1200px) {
+    .nav-link span {
+        display: inline-block;
+        text-align: center;
+        width: 100px;
+        border-bottom: 1px solid dimgray;
+        padding-bottom: 12px;
+    }
+    .navbar-nav .nav-link {
+        font-size: 20px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+    .navbar-semi-transparent-bg {
+        background: rgba(0, 0, 0, .8);
+        padding-bottom: 18px;
+    }
 }

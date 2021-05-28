@@ -44,6 +44,15 @@
                 <fa-icon class="mr-2" [icon]="faUsers" style="color:pink"></fa-icon>
                 Users Panel
             </a>
+            <a *ngIf="isUserAdmin()" mat-list-item href="http://blog.carecureclinics.com/wp-admin" target="_blank">
+                <fa-icon class="mr-2" [icon]="faBlog" style="color:rgba(114, 18, 224, 0.322)"></fa-icon>
+                Blog
+            </a>
+            <a mat-list-item routerLink="" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faGlobe" style="color:rgba(0, 0, 255, 0.322)"></fa-icon>
+                Clients Website
+            </a>
+
         </mat-nav-list>
 
 
