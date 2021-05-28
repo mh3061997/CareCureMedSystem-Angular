@@ -25,7 +25,12 @@ export class ServUsersService {
       observe:'response'}
     );
   }
-
+  //Add a new NON PATIENT (ALL ROLES ALLOWED) User
+  registerPatientUser(newUser: ResUserDtoRegister) {
+    return this.http.post(this.servPath.getPathRegisterPatient(), newUser,{
+      observe:'response'}
+    );
+  }
   //update an existing User
   enableUser(updatedUser: ResUserDao) {
     return this.http.put(this.servPath.getPathUserDao() + "/" + updatedUser.code.toString() + "/" + "enable", updatedUser);

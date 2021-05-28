@@ -1,4 +1,4 @@
-<!-- <section class="banner_head">
+<section class="banner_head">
     <div class="container">
         <div class="row ">
             <div class="col-md-12 ">
@@ -8,23 +8,26 @@
     </div>
 </section>
 
-<section class="sign_up_section">
-    <form (ngSubmit)="onNewPatientSubmit()" #newPatientForm="ngForm">
-        <div class="container">
+<section class="sign_up_section p-5">
+    <div class="container">
+        <div class="alert alert-danger" role="alert" *ngIf="patientLookUpMessage">
+            {{patientLookUpMessage}}
+        </div>
+        <form (ngSubmit)="checkPatientAssociation(mobile.value)" #newPatientForm="ngForm">
             <div class="row">
 
 
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <mat-form-field>
 
                         <label for="input-name" class="form-control-label">Name</label>
                         <input matInput type="text" name="name" class="form-control" ngModel #name="ngModel" pattern="[a-zA-Z ]*" required>
+
+
                         <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
-
-
                     </mat-form-field>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <mat-form-field>
                         <label for="input-name" class="form-control-label">Gender</label>
                         <mat-select ngModel name="gender" class="form-control" required #gender="ngModel">
@@ -36,7 +39,7 @@
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <mat-form-field>
 
                         <label for="input-name" class="form-control-label">Email</label>
@@ -46,7 +49,7 @@
                     </mat-form-field>
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <mat-form-field>
 
                         <label for="input-name" class="form-control-label">Mobile</label>
@@ -57,7 +60,7 @@
                 </div>
 
 
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <mat-form-field>
 
                         <label for="input-name" class="form-control-label">Age</label>
@@ -68,16 +71,37 @@
                     </mat-form-field>
 
                 </div>
+                <div class="col-md-6  text-center">
+                    <mat-form-field>
 
+                        <label for="input-name" class="form-control-label">Username</label>
+                        <input matInput type="text" name="username" class="form-control" ngModel #username="ngModel" required>
+                        <span class="form-text text-muted" *ngIf="username.touched && username.invalid">Please enter
+                            username correctly!<br></span>
+
+                        <span *ngIf="isUsernameTaken" class="text-danger">Username taken!.</span>
+
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6  text-center">
+                    <mat-form-field>
+                        <label for="input-name" class="form-control-label">Password</label>
+                        <input matInput type="password" name="password" class="form-control" ngModel #password="ngModel" required>
+                        <span class="form-text text-muted" *ngIf="password.touched && password.invalid">Please enter
+                            password correctly!<br></span>
+
+                    </mat-form-field>
+
+                </div>
 
 
             </div>
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <button class="btn btn-success" [disabled]="!newPatientForm.valid" type="submit">Add</button>
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-success" [disabled]="!newPatientForm.valid" type="submit">Sign up</button>
 
                 </div>
             </div>
-        </div>
-    </form>
-</section> -->
+        </form>
+    </div>
+</section>

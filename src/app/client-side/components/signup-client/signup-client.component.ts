@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { ResPatient } from 'src/app/interfaces/res-patient';
+import { ResUserDtoRegister } from 'src/app/interfaces/res-user-dto-register';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
+import { ServUsersService } from 'src/app/services/serv-users.service';
 
 @Component({
   selector: 'app-signup-client',
@@ -9,10 +13,14 @@ import { ServPatientService } from 'src/app/services/serv-patient.service';
 })
 export class SignupClientComponent implements OnInit {
 
-  //@ViewChild('newPatientForm', { static: false }) newPatientForm: NgForm;
+  isUsernameTaken=false;
+  isPatientExist: boolean;
+  patientLookUpMessage:string;
+
+  @ViewChild('newPatientForm', { static: false }) newPatientForm: NgForm;
 
   constructor(
-  private servPatient:ServPatientService) {
+  private servPatient:ServPatientService,private servUser:ServUsersService) {
    
   }
 
@@ -20,23 +28,86 @@ export class SignupClientComponent implements OnInit {
   }
 
   
-// onNewPatientSubmit(){
-//   const newPatient:ResPatient ={
-//     code:0, //code must ALWAYS be 0 when inserting bec. it wont insert if code is existing and 
-//     //it starts from 1 so 0 always available
-//     name:this.newPatientForm.value.name,
-//     gender:this.newPatientForm.value.gender,
-//     age:this.newPatientForm.value.age,
-//     mobile:this.newPatientForm.value.mobile,
-//     email:this.newPatientForm.value.email,
-//     totalDebt:0,
-//     notes:"",
-//     appointments:[],
-//     medImages:[],
-//     memberships:[]
-//   }
+onNewPatientSubmit():Observable<any>{
+  const newPatient:ResPatient ={
+    code:0, //code must ALWAYS be 0 when inserting bec. it wont insert if code is existing and 
+    //it starts from 1 so 0 always available
+    name:this.newPatientForm.value.name,
+    gender:this.newPatientForm.value.gender,
+    age:this.newPatientForm.value.age,
+    mobile:this.newPatientForm.value.mobile,
+    email:this.newPatientForm.value.email,
+    totalDebt:0,
+    notes:"",
+    appointments:[],
+    medImages:[],
+    memberships:[]
+  }
   
-//   this.servPatient.addPatient(newPatient).subscribe(response =>{
-//   })
-// }
+ return this.servPatient.addPatient(newPatient);
+}
+
+
+
+checkPatientAssociation(mobile: string) {
+console.log(mobile);
+
+  this.servUser.isPatientAssociatedWithUser(mobile).subscribe(response => {
+
+    //Accepted
+    if (response.status == 202 && response.body) {
+
+      let patient:ResPatient = response.body;
+
+      //patient exists but without account
+      if (patient) {
+        this.isPatientExist = false;
+        this.registerUser(patient);
+      }
+      //New Patient
+    } else if (response.status == 203) {
+     
+      this.isPatientExist=false;
+      this.onNewPatientSubmit().subscribe((newPatient)=>{
+      this.registerUser(newPatient);
+      });
+    }
+    //patient already associated
+    else if (response.status == 226) {
+      this.patientLookUpMessage = "An account already exists for this patient";
+      this.isPatientExist = true;
+    }
+
+  });
+
+
+}
+
+createNewUserDTO(patient:ResPatient):ResUserDtoRegister {
+
+  const newUser: ResUserDtoRegister = {
+
+    username: this.newPatientForm.value.username,
+    password: this.newPatientForm.value.password,
+    roles: [{ id: 0, name: "PATIENT" }],
+    patient:patient
+  }
+return newUser;
+
+}
+
+
+registerUser(patient:ResPatient){
+  const newUser:ResUserDtoRegister = this.createNewUserDTO(patient);
+  this.servUser.registerPatientUser(newUser).subscribe((response) => {
+
+    if(response.status==226){
+      this.isUsernameTaken=true;
+      this.patientLookUpMessage="Username Taken ! please try a different username"
+    }else
+   console.log("registerd");
+   //router
+   
+  });
+ }
 }
