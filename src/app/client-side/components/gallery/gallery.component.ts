@@ -30,7 +30,7 @@ export class GalleryComponent implements OnInit {
         rewind: true,
         arrows:false,
         pagination:false,
-        // autoplay:true,
+        autoplay:true,
         breakpoints : {
           '600': {
             fixedWidth: 66,
@@ -46,7 +46,7 @@ export class GalleryComponent implements OnInit {
         arrows     : true,
         pauseOnHover:false,
         pauseOnFocus:false,
-        // autoplay:true,
+        autoplay:true,
         cover      : false,
         height:'90vh',
         rewind:true

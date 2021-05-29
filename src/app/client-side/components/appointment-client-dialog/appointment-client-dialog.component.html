@@ -146,7 +146,7 @@
                                         left: 50%;
                                         transform: translate(-50%,-50%);">
                                             <mat-label>Choose Visit Date</mat-label>
-                                            <input (dateInput)="onDateChange($event.target.value)" disabled="!doctor" matInput name="dateToVisit" required ngModel #dateCreated="ngModel" [matDatepicker]="dp1" [matDatepickerFilter]="datePickerDoctorDaysFilter">
+                                            <input (dateInput)="onDateChange($event.target.value)" [disabled]="!doctor" matInput name="dateToVisit" required ngModel #dateCreated="ngModel" [matDatepicker]="dp1" [matDatepickerFilter]="datePickerDoctorDaysFilter">
 
                                             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                                             <mat-datepicker required #dp1></mat-datepicker>

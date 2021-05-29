@@ -40,7 +40,7 @@
     display: block;
 }
 
-@media (max-width:1150px) {
+@media (max-width:1350px) {
     .nav-auth-btn {
         width: 136px;
         border-radius: 40px !important;

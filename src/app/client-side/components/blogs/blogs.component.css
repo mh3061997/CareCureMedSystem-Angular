@@ -160,6 +160,7 @@ tr.noBorder td:first-child {
     border-radius: 3px;
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .blog_list_large .blog_inner_image {

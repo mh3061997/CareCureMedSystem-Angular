@@ -31,7 +31,7 @@ export class DoctorsComponent implements OnInit {
   
   PlasticSurgeyArr:any =[{name:'Dr. Helen El kaabi',speciality:'Plastic Surgeon',bio:'Master Degree of Plastic Surgery In Shams University ',img:'../../../../assets/Doctors/Plastic surgey/Dr. Helen El kaabi-Plastic Surgeon-Master Degree of Plastic Surgery In Shams University .png'},
   {name:'Prof. Ayman Abo El Makarm',speciality:'Plastic Surgeon',bio:'Professor of Plastic Surgery In Shams University ',img:'../../../../assets/Doctors/Plastic surgey/Prof. Ayman Abo El Makarm-Plastic Surgeon-Professor of Plastic Surgery In Shams University .png'},
-  {name:'Dr. Hisham Ghoneim',speciality:'Plastic Surgeon',bio:'Professor of Plastic Surgery In MRCS England University ',img:'../../../../assets/Doctors/Plastic surgey/hisham ghoneim.jpeg'},
+  {name:'Dr. Hisham Ghoneim',speciality:'Plastic Surgeon',bio:'MRCS England University ',img:'../../../../assets/Doctors/Plastic surgey/hisham ghoneim.jpeg'},
 ];
   
   SurgeryArr:any =[{name:'Prof. Mohamed Khalfalla',speciality:'Surgeon',bio:'profesor of surgical oncology in Ain Shams university',img:'../../../../assets/Doctors/Surgery/Prof Mohamed Khalfalla-Surgeon-profesor of surgical oncology in Ain Shams university.jpeg'},];
