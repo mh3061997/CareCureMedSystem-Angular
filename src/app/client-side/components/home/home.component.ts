@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
 
 
     blogService.getLatestFivePosts().subscribe(posts => {
+      console.log(posts);
       
       this.postsHtmlArr=posts.map(post =>{
         

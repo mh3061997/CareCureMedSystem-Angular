@@ -24,10 +24,13 @@ export class GalleryComponent implements OnInit {
         gap         : 10,
         cover       : true,
         isNavigation: true,
+        pauseOnHover:false,
+        pauseOnFocus:false,
         focus       : 'center',
         rewind: true,
         arrows:false,
         pagination:false,
+        // autoplay:true,
         breakpoints : {
           '600': {
             fixedWidth: 66,
@@ -41,7 +44,10 @@ export class GalleryComponent implements OnInit {
         heightRatio: 0.5,
         pagination : false,
         arrows     : true,
-        cover      : true,
+        pauseOnHover:false,
+        pauseOnFocus:false,
+        // autoplay:true,
+        cover      : false,
         height:'90vh',
         rewind:true
       } ); // do not call mount() here.

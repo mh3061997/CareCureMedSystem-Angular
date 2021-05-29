@@ -64,7 +64,54 @@ export class VideoGalleryComponent implements OnInit {
                   url: "https://www.youtube.com/embed/v8w_MdEB9zc"
             },];
 
-      InternalMedcineArr: any[] = [];
+      InternalMedcineArr: any[] = [
+            {
+                  title: "تليف الكبد الدهني",
+                  url: "https://www.youtube.com/embed/sJcy2DhxDbI"
+            }, {
+                  title: "القولون العصبي",
+                  url: "https://www.youtube.com/embed/cu4Hj-HOv2o"
+            }, {
+                  title: "الكبد الدهني",
+                  url: "https://www.youtube.com/embed/FrcEO43x_Fo"
+            }, {
+                  title: "الجهاز الهضمي",
+                  url: "https://www.youtube.com/embed/o5SnVS-pAvU"
+            }, {
+                  title: "يعني ايه بالون المعدة",
+                  url: "https://www.youtube.com/embed/xVMQSVUPQOQ"
+            }, {
+                  title: "Keep Hydrated",
+                  url: "https://www.youtube.com/embed/FwiQSpEfDhI"
+            }, {
+                  title: "اهمية شرب الماية",
+                  url: "https://www.youtube.com/embed/0CsXQGRfKJc"
+            }, {
+                  title: "شرب القهوة",
+                  url: "https://www.youtube.com/embed/88XsZvnFikY"
+            }, {
+                  title: "المنظار مكانة في المستشفي مش العيادة",
+                  url:"https://www.youtube.com/embed/TbTk2D-MfsA"
+            }, {
+                  title: "البالون هتخسسنا إزاى",
+                  url: "https://www.youtube.com/embed/6RWxHdVY5Z0"
+            }, {
+                  title: "فوائد شرب المياة",
+                  url: "https://www.youtube.com/embed/dd_qAx8_eDU"
+            }, {
+                  title: "مميزات البالون المعدة",
+                  url: "https://www.youtube.com/embed/DQ2ounOYGk8"
+            }, {
+                  title: "منظار الجهاز الهضمي",
+                  url: "https://www.youtube.com/embed/yxtUr5Ua_0A"
+            }, {
+                  title: "صعوبة البلع",
+                  url: "https://www.youtube.com/embed/-d2Hxeg-U0k"
+            }, {
+                  title: "منظار المعدة",
+                  url: "https://www.youtube.com/embed/_HXkuPKbcgU"
+            },
+      ];
 
       ObsArr: any[] = [
             {

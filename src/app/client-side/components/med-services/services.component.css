@@ -118,3 +118,21 @@
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
+
+/* @media(max-width:500px) {
+    .nav-auth-btn span {
+        font-size: 10px;
+        padding: 0;
+        line-height: 5px;
+    }
+    button.nav-auth-btn {
+        width: 70px;
+        height: 114px;
+    }
+    .nav-auth-btn img {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 5px;
+    }
+} */

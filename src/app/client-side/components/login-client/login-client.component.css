@@ -1,6 +1,6 @@
 .user_card {
     height: 500px;
-    width: 350px;
+    width: 300px;
     margin-top: auto;
     margin-bottom: auto;
     background: var(--client-secondary);
@@ -22,7 +22,7 @@ div.container-fluid {
 .brand_logo_container {
     position: absolute;
     height: 144px;
-    width: 200px;
+    width: 165px;
     top: -75px;
     border-radius: 50%;
     background: #ffffff;
@@ -31,9 +31,10 @@ div.container-fluid {
 }
 
 .brand_logo {
-    width: 132px;
+    width: 127px;
     border-radius: 10%;
     border: 2px solid white;
+    margin-top: 14px;
 }
 
 .form_container {
@@ -92,4 +93,14 @@ div.container-fluid {
     background-repeat: repeat;
     background-position: center;
     background-size: contain;
+}
+
+@media (max-width:768px) {
+    .user_card {
+        justify-content: unset;
+        height: 360px;
+    }
+    div.container-fluid {
+        padding-top: 213px;
+    }
 }
