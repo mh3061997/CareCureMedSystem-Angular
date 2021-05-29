@@ -5,6 +5,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppointmentClientDialogComponent } from '../appointment-client-dialog/appointment-client-dialog.component';
 import { WordpressService } from '../wordpress.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -56,6 +57,9 @@ export class HomeComponent implements OnInit {
   }
   public isMobileLayout = false;
   ngOnInit(): void {
+
+    ($('#cl-carousel') as any).carousel();
+
     if(history.state.openReserveDialog){
       this.openNewAppointmentDialog();
     }
