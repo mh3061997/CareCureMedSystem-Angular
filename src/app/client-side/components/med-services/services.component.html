@@ -62,8 +62,8 @@
 <section class="team pb-5 bg-gray">
     <div class="container-fluid ">
 
-        <div class="row justify-content-center pt-5">
-            <div *ngFor="let service of activeArr" class=" col-md-5 d-flex align-items-stretch ">
+        <div class="row justify-content-center pt-4" id="doctor-card-container">
+            <div *ngFor="let service of activeArr" class=" col-md-5 col-11 d-flex align-items-stretch ">
                 <div class="container service_box">
                     <div class="row" *ngIf="!isMobileLayout">
                         <div class="col-md-3 ">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="isMobileLayout">
+                    <div class="row justify-content-center" *ngIf="isMobileLayout">
 
                         <div class="col-md-12 text-center">
                             <div class="member">

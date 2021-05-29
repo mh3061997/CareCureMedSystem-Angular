@@ -294,6 +294,11 @@ tr.noBorder td:first-child {
     }
 }
 
-.blog-posts {
-    padding-bottom: 75px !important;
+@media(min-width:768px) {
+    .blog-posts {
+        padding-bottom: 75px !important;
+    }
+    #active-spec-header {
+        padding-bottom: 3em !important;
+    }
 }

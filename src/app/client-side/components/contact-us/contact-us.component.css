@@ -565,4 +565,7 @@
         #mapImg {
             max-width: 100%;
         }
+        #form-holder {
+            padding-bottom: 0px !important;
+        }
     }

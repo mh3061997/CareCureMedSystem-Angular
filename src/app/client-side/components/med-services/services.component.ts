@@ -441,7 +441,7 @@ export class servicesComponent implements OnInit {
   public isMobileLayout = false;
   ngOnInit(): void {
     
-    this.isMobileLayout = window.innerWidth <= 768;
+    this.isMobileLayout = window.innerWidth <= 1200;
   
 
   
@@ -450,7 +450,7 @@ export class servicesComponent implements OnInit {
   @HostListener("window:resize", [])
   onResize() {
     var width = window.innerWidth;
-    this.isMobileLayout = width <= 768;
+    this.isMobileLayout = width <= 1200;
     console.log("mobile",this.isMobileLayout);
 
   }

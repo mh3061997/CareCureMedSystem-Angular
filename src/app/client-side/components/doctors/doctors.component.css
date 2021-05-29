@@ -101,3 +101,9 @@
     font-size: 22px;
     margin: 25px 0 9px 0;
 }
+
+@media (min-width:768px) {
+    #doctor-card-container {
+        padding-top: 3rem !important;
+    }
+}

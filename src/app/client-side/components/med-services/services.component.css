@@ -96,7 +96,7 @@
     padding: 30px 30px 40px;
     position: relative;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 28px;
 }
 
 .service_box .col-md-3 {
@@ -136,3 +136,9 @@
         margin-bottom: 5px;
     }
 } */
+
+@media (min-width:768px) {
+    #doctor-card-container {
+        padding-top: 3rem !important;
+    }
+}

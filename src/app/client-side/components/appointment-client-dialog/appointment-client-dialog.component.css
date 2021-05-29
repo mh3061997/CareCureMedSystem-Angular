@@ -2,7 +2,7 @@
 
 .x {
     display: block;
-    position: absolute;
+    position: sticky;
     right: 0;
     top: 0;
     width: 32px;

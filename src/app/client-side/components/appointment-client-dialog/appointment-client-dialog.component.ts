@@ -69,7 +69,7 @@ export class AppointmentClientDialogComponent implements OnInit {
       name: contactAppointmentFormValue.nameContact,
       mobile: contactAppointmentFormValue.mobileNumberContact,
       speciality: contactAppointmentFormValue.specialityContact,
-      doctorName: contactAppointmentFormValue.doctor
+      doctorName: contactAppointmentFormValue.doctor.name
 
     }
 
