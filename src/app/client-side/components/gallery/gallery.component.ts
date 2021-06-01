@@ -47,7 +47,7 @@ export class GalleryComponent implements OnInit {
         pauseOnHover:false,
         pauseOnFocus:false,
         autoplay:true,
-        cover      : false,
+        cover      : true,
         height:'90vh',
         rewind:true
       } ); // do not call mount() here.
