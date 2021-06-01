@@ -13,8 +13,12 @@
         height: 70px;
     }
     
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, .6) !important;
+    }
+    
     .navbar-semi-transparent-bg {
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
     }
     
     a.badge {
@@ -23,10 +27,6 @@
     
     a.nav-link :hover {
         color: white;
-    }
-    
-    nav-link {
-        font-size: 50px !important;
     }
     
     @media only screen and (max-width: 960px) {
@@ -72,20 +72,28 @@
     }
     
     @media (max-width:1200px) {
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, .7) !important;
+        }
         .nav-link span {
             display: inline-block;
             text-align: center;
             width: 100px;
-            /* border-bottom: 1px solid dimgray;
-        padding-bottom: 12px; */
+            border-bottom: 1px solid dimgray;
+            padding-bottom: 12px;
+        }
+        a.nav-link {
+            padding-bottom: 0px !important;
+            margin-bottom: 1px;
+        }
+        #navbarSupportedContent a.nav-auth-btn:first-of-type {
+            margin: 10px 0px 0px 0px !important;
         }
         .navbar-nav .nav-link {
-            /* font-size: 20px;
-        margin-bottom: 5px;
-        margin-top: 5px; */
+            font-size: 20px;
         }
         .navbar-semi-transparent-bg {
-            background: rgba(0, 0, 0, .8);
+            background: rgba(0, 0, 0, .7);
             padding-bottom: 18px;
         }
     }
@@ -93,5 +101,11 @@
     @media (max-width:576px) {
         .navbar-brand-logo {
             width: 200px;
+        }
+    }
+    
+    @media (min-width:1520px) {
+        .navbar-nav .nav-link {
+            font-size: 19px;
         }
     }
