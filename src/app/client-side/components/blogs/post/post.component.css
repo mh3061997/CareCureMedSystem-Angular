@@ -44,8 +44,8 @@
         direction: rtl;
     }
     
-     ::ng-deep p,
-     ::ng-deep li {
+     ::ng-deep blog-body p,
+     ::ng-deep blog-body li {
         font-size: 20px;
         line-height: 33px;
     }
