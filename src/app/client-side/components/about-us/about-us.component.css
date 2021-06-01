@@ -62,11 +62,9 @@ h4,
 .stats_bg {
     background: var(--client-primary);
     background-position: center;
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     padding: 110px 40px;
-    opacity: 50%;
 }
 
 
@@ -86,8 +84,6 @@ h4,
     margin-bottom: 0;
     width: 33%;
     float: left;
-    z-index: 99999;
-    opacity: 100% !important;
 }
 
 .stats__numbers span {
