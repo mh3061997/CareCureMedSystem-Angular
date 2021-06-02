@@ -40,7 +40,10 @@ export class MyHistoryComponent implements OnInit {
   constructor(public dialogAddMedImage:MatDialog,private servPatient:ServPatientService,private authService:AuthService,public servUtils:ServUtilitiesService) {
 
       this.patientCode = authService.getLoggedInPatientCode();
+
     if(this.patientCode){
+      
+      
       this.servPatient.getPatientByID(this.patientCode).subscribe(patient =>{
         this.patient = patient;
         //generates 4 types of medimages arrays
