@@ -68,7 +68,7 @@
                                 <p class="form-control-label">Total Debt</p>
                                 <p>{{patient.totalDebt}}</p>
                             </div>
-                      
+
                         </div>
                         <div class="">
                             <hr class="my-4" />
@@ -79,6 +79,14 @@
                         </div>
                         <app-appointment-patient-table [appointments]="patient.appointments">
                         </app-appointment-patient-table>
+
+                        <hr class="my-4" />
+
+                        <div class="card-header  bg-white p-3">
+                            <h3 class="mb-0">Invoices</h3>
+                        </div>
+                        <app-patient-invoices-table [invoices]="invoicesPatientAll">
+                        </app-patient-invoices-table>
 
                         <hr class="my-4" />
 
@@ -100,67 +108,67 @@
                         <hr class="my-4" />
                         <div *ngIf="medImagesLab" class="card-header  bg-white p-3">
                             <h3 class="mb-0">Medical Images</h3>
-                            <mat-tab-group  mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
+                            <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
                                 <mat-tab label="Lab Tests">
                                     <ng-template mat-tab-label>
-                                        <fa-icon class="mr-3 mb-2" [icon]="faFlask"  size="2x"></fa-icon>
+                                        <fa-icon class="mr-3 mb-2" [icon]="faFlask" size="2x"></fa-icon>
                                         Lab Tests
                                     </ng-template>
 
                                     <div class="row bg-sec-light justify-content-end">
-                                        <button  class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Lab Image</button>
-                                       
+                                        <button class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Lab Image</button>
+
                                         <div *ngIf="medImagesLab.length!=0" class="col-sm-12">
-                                 
-                                            <app-patient-medimages-table  [medImages]="medImagesLab"></app-patient-medimages-table>
+
+                                            <app-patient-medimages-table [medImages]="medImagesLab"></app-patient-medimages-table>
                                         </div>
                                     </div>
 
                                 </mat-tab>
                                 <mat-tab label="Radiology">
                                     <ng-template mat-tab-label>
-                                        <fa-icon class="mr-3 mb-2" [icon]="faMicroscope"  size="2x"></fa-icon>
+                                        <fa-icon class="mr-3 mb-2" [icon]="faMicroscope" size="2x"></fa-icon>
                                         Radiology
                                     </ng-template>
 
                                     <div class="row bg-sec-light justify-content-end">
-                                        <button  class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Radiology Image</button>
-                                       
+                                        <button class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Radiology Image</button>
+
                                         <div *ngIf="medImagesRadiology.length!=0" class="col-sm-12">
-                                 
-                                            <app-patient-medimages-table  [medImages]="medImagesRadiology"></app-patient-medimages-table>
+
+                                            <app-patient-medimages-table [medImages]="medImagesRadiology"></app-patient-medimages-table>
                                         </div>
                                     </div>
 
                                 </mat-tab>
                                 <mat-tab label="Prescriptions">
                                     <ng-template mat-tab-label>
-                                        <fa-icon class="mr-3 mb-2" [icon]="faFileMedical"  size="2x"></fa-icon>
+                                        <fa-icon class="mr-3 mb-2" [icon]="faFileMedical" size="2x"></fa-icon>
                                         Prescriptions
                                     </ng-template>
-                                   
+
                                     <div class="row bg-sec-light justify-content-end">
-                                        <button  class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Prescription Image</button>
-                                       
+                                        <button class="btn btn-success m-3" (click)="openAddMedImageDialog()">Add Prescription Image</button>
+
                                         <div *ngIf="medImagesPresc.length!=0" class="col-sm-12">
-                                 
-                                            <app-patient-medimages-table  [medImages]="medImagesPresc"></app-patient-medimages-table>
+
+                                            <app-patient-medimages-table [medImages]="medImagesPresc"></app-patient-medimages-table>
                                         </div>
                                     </div>
 
                                 </mat-tab>
                                 <mat-tab label="Official Documents">
                                     <ng-template mat-tab-label>
-                                        <fa-icon  class="mr-3 mb-2" [icon]="faIdCard"  size="2x"></fa-icon>
+                                        <fa-icon class="mr-3 mb-2" [icon]="faIdCard" size="2x"></fa-icon>
                                         Official Documents
                                     </ng-template>
-                                   
+
                                     <div class="row bg-sec-light justify-content-end">
-                                        <button  class="btn btn-success m-3" (click)="openAddOfficialImageDialog()">Add Official Document Image</button>
-                                       
+                                        <button class="btn btn-success m-3" (click)="openAddOfficialImageDialog()">Add Official Document Image</button>
+
                                         <div *ngIf="medImagesOfficial.length!=0" class="col-sm-12">
-                                 
-                                            <app-patient-official-image-table  [medImages]="medImagesOfficial"></app-patient-official-image-table>
+
+                                            <app-patient-official-image-table [medImages]="medImagesOfficial"></app-patient-official-image-table>
                                         </div>
                                     </div>
 

@@ -31,7 +31,7 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
      
    }
 
-  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','status','notes','doctor.name','patient.name','patient.code',' ','  ','   '];
+  displayedColumns: string[] = ['code', 'speciality', 'dateCreated', 'dateToVisit','type','status','notes','doctor.name','patient.name','patient.code','userLoggerName',' ','  ','   '];
 
   dataSource: MatTableDataSource<ResAppointment>;
 
@@ -47,10 +47,56 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
            this.dataSource = new MatTableDataSource(this.appointments);
            this.dataSource.paginator = this.paginator;
            this.dataSource.sort = this.sort;
+           this.dataSource.filterPredicate =
+           (appointment: ResAppointment, filter: string) => {
+             return appointment.code != null && appointment.code.toString().trim().toLowerCase() === filter.trim().toLowerCase();
+           };
      // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.cdr.detectChanges();
   }
+
+  
+  onSearchFilterChange(searchFilter:string){
+
+    if(searchFilter === 'code'){
+  
+      this.dataSource.filterPredicate =
+      (appointment: ResAppointment, filter: string) => {
+        return appointment.code != null && appointment.code.toString().trim().toLowerCase() === filter.trim().toLowerCase();
+      };
+  
+    }else if(searchFilter === 'speciality') {
+  
+      this.dataSource.filterPredicate =
+      (appointment: ResAppointment, filter: string) => {
+        return appointment.speciality != null && appointment.speciality.trim().toLowerCase().indexOf(filter) != -1;
+      };
+  
+    }else if(searchFilter === 'doctorName') {
+  
+      this.dataSource.filterPredicate =
+      (appointment: ResAppointment, filter: string) => {
+        return appointment.doctor.name != null && appointment.doctor.name.trim().toLowerCase().indexOf(filter) != -1;
+      };
+      
+    }else if(searchFilter === 'patientName') {
+  
+      this.dataSource.filterPredicate =
+      (appointment: ResAppointment, filter: string) => {
+        return appointment.patient.name != null && appointment.patient.name.trim().toLowerCase().indexOf(filter) != -1;
+      };
+      
+    }else if(searchFilter === 'patientMobile') {
+  
+      this.dataSource.filterPredicate =
+      (appointment: ResAppointment, filter: string) => {
+        return appointment.patient.mobile != null && appointment.patient.mobile.trim().toLowerCase().indexOf(filter) != -1;
+      };
+      
+    }
+  
+    }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -72,7 +118,7 @@ export class AppointmentTableComponent implements AfterViewInit,OnChanges {
 
 goToAppointment(code:number){
   console.log(this.route);
-  this.router.navigate(['appointment',code.toString()]);
+  this.router.navigate([code.toString()],{relativeTo:this.route});
 }
 
 cancelAppointment(appointment:ResAppointment){

@@ -1,0 +1,61 @@
+<div class="container-fluid  ">
+
+    <div class="d-flex justify-content-center h-100">
+
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="../../../.../../../assets/logo only.png" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+
+                <form>
+                    <div class="alert alert-danger alert-dismissible fade show" *ngIf="error" role="alert" style="overflow: hidden; position: relative;">
+
+                        <strong>{{error}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <fa-icon  [icon]="faUser"></fa-icon>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control input_user" placeholder="username" [(ngModel)]="username" name="username" required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <fa-icon  [icon]="faKey"></fa-icon>
+                            </span>
+                        </div>
+                        <input type="password" class="form-control input_pass" placeholder="password" [(ngModel)]="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+
+
+                    </div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="button" name="button" class="btn login_btn" (click)="checkLogin()">Login</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links text-white">
+                    Don't have an account? <a routerLink="/signup-client" class="ml-2 highlight-pr">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center links text-white">
+                    <a class="highlight-pr">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="spinner-wrapper" [style.display]="showSpinner ? 'block' : 'none'">
+    <div class="spinner">Loading...</div>
+</div>

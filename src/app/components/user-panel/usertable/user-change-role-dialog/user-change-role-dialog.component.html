@@ -1,0 +1,34 @@
+<h1 class="mat-dialog-title bg-info ">Change User Role</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form *ngIf="user" (ngSubmit)="onUpdateUserSubmit()"  #changeRoleForm="ngForm" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                  
+                  
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Role</label>
+                            <mat-select ngModel name="role" class="form-control" required #role="ngModel"
+                            [ngModel]="user.roles[0].name">
+                                <span class="form-text text-muted" *ngIf="role.touched && role.invalid">Please enter
+                                    role !<br></span>
+                                <mat-option value="ADMIN">Admin</mat-option>
+                                <mat-option value="RECEPTIONIST">Receptionist</mat-option>
+
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                
+            </div>
+     
+            <button class="btn btn-success" [disabled]="!changeRoleForm.valid && role.touched" type="submit">Change Role</button>
+        </div>
+    </form>
+</div>

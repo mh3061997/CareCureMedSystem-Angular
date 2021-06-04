@@ -1,0 +1,141 @@
+.banner_head {
+    background-image: url('../../../../assets/upper background/pc/about us.png');
+}
+
+p {
+    color: #717171;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.management_box {
+    box-shadow: 0 2px 4px 2px rgb(0 0 0 / 10%);
+    border-radius: 3px;
+    background: #fff;
+    padding: 30px 30px 40px;
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.management_box .col-md-3 {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.management_box .col-md-9 {
+    flex: 0 0 calc(100% - 250px);
+    max-width: calc(100% - 250px);
+}
+
+.management_photo {
+    position: relative;
+    float: left;
+    width: 220px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+h3,
+.h3 {
+    color: var(--client-primary);
+    font-size: 34px;
+    font-family: 'Fsalbert';
+    font-weight: 300;
+}
+
+h4,
+.h4 {
+    color: var(--client-accent);
+    font-size: 22px;
+    font-family: 'Fsalbert Bold';
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.about_values_sec {
+    position: relative;
+}
+
+.stats_bg {
+    background: var(--client-primary);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 110px 40px;
+}
+
+
+/* .stats_bg:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(159, 73, 110, 0.7);
+    opacity: 0.5;
+} */
+
+.stats__numbers {
+    text-align: center;
+    margin-bottom: 0;
+    width: 33%;
+    float: left;
+}
+
+.stats__numbers span {
+    color: #fff;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.stats__numbers p {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .management_box {
+        text-align: center;
+        margin-top: 0px;
+    }
+    .management_box .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .management_photo {
+        float: unset;
+    }
+    .management_box .col-md-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .stats_bg {
+        padding: 45px 40px;
+    }
+    .stats__numbers {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .stats__numbers p {
+        font-size: 18px;
+    }
+    .stats__numbers span {
+        font-size: 40px;
+    }
+}
+
+#about-us-paragraphs-container p {
+    text-align: justify;
+    text-justify: distribute-all-lines;
+}
+
+p {
+    font-size: 20px;
+}

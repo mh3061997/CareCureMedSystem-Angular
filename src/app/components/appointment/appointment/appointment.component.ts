@@ -62,17 +62,17 @@ export class AppointmentComponent implements OnInit {
   
   goToDoctor(){
    // console.log(this.route);
-    this.router.navigate(['doctor',this.doctor.code.toString()]);
+    this.router.navigate(['admin','doctor',this.doctor.code.toString()]);
   }
 
   
   goToMedicalOps(){
-    this.router.navigate(['appointment',this.appointment.code.toString(),'medops']);
+    this.router.navigate(['admin','appointment',this.appointment.code.toString(),'medops']);
   }
 
   goToPatient(){
     //console.log(this.route);
-    this.router.navigate(['patient',this.patient.code.toString()]);
+    this.router.navigate(['admin','patient',this.patient.code.toString()]);
   }
   ngOnInit(): void {
   }

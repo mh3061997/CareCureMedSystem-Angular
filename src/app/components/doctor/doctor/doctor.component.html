@@ -1,14 +1,14 @@
 <div id="bg-doctor" class=" p-4 mb-0 pb-0" style="color:white!important;">
-    
+
     <div class="container text-info">
         <div class="row">
             <div class="col-md-10 col-lg-7">
                 <h1 class="display-2">Welcome to the doctor page</h1>
-            <p>Here you will find all the information about the doctor and his appointments.</p>
+                <p>Here you will find all the information about the doctor and his appointments.</p>
             </div>
         </div>
 
-  
+
     </div>
 
 </div>
@@ -16,121 +16,115 @@
     <div class="row justify-content-center ">
         <div class="col-md-10">
 
-            <div  class="card shadow bg-sec-light text-sm-center">
+            <div class="card shadow bg-sec-light text-sm-center">
 
 
                 <div class="card-header  bg-white p-3">
                     <div class="container-fluid">
                         <div class="row justify-content-end align-middle ">
                             <h3 class="mb-0 col-6 ">Doctor Information</h3>
-                            <button class="btn btn-info col-3" (click)="openUpdateDoctorInformationDialog()" >Update Information</button>
+                            <button class="btn btn-info col-3" (click)="openUpdateDoctorInformationDialog()">Update Information</button>
                         </div>
                     </div>
-                 
+
                 </div>
-               <div class="row p-4">
-                <div class="card-body  justify-content-center ">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Name</p>
-                            <p>{{doctor.name}}</p>
+                <div class="row p-4">
+                    <div class="card-body  justify-content-center ">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Name</p>
+                                <p>{{doctor.name}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Code</p>
+                                <p>{{doctor.code}}</p>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Code</p>
-                            <p>{{doctor.code}}</p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Age</p>
+                                <p>{{doctor.age}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Mobile</p>
+                                <p>{{doctor.mobile}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Age</p>
-                            <p>{{doctor.age}}</p>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Email</p>
+                                <p>{{doctor.email}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Gender</p>
+                                <p>{{doctor.gender}}</p>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Mobile</p>
-                            <p>{{doctor.mobile}}</p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Price Visit</p>
+                                <p>{{doctor.priceVisit}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Price Revisit</p>
+                                <p>{{doctor.priceRevisit}}</p>
+                            </div>
+
                         </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Speciality</p>
+                                <p>{{doctor.speciality}}</p>
+                            </div>
+
+
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="form-control-label">Available Working Days</p>
+                        </div>
+
+                        <div class="row justify-content-center" *ngFor="let day of doctor.availableDays">
+                            <p>{{day.day}} From {{day.startTimeHour}}:{{day.startTimeMinute}} {{day.startTimeAMPM}} To {{day.endTimeHour}}:{{day.endTimeMinute}} {{day.endTimeAMPM}}
+                            </p>
+                        </div>
+
+                        <div class="">
+                            <hr class="my-4" />
+
+                        </div>
+                        <div class="card-header  bg-white p-3">
+                            <h3 class="mb-0">Appointments</h3>
+                        </div>
+                        <mat-form-field appearance="fill" class="m-2">
+                            <mat-label>Choose Visit Date</mat-label>
+                            <input matInput name="dateToVisit" ngModel #dateCreated="ngModel" [(ngModel)]="currentDate" [matDatepicker]="dp1" disabled="true" (dateChange)="onDateChange($event)" disabled>
+
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker required #dp1 [disabled]="buttonGroup.value !='ByDate'"></mat-datepicker>
+
+                        </mat-form-field>
+
+                        <mat-button-toggle-group #buttonGroup="ngModel" ngModel="Upcoming" name="fontStyle" aria-label="Font Style" (change)="onButtonToggleChange($event)" class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+                            <mat-button-toggle value="All">All</mat-button-toggle>
+                            <mat-button-toggle value="Upcoming">Upcoming</mat-button-toggle>
+                            <mat-button-toggle value="Past">Past</mat-button-toggle>
+                            <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
+                        </mat-button-toggle-group>
+
+                        <app-doctor-appointment-table [appointments]="appointments"></app-doctor-appointment-table>
+                        <div class="">
+                            <hr class="my-4" />
+
+                        </div>
+                        <div class="card-header  bg-white p-3">
+                            <h3 class="mb-0">Invoices</h3>
+                        </div>
+                        <app-patient-invoices-table [invoices]="invoices"> </app-patient-invoices-table>
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Email</p>
-                            <p>{{doctor.email}}</p>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Gender</p>
-                            <p>{{doctor.gender}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Price Visit</p>
-                            <p>{{doctor.priceVisit}}</p>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Price Revisit</p>
-                            <p>{{doctor.priceRevisit}}</p>
-                        </div>
-                    
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p class="form-control-label">Speciality</p>
-                            <p>{{doctor.speciality}}</p>
-                        </div>
-                      
-                    
-                    </div>
-                    <div class="row justify-content-center">   
-                        <p class="form-control-label">Available Working Days</p>
-                    </div>
-
-                    <div class="row justify-content-center" *ngFor="let day of doctor.availableDays">
-                        <p>{{day.day}} From {{day.startTimeHour}}:{{day.startTimeMinute}} {{day.startTimeAMPM}}
-                            To {{day.endTimeHour}}:{{day.endTimeMinute}} {{day.endTimeAMPM}}
-                        </p>
-                    </div>
-
-                    <div class="">
-                        <hr class="my-4"/>
-    
-                    </div>
-                    <div class="card-header  bg-white p-3">
-                        <h3 class="mb-0">Appointments</h3>
-                    </div>
-                    <mat-form-field appearance="fill" class="m-2">
-                        <mat-label>Choose Visit Date</mat-label>
-                        <input matInput name="dateToVisit"  ngModel #dateCreated="ngModel"
-                        [(ngModel)]="currentDate" 
-                            [matDatepicker]="dp1"
-                            disabled="true"
-                            (dateChange)="onDateChange($event)"
-                           disabled
-                            >
-                        
-                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                        <mat-datepicker
-                         required #dp1 [disabled]="buttonGroup.value !='ByDate'"></mat-datepicker>
-        
-                    </mat-form-field>
-        
-                    <mat-button-toggle-group #buttonGroup="ngModel"
-                    ngModel="Upcoming"
-                    name="fontStyle" aria-label="Font Style" 
-                    
-                    (change)="onButtonToggleChange($event)"
-                    class="ml-5 mr-5" style="margin-bottom:1.34375em;">
-                        <mat-button-toggle value="All">All</mat-button-toggle>
-                        <mat-button-toggle value="Upcoming">Upcoming</mat-button-toggle>
-                        <mat-button-toggle value="Past">Past</mat-button-toggle>
-                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
-                      </mat-button-toggle-group>
-        
-                    <app-doctor-appointment-table  [appointments]="appointments"></app-doctor-appointment-table>
-                  
-                    
                 </div>
-             
-               </div>
 
             </div>
 

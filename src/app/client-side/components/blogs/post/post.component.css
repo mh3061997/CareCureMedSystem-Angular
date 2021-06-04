@@ -1,0 +1,51 @@
+    .banner_head {
+        background-image: url('../../../../../assets/upper background/pc/services 3.png');
+    }
+    
+    .blog-title h1 {
+        font-size: 50px !important;
+        line-height: 50px;
+    }
+    
+     ::ng-deep .blog-content * {
+        text-align: right;
+    }
+    
+     ::ng-deep .blog-content img {
+        max-width: 100%;
+        max-height: 400px;
+        margin: 20px 0 40px 0;
+        text-align: center;
+    }
+    
+     ::ng-deep figure.wp-block-image {
+        text-align: center !important;
+    }
+    
+    @media(max-width:768px) {
+         ::ng-deep.blog-content img {
+            max-height: 300px;
+        }
+    }
+    
+     ::ng-deep .blog-content h2,
+     ::ng-deep .blog-content .h2 {
+        font-size: 28px !important;
+        color: var(--client-primary);
+    }
+    
+     ::ng-deep .blog-content h4,
+     ::ng-deep .blog-content .h4 {
+        color: var(--client-primary);
+    }
+    
+     ::ng-deep .blog-content ul,
+     ::ng-deep .blog-content ol {
+        direction: rtl;
+    }
+    
+     ::ng-deep blog-body p,
+     ::ng-deep blog-body li {
+        font-size: 20px;
+        line-height: 33px;
+    }

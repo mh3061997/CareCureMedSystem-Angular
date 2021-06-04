@@ -120,7 +120,7 @@ export class DoctorUpdateInformationDialogComponent implements OnInit {
 
     this.servDoctor.updateDoctor(updatedDoctor).subscribe(response =>{
 
-     this.servDoctorDayAvail.updateDoctorDayAvailMulti(this.recomposeDoctorDayAvail()).subscribe(()=>{
+     this.servDoctorDayAvail.updateDoctorDayAvailMulti(this.doctor.code,this.recomposeDoctorDayAvail()).subscribe(()=>{
        this.dialogRef.close(true);
      });
     });

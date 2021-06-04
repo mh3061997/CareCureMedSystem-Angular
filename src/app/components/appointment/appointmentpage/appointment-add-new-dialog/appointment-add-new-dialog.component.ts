@@ -17,6 +17,7 @@ import { ResReservedTime } from 'src/app/interfaces/res-reserved-time';
 import { ResTimeDecomposed } from 'src/app/interfaces/res-time-decomposed';
 import { weekdays } from 'moment';
 import { ResDoctorDayAvail } from 'src/app/interfaces/res-doctor-day-avail';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-appointment-add-new-dialog',
@@ -44,7 +45,8 @@ export class AppointmentAddNewDialogComponent implements OnInit {
     private servAppointment: ServAppointmentService,
     private servPatient:ServPatientService,
     private servDoctor:ServDoctorService,
-    private servUtils:ServUtilitiesService) { 
+    private servUtils:ServUtilitiesService,
+    private servAuth:AuthService) { 
 
      
 
@@ -136,7 +138,8 @@ export class AppointmentAddNewDialogComponent implements OnInit {
         notes:this.newAppointmentForm.value.note,
         patient:this.patientFormControl.value,
         doctor:this.doctorFormControl.value,
-        status:"Reserved"
+        status:"Reserved",
+        userLoggerName:this.servAuth.getLoggedInName()
       }
       
     

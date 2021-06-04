@@ -1,57 +1,80 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-sidenav *ngIf="isPrivShowNav()" #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
-    <!-- Brand -->
+        <!-- Brand -->
 
 
-    <a class="navbar-brand p-3 mb-4" routerLinkActive="active" [routerLink]="['/dashboard']">
-      <img src="../../../../assets/logo cropped.jpg" width="100%" alt="...">
-    </a>
-
+        <a class="navbar-brand p-3 mb-4" routerLinkActive="active" [routerLink]="['/dashboard']">
+            <img src="../../../../assets/logo cropped.jpg" width="100%" alt="...">
+        </a>
 
 
 
-    <mat-nav-list class="text-medgray">
-      <a mat-list-item routerLink="patient" [queryParams]="{allowedit:'1'}" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faProcedures" style="color:lightcoral;"></fa-icon>
 
-        Patients
-      </a>
-      <a mat-list-item routerLink="doctor" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faUserNurse" style="color:rgb(22, 150, 230);"></fa-icon>
-        Doctors
-      </a>
-      <a mat-list-item routerLink="appointment" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faStethoscope" style="color:rgb(153, 26, 26);"></fa-icon>
-        Appointments
-      </a>
+        <mat-nav-list class="text-medgray pb-5">
+            <a mat-list-item routerLink="patient" [queryParams]="{allowedit:'1'}" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faProcedures" style="color:lightcoral;"></fa-icon>
 
-      <a mat-list-item routerLink="invoice" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faFileAlt"></fa-icon>
-        Invoices
-      </a>
+                Patients
+            </a>
+            <a mat-list-item routerLink="doctor" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faUserNurse" style="color:rgb(22, 150, 230);"></fa-icon>
+                Doctors
+            </a>
+            <a mat-list-item routerLink="appointment" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faStethoscope" style="color:rgb(153, 26, 26);"></fa-icon>
+                Appointments
+            </a>
 
-      <a mat-list-item routerLink="packagebases" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faPercent"></fa-icon>
-        Packages
-      </a>
-      <a mat-list-item routerLink="servicepricelist" routerLinkActive="active">
-        <fa-icon class="mr-2" [icon]="faDollarSign" style="color:green"></fa-icon>
-        Price List
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <!-- <span>carecure-app</span> -->
-    </mat-toolbar>
+            <a mat-list-item routerLink="invoice" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faFileAlt"></fa-icon>
+                Invoices
+            </a>
 
-    <router-outlet></router-outlet>
+            <a mat-list-item routerLink="packagebases" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faPercent"></fa-icon>
+                Packages
+            </a>
+            <a *ngIf="isUserAdmin()" mat-list-item routerLink="servicepricelist" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faDollarSign" style="color:green"></fa-icon>
+                Price List
+            </a>
 
-  </mat-sidenav-content>
+            <a *ngIf="isUserAdmin()" mat-list-item routerLink="userpanel" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faUsers" style="color:pink"></fa-icon>
+                Users Panel
+            </a>
+            <a *ngIf="isUserAdmin()" mat-list-item href="http://blog.carecureclinics.com/wp-admin" target="_blank">
+                <fa-icon class="mr-2" [icon]="faBlog" style="color:rgba(114, 18, 224, 0.322)"></fa-icon>
+                Blog
+            </a>
+            <a mat-list-item routerLink="" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faGlobe" style="color:rgba(0, 0, 255, 0.322)"></fa-icon>
+                Clients Website
+            </a>
+
+        </mat-nav-list>
+
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="">
+
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button #navToggleBtn *ngIf="(isHandset$ | async) && isPrivShowNav()" (click)="toggleNav()">
+  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+</button>
+
+            <span>{{authService.getLoggedInName()}}</span>
+
+            <button *ngIf="authService.isUserLoggedIn()" mat-raised-button color="primary" class="btn text-center text-white float-right " (click)="authService.logOut()">Logout</button>
+
+
+            <!-- <div class="row justify-content-center mx-auto  pt-5">
+      </div> -->
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
 </mat-sidenav-container>

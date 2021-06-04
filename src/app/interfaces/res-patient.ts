@@ -1,4 +1,5 @@
 import { ResAppointment } from "./res-appointment";
+import { ResInvoice } from "./res-invoice";
 import { ResMedImage } from "./res-med-image";
 import { ResMembership } from "./res-membership"
 
@@ -14,5 +15,6 @@ export interface ResPatient {
     memberships:ResMembership[];
     appointments:ResAppointment[];
     medImages:ResMedImage[];
+    invoiceMemberships?:ResInvoice[];
  
 }

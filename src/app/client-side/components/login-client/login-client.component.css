@@ -1,0 +1,106 @@
+.user_card {
+    height: 500px;
+    width: 300px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: var(--client-secondary);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+div.container-fluid {
+    padding: 170px 0px 50px;
+}
+
+.brand_logo_container {
+    position: absolute;
+    height: 144px;
+    width: 165px;
+    top: -75px;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+.brand_logo {
+    width: 127px;
+    border-radius: 10%;
+    border: 2px solid white;
+    margin-top: 14px;
+}
+
+.form_container {
+    margin-top: 100px;
+}
+
+.login_btn {
+    width: 100%;
+    background: var(--client-primary) !important;
+    color: white !important;
+}
+
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.login_container {
+    padding: 0 2rem;
+}
+
+.input-group-text {
+    background: var(--client-primary)!important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: var(--client-primary) !important;
+}
+
+.highlight-pr {
+    color: white;
+}
+
+.highlight-pr:hover {
+    color: var(--client-primary);
+}
+
+.error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+}
+
+.container-fluid {
+    background: url('../../../../assets/Backgrounds/19154.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+@media (max-width:768px) {
+    .user_card {
+        justify-content: unset;
+        height: 360px;
+    }
+    div.container-fluid {
+        padding-top: 213px;
+    }
+}

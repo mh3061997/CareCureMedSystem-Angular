@@ -1,0 +1,30 @@
+::ng-deep .splide__arrow {
+    width: 3em !important;
+    height: 3em !important;
+}
+
+::ng-deep .splide__arrow svg {
+    height: 2.2em !important;
+    width: 4.2em !important;
+}
+
+::ng-deep #primary-slider {
+    text-align: center;
+}
+
+ ::ng-deep #primary-slider img {
+    text-align: center;
+}
+
+@media (max-width:1000px) {
+     ::ng-deep #primary-slider img {
+        height: 100%;
+    }
+}
+
+@media (min-width:1000px) {
+     ::ng-deep #primary-slider img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

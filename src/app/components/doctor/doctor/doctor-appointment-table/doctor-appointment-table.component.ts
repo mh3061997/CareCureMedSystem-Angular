@@ -38,7 +38,7 @@ export class DoctorAppointmentTableComponent implements AfterViewInit ,OnChanges
  
  
    ngAfterViewInit() {
-     console.log('apps',this.appointments);
+    // console.log('apps',this.appointments);
             // Assign the data to the data source for the table to render
             this.dataSource = new MatTableDataSource(this.appointments);
             this.dataSource.paginator = this.paginator;
@@ -60,7 +60,7 @@ export class DoctorAppointmentTableComponent implements AfterViewInit ,OnChanges
    
    goToAppointment(code:number){
     console.log(this.route);
-    this.router.navigate(['appointment',code.toString()]);
+    this.router.navigate(['admin','appointment',code.toString()]);
   }
 
 

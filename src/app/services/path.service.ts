@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { environment } from '../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
@@ -7,64 +7,106 @@ export class PathService {
 
   constructor() { }
 
-  //  private approotPath:string ="http://18.159.60.62:8080/medsystem-0.0.1-SNAPSHOT/";
-  private approotPath:string ="http://localhost:8080/";
 
-   private patientPath:string ="patient";
 
-   private appointmentPath:string = "appointment";
 
-  private  doctorPath:string = "doctor";
+  private approotPath: string = environment.apiEndPoint;
 
-   private packageBasePath:string = "packageBase";
+  private appBlogPath: string = environment.apiBlogEndPoint;
 
-   private medImagePath:string = "medImage";
+  private patientPath: string = "patient";
 
-   private membershipPath:string = "packageMembership";
+  private appointmentPath: string = "appointment";
 
-  private  invoicePath:string ="invoice";
+  private doctorPath: string = "doctor";
 
-  private servicePriceListPath:string="servicePriceList";
+  private packageBasePath: string = "packageBase";
 
-  private invoiceItemPath:string="invoiceItem";
-  
-  private noteAppointmentPath:string="noteAppointment"
+  private medImagePath: string = "medImage";
 
-  private doctorDayAvail:string="doctorDayAvail"
+  private membershipPath: string = "packageMembership";
 
-  public getPathDoctorDayAvail(){
-    return this.approotPath+this.doctorDayAvail;
+  private invoicePath: string = "invoice";
+
+  private servicePriceListPath: string = "servicePriceList";
+
+  private invoiceItemPath: string = "invoiceItem";
+
+  private noteAppointmentPath: string = "noteAppointment"
+
+  private doctorDayAvail: string = "doctorDayAvail"
+
+  private userDaoPath: string = "userDao";
+
+  private registerPatientPath: string = "register";
+
+  private registerNonPatientPath: string = "registerNonPatient";
+
+  private contactUsPath: string = "utils/email-contact-us";
+
+  private contactAppointmentPath: string = "utils/email-contact-appointment";
+
+  private loginPath: string = "login";
+
+  private blogJsonPath: string = "wp-json/wp/v2/posts/";
+
+  public getPathBlogJson() {
+    return this.appBlogPath + this.blogJsonPath;
   }
-  public getPathNoteAppointment(){
-    return this.approotPath+this.noteAppointmentPath;
+  public getPathLogin() {
+    return this.approotPath + this.loginPath;
   }
-  public getPathServicePriceList(){
-    return this.approotPath+this.servicePriceListPath;
+  public getContactUsPath() {
+    return this.approotPath + this.contactUsPath;
   }
-  public getPathInvoiceItem(){
+  public getContactAppointmentPath() {
+    return this.approotPath + this.contactAppointmentPath;
+  }
+
+  public getPathRegisterPatient() {
+    return this.approotPath + this.registerPatientPath;
+  }
+
+  public getPathRegisterNonPatient() {
+    return this.approotPath + this.registerNonPatientPath;
+  }
+
+  public getPathUserDao() {
+    return this.approotPath + this.userDaoPath;
+  }
+  public getPathDoctorDayAvail() {
+    return this.approotPath + this.doctorDayAvail;
+  }
+  public getPathNoteAppointment() {
+    return this.approotPath + this.noteAppointmentPath;
+  }
+  public getPathServicePriceList() {
+    return this.approotPath + this.servicePriceListPath;
+  }
+  public getPathInvoiceItem() {
     console.log(this.approotPath);
-    return this.approotPath+this.invoiceItemPath;
+    return this.approotPath + this.invoiceItemPath;
   }
-   public getPathPatient(){
-     return this.approotPath+this.patientPath;
-   }
+  public getPathPatient() {
+    return this.approotPath + this.patientPath;
+  }
 
-   public getPathDoctor(){
-    return this.approotPath+this.doctorPath;
+  public getPathDoctor() {
+    return this.approotPath + this.doctorPath;
   }
-  public getPathAppointment(){
-    return this.approotPath+this.appointmentPath;
+  public getPathAppointment() {
+    return this.approotPath + this.appointmentPath;
   }
-  public getPathMedImage(){
-    return this.approotPath+this.medImagePath;
+  public getPathMedImage() {
+    return this.approotPath + this.medImagePath;
   }
-  public getPathInvoice(){
-    return this.approotPath+this.invoicePath;
+  public getPathInvoice() {
+    return this.approotPath + this.invoicePath;
   }
-  public getPathMembership(){
-    return this.approotPath+this.membershipPath;
+  public getPathMembership() {
+    return this.approotPath + this.membershipPath;
   }
-  public getPathPackageBase(){
-    return this.approotPath+this.packageBasePath;
+  public getPathPackageBase() {
+    return this.approotPath + this.packageBasePath;
   }
 }

@@ -4,7 +4,7 @@ export interface ResPackageBase {
     code:number;
     name:string;
     dateCreated:string;
-    dateExpired:string;
+    dateExpired?:string;
     status:string;
     price:number;
     unitTotal:number;

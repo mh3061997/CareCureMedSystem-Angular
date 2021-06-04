@@ -1,0 +1,51 @@
+<footer class="footer">
+    <div class="footer-left ">
+        <img src="../../../../../assets/Final logo stroke 2 .png" class="navbar-brand-logo" alt="">
+        <p class="menu">
+            <a routerLink=""> Home</a> |
+            <a routerLink="blog"> Blog</a> |
+            <a routerLink="video-gallery"> Videos</a> |
+            <a routerLink="doctors"> Doctors</a> |
+            <a routerLink="services"> Services</a> |
+            <a href="gallery"> Gallery</a> |
+            <a routerLink="about-us"> About Us</a> |
+            <a routerLink="contact-us"> Contact Us</a>
+            <a routerLink="history" *ngIf="isShowMyHistory()">| My History</a>
+
+        </p>
+        <p class="name"> Care & Cure Clinics &copy; 2021</p>
+    </div>
+    <div class="footer-center ">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><a routerLink="contact-us" fragment="googleMap">16 Tayaran Street, Madinet Nasr, Cairo</a></p>
+        </div>
+        <div>
+            <i class="fa fa-phone"></i>
+            <p> <a href="tel:+201122229498">(+2) 01122229498</a></p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p> <a id="email-a" href="mailto:care.cure.clinics1@gmail.com">care.cure.clinics1@gmail.com</a> </p>
+        </div>
+    </div>
+    <div class="footer-right ">
+        <p class="about">
+            <span> About The Clinic</span> Care and Cure Clinics houses some of Egypt’s top physicians and University professors. Each with a well-established reputation as well as national and international medical achievements, Care and Cure Clinics’
+            team of physicians are well renowned experts in their respective fields. </p>
+        <div class="icons">
+            <a href="http://www.facebook.com/CareCureClinics" target="_blank">
+                <i class="fa fa-facebook"></i></a>
+            <a href="https://instagram.com/care.cure.clinics" target="_blank">
+                <i class="fa fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UC6PhWtPC1phYzi4CzXhmXdA" target="_blank">
+                <i class="fa fa-youtube"></i></a>
+            <a href="https://vm.tiktok.com/ZMe5Q98au/" target="_blank">
+                <fa-icon class="mr-2" [icon]="faTiktok"></fa-icon>
+            </a>
+            <a href="https://twitter.com/cure_clinics?s=08" target="_blank">
+                <i class="fa fa-twitter"></i></a>
+        </div>
+    </div>
+
+</footer>

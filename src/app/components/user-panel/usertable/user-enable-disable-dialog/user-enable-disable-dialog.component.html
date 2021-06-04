@@ -1,0 +1,13 @@
+<p>are you sure you want to 
+    <span class="font-weight-bold" *ngIf="enable">Enable</span>
+    <span class="font-weight-bold" *ngIf="!enable">Disable</span>
+    user: <span class="font-weight-bold"> {{user.name}} </span> ?
+</p>
+   <div class="container">
+       <div class="row">
+           <div class="col-12 justify-content-end">
+            <button class="btn btn-success" (click)="onUpdateUserSubmit()">Yes</button>
+            <button class="btn btn-danger" (click)="dialogRef.close(false)">No</button>
+           </div>
+       </div>
+   </div>

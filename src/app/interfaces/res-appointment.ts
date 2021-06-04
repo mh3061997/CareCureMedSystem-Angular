@@ -15,4 +15,5 @@ export interface ResAppointment {
     patient:ResPatient;
     invoice?:ResInvoice;
     doctorNotes?:ResNoteAppointment[];
+    userLoggerName?:string;
 }

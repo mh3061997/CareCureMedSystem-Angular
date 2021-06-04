@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ResPatient } from 'src/app/interfaces/res-patient';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ServAppointmentService } from 'src/app/services/serv-appointment.service';
 import { ServInvoiceService } from 'src/app/services/serv-invoice.service';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
@@ -28,7 +29,8 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
     public dialogRef: MatDialogRef<FinalizedInvoiceDialogComponent>,
     private servInvoice: ServInvoiceService,
     private servAppointment: ServAppointmentService,
-    private cdRef: ChangeDetectorRef) {
+    private cdRef: ChangeDetectorRef,
+    private servAuth:AuthService) {
 
     this.invoice = data.invoice;
     this.totalAfterDiscount = this.invoice.totalAfterDiscount;
@@ -63,6 +65,7 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
 
     this.servInvoice.updateInvoice(updatedInvoice).subscribe(response => {
 
+     if(this.invoice.appointment){
       let updatedAppointment = this.invoice.appointment;
       updatedAppointment.status = "Invoiced";
       delete updatedAppointment.invoice;
@@ -72,7 +75,8 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
         this.dialogRef.close(true);
 
       });
-
+     }
+     this.dialogRef.close(true);
     });
   }
 
@@ -88,10 +92,11 @@ export class FinalizedInvoiceDialogComponent implements OnInit, AfterViewChecked
     this.invoice.totalRemaining > 0 ? this.invoice.status = "Debt" : this.invoice.status = "Finalized";
     this.invoice.discount = this.updateInfoForm.value.discount;
     this.invoice.paymentMethod = this.updateInfoForm.value.paymentMethod;
+    this.invoice.userFinalizedBy = this.servAuth.getLoggedInName();
 
-
-   // console.log(this.invoice);
+   //console.log(this.invoice);
     this.updateInvoiceInformation(this.invoice);
+    
   }
 
   ngOnInit(): void {

@@ -58,7 +58,7 @@ export class ServPatientService {
       patient:patientTry
     };
 
-    this.http.post("http://localhost:8080/medImage",obj,{
+    this.http.post(this.servPath.getPathMedImage(),obj,{
       observe: 'response'
     })
     .subscribe(

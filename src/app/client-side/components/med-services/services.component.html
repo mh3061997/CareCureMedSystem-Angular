@@ -1,0 +1,108 @@
+<section class="banner_head">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 ">
+                <h1 class="mb-0 banner_h1 gradient_highlighter justify-content-center">Our Services</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="doctor-container py-5 px-2">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h4 style="font-size:25px !important; margin-bottom:30px; color: var(--client-secondary);">Choose a speciality to view our services</h4>
+                <div class="btn-group " role="group" aria-label="Basic example">
+
+                    <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dermatology')">
+                        <img src="../../../../assets/icons/Derma.png" alt="">
+                        <span>Dermatology </span>
+                    </button>
+
+                    <button type="button" class="btn  nav-auth-btn" (click)="changeActiveArr('dental')">
+                        <img src=" ../../../../assets/icons/Dental.png " alt=" ">
+                        <span>Dentistry </span>
+                    </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('surgery')">
+                        <img src="../../../../assets/icons/Surgery.png " alt=" ">
+                        <span>Surgery </span>
+                    </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('plastic')">
+                        <img src="../../../../assets/icons/plastic surgery.png " alt=" ">
+                        <span>Plastic Surgery </span>
+                        </button>
+
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('nutrition')">
+                        <img src="../../../../assets/icons/NURTii.png " alt=" ">
+                        <span>Nutrition</span>
+                        </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('internal')">
+                        <img src="../../../../assets/icons/Internal medcine.png " alt=" ">
+                        <span>Internal Medecine</span>
+                        </button>
+                    <button type="button " class="btn nav-auth-btn " (click)="changeActiveArr('obs')" id="scrollAnchor">
+                        <img src="../../../../assets/icons/obstetrics.png " alt=" ">
+                        <span>Obsetrics</span>
+                        </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container pb-5">
+        <div class="row justify-content-center ">
+            <h4 class=" service_title_line gradient_highlighter" style="color: var(--client-secondary); font-size: 25px; ">{{activeSpeciality}} Services</h4>
+
+        </div>
+    </div>
+</section>
+<section class="team pb-5 bg-gray">
+    <div class="container-fluid ">
+
+        <div class="row justify-content-center pt-4" id="doctor-card-container">
+            <div *ngFor="let service of activeArr" class=" col-md-5 col-11 d-flex align-items-stretch ">
+                <div class="container service_box">
+                    <div class="row" *ngIf="!isMobileLayout">
+                        <div class="col-md-3 ">
+                            <img [src]="service.img" class="service_photo">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="member">
+
+                                <h4 style="color:var(--client-primary) ">{{service.name}}</h4>
+                                <span style="color:var(--client-accent);margin-bottom: 21px; ">{{service.nameAr}}</span>
+                                <p style="color:var(--client-secondary);  " *ngFor="let sentence of service.description.split('.')">
+                                    {{sentence}} </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" *ngIf="isMobileLayout">
+
+                        <div class="col-md-12 text-center">
+                            <div class="member">
+
+                                <h4 style="color:var(--client-primary) ">{{service.name}}</h4>
+                                <span style="color:var(--client-accent);margin-bottom: 21px; ">{{service.nameAr}}</span>
+
+
+                            </div>
+                            <img [src]="service.img" class="service_photo" style="float: none;">
+                        </div>
+                        <div class="col-md-10 ">
+
+                            <div class="member">
+                                <p style="color:var(--client-secondary);  " *ngFor="let sentence of service.description.split('.')">
+                                    {{sentence}} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

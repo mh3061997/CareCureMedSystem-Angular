@@ -29,8 +29,8 @@ export class ServInvoiceItemService {
   }
 
   //Add a new InvoiceItem
-  addInvoiceItem(newInvoiceItem:ResInvoiceItem):Observable<ResInvoiceItem>{
-    return this.http.post<ResInvoiceItem>(this.servPath.getPathInvoiceItem(),newInvoiceItem);
+  addInvoiceItem(newInvoiceItem:ResInvoiceItem){
+    return this.http.post(this.servPath.getPathInvoiceItem(),newInvoiceItem);
   }
   
     //Add a new InvoiceItem

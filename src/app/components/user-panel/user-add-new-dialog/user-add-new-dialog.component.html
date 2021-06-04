@@ -1,0 +1,118 @@
+<h1 class="mat-dialog-title bg-white ">Add New user</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form (ngSubmit)="onNewUserSubmit()" #newUserForm="ngForm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Username</label>
+                            <input matInput type="text" name="username" class="form-control" ngModel #username="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="username.touched && username.invalid">Please enter
+                                username correctly!<br></span>
+
+                                <span *ngIf="isUsernameTaken" class="text-danger">Username taken!.</span>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Password</label>
+                            <input matInput type="password" name="password" class="form-control" ngModel
+                                #password="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="password.touched && password.invalid">Please enter
+                                password correctly!<br></span>
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Role</label>
+                            <mat-select ngModel name="role" class="form-control" required #role="ngModel"
+                            (selectionChange)="resetChoices()">
+                                <span class="form-text text-muted" *ngIf="role.touched && role.invalid">Please enter
+                                    role !<br></span>
+                                <mat-option value="ADMIN">Admin</mat-option>
+                                <mat-option value="RECEPTIONIST">Receptionist</mat-option>
+                                <mat-option value="PATIENT">Patient</mat-option>
+                                <mat-option value="DOCTOR">Doctor</mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="col-md-6" *ngIf="role.value=='PATIENT'">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Patient Mobile Number</label>
+                            <input name="patientMobile" matInput type="text" class="form-control" ngModel #patientMobile="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="patientMobile.touched && patientMobile.invalid">Please enter
+                                patient !<br></span>
+                        </mat-form-field>
+                        <span class="form-text text-muted" *ngIf="patientLookUpMessage && !isPatientChecked">{{patientLookUpMessage}}<br></span>
+                        <span class="form-text text-muted" *ngIf="this.patient && isPatientChecked">Selected Patient: {{patient.name}}<br></span>
+                        <button class="btn btn-success" type="button" (click)="checkPatientAssociation(patientMobile.value)">Check</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6" *ngIf="role.value=='DOCTOR'">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Doctor Mobile Number</label>
+                            <input name="doctorMobile" matInput type="text" class="form-control" ngModel #doctorMobile="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="doctorMobile.touched && doctorMobile.invalid">Please enter
+                                doctor mobile number !<br></span>
+
+                        </mat-form-field>
+                        <span class="form-text text-muted" *ngIf="doctorLookUpMessage && !isDoctorChecked">{{doctorLookUpMessage}}<br></span>
+                        <span class="form-text text-muted" *ngIf="this.doctor && isDoctorChecked">Selected Doctor: {{doctor.name}}<br></span>
+                        <button class="btn btn-success" type="button" (click)="checkDoctorAssociation(doctorMobile.value)">Check</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row" *ngIf="role.value=='ADMIN' || role.value=='RECEPTIONIST'">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput type="text" name="Name" class="form-control" ngModel #Name="ngModel"
+                                required>
+                            <span class="form-text text-muted" *ngIf="Name.touched && Name.invalid">Please enter
+                                Name correctly!<br></span>
+
+                              
+                        </mat-form-field>
+                    </div>
+              
+                </div>
+            </div>
+            <button class="btn btn-success" 
+            [disabled]="!newUserForm.valid || (!isPatientChecked && role.value=='PATIENT') ||
+            (!isDoctorChecked && role.value=='DOCTOR') 
+
+            " type="submit">Add</button>
+        </div>
+    </form>
+</div>
