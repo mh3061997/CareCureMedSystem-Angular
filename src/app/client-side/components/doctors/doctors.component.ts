@@ -29,7 +29,10 @@ export class DoctorsComponent implements OnInit {
       NutritionArr: any = [{ name: 'Dr. Maha Mosaad', speciality: 'Nutritionist', bio: 'Nutrition consultant in Ain Shams University', img: '../../../../assets/Doctors/Nutrition/Dr. Maha Mosaad-Nutritionist-Nutrition consultant in Ain Shams University.png' },
       { name: 'Dr. Nermeen', speciality: 'Nutritionist', bio: 'Nutrition expert and health coach', img: '../../../../assets/Doctors/Nutrition/Dr. Nermeen-Nutrition expert and health coach.png' },];
 
-      ObsArr: any = [{ name: 'Prof. Ahmed El Hossieny', speciality: '', bio: 'professor of obstetrics and gynecology in Ain Shams University', img: '../../../../assets/Doctors/Obs/Prof. Ahmed El Hossieny--professor of obstetrics and gynecology in Ain Shams University.png' },];
+      ObsArr: any = [
+            { name: 'Prof. Ahmed El Hossieny', speciality: '', bio: 'professor of obstetrics and gynecology in Ain Shams University', img: '../../../../assets/Doctors/Obs/Prof. Ahmed El Hossieny-professor of obstetrics and gynecology in Ain Shams University.png' },
+            { name: 'Dr. Eman Ali', speciality: '', bio: 'Consultant of obstetrics and gynecology', img: '../../../../assets/Doctors/Obs/Dr. Eman Ali-Consultant of obstetrics and gynecology.png' },
+      ];
 
       PlasticSurgeyArr: any = [{ name: 'Dr. Helen El kaabi', speciality: 'Plastic Surgeon', bio: 'Master Degree of Plastic Surgery In Shams University ', img: '../../../../assets/Doctors/Plastic surgey/Dr. Helen El kaabi-Plastic Surgeon-Master Degree of Plastic Surgery In Shams University .png' },
       { name: 'Prof. Ayman Abo El Makarm', speciality: 'Plastic Surgeon', bio: 'Professor of Plastic Surgery In Shams University ', img: '../../../../assets/Doctors/Plastic surgey/Prof. Ayman Abo El Makarm-Plastic Surgeon-Professor of Plastic Surgery In Shams University .png' },
