@@ -12,10 +12,6 @@ export class ServInvoiceItemService {
  
   constructor(private http:HttpClient,private servPath:PathService) { }
 
-  //Get and Delete subscribe inside component
-  //Post and Put subscribe inside service
-  
-  
 
   //get all InvoiceItems
   getInvoiceItemsAll():Observable<ResInvoiceItem[]>{
