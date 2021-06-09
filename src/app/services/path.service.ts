@@ -50,6 +50,17 @@ export class PathService {
 
   private blogJsonPath: string = "wp-json/wp/v2/posts/";
 
+  private inventoryItemPath: string = "inventory/item/";
+
+  private inventoryOrderPath: string = "inventory/order/";
+
+  public getPathinventoryItem(): string {
+    return this.approotPath + this.inventoryItemPath;
+  }
+
+  public getPathinventoryOrder(): string {
+    return this.approotPath + this.inventoryOrderPath;
+  }
   public getPathBlogJson() {
     return this.appBlogPath + this.blogJsonPath;
   }
@@ -84,7 +95,6 @@ export class PathService {
     return this.approotPath + this.servicePriceListPath;
   }
   public getPathInvoiceItem() {
-    console.log(this.approotPath);
     return this.approotPath + this.invoiceItemPath;
   }
   public getPathPatient() {
