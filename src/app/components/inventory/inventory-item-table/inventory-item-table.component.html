@@ -3,9 +3,11 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Name" #input>
 </mat-form-field>
 
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort matSortActive="code" matSortDirection="desc">
+<div class="mat-elevation-z8 spinner-enabled">
 
+    <app-local-spinner [showSpinner]="showSpinner"></app-local-spinner>
+
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort matSortActive="code" matSortDirection="desc">
         <ng-container matColumnDef="code">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
             <td mat-cell *matCellDef="let row"> {{row.code}} </td>
