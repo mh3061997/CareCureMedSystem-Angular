@@ -1,0 +1,27 @@
+.local-spinner-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    z-index: 9999;
+    background: rgba(190, 189, 189, 0.5);
+}
+
+.local-spinner {
+    color: var(--client-primary);
+    font-size: 20px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    text-indent: -9999em;
+    -webkit-animation: load4 1.3s infinite linear;
+    animation: load4 1.3s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    margin: auto;
+    background: none;
+}
