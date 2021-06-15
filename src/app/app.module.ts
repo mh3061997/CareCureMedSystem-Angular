@@ -71,6 +71,8 @@ import { InventoryOrderTableComponent } from './components/inventory/inventory-o
 import { InventoryItemTableComponent } from './components/inventory/inventory-item-table/inventory-item-table.component';
 import { InventoryPageComponent } from './components/inventory/inventory-page/inventory-page.component';
 import { KebabItemTableComponent } from './components/inventory/inventory-item-table/kebab-item-table/kebab-item-table.component';
+import { LocalSpinnerComponent } from './components/ui/local-spinner/local-spinner.component';
+import { KebabOrderTableComponent } from './components/inventory/inventory-order-table/kebab-order-table/kebab-order-table.component';
 
 @NgModule({
   declarations: [
@@ -134,7 +136,9 @@ import { KebabItemTableComponent } from './components/inventory/inventory-item-t
     InventoryOrderTableComponent,
     InventoryItemTableComponent,
     InventoryPageComponent,
-    KebabItemTableComponent
+    KebabItemTableComponent,
+    LocalSpinnerComponent,
+    KebabOrderTableComponent
 
   ],
   imports: [
