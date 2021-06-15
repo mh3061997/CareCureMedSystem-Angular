@@ -56,10 +56,11 @@ export class InventoryOrderTableComponent implements AfterViewInit {
 
     this.servInventoryOrder.getOrders(pageNumber, pageSize, sortColumn, sortDirection).subscribe(response => {
 
-      let count = response.headers.get("x-total-count");
+      let count = response.headers.get("X-Total-Count");
       this.ordersCount = count ? parseInt(count) : 0;
-      this.orders = response!.body!.orders!;
+      this.orders = response!.body!;
       this.assignNewDataSource();
+      
     });
 
   }
