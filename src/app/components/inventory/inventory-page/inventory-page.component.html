@@ -1,2 +1,99 @@
-<app-inventory-order-table></app-inventory-order-table>
-<app-inventory-item-table></app-inventory-item-table>
+<div id="packageinfo" class="m-0 p-5 container justify-content-center">
+
+
+    <div class="text-left  text-white mb-4">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-10 text-danger">
+                <h1>Inventory Information</h1>
+                <p class="mt-0 mb-5 text-danger">Welcome to the Inventory page. Here you will find all the inventory stock information.</p>
+
+            </div>
+
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success">Make new Order</button>
+
+        </div>
+    </div>
+
+    <div class="row bg-sec-light">
+        <div class="col-12 text-center">
+            <h1>Orders</h1>
+        </div>
+        <div class="col-sm-12">
+            <div class="row bg-sec-light">
+                <div class="col-sm-12 align-middle">
+                    <mat-form-field appearance="fill" class="m-2">
+                        <mat-label>Choose Visit Date</mat-label>
+                        <!-- <input matInput name="dateToVisit"  ngModel #dateCreated="ngModel"
+                        [(ngModel)]="currentDate" 
+                            [matDatepicker]="dp1"
+                            disabled="true"
+                            (dateChange)="onDateChange($event)"
+                           disabled
+                            > -->
+
+                        <input matInput name="dateToVisit" ngModel #dateCreated="ngModel" [matDatepicker]="dp1" disabled="true" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                        <mat-datepicker required #dp1 [disabled]="buttonGroup.value !='ByDate'"></mat-datepicker>
+
+                    </mat-form-field>
+
+                    <!-- <mat-button-toggle-group #buttonGroup="ngModel"
+                    ngModel="Upcoming"
+                    name="fontStyle" aria-label="Font Style" 
+                    
+                    (change)="onButtonToggleChange($event)"
+                    class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+                        <mat-button-toggle value="All">All</mat-button-toggle>
+                        <mat-button-toggle value="Upcoming">Upcoming</mat-button-toggle>
+                        <mat-button-toggle value="Past">Past</mat-button-toggle>
+                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
+                      </mat-button-toggle-group> -->
+                    <mat-button-toggle-group #buttonGroup="ngModel" ngModel="Upcoming" name="fontStyle" aria-label="Font Style" class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+                        <mat-button-toggle value="All">All</mat-button-toggle>
+                        <mat-button-toggle value="Upcoming">Sell</mat-button-toggle>
+                        <mat-button-toggle value="Past">Supply</mat-button-toggle>
+                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+            </div>
+
+            <app-inventory-order-table></app-inventory-order-table>
+        </div>
+    </div>
+
+    <div class="row bg-sec-light pt-5 mt-5">
+        <div class="col-12 text-center">
+            <h1>Items</h1>
+        </div>
+        <div class="col-sm-12">
+            <div class="row bg-sec-light">
+                <div class="col-sm-12 align-middle">
+
+                    <!-- <mat-button-toggle-group #buttonGroup="ngModel"
+                    ngModel="Upcoming"
+                    name="fontStyle" aria-label="Font Style" 
+                    
+                    (change)="onButtonToggleChange($event)"
+                    class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+                        <mat-button-toggle value="All">All</mat-button-toggle>
+                        <mat-button-toggle value="Upcoming">Upcoming</mat-button-toggle>
+                        <mat-button-toggle value="Past">Past</mat-button-toggle>
+                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
+                      </mat-button-toggle-group> -->
+                    <mat-button-toggle-group #buttonGroup="ngModel" ngModel="Upcoming" name="fontStyle" aria-label="Font Style" class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+                        <mat-button-toggle value="All">All</mat-button-toggle>
+                        <mat-button-toggle value="Upcoming">Sell</mat-button-toggle>
+                        <mat-button-toggle value="Past">Supply</mat-button-toggle>
+                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+            </div>
+
+            <app-inventory-item-table></app-inventory-item-table>
+        </div>
+    </div>
+
+</div>
