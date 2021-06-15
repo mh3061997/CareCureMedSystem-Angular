@@ -67,6 +67,9 @@ import { UserEnableDisableDialogComponent } from './components/user-panel/userta
 import { ClientSideModule } from './client-side/client-side.module';
 import { MaterialModule } from './sharedModules/material-module/material.module';
 import { PatientInvoicesTableComponent } from './components/patient/patient/patient-invoices-table/patient-invoices-table.component';
+import { InventoryOrderTableComponent } from './components/inventory/inventory-order-table/inventory-order-table.component';
+import { InventoryItemTableComponent } from './components/inventory/inventory-item-table/inventory-item-table.component';
+import { InventoryPageComponent } from './components/inventory/inventory-page/inventory-page.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +130,9 @@ import { PatientInvoicesTableComponent } from './components/patient/patient/pati
     UserChangeRoleDialogComponent,
     UserEnableDisableDialogComponent,
     PatientInvoicesTableComponent,
-
+    InventoryOrderTableComponent,
+    InventoryItemTableComponent,
+    InventoryPageComponent
 
   ],
   imports: [
