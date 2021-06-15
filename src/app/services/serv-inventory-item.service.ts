@@ -12,8 +12,20 @@ export class ServInventoryItemService {
 
   constructor(private http: HttpClient, private servPath: PathService) { }
 
-  getInventoryItemsAll(): Observable<ResInventoryItem[]> {
-    return this.http.get<ResInventoryItem[]>(this.servPath.getPathinventoryItem());
+  path = this.servPath.getPathinventoryItem();
+
+  getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string) {
+
+    return this.http.get<any>(this.path, {
+      params: {
+        pageNumber: pageNumber.toString(),
+        pageSize: pageSize.toString(),
+        sortColumn: sortColumn,
+        sortDirection: sortDirection
+      },
+      observe:'response'
+    });
+    
   }
 
   updateInventoryItemSellingPrice(itemCode: number, updatedSellingPrice: number) {
