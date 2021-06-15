@@ -70,6 +70,7 @@ import { PatientInvoicesTableComponent } from './components/patient/patient/pati
 import { InventoryOrderTableComponent } from './components/inventory/inventory-order-table/inventory-order-table.component';
 import { InventoryItemTableComponent } from './components/inventory/inventory-item-table/inventory-item-table.component';
 import { InventoryPageComponent } from './components/inventory/inventory-page/inventory-page.component';
+import { KebabItemTableComponent } from './components/inventory/inventory-item-table/kebab-item-table/kebab-item-table.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import { InventoryPageComponent } from './components/inventory/inventory-page/in
     PatientInvoicesTableComponent,
     InventoryOrderTableComponent,
     InventoryItemTableComponent,
-    InventoryPageComponent
+    InventoryPageComponent,
+    KebabItemTableComponent
 
   ],
   imports: [
