@@ -60,7 +60,7 @@ export class InventoryOrderTableComponent implements AfterViewInit {
       this.ordersCount = count ? parseInt(count) : 0;
       this.orders = response!.body!;
       this.assignNewDataSource();
-      
+
     });
 
   }
@@ -68,12 +68,11 @@ export class InventoryOrderTableComponent implements AfterViewInit {
   assignNewDataSource() {
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.orders);
-    this.updateDataSourcePaginatorAndSort();
+    this.updateDataSourceSort();
   }
 
-  updateDataSourcePaginatorAndSort() {
+  updateDataSourceSort() {
 
-    // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
