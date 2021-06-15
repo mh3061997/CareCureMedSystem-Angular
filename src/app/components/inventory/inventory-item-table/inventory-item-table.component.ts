@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ResInventoryItem } from 'src/app/interfaces/inventory/res-inventory-item';
+import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
@@ -24,7 +25,7 @@ export class InventoryItemTableComponent implements AfterViewInit {
 
   items: ResInventoryItem[];
   expandedElement: ResInventoryItem | null;
-
+  showSpinner = false;
   displayedColumns: string[] = [
     "code",
     "name",
@@ -42,7 +43,9 @@ export class InventoryItemTableComponent implements AfterViewInit {
 
   constructor(
     private servInventoryItem: ServInventoryItemService,
-    public servUtils: ServUtilitiesService) { }
+    public servUtils: ServUtilitiesService,
+    private servHttpUtils: ServHttpUtilsService,
+    private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
 
@@ -63,12 +66,13 @@ export class InventoryItemTableComponent implements AfterViewInit {
 
   getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string) {
 
+    this.showSpinnerToggle();
     this.servInventoryItem.getItems(pageNumber, pageSize, sortColumn, sortDirection).subscribe(response => {
 
-      let count = response.headers.get("X-Total-Count");
-      this.itemsCount = count ? parseInt(count) : 0;
-      this.items = response!.body!;
+      this.itemsCount = this.servHttpUtils.getCountFromHttpResponse(response);
+      this.items = this.servHttpUtils.getBodyFromHttpResponse(response);
       this.assignNewDataSource();
+      this.hideSpinnerToggle();
 
     });
 
@@ -108,4 +112,13 @@ export class InventoryItemTableComponent implements AfterViewInit {
     });
   }
 
+  showSpinnerToggle() {
+    this.showSpinner = true;
+    this.cdr.detectChanges();
+  }
+
+  hideSpinnerToggle() {
+    this.showSpinner = false;
+  }
+  
 }

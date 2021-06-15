@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { ResInventoryOrder } from 'src/app/interfaces/inventory/res-inventory-order';
+import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { ServInventoryOrderService } from 'src/app/services/serv-inventory-order.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
@@ -28,6 +29,7 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     'userMadeBy',
     'item',
     'cancelled',
+    " ",
   ];
   dataSource: MatTableDataSource<ResInventoryOrder>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,11 +37,15 @@ export class InventoryOrderTableComponent implements AfterViewInit {
   ordersCount: number;
   @ViewChild(MatSort) sort: MatSort;
 
+  showSpinner = false;
+
 
   constructor(
     private servInventoryOrder: ServInventoryOrderService,
     private cdr: ChangeDetectorRef,
-    public servUtils: ServUtilitiesService) {
+    public servUtils: ServUtilitiesService,
+    private servHttpUtils: ServHttpUtilsService,
+    ) {
 
   }
 
@@ -53,13 +59,15 @@ export class InventoryOrderTableComponent implements AfterViewInit {
   }
 
   getOrders(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string) {
-
+    
+    this.showSpinnerToggle();
     this.servInventoryOrder.getOrders(pageNumber, pageSize, sortColumn, sortDirection).subscribe(response => {
 
       let count = response.headers.get("X-Total-Count");
       this.ordersCount = count ? parseInt(count) : 0;
       this.orders = response!.body!;
       this.assignNewDataSource();
+      this.hideSpinnerToggle();
 
     });
 
@@ -79,9 +87,8 @@ export class InventoryOrderTableComponent implements AfterViewInit {
   onSortingChange() {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe((newSortAndDirection: any) => {
-      console.log("sort reset");
 
-      this.paginator.pageIndex = 0
+      this.paginator.firstPage();
       this.getOrders(0, this.paginator.pageSize, newSortAndDirection.active, newSortAndDirection.direction);
 
     });
@@ -89,11 +96,10 @@ export class InventoryOrderTableComponent implements AfterViewInit {
 
   onPaginationChange() {
     this.paginator.page.subscribe((page: any) => {
-      console.log(page);
 
       //page Size has changed reset to page 0
       if (page.pageSize != this.paginatorPageSize) {
-        this.paginator.pageIndex = 0;
+        this.paginator.firstPage();
       }
       //update last saved page size
       this.paginatorPageSize = page.pageSize;
@@ -109,6 +115,15 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  showSpinnerToggle() {
+    this.showSpinner = true;
+    this.cdr.detectChanges();
+  }
+
+  hideSpinnerToggle() {
+    this.showSpinner = false;
   }
 
 }
