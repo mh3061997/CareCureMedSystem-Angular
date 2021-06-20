@@ -1,9 +1,9 @@
-import { EnumInventoryCategory } from "../enums/enum-inventory-category.enum";
+import { EnumInventoryItemCategory } from "../enums/enum-inventory-item-category.enum";
 
 export class DtoInventoryItemNew {
     constructor(
         private name: string,
-        private category: EnumInventoryCategory,
+        private category: EnumInventoryItemCategory,
         private sellingPrice: number,
     ) { }
 }

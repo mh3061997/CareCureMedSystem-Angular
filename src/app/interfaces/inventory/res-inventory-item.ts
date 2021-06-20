@@ -1,10 +1,10 @@
-import { EnumInventoryCategory } from "../../enums/enum-inventory-category.enum";
+import { EnumInventoryItemCategory } from "src/app/enums/enum-inventory-item-category.enum";
 
 export interface ResInventoryItem {
     code:number;
     name:string;
     availableUnits:number;
-    category:EnumInventoryCategory;
+    category:EnumInventoryItemCategory;
     sellingPrice:number;
     expiryDates:Map<string,number>;
 }

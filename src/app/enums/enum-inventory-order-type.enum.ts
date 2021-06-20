@@ -1,4 +1,4 @@
-export enum EnumInventoryCategory {
+export enum EnumInventoryOrderType {
     SELL = "SELL",
     SUPPLY = "SUPPLY"
 }

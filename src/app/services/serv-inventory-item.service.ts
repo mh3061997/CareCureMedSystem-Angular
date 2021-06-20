@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DtoInventoryItemNew } from '../dtos/dto-inventory-item-new';
+import { EnumInventoryOrderType } from '../enums/enum-inventory-order-type.enum';
 import { ResInventoryItem } from '../interfaces/inventory/res-inventory-item';
 import { PathService } from './path.service';
 
@@ -14,7 +15,7 @@ export class ServInventoryItemService {
 
   path = this.servPath.getPathinventoryItem();
 
-  getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string) {
+  getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string , orderType: EnumInventoryOrderType | null) {
 
     return this.http.get<any>(this.path, {
       params: {

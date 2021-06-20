@@ -1,4 +1,4 @@
-import { EnumInventoryCategory } from "../../enums/enum-inventory-category.enum";
+import { EnumInventoryOrderType } from "src/app/enums/enum-inventory-order-type.enum";
 import { ResInventoryItem } from "./res-inventory-item";
 
 export interface ResInventoryOrder {
@@ -10,7 +10,7 @@ export interface ResInventoryOrder {
     itemExpiryDate: string,
     orderDate: string,
     supplierName: string,
-    type: EnumInventoryCategory,
+    type: EnumInventoryOrderType,
     userMadeBy: string,
     item: ResInventoryItem,
     cancelled: boolean
