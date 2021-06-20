@@ -92,15 +92,13 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     });
 
   }
-
   updateOrdersFromResponse(response: HttpResponse<any>) {
-    this.orders = response!.body!;
+    this.orders = this.servHttpUtils.getBodyFromHttpResponse(response);
   }
   updateCountFromResponse(response: HttpResponse<any>) {
-    let count = response.headers.get("X-Total-Count");
-    this.ordersCount = count ? parseInt(count) : 0;
+    this.ordersCount = this.servHttpUtils.getCountFromHttpResponse(response);
+
   }
-  
   onOrderButtonToggleChange(event: MatButtonToggleChange) {
     // console.log(event);
     this.paginator.firstPage();
