@@ -1,8 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HttpResponse } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EnumInventoryItemCategory } from 'src/app/enums/enum-inventory-item-category.enum';
 import { ResInventoryItem } from 'src/app/interfaces/inventory/res-inventory-item';
 import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
@@ -41,6 +44,8 @@ export class InventoryItemTableComponent implements AfterViewInit {
   itemsCount: number;
   @ViewChild(MatSort) sort: MatSort;
 
+  category: EnumInventoryItemCategory | null;
+
   constructor(
     private servInventoryItem: ServInventoryItemService,
     public servUtils: ServUtilitiesService,
@@ -49,7 +54,7 @@ export class InventoryItemTableComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+    this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
     this.onSortingChange();
     this.onPaginationChange();
   }
@@ -64,18 +69,42 @@ export class InventoryItemTableComponent implements AfterViewInit {
   }
 
 
-  getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string) {
+  getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string, category: EnumInventoryItemCategory | null) {
+    console.log(`Getting Items: pageNumber: ${pageNumber}, pageSize: ${pageSize}, sortColumn: ${sortColumn}, sortDirection: ${sortDirection} ,category: ${category}`);
 
     this.showSpinnerToggle();
-    this.servInventoryItem.getItems(pageNumber, pageSize, sortColumn, sortDirection).subscribe(response => {
+    this.servInventoryItem.getItems(pageNumber, pageSize, sortColumn, sortDirection, category).subscribe(response => {
 
-      this.itemsCount = this.servHttpUtils.getCountFromHttpResponse(response);
-      this.items = this.servHttpUtils.getBodyFromHttpResponse(response);
+      this.updateCountFromResponse(response);
+      this.updateItemsFromResponse(response);
       this.assignNewDataSource();
       this.hideSpinnerToggle();
 
     });
 
+  }
+
+  updateItemsFromResponse(response: HttpResponse<any>) {
+    this.items = this.servHttpUtils.getBodyFromHttpResponse(response);
+  }
+  updateCountFromResponse(response: HttpResponse<any>) {
+    this.itemsCount = this.servHttpUtils.getCountFromHttpResponse(response);
+
+  }
+
+  onItemButtonToggleChange(event: MatButtonToggleChange) {
+    console.log(event);
+    console.log(Object.values(EnumInventoryItemCategory));
+
+    this.paginator.firstPage();
+    if (Object.values(EnumInventoryItemCategory).includes(event.value)) {
+      this.category = event.value;
+    }
+    else {
+      this.category = null;
+    }
+
+    this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
   }
 
   assignNewDataSource() {
@@ -93,7 +122,7 @@ export class InventoryItemTableComponent implements AfterViewInit {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe((newSortAndDirection: any) => {
       this.paginator.firstPage();
-      this.getItems(0, this.paginator.pageSize, newSortAndDirection.active, newSortAndDirection.direction);
+      this.getItems(0, this.paginator.pageSize, newSortAndDirection.active, newSortAndDirection.direction, this.category);
 
     });
   }
@@ -107,7 +136,7 @@ export class InventoryItemTableComponent implements AfterViewInit {
       }
       //update last saved page size
       this.paginatorPageSize = page.pageSize;
-      this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+      this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
 
     });
   }
@@ -120,5 +149,5 @@ export class InventoryItemTableComponent implements AfterViewInit {
   hideSpinnerToggle() {
     this.showSpinner = false;
   }
-  
+
 }

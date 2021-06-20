@@ -100,6 +100,7 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     let count = response.headers.get("X-Total-Count");
     this.ordersCount = count ? parseInt(count) : 0;
   }
+  
   onOrderButtonToggleChange(event: MatButtonToggleChange) {
     // console.log(event);
     this.paginator.firstPage();
