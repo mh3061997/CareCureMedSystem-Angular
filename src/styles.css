@@ -417,6 +417,16 @@ h4,
     }
 }
 
+
+/********************** General Fixes ***************************/
+
 button.mat-menu-item {
     outline: 0px !important;
+}
+
+
+/* to allow stacking of toggler and reset button*/
+
+mat-datepicker-toggle {
+    display: inline-block;
 }

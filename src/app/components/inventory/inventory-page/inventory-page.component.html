@@ -22,44 +22,6 @@
             <h1>Orders</h1>
         </div>
         <div class="col-sm-12">
-            <div class="row bg-sec-light">
-                <div class="col-sm-12 align-middle">
-                    <mat-form-field appearance="fill" class="m-2">
-                        <mat-label>Choose Visit Date</mat-label>
-                        <!-- <input matInput name="dateToVisit"  ngModel #dateCreated="ngModel"
-                        [(ngModel)]="currentDate" 
-                            [matDatepicker]="dp1"
-                            disabled="true"
-                            (dateChange)="onDateChange($event)"
-                           disabled
-                            > -->
-
-                        <input matInput name="dateToVisit" ngModel #dateCreated="ngModel" [matDatepicker]="dp1" disabled="true" disabled>
-                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                        <mat-datepicker required #dp1 [disabled]="buttonGroup.value !='ByDate'"></mat-datepicker>
-
-                    </mat-form-field>
-
-                    <!-- <mat-button-toggle-group #buttonGroup="ngModel"
-                    ngModel="Upcoming"
-                    name="fontStyle" aria-label="Font Style" 
-                    
-                    (change)="onButtonToggleChange($event)"
-                    class="ml-5 mr-5" style="margin-bottom:1.34375em;">
-                        <mat-button-toggle value="All">All</mat-button-toggle>
-                        <mat-button-toggle value="Upcoming">Upcoming</mat-button-toggle>
-                        <mat-button-toggle value="Past">Past</mat-button-toggle>
-                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
-                      </mat-button-toggle-group> -->
-                    <mat-button-toggle-group #buttonGroup="ngModel" ngModel="Upcoming" name="fontStyle" aria-label="Font Style" class="ml-5 mr-5" style="margin-bottom:1.34375em;">
-                        <mat-button-toggle value="All">All</mat-button-toggle>
-                        <mat-button-toggle value="Upcoming">Sell</mat-button-toggle>
-                        <mat-button-toggle value="Past">Supply</mat-button-toggle>
-                        <mat-button-toggle value="ByDate">Specific Date</mat-button-toggle>
-                    </mat-button-toggle-group>
-                </div>
-            </div>
-
             <app-inventory-order-table></app-inventory-order-table>
         </div>
     </div>

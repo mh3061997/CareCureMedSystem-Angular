@@ -1,8 +1,30 @@
+<mat-form-field appearance="fill" class="m-2">
+    <mat-label>Choose Order Date</mat-label>
+    <mat-date-range-input [rangePicker]="dp1">
+        <input matStartDate placeholder="Start date" name="orderDatePickerStart" ngModel #orderDatePickerStart="ngModel" [(ngModel)]="orderStartDate">
+        <input matEndDate placeholder="End date" name="orderDatePickerEnd" ngModel #orderDatePickerEnd="ngModel" [(ngModel)]="orderEndDate" (dateChange)="onOrderDateChange($event)">
+    </mat-date-range-input>
+
+    <mat-datepicker-toggle matSuffix (click)="resetOrderDataPicker()" [hidden]="!orderStartDate && !orderEndDate">
+        <mat-icon matDatepickerToggleIcon>close</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+    <mat-date-range-picker required #dp1 disabled="false"></mat-date-range-picker>
+
+</mat-form-field>
+
+<mat-button-toggle-group #orderButtonGroup="ngModel" ngModel="all" [(ngModel)]="orderType" name="orderButtonGroup" (change)="onOrderButtonToggleChange($event)" class="ml-5 mr-5" style="margin-bottom:1.34375em;">
+    <mat-button-toggle value="all">All</mat-button-toggle>
+    <mat-button-toggle value="sell">Sell</mat-button-toggle>
+    <mat-button-toggle value="supply">Supply</mat-button-toggle>
+</mat-button-toggle-group>
+
+
+
 <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Code" #input>
 </mat-form-field>
-
 <div class="mat-elevation-z8 spinner-enabled">
 
     <app-local-spinner [showSpinner]="showSpinner"></app-local-spinner>
