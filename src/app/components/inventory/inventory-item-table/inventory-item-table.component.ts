@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { HttpResponse } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,6 +11,7 @@ import { ResInventoryItem } from 'src/app/interfaces/inventory/res-inventory-ite
 import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { InventoryUpdateItemPriceDialogComponent } from '../inventory-update-item-price-dialog/inventory-update-item-price-dialog.component';
 
 @Component({
   selector: 'app-inventory-item-table',
@@ -57,6 +59,13 @@ export class InventoryItemTableComponent implements AfterViewInit {
     this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
     this.onSortingChange();
     this.onPaginationChange();
+    this.servInventoryItem.getItemsSubject()
+    .subscribe(()=>{
+      console.log("it was fired");
+      
+      this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
+
+    })
   }
 
   applyFilter(event: Event) {
@@ -149,5 +158,7 @@ export class InventoryItemTableComponent implements AfterViewInit {
   hideSpinnerToggle() {
     this.showSpinner = false;
   }
+
+
 
 }

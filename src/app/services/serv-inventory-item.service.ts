@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { DtoInventoryItemNew } from '../dtos/dto-inventory-item-new';
 import { EnumInventoryItemCategory } from '../enums/enum-inventory-item-category.enum';
 import { EnumInventoryOrderType } from '../enums/enum-inventory-order-type.enum';
@@ -15,6 +15,17 @@ export class ServInventoryItemService {
   constructor(private http: HttpClient, private servPath: PathService) { }
 
   path = this.servPath.getPathinventoryItem();
+  private itemsSubject = new Subject();
+
+  emitItemsUpdatedSubject() {
+    console.log("emitting");
+    
+    this.itemsSubject.next();
+  }
+
+  getItemsSubject() {
+    return this.itemsSubject;
+  }
 
   getItems(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string, category: EnumInventoryItemCategory | null) {
 
