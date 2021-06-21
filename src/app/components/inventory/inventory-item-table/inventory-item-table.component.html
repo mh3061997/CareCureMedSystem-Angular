@@ -43,7 +43,7 @@
         <ng-container matColumnDef=" ">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
             <td mat-cell *matCellDef="let row">
-                <app-kebab-item-table></app-kebab-item-table>
+                <app-kebab-item-table [item]="row"></app-kebab-item-table>
             </td>
         </ng-container>
 

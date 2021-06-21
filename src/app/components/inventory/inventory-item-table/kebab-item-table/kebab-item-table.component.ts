@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ResInventoryItem } from 'src/app/interfaces/inventory/res-inventory-item';
+import { InventoryUpdateItemPriceDialogComponent } from '../../inventory-update-item-price-dialog/inventory-update-item-price-dialog.component';
 
 @Component({
   selector: 'app-kebab-item-table',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KebabItemTableComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  item: ResInventoryItem;
+  constructor(private dialogUpdateItemPrice: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  openUpdateItemPriceDialog() {
+    const dialogRef = this.dialogUpdateItemPrice.open(InventoryUpdateItemPriceDialogComponent, {
+      data: {
+        item: this.item
+      },
+      disableClose: true
+    });
+
+  }
 }
