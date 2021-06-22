@@ -1,1 +1,112 @@
-<p>inventory-new-order-dialog works!</p>
+<h1 class="mat-dialog-title bg-white ">Add New Order</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form (ngSubmit)="onNewInventoryItemSubmit()" #newOrderForm="ngForm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Units</label>
+                            <input matInput required [minlimit]="0" type="number" name="units" class="form-control" ngModel #units="ngModel">
+                            <span class="form-text text-muted" *ngIf="units.touched && units.invalid">Please enter number of units !</span>
+
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Item Price</label>
+                            <input matInput required [minlimit]="0" type="number" name="itemPrice" class="form-control" ngModel #itemPrice="ngModel">
+                            <span class="form-text text-muted" *ngIf="itemPrice.touched && itemPrice.invalid">Please enter item price !</span>
+
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Total Price</label>
+                            <input matInput required [minlimit]="0" type="number" name="totalPrice" class="form-control" ngModel #totalPrice="ngModel">
+                            <span class="form-text text-muted" *ngIf="totalPrice.touched && totalPrice.invalid">Please enter total price !</span>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Item Expiry Date</mat-label>
+                            <input matInput name="itemExpiryDate" required ngModel #itemExpiryDate="ngModel" [matDatepicker]="dp1">
+
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker required #dp1></mat-datepicker>
+                            <span class="form-text text-muted" *ngIf="itemExpiryDate.touched && itemExpiryDate.invalid">Please enter item expiry date !</span>
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Supplier Name</label>
+                            <input matInput required type="text" name="supplierName" class="form-control" ngModel #supplierName="ngModel">
+                            <span class="form-text text-muted" *ngIf="supplierName.touched && supplierName.invalid">Please enter supplier name !</span>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Item Category</label>
+                            <span class="form-text text-muted" *ngIf="category.touched && category.invalid">Please
+                                enter category !</span>
+                            <mat-select ngModel name="category" class="form-control" required #category="ngModel" (selectionChange)="onCategoryChange($event)">
+
+                                <mat-option *ngFor="let category of getInventoryItemCategories()" [value]="category">{{category}}</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Item</label>
+                            <span class="form-text text-muted" *ngIf="item.touched && item.invalid">Please
+                                choose item !</span>
+                            <mat-select [(ngModel)]="itemSelected" name="item" class="form-control" required #item="ngModel" [disabled]="!itemLookups || !category ">
+
+                                <mat-option *ngFor="let item of itemLookups" [value]="item">{{item.name}} | {{item.code}}</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <button class="btn btn-success" [disabled]="!newOrderForm.valid" type="submit">Add</button>
+    </form>
+</div>
