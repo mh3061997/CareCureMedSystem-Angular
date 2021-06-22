@@ -12,8 +12,16 @@
 
         </div>
         <div class="row justify-content-end">
-            <button class="btn btn-success">Make new Order</button>
+            <button [matMenuTriggerFor]="menu" class="btn btn-success">Make new Order</button>
 
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openAddNewInventoryOrderDialog(true)">
+                  <span>New Sell Order</span>
+                </button>
+                <button mat-menu-item (click)="openAddNewInventoryOrderDialog(false)">
+                    <span>New Supply Order</span>
+                  </button>
+            </mat-menu>
         </div>
     </div>
 
@@ -29,6 +37,9 @@
     <div class="row bg-sec-light pt-5 mt-5">
         <div class="col-12 text-center">
             <h1>Items</h1>
+        </div>
+        <div class="col-12 text-right">
+            <button class="btn btn-success" (click)="openAddNewInventoryItemDialog()">Add new item</button>
         </div>
         <div class="col-sm-12">
             <app-inventory-item-table></app-inventory-item-table>

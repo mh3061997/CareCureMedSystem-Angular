@@ -1,1 +1,61 @@
-<p>inventory-new-item-dialog works!</p>
+<h1 class="mat-dialog-title bg-white ">Add New Item</h1>
+<div class="mat-dialog-content bg-white">
+
+    <form (ngSubmit)="onNewInventoryItemSubmit()" #newItemForm="ngForm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput type="text" name="name" class="form-control" ngModel #name="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name
+                                !<br></span>
+
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Selling price</label>
+                            <input name="price" matInput type="number" class="form-control" [minlimit]="0" ngModel required #price="ngModel">
+                            <span class="form-text text-muted" *ngIf="price.touched && price.invalid">Please enter a valid selling price !</span>
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-md-6">
+
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Category</label>
+                            <span class="form-text text-muted" *ngIf="category.touched && category.invalid">Please
+                                enter category !</span>
+                            <mat-select ngModel name="category" class="form-control" required #category="ngModel">
+
+                                <mat-option *ngFor="let category of getInventoryItemCategories()" [value]="category">{{category}}</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button class="btn btn-success" [disabled]="!newItemForm.valid" type="submit">Add</button>
+        </div>
+    </form>
+</div>
