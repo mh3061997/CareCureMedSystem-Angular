@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { DtoInventoryOrderNew } from '../dtos/dto-inventory-order-new';
 import { EnumInventoryOrderType } from '../enums/enum-inventory-order-type.enum';
 import { ResInventoryOrder } from '../interfaces/inventory/res-inventory-order';
@@ -15,6 +15,7 @@ export class ServInventoryOrderService {
   constructor(private http: HttpClient, private servPath: PathService) { }
 
   path = this.servPath.getPathinventoryOrder();
+  ordersSubject= new Subject();
 
   getOrders(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string, startDate: Date | null, endDate: Date | null, orderType: EnumInventoryOrderType | null) {
 
@@ -52,5 +53,13 @@ export class ServInventoryOrderService {
     return this.http.delete(this.path + Ordercode);
   }
 
+
+  emitOrdersUpdatedSubject() {
+    this.ordersSubject.next();
+  }
+
+  getOrdersSubject() {
+    return this.ordersSubject;
+  }
 
 }
