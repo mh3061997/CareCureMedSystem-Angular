@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { DtoInventoryItemNew } from '../dtos/dto-inventory-item-new';
+import { DtoLookupInventoryItem } from '../dtos/lookups/dto-lookup-inventory-item';
 import { EnumInventoryItemCategory } from '../enums/enum-inventory-item-category.enum';
 import { EnumInventoryOrderType } from '../enums/enum-inventory-order-type.enum';
 import { ResInventoryItem } from '../interfaces/inventory/res-inventory-item';
@@ -18,8 +19,6 @@ export class ServInventoryItemService {
   private itemsSubject = new Subject();
 
   emitItemsUpdatedSubject() {
-    console.log("emitting");
-    
     this.itemsSubject.next();
   }
 
@@ -48,6 +47,20 @@ export class ServInventoryItemService {
 
   }
 
+  getItemsLookupByCategory(category: EnumInventoryItemCategory) :Observable<DtoLookupInventoryItem[]>{
+
+
+
+    let httpParams: any = {
+      category: category.toString(),
+    };
+
+
+    return this.http.get<DtoLookupInventoryItem[]>(this.path+"lookup", {
+      params: httpParams,
+    });
+
+  }
   updateInventoryItemSellingPrice(itemCode: number, updatedSellingPrice: number) {
     return this.http.put(this.servPath.getPathinventoryItem(), null, {
       params: {
