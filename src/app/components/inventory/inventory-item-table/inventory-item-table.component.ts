@@ -10,6 +10,7 @@ import { EnumInventoryItemCategory } from 'src/app/enums/enum-inventory-item-cat
 import { ResInventoryItem } from 'src/app/interfaces/inventory/res-inventory-item';
 import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
+import { ServInventoryOrderService } from 'src/app/services/serv-inventory-order.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 import { InventoryUpdateItemPriceDialogComponent } from '../inventory-update-item-price-dialog/inventory-update-item-price-dialog.component';
 
@@ -52,7 +53,8 @@ export class InventoryItemTableComponent implements AfterViewInit {
     private servInventoryItem: ServInventoryItemService,
     public servUtils: ServUtilitiesService,
     private servHttpUtils: ServHttpUtilsService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef,
+    private servInventoryOrder:ServInventoryOrderService) { }
 
   ngAfterViewInit() {
 
@@ -61,13 +63,23 @@ export class InventoryItemTableComponent implements AfterViewInit {
     this.onPaginationChange();
     this.servInventoryItem.getItemsSubject()
     .subscribe(()=>{
-      console.log("it was fired");
+     // console.log("it was fired");
+      
+      this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
+
+    })
+    this.servInventoryOrder.getOrdersSubject()
+    .subscribe(()=>{
+     // console.log("it was fired");
       
       this.getItems(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.category);
 
     })
   }
 
+  formatDate(dateString:any){
+    return this.servUtils.formatDate(dateString);
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -159,6 +171,8 @@ export class InventoryItemTableComponent implements AfterViewInit {
     this.showSpinner = false;
   }
 
+ 
+  
 
 
 }

@@ -21,8 +21,10 @@ import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 export class InventoryOrderTableComponent implements AfterViewInit {
 
   orders: ResInventoryOrder[];
+  //order is changed from here HTML order does not matter
   displayedColumns: string[] = [
     'code',
+    'item',
     'units',
     'itemPrice',
     'totalPrice',
@@ -31,8 +33,7 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     'supplierName',
     'type',
     'userMadeBy',
-    'item',
-    'cancelled',
+
     " ",
   ];
   dataSource: MatTableDataSource<ResInventoryOrder>;
@@ -52,7 +53,13 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     private cdr: ChangeDetectorRef,
     public servUtils: ServUtilitiesService,
     private servHttpUtils: ServHttpUtilsService,
-  ) { }
+  ) {
+    this.servInventoryOrder.getOrdersSubject().subscribe(()=>{
+      this.getOrders(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction, this.orderStartDate, this.orderEndDate, this.orderType);
+
+    });
+    
+   }
 
   onOrderDateChange(event: any) {
     // console.log(event);

@@ -430,3 +430,14 @@ button.mat-menu-item {
 mat-datepicker-toggle {
     display: inline-block;
 }
+
+
+/* to avoid bootstrap modal getting in the background*/
+
+.modal-backdrop {
+    z-index: -1 !important;
+}
+
+.modal-content {
+    z-index: 999 !important;
+}

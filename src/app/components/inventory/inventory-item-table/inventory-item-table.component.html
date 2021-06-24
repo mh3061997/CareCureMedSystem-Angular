@@ -54,7 +54,11 @@
 
                     <div class="example-element-description">
 
-                        {{element.code}}
+                        <div class="row" style="font-size: 25px;" *ngFor="let expiryPair of element.expiryDates | keyvalue">
+                            <span class="badge badge-pill badge-info">{{formatDate(expiryPair.key)}}</span>
+                            <span class="badge badge-pill badge-light">{{expiryPair.value}}</span>
+                        </div>
+
                     </div>
                 </div>
             </td>

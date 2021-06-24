@@ -11,6 +11,6 @@ export class DtoInventoryOrderNew {
        private supplierName: string,
        private  type: EnumInventoryOrderType,
        private  userMadeBy: string,
-       private  item: ResInventoryItem,
+       private  itemCode: number,
     ){}
 }
