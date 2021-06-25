@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { ResDoctorDayAvail } from '../interfaces/res-doctor-day-avail';
 import { ResReservedTime } from '../interfaces/res-reserved-time';
 import { ResTimeDecomposed } from '../interfaces/res-time-decomposed';
@@ -118,7 +118,9 @@ export class ServUtilitiesService {
   }
 
   showSnackBar(message: string) {
-    this.snackBar.open(message);
+    this.snackBar.open(message,'X',{
+      duration: 3000
+    });
   }
   
 }

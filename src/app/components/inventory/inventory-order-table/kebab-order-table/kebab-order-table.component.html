@@ -2,14 +2,13 @@
     <mat-icon>more_vert</mat-icon>
   </button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item data-toggle="modal" data-target="#staticBackdrop">
+    <button mat-menu-item data-toggle="modal" [attr.data-target]="'#modal'+orderCode">
       <mat-icon class="color-client-primary">undo</mat-icon>
       <span>Reverse order</span>
     </button>
-
 </mat-menu>
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" [id]="'modal'+orderCode" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,11 +18,11 @@
         </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to reverse order #{{order.code}}</p>
+                <p>Are you sure you want to reverse order #{{orderCode}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-danger" (click)="reverseOrder()">Yes</button>
+                <button type="button" class="btn btn-danger" (click)="reverseOrder()" data-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>

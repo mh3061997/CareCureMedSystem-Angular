@@ -12,20 +12,20 @@ import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 export class KebabOrderTableComponent implements OnInit {
 
   @Input()
-  order:ResInventoryOrder;
-  
-  constructor(private servInventoryOrder:ServInventoryOrderService,
-    private servUtils:ServUtilitiesService) { }
+  orderCode: number;
+
+  constructor(private servInventoryOrder: ServInventoryOrderService,
+    private servUtils: ServUtilitiesService) { }
 
   ngOnInit(): void {
   }
 
   reverseOrder() {
-    this.servInventoryOrder.reverseOrder(this.order.code).subscribe((isReversed)=>{
-      if(isReversed){
+    this.servInventoryOrder.reverseOrder(this.orderCode).subscribe((isReversed) => {
+      if (isReversed){
         this.servInventoryOrder.emitOrdersUpdatedSubject();
         this.servUtils.showSnackBar(messages.inventoryOrderReverseSuccess);
-      }else {
+      } else {
         this.servUtils.showSnackBar(messages.inventoryOrderReverseFail);
 
       }

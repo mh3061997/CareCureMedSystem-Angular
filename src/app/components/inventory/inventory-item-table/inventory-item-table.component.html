@@ -2,6 +2,7 @@
     <mat-button-toggle value="all">All</mat-button-toggle>
     <mat-button-toggle value="GENERAL">General</mat-button-toggle>
     <mat-button-toggle value="DENTAL">Dental</mat-button-toggle>
+    <mat-button-toggle value="DERMATOLOGY">Dermatology</mat-button-toggle>
     <mat-button-toggle value="SURGERY">Surgery</mat-button-toggle>
 </mat-button-toggle-group>
 
@@ -40,7 +41,7 @@
         </ng-container>
 
         <ng-container matColumnDef=" ">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+            <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
                 <app-kebab-item-table [item]="row"></app-kebab-item-table>
             </td>

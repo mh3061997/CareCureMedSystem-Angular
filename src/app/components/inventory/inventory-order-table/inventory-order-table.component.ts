@@ -33,9 +33,9 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     'supplierName',
     'type',
     'userMadeBy',
-
     " ",
   ];
+
   dataSource: MatTableDataSource<ResInventoryOrder>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   paginatorPageSize: number = 10;
@@ -86,7 +86,7 @@ export class InventoryOrderTableComponent implements AfterViewInit {
   }
 
   getOrders(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string, orderStartDate: Date | null, orderEndDate: Date | null, orderType: EnumInventoryOrderType | null) {
-    console.log(`Getting Orders: pageNumber: ${pageNumber}, pageSize: ${pageSize}, sortColumn: ${sortColumn}, sortDirection: ${sortDirection} ,orderStartDate: ${orderStartDate} ,orderEndDate: ${orderEndDate} ,orderType: ${orderType}`);
+   // console.log(`Getting Orders: pageNumber: ${pageNumber}, pageSize: ${pageSize}, sortColumn: ${sortColumn}, sortDirection: ${sortDirection} ,orderStartDate: ${orderStartDate} ,orderEndDate: ${orderEndDate} ,orderType: ${orderType}`);
 
     this.showSpinnerToggle();
     this.servInventoryOrder.getOrders(pageNumber, pageSize, sortColumn, sortDirection, orderStartDate, orderEndDate, orderType).subscribe(response => {
@@ -124,6 +124,8 @@ export class InventoryOrderTableComponent implements AfterViewInit {
   assignNewDataSource() {
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.orders);
+    console.log(this.dataSource);
+    
     this.updateDataSourceSort();
   }
 
