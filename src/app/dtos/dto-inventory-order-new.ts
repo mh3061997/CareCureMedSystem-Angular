@@ -12,5 +12,6 @@ export class DtoInventoryOrderNew {
        private  type: EnumInventoryOrderType,
        private  userMadeBy: string,
        private  itemCode: number,
+       private note:string,
     ){}
 }

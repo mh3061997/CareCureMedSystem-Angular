@@ -12,11 +12,19 @@ import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { ServInventoryOrderService } from 'src/app/services/serv-inventory-order.service';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-inventory-order-table',
   templateUrl: './inventory-order-table.component.html',
-  styleUrls: ['./inventory-order-table.component.css']
+  styleUrls: ['./inventory-order-table.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class InventoryOrderTableComponent implements AfterViewInit {
 
@@ -35,6 +43,7 @@ export class InventoryOrderTableComponent implements AfterViewInit {
     'userMadeBy',
     " ",
   ];
+  expandedElement: ResInventoryOrder | null;
 
   dataSource: MatTableDataSource<ResInventoryOrder>;
   @ViewChild(MatPaginator) paginator: MatPaginator;

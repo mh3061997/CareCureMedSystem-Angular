@@ -13,6 +13,7 @@ export interface ResInventoryOrder {
     type: EnumInventoryOrderType,
     userMadeBy: string,
     item: ResInventoryItem,
-    cancelled: boolean
+    cancelled: boolean,
+    note:string
 }
 

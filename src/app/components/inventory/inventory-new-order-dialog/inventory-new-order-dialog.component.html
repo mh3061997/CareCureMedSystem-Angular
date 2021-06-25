@@ -78,7 +78,6 @@
 
                         <label for="input-name" class="form-control-label">Supplier Name</label>
                         <input matInput type="text" name="supplierName" class="form-control" ngModel #supplierName="ngModel">
-                        <span class="form-text text-muted" *ngIf="supplierName.touched && supplierName.invalid">Please enter supplier name !</span>
 
                     </mat-form-field>
                 </div>
@@ -93,6 +92,14 @@
 
                     </mat-form-field>
 
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+
+                        <label for="input-name" class="form-control-label">Note</label>
+                        <input matInput type="text" name="note" class="form-control" ngModel #note="ngModel">
+
+                    </mat-form-field>
                 </div>
             </div>
 

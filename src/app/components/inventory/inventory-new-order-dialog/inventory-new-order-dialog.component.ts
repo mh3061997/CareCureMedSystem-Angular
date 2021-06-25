@@ -61,7 +61,9 @@ export class InventoryNewOrderDialogComponent implements OnInit {
       this.newOrderForm.value.supplierName ? this.newOrderForm.value.supplierName : "",
       this.isSupply ? EnumInventoryOrderType.SUPPLY : EnumInventoryOrderType.SELL,
       this.servAuth.getLoggedInName(),
-      this.itemSelected!.code);
+      this.itemSelected!.code,
+      this.newOrderForm.value.note,
+      );
 
     console.log(newOrder);
 
