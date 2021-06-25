@@ -22,6 +22,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatMenuModule} from '@angular/material/menu'
 import { PatientOfficialImageTableComponent } from '../../components/patient/patient/patient-official-image-table/patient-official-image-table.component';
 import { PatientMedimagesTableComponent } from '../../components/patient/patient/patient-medimages-table/patient-medimages-table.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PatientMedimagesTableComponent } from '../../components/patient/patient
     MatButtonToggleModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatSnackBarModule
   ],
   exports:[
     MatButtonModule,

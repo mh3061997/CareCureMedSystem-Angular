@@ -6,9 +6,11 @@ import { DtoInventoryOrderNew } from 'src/app/dtos/dto-inventory-order-new';
 import { DtoLookupInventoryItem } from 'src/app/dtos/lookups/dto-lookup-inventory-item';
 import { EnumInventoryItemCategory } from 'src/app/enums/enum-inventory-item-category.enum';
 import { EnumInventoryOrderType } from 'src/app/enums/enum-inventory-order-type.enum';
+import { messages } from 'src/app/messages';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { ServInventoryOrderService } from 'src/app/services/serv-inventory-order.service';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
   selector: 'app-inventory-new-order-dialog',
@@ -32,7 +34,8 @@ export class InventoryNewOrderDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<InventoryNewOrderDialogComponent>,
     private servInventoryOrder: ServInventoryOrderService,
     private servInventoryItem: ServInventoryItemService,
-    private servAuth: AuthService) {
+    private servAuth: AuthService,
+    private servUtils:ServUtilitiesService) {
 
     this.isSupply = data.isSupply;
     this.disableBackClick();
@@ -65,6 +68,7 @@ export class InventoryNewOrderDialogComponent implements OnInit {
     this.servInventoryOrder.addOrder(newOrder).subscribe(() => {
       this.servInventoryOrder.emitOrdersUpdatedSubject();
       this.dialogRef.close();
+      this.servUtils.showSnackBar(messages.inventoryOrderCreateSuccess);
     });
 
   }

@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { DtoInventoryItemNew } from 'src/app/dtos/dto-inventory-item-new';
 import { EnumInventoryItemCategory } from 'src/app/enums/enum-inventory-item-category.enum';
+import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
+import { messages } from 'src/app/messages';
 
 @Component({
   selector: 'app-inventory-new-item-dialog',
@@ -16,7 +18,8 @@ export class InventoryNewItemDialogComponent implements OnInit {
 
 
   constructor(private dialogRef: MatDialogRef<InventoryNewItemDialogComponent>,
-    private servInventoryItem: ServInventoryItemService) {
+    private servInventoryItem: ServInventoryItemService,
+    private servUtils:ServUtilitiesService) {
 
     this.disableBackClick();
 
@@ -40,6 +43,7 @@ export class InventoryNewItemDialogComponent implements OnInit {
       this.servInventoryItem.addInventoryItem(newItem).subscribe(()=>{
         this.servInventoryItem.emitItemsUpdatedSubject();
         this.dialogRef.close();
+        this.servUtils.showSnackBar(messages.inventoryItemCreateSuccess)
       });
       
   }
