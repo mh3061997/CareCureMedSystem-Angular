@@ -1,0 +1,49 @@
+<div id="packageinfo" class="m-0 p-5 container justify-content-center">
+
+
+    <div class="text-left  text-white mb-4">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-10 text-danger">
+                <h1>Inventory Information</h1>
+                <p class="mt-0 mb-5 text-danger">Welcome to the Inventory page. Here you will find all the inventory stock information.</p>
+
+            </div>
+
+        </div>
+        <div class="row justify-content-end">
+            <button [matMenuTriggerFor]="menu" class="btn btn-success">Make new Order</button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openAddNewInventoryOrderDialog(false)">
+                  <span>New Sell Order</span>
+                </button>
+                <button mat-menu-item (click)="openAddNewInventoryOrderDialog(true)">
+                    <span>New Supply Order</span>
+                  </button>
+            </mat-menu>
+        </div>
+    </div>
+
+    <div class="row bg-sec-light">
+        <div class="col-12 text-center">
+            <h1>Orders</h1>
+        </div>
+        <div class="col-sm-12">
+            <app-inventory-order-table></app-inventory-order-table>
+        </div>
+    </div>
+
+    <div class="row bg-sec-light pt-5 mt-5">
+        <div class="col-12 text-center">
+            <h1>Items</h1>
+        </div>
+        <div class="col-12 text-right">
+            <button class="btn btn-success" (click)="openAddNewInventoryItemDialog()">Add new item</button>
+        </div>
+        <div class="col-sm-12">
+            <app-inventory-item-table></app-inventory-item-table>
+        </div>
+    </div>
+
+</div>

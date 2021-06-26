@@ -19,9 +19,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
+import {MatMenuModule} from '@angular/material/menu'
 import { PatientOfficialImageTableComponent } from '../../components/patient/patient/patient-official-image-table/patient-official-image-table.component';
 import { PatientMedimagesTableComponent } from '../../components/patient/patient/patient-medimages-table/patient-medimages-table.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,9 @@ import { PatientMedimagesTableComponent } from '../../components/patient/patient
     MatTabsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   exports:[
     MatButtonModule,
@@ -74,6 +77,7 @@ import { PatientMedimagesTableComponent } from '../../components/patient/patient
     MatProgressSpinnerModule,
     PatientMedimagesTableComponent,
     PatientOfficialImageTableComponent,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

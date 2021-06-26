@@ -39,7 +39,10 @@
                 <fa-icon class="mr-2" [icon]="faDollarSign" style="color:green"></fa-icon>
                 Price List
             </a>
-
+            <a mat-list-item routerLink="inventory" routerLinkActive="active">
+                <fa-icon class="mr-2" [icon]="faWarehouse" style="color:rgb(128, 36, 0)"></fa-icon>
+                Inventory
+            </a>
             <a *ngIf="isUserAdmin()" mat-list-item routerLink="userpanel" routerLinkActive="active">
                 <fa-icon class="mr-2" [icon]="faUsers" style="color:pink"></fa-icon>
                 Users Panel

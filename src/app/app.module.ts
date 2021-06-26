@@ -67,6 +67,15 @@ import { UserEnableDisableDialogComponent } from './components/user-panel/userta
 import { ClientSideModule } from './client-side/client-side.module';
 import { MaterialModule } from './sharedModules/material-module/material.module';
 import { PatientInvoicesTableComponent } from './components/patient/patient/patient-invoices-table/patient-invoices-table.component';
+import { InventoryOrderTableComponent } from './components/inventory/inventory-order-table/inventory-order-table.component';
+import { InventoryItemTableComponent } from './components/inventory/inventory-item-table/inventory-item-table.component';
+import { InventoryPageComponent } from './components/inventory/inventory-page/inventory-page.component';
+import { KebabItemTableComponent } from './components/inventory/inventory-item-table/kebab-item-table/kebab-item-table.component';
+import { LocalSpinnerComponent } from './components/ui/local-spinner/local-spinner.component';
+import { KebabOrderTableComponent } from './components/inventory/inventory-order-table/kebab-order-table/kebab-order-table.component';
+import { InventoryNewOrderDialogComponent } from './components/inventory/inventory-new-order-dialog/inventory-new-order-dialog.component';
+import { InventoryNewItemDialogComponent } from './components/inventory/inventory-new-item-dialog/inventory-new-item-dialog.component';
+import { InventoryUpdateItemPriceDialogComponent } from './components/inventory/inventory-update-item-price-dialog/inventory-update-item-price-dialog.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +136,15 @@ import { PatientInvoicesTableComponent } from './components/patient/patient/pati
     UserChangeRoleDialogComponent,
     UserEnableDisableDialogComponent,
     PatientInvoicesTableComponent,
-
+    InventoryOrderTableComponent,
+    InventoryItemTableComponent,
+    InventoryPageComponent,
+    KebabItemTableComponent,
+    LocalSpinnerComponent,
+    KebabOrderTableComponent,
+    InventoryNewOrderDialogComponent,
+    InventoryNewItemDialogComponent,
+    InventoryUpdateItemPriceDialogComponent
 
   ],
   imports: [

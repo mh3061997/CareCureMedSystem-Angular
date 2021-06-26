@@ -1,47 +1,49 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { ResDoctorDayAvail } from '../interfaces/res-doctor-day-avail';
 import { ResReservedTime } from '../interfaces/res-reserved-time';
 import { ResTimeDecomposed } from '../interfaces/res-time-decomposed';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServUtilitiesService {
 
-  
+
   weekdays = {
-    sunday:0,
-    monday:1,
-    tuesday:2,
-    wednesday:3,
-    thursday:4,
-    friday:5,
-    saturday:6
+    sunday: 0,
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6
   }
   specialities: string[] = ['Surgery', 'Plastic Surgery', 'Dermatology', 'Nutrition', 'Internal Medicine',
     'Obstetrics', 'Dentistry'];
-  constructor() { }
+
+  constructor(private snackBar: MatSnackBar) { }
 
   public formatDateTime(dateString: string | null | undefined): string {
-   if(dateString){
-    const dateObj = new Date(dateString);
-    return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour12: true, hour: "2-digit", minute: "2-digit", timeZone: "Africa/Cairo" }); 
-   }else{
-     return " "
-   }
-  }
-
-  public formatDate(dateString: string | null | undefined): string {
-    if(dateString){
+    if (dateString) {
       const dateObj = new Date(dateString);
-    return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', timeZone: "Africa/Cairo" })
-    }else{
+      return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour12: true, hour: "2-digit", minute: "2-digit", timeZone: "Africa/Cairo" });
+    } else {
       return " "
     }
   }
 
-  public getWeekDayString(date:Date):string{
-    return date.toLocaleDateString('en-US',{weekday:'long'}).toLowerCase();
+  public formatDate(dateString: string | null | undefined): string {
+    if (dateString) {
+      const dateObj = new Date(dateString);
+      return dateObj.toLocaleString('en-US', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', timeZone: "Africa/Cairo" })
+    } else {
+      return " "
+    }
+  }
+
+  public getWeekDayString(date: Date): string {
+    return date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
   }
   public getTimeIntervals(): ResTimeDecomposed[] {
     const intervals = ['00', '30'];
@@ -91,29 +93,35 @@ export class ServUtilitiesService {
       let dateObj = new Date(date.dateToVisit);
       let timeString = dateObj.toLocaleString().split(', ')[1];
       console.log(dateObj.toLocaleString());
-      
+
       let hour = timeString.split(":")[0];
-      if(hour.length==1)
-      hour = "0"+hour;
-      let minute=timeString.split(":")[1];
+      if (hour.length == 1)
+        hour = "0" + hour;
+      let minute = timeString.split(":")[1];
       let AMPM = timeString.split(":")[2].split(" ")[1]
-      
-      reservedDecomposedTime.push({hour:hour,minute:minute,AMPM:AMPM});
+
+      reservedDecomposedTime.push({ hour: hour, minute: minute, AMPM: AMPM });
     });
-    console.log("decomposed ",reservedDecomposedTime)
+    console.log("decomposed ", reservedDecomposedTime)
     return reservedDecomposedTime;
   }
 
-  
-  decomposeDoctorDayAvail(day:ResDoctorDayAvail,type:string):ResTimeDecomposed{
 
-    if(type=='start'){
-      return {hour:day.startTimeHour,minute:day.startTimeMinute,AMPM:day.startTimeAMPM}
-    }else{
-      return {hour:day.endTimeHour,minute:day.endTimeMinute,AMPM:day.endTimeAMPM}
+  decomposeDoctorDayAvail(day: ResDoctorDayAvail, type: string): ResTimeDecomposed {
+
+    if (type == 'start') {
+      return { hour: day.startTimeHour, minute: day.startTimeMinute, AMPM: day.startTimeAMPM }
+    } else {
+      return { hour: day.endTimeHour, minute: day.endTimeMinute, AMPM: day.endTimeAMPM }
+
+    }
+  }
+
+  showSnackBar(message: string) {
+    this.snackBar.open(message,'X',{
+      duration: 3000
+    });
+  }
   
-    }
-    }
-    
 }
 

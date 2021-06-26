@@ -99,6 +99,10 @@ input[type=number] {
     src: url('/fonts/FSAlbertArabic-Light.otf');
 }
 
+.color-client-primary {
+    color: var(--client-primary) !important;
+}
+
 .bg-client-primary {
     background: var(--client-primary);
 }
@@ -349,34 +353,12 @@ h4,
 
 /**/
 
-.local-spinner-wrapper {
-    height: 100px;
-    width: 100px;
+.spinner-enabled {
     position: relative;
-    margin: auto;
-    z-index: 9999;
 }
 
 .cdk-overlay-container {
     z-index: 9999 !important;
-}
-
-.local-spinner {
-    color: var(--client-primary);
-    font-size: 20px;
-    margin: 100px auto;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    position: relative;
-    text-indent: -9999em;
-    -webkit-animation: load4 1.3s infinite linear;
-    animation: load4 1.3s infinite linear;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    margin: auto;
-    background: none;
 }
 
 @-webkit-keyframes load4 {
@@ -433,4 +415,29 @@ h4,
     87.5% {
         box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
+}
+
+
+/********************** General Fixes ***************************/
+
+button.mat-menu-item {
+    outline: 0px !important;
+}
+
+
+/* to allow stacking of toggler and reset button*/
+
+mat-datepicker-toggle {
+    display: inline-block;
+}
+
+
+/* to avoid bootstrap modal getting in the background*/
+
+.modal-backdrop {
+    z-index: -1 !important;
+}
+
+.modal-content {
+    z-index: 999 !important;
 }

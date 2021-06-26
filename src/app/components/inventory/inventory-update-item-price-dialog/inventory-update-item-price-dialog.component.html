@@ -1,0 +1,35 @@
+<h1 class="mat-dialog-title ">
+    Update selling price </h1>
+<div class="mat-dialog-content bg-white">
+
+    <form *ngIf="item" (ngSubmit)="onUpdatePriceSubmit()" #updatePriceForm="ngForm">
+        <div class="container-fluid text-center">
+
+            <div class="row">
+                <label for="input-name" class="form-control-label">Name</label>
+
+            </div>
+            <div class="row">
+                <span>{{item.name}}</span>
+
+            </div>
+            <div class="row">
+
+                <mat-form-field>
+
+                    <label for="input-name" class="form-control-label">price</label>
+                    <input name="price" matInput type="number" class="form-control" required [minlimit]="0" [ngModel]="item.sellingPrice" #price="ngModel">
+
+                    <span class="form-text text-muted" *ngIf="price.touched && price.invalid">Please
+                    enter a valid price !</span>
+                </mat-form-field>
+            </div>
+
+
+
+
+            <button class="btn btn-success" [disabled]="!updatePriceForm.valid" type="submit">Update</button>
+
+        </div>
+    </form>
+</div>
