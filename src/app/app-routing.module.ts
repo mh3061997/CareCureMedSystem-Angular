@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { NavBarSideComponent } from './components/ui/nav-bar-side/nav-bar-side.component';
 import { ClientContainerComponent } from './client-side/components/shared/client-container/client-container.component';
 import { InventoryPageComponent } from './components/inventory/inventory-page/inventory-page.component';
+import { ReportsPageComponent } from './components/reports-page/reports-page.component';
 
 const routes: Routes = [
  
@@ -62,6 +63,9 @@ const routes: Routes = [
       path: "register", component: RegisterUserComponent
     }, {
       path: "inventory", component: InventoryPageComponent
+    }, 
+    {
+      path: "reports", component: ReportsPageComponent
     }, 
     // {path: "**", redirectTo: "notfound"}
   ]
