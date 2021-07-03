@@ -54,6 +54,12 @@ export class PathService {
 
   private inventoryOrderPath: string = "inventory/order/";
 
+  private reportsPath: string = "reports";
+
+  public getPathReports(): string {
+    return this.approotPath + this.reportsPath;
+  }
+  
   public getPathinventoryItem(): string {
     return this.approotPath + this.inventoryItemPath;
   }

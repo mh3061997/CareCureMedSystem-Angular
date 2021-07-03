@@ -6,6 +6,7 @@ import HC_exporting_DATA from "highcharts/modules/export-data";
 import { HttpClient } from '@angular/common/http';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 import { EnumInventoryOrderType } from 'src/app/enums/enum-inventory-order-type.enum';
+import { ServReportsService } from 'src/app/services/serv-reports.service';
 
 HC_exporting(Highstock);
 HC_exporting_DATA(Highstock);
@@ -37,9 +38,9 @@ export class ReportsPageComponent implements OnInit {
    yearSpeciailitiesCountOptions: Options;
    yearSpecialitiesIncomeOptions: Options;
 
-   constructor(private http: HttpClient, private servUtils: ServUtilitiesService) {
+   constructor(private servUtils: ServUtilitiesService, private servReports: ServReportsService) {
 
-      this.http.get<any>("http://localhost:8080/reports").subscribe((allReports) => {
+      this.servReports.getReports().subscribe((allReports) => {
 
          this.monthlySpecialitiesIncome = allReports.monthlySpecialitiesIncome;
          this.monthlySpecialitiesCount = allReports.monthlySpecialitiesCount;
@@ -47,11 +48,11 @@ export class ReportsPageComponent implements OnInit {
          this.yearSpecialitiesPercentageCount = allReports.yearSpecialitiesPercentageCount;
          this.yearSpecialitiesPercentageIncome = allReports.yearSpecialitiesPercentageIncome;
 
-         console.log(this.monthlySpecialitiesIncome);
-         console.log(this.monthlySpecialitiesCount);
-         console.log(this.monthlyInventoryInOut);
-         console.log(this.yearSpecialitiesPercentageCount);
-         console.log(this.yearSpecialitiesPercentageIncome);
+         // console.log(this.monthlySpecialitiesIncome);
+         // console.log(this.monthlySpecialitiesCount);
+         // console.log(this.monthlyInventoryInOut);
+         // console.log(this.yearSpecialitiesPercentageCount);
+         // console.log(this.yearSpecialitiesPercentageIncome);
 
          this.monthlySpecialitiesIncomeReformatted = this.createMonthlySpecialitiesIncomeArray();
          this.monthlySpecialitiesCountReformatted = this.createMonthlySpecialitiesCountArray();
@@ -59,11 +60,11 @@ export class ReportsPageComponent implements OnInit {
          this.yearSpecialitiesPercentageCountReformatted = this.createYearSpecialitiesDonutArray(this.yearSpecialitiesPercentageIncome);
          this.yearSpecialitiesPercentageIncomeReformatted = this.createYearSpecialitiesDonutArray(this.yearSpecialitiesPercentageCount);
 
-         console.log(this.monthlySpecialitiesIncomeReformatted);
-         console.log(this.monthlySpecialitiesCountReformatted);
-         console.log(this.monthlyInventoryInOutReformatted);
-         console.log(this.yearSpecialitiesPercentageCountReformatted);
-         console.log(this.yearSpecialitiesPercentageIncomeReformatted);
+         // console.log(this.monthlySpecialitiesIncomeReformatted);
+         // console.log(this.monthlySpecialitiesCountReformatted);
+         // console.log(this.monthlyInventoryInOutReformatted);
+         // console.log(this.yearSpecialitiesPercentageCountReformatted);
+         // console.log(this.yearSpecialitiesPercentageIncomeReformatted);
 
          this.monthlySpecialitiesIncomeOptions = {
             exporting: {
@@ -456,7 +457,7 @@ export class ReportsPageComponent implements OnInit {
          let specialitiyEntry = array.find((entry) => { return entry.speciality == specialitiy });
 
 
-        obj.data.push({name: specialitiy, y: specialitiyEntry ? specialitiyEntry.percentage : 0 });
+         obj.data.push({ name: specialitiy, y: specialitiyEntry ? specialitiyEntry.percentage : 0 });
 
 
       })
