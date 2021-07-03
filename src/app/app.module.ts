@@ -76,6 +76,8 @@ import { KebabOrderTableComponent } from './components/inventory/inventory-order
 import { InventoryNewOrderDialogComponent } from './components/inventory/inventory-new-order-dialog/inventory-new-order-dialog.component';
 import { InventoryNewItemDialogComponent } from './components/inventory/inventory-new-item-dialog/inventory-new-item-dialog.component';
 import { InventoryUpdateItemPriceDialogComponent } from './components/inventory/inventory-update-item-price-dialog/inventory-update-item-price-dialog.component';
+import { ReportsPageComponent } from './components/reports-page/reports-page.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -144,7 +146,8 @@ import { InventoryUpdateItemPriceDialogComponent } from './components/inventory/
     KebabOrderTableComponent,
     InventoryNewOrderDialogComponent,
     InventoryNewItemDialogComponent,
-    InventoryUpdateItemPriceDialogComponent
+    InventoryUpdateItemPriceDialogComponent,
+    ReportsPageComponent
 
   ],
   imports: [
@@ -158,7 +161,8 @@ import { InventoryUpdateItemPriceDialogComponent } from './components/inventory/
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    HighchartsChartModule
 
 
   ],

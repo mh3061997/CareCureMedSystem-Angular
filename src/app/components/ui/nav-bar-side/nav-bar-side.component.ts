@@ -12,7 +12,8 @@ import {
   faUsers,
   faGlobe,
   faBlog,
-  faWarehouse
+  faWarehouse,
+  faChartBar
 } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -35,6 +36,7 @@ export class NavBarSideComponent{
   faGlobe=faGlobe;
   faBlog=faBlog;
   faWarehouse=faWarehouse;
+  faChartBar=faChartBar;
   @ViewChild('drawer', { static: false }) drawer:ElementRef; 
 
 

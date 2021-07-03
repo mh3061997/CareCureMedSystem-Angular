@@ -35,7 +35,7 @@ export class InventoryNewOrderDialogComponent implements OnInit {
     private servInventoryOrder: ServInventoryOrderService,
     private servInventoryItem: ServInventoryItemService,
     private servAuth: AuthService,
-    private servUtils:ServUtilitiesService) {
+    private servUtils: ServUtilitiesService) {
 
     this.isSupply = data.isSupply;
     this.disableBackClick();
@@ -63,7 +63,7 @@ export class InventoryNewOrderDialogComponent implements OnInit {
       this.servAuth.getLoggedInName(),
       this.itemSelected!.code,
       this.newOrderForm.value.note,
-      );
+    );
 
     console.log(newOrder);
 
@@ -78,7 +78,7 @@ export class InventoryNewOrderDialogComponent implements OnInit {
     if (event.value) {
       this.itemPriceSelected = !this.isSupply ? event.value.sellingPrice : null;
       this.availableUnitsSelected = event.value.availableUnits;
-    } 
+    }
   }
   onCategoryChange(event: MatSelectChange) {
     //clear existing selected doctor
@@ -103,7 +103,17 @@ export class InventoryNewOrderDialogComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.newOrderForm?.valid && this.itemSelected && this.availableUnitsSelected >= this.unitsSelected && this.unitsSelected > 0
+    console.log(
+      this.newOrderForm?.valid, this.itemSelected, this.availableUnitsSelected, this.unitsSelected
+    );
+if(this.isSupply){
+  return this.newOrderForm?.valid && this.itemSelected && this.unitsSelected > 0
+
+}else {
+
+  return this.newOrderForm?.valid && this.itemSelected && this.availableUnitsSelected >= this.unitsSelected && this.unitsSelected > 0
+
+}
   }
   ngOnInit() {
 
