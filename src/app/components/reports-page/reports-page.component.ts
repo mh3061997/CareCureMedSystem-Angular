@@ -83,7 +83,7 @@ export class ReportsPageComponent implements OnInit {
             tooltip: {
                headerFormat: '<span style="font-size:20px;">{point.key}</span><table style="">',
                pointFormat: '<tr><td style="font-size:15px;font-weight:bold;color:{series.color};padding:0">{series.name}</td>' +
-                  '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                  '<td style="padding:0"><b>{point.y:.1f} EGP</b></td></tr>',
                footerFormat: '</table>',
                shared: true,
                useHTML: true
@@ -161,7 +161,7 @@ export class ReportsPageComponent implements OnInit {
             tooltip: {
                headerFormat: '<span style="font-size:20px;">{point.key}</span><table style="">',
                pointFormat: '<tr><td style="font-size:15px;font-weight:bold;color:{series.color};padding:0">{series.name}</td>' +
-                  '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                  '<td style="padding:5px"><b>{point.y}</b></td></tr>',
                footerFormat: '</table>',
                shared: true,
                useHTML: true
@@ -184,8 +184,7 @@ export class ReportsPageComponent implements OnInit {
 
                crosshair: true,
 
-               // min: Date.UTC(2020, 4, 12),
-               // max: Date.UTC(2030, 4, 12)
+               // min: Date.UTC(2021, 1, 1)
             },
             yAxis: {
 
@@ -239,7 +238,7 @@ export class ReportsPageComponent implements OnInit {
             tooltip: {
                headerFormat: '<span style="font-size:20px;">{point.key}</span><table style="">',
                pointFormat: '<tr><td style="font-size:15px;font-weight:bold;color:{series.color};padding:0">{series.name}</td>' +
-                  '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                  '<td style="padding:5px"><b>{point.y:.1f} EGP</b></td></tr>',
                footerFormat: '</table>',
                shared: true,
                useHTML: true
@@ -270,7 +269,7 @@ export class ReportsPageComponent implements OnInit {
                title: {
                   text: "Total (EGP)"
                },
-               
+
             },
             series: <SeriesOptionsType[]>this.monthlyInventoryInOutReformatted,
             plotOptions: {
@@ -317,7 +316,7 @@ export class ReportsPageComponent implements OnInit {
             tooltip: {
                headerFormat: '<span style="font-size:20px;">{point.key}</span><table style="">',
                pointFormat: '<tr><td style="font-size:15px;font-weight:bold;color:{series.color};padding:0">{series.name}</td>' +
-                  '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                  '<td style="padding:5px"><b>{point.y:.1f} %</b></td></tr>',
                footerFormat: '</table>',
                shared: true,
                useHTML: true
@@ -365,7 +364,7 @@ export class ReportsPageComponent implements OnInit {
             tooltip: {
                headerFormat: '<span style="font-size:20px;">{point.key}</span><table style="">',
                pointFormat: '<tr><td style="font-size:15px;font-weight:bold;color:{series.color};padding:0">{series.name}</td>' +
-                  '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                  '<td style="padding:5px"><b>{point.y:.1f} %</b></td></tr>',
                footerFormat: '</table>',
                shared: true,
                useHTML: true
@@ -448,16 +447,21 @@ export class ReportsPageComponent implements OnInit {
    createYearSpecialitiesDonutArray(array: any[]) {
       let reformatted: any[] = [];
       const specialities = this.servUtils.specialities;
+      let obj = {
+         name: "Specialities",
+         colorByPoint: true,
+         data: new Array()
+      }
       specialities.forEach((specialitiy) => {
          let specialitiyEntry = array.find((entry) => { return entry.speciality == specialitiy });
 
-         let obj = {
-            name: specialitiy,
-            y: specialitiyEntry ? specialitiyEntry.percentage : 0
-         }
-         if (obj.y)
-            reformatted.push(obj);
+
+        obj.data.push({name: specialitiy, y: specialitiyEntry ? specialitiyEntry.percentage : 0 });
+
+
       })
+
+      reformatted.push(obj);
       return reformatted;
    }
 
@@ -494,38 +498,38 @@ export class ReportsPageComponent implements OnInit {
 //          }
 //       }
 //    },
-//    series: [{
-//       name: 'Brands',
-//       colorByPoint: true,
-//       data: [{
-//          name: 'Chrome',
-//          y: 61.41,
-//          sliced: true,
-//          selected: true
-//       }, {
-//          name: 'Internet Explorer',
-//          y: 11.84
-//       }, {
-//          name: 'Firefox',
-//          y: 10.85
-//       }, {
-//          name: 'Edge',
-//          y: 4.67
-//       }, {
-//          name: 'Safari',
-//          y: 4.18
-//       }, {
-//          name: 'Sogou Explorer',
-//          y: 1.64
-//       }, {
-//          name: 'Opera',
-//          y: 1.6
-//       }, {
-//          name: 'QQ',
-//          y: 1.2
-//       }, {
-//          name: 'Other',
-//          y: 2.61
-//       }]
-//    }]
+series: [{
+   name: 'Brands',
+   colorByPoint: true,
+   data: [{
+      name: 'Chrome',
+      y: 61.41,
+      sliced: true,
+      selected: true
+   }, {
+      name: 'Internet Explorer',
+      y: 11.84
+   }, {
+      name: 'Firefox',
+      y: 10.85
+   }, {
+      name: 'Edge',
+      y: 4.67
+   }, {
+      name: 'Safari',
+      y: 4.18
+   }, {
+      name: 'Sogou Explorer',
+      y: 1.64
+   }, {
+      name: 'Opera',
+      y: 1.6
+   }, {
+      name: 'QQ',
+      y: 1.2
+   }, {
+      name: 'Other',
+      y: 2.61
+   }]
+}]
 // });
