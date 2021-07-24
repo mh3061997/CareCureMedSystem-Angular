@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EnumInventoryItemCategory } from 'src/app/enums/enum-inventory-item-category.enum';
 import { ResInventoryItem } from 'src/app/interfaces/inventory/res-inventory-item';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
 import { ServInventoryItemService } from 'src/app/services/serv-inventory-item.service';
 import { ServInventoryOrderService } from 'src/app/services/serv-inventory-order.service';
@@ -54,7 +55,8 @@ export class InventoryItemTableComponent implements AfterViewInit {
     public servUtils: ServUtilitiesService,
     private servHttpUtils: ServHttpUtilsService,
     private cdr: ChangeDetectorRef,
-    private servInventoryOrder:ServInventoryOrderService) { }
+    private servInventoryOrder:ServInventoryOrderService,
+    private authService:AuthService) { }
 
   ngAfterViewInit() {
 
@@ -173,6 +175,8 @@ export class InventoryItemTableComponent implements AfterViewInit {
 
  
   
-
+  isUserAdmin(){
+    return this.authService.isUserAdmin();
+  }
 
 }
