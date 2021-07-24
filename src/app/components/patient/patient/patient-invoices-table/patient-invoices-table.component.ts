@@ -53,7 +53,7 @@ export class PatientInvoicesTableComponent implements  AfterViewInit ,OnChanges 
 
   goToInvoice(code:number){
     //console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
+    this.router.navigate(['admin','invoice',code.toString()]);
   }
 
   
