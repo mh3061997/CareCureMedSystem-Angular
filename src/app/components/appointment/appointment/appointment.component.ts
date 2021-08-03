@@ -65,7 +65,10 @@ export class AppointmentComponent implements OnInit {
     this.router.navigate(['admin', 'doctor', this.doctor.code.toString()]);
   }
 
-
+  goToInvoice() {
+    // console.log(this.route);
+    this.router.navigate(['admin', 'invoice', this.appointment.invoice!.code.toString()]);
+  }
   goToMedicalOps() {
     this.router.navigate(['admin', 'appointment', this.appointment.code.toString(), 'medops']);
   }
