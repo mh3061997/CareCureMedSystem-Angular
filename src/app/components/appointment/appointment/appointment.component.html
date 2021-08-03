@@ -13,10 +13,10 @@
 
 </div>
 <div *ngIf="patient && doctor" class="container-fluid p-3 text-medgray" style="margin-top: -75px;">
-    <div class="row justify-content-center mb-4">
+    <div class="row justify-content-center mb-4 ">
         <div class="col-md-10">
 
-            <div class="card shadow bg-sec-light text-sm-center">
+            <div class="card shadow bg-sec-light text-sm-center pb-5">
 
 
                 <div class="card-header  bg-white p-3">
@@ -93,7 +93,326 @@
                     </div>
 
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-10">
+                        <div class="accordion" id="historyAccordion">
+                            <div class="card" *ngIf="showHistoryAccordion()">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn " type="button" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
+                                History
+                              </button>
+                                    </h5>
+                                </div>
 
+                                <div id="collapseHistory" class="collapse " aria-labelledby="headingOne" data-parent="#historyAccordion">
+                                    <div class="card-body">
+
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6" *ngIf="this.appointment.complain">
+                                                <span>Complain</span>
+                                                <p>{{this.appointment.complain}}</p>
+                                            </div>
+                                            <div class="col-md-6" *ngIf="this.appointment.presentIllnessHistory">
+                                                <span>History of Present Illness</span>
+                                                <p>{{this.appointment.presentIllnessHistory}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.pastHistory">
+                                                <span>Past History</span>
+                                                <p>{{this.appointment.pastHistory}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.drugHistory">
+                                                <span>Drug History</span>
+                                                <p>{{this.appointment.drugHistory}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.familyHistory">
+                                                <span>Family History</span>
+                                                <p>{{this.appointment.familyHistory}}</p>
+                                            </div>
+
+                                            <div class="col-md-12 text-center" *ngIf="showHistoryOfLumpOrUlcer()">
+                                                <h2>History of lump or ulcer</h2>
+                                            </div>
+                                            <div class="col-md-6" *ngIf="this.appointment.lumpOrUlcerHistoryDuration">
+                                                <span>Duration</span>
+                                                <p>{{this.appointment.lumpOrUlcerHistoryDuration}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.lumpOrUlcerHistoryFirstSymptoms">
+                                                <span>First Symptoms</span>
+                                                <p>{{this.appointment.lumpOrUlcerHistoryFirstSymptoms}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.lumpOrUlcerHistoryOtherSymptoms">
+                                                <span>Other Symptoms</span>
+                                                <p>{{this.appointment.lumpOrUlcerHistoryOtherSymptoms}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.lumpOrUlcerHistoryProgression">
+                                                <span>Progression</span>
+                                                <p>{{this.appointment.lumpOrUlcerHistoryProgression}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.lumpOrUlcerHistoryMultiplicity">
+                                                <span>Multiplicity</span>
+                                                <p>{{this.appointment.lumpOrUlcerHistoryMultiplicity}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.lumpOrUlcerHistoryCauses">
+                                                <span>Causes</span>
+                                                <p>{{this.appointment.lumpOrUlcerHistoryCauses}}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card" *ngIf="showExaminationAccordion()">
+                                <div class="card-header" id="headingExamination">
+                                    <h5 class="mb-0">
+                                        <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExamination" aria-expanded="false" aria-controls="collapseExamination">
+                                Examination
+                              </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseExamination" class="collapse " aria-labelledby="headingExamination" data-parent="#historyAccordion">
+                                    <div class="card-body">
+
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6" *ngIf="this.appointment.generalCondition">
+                                                <span>General Condition</span>
+                                                <p>{{this.appointment.generalCondition}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.vitalData">
+                                                <span>Vital Data</span>
+                                                <p>{{this.appointment.vitalData}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.chestExamination">
+                                                <span>Chest Examination</span>
+                                                <p>{{this.appointment.chestExamination}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.abdominalExamination">
+                                                <span>Abdominal Examination</span>
+                                                <p>{{this.appointment.abdominalExamination}}</p>
+                                            </div>
+
+                                            <div class="col-md-12 text-center" *ngIf="showLocalExaminationForLumpOrUlcer()">
+                                                <h2>Local examination for ulcer and lump</h2>
+                                            </div>
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpSite">
+                                                <span>Site</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpSite}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpShape">
+                                                <span>Shape</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpShape}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpSize">
+                                                <span>Size</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpSize}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpColor">
+                                                <span>Color</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpColor}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpTemperature">
+                                                <span>Temperature</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpTemperature}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpTenderness">
+                                                <span>Tenderness</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpTenderness}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpSurface">
+                                                <span>Surface</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpSurface}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpAge">
+                                                <span>Age</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpAge}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpConsistence">
+                                                <span>Consistence</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpConsistence}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpReducability">
+                                                <span>Reducability</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpReducability}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpRelationToSurroundStructure">
+                                                <span>Relation to surround structure</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpRelationToSurroundStructure}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.localExaminationForUlcerAndLumpLymphDrainage">
+                                                <span>Lymph drainage</span>
+                                                <p>{{this.appointment.localExaminationForUlcerAndLumpLymphDrainage}}</p>
+                                            </div>
+
+
+                                            <div class="col-md-12 text-center" *ngIf="showBreastExamination()">
+                                                <h2>Breast Examination</h2>
+                                            </div>
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationAbnormalFindingsDuringBreastExam">
+                                                <span>Findings During Breast Exam</span>
+                                                <p>{{this.appointment.breastExaminationAbnormalFindingsDuringBreastExam}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationNippleDischarge">
+                                                <span>Nipple Discharge</span>
+                                                <p>{{this.appointment.breastExaminationNippleDischarge}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationSkinInvolvement">
+                                                <span>Skin Involvement</span>
+                                                <p>{{this.appointment.breastExaminationSkinInvolvement}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationAxillaryMass">
+                                                <span>Auxillary Mass</span>
+                                                <p>{{this.appointment.breastExaminationAxillaryMass}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationBreastMass">
+                                                <span>Breast Mass</span>
+                                                <p>{{this.appointment.breastExaminationBreastMass}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationMobileRight">
+                                                <span>Mobile Right</span>
+                                                <p>{{this.appointment.breastExaminationMobileRight}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.breastExaminationSize">
+                                                <span>Size</span>
+                                                <p>{{this.appointment.breastExaminationSize}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.neckExamination">
+                                                <span>Neck Examination</span>
+                                                <p>{{this.appointment.neckExamination}}</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card" *ngIf="showInvestigationsAccordion()">
+                                <div class="card-header" id="headingInvestigation">
+                                    <h5 class="mb-0">
+                                        <button class="btn " type="button" data-toggle="collapse" data-target="#collapseInvestigation" aria-expanded="false" aria-controls="collapseInvestigation">
+                                Investigations
+                              </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseInvestigation" class="collapse " aria-labelledby="headingInvestigation" data-parent="#historyAccordion">
+                                    <div class="card-body">
+
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6" *ngIf="this.appointment.lab">
+                                                <span>Lab</span>
+                                                <p>{{this.appointment.lab}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.radiology">
+                                                <span>Radiology</span>
+                                                <p>{{this.appointment.radiology}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.endoscopic">
+                                                <span>Endoscopic</span>
+                                                <p>{{this.appointment.endoscopic}}</p>
+                                            </div>
+
+                                            <div class="col-md-6" *ngIf="this.appointment.biopsy">
+                                                <span>Biopsy</span>
+                                                <p>{{this.appointment.biopsy}}</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card" *ngIf="showDiagnosesAccordion()">
+                                <div class="card-header" id="headingDiagnoses">
+                                    <h5 class="mb-0">
+                                        <button class="btn " type="button" data-toggle="collapse" data-target="#collapseDiagnoses" aria-expanded="false" aria-controls="collapseDiagnoses">
+                                Diagnoses
+                              </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseDiagnoses" class="collapse " aria-labelledby="headingDiagnoses" data-parent="#historyAccordion">
+                                    <div class="card-body">
+
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6" *ngIf="this.appointment.provisionalDiagnoses">
+                                                <span>Provisional Diagnoses</span>
+                                                <p>{{this.appointment.provisionalDiagnoses}}</p>
+                                            </div>
+
+
+                                            <div class="col-md-6" *ngIf="this.appointment.finalDiagnosis">
+                                                <span>Final Diagnoses</span>
+                                                <p>{{this.appointment.finalDiagnosis}}</p>
+                                            </div>
+
+
+                                            <div class="col-md-6" *ngIf="this.appointment.planOfManagement">
+                                                <span>Plan Of Management</span>
+                                                <p>{{this.appointment.planOfManagement}}</p>
+                                            </div>
+
+
+                                            <div class="col-md-6" *ngIf="this.appointment.operativeDetails">
+                                                <span>Operative Details</span>
+                                                <p>{{this.appointment.operativeDetails}}</p>
+                                            </div>
+
+
+                                            <div class="col-md-6" *ngIf="this.appointment.postOperativeComplication">
+                                                <span>Post Operative Complication</span>
+                                                <p>{{this.appointment.postOperativeComplication}}</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
 
         </div>
