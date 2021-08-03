@@ -1,8 +1,8 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {ResPatient} from 'src/app/interfaces/res-patient'
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ResPatient } from 'src/app/interfaces/res-patient'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
@@ -12,13 +12,25 @@ import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
   templateUrl: './invoice-table.component.html',
   styleUrls: ['./invoice-table.component.css']
 })
-export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
+export class InvoiceTableComponent implements AfterViewInit, OnChanges {
 
-  
+
   @Input()
-  invoices:ResInvoice[];
+  invoices: ResInvoice[];
 
-  displayedColumns: string[] = ['code','patientName', 'dateCreated', 'totalPaid','discount', 'status' ,'appointmentCode','paymentMethod','userFinalizedBy',' '];
+  displayedColumns: string[] = [
+    'code',
+    'speciality',
+    'doctorName',
+    'patientName',
+    'dateCreated',
+    'totalPaid',
+    'discount',
+    'status',
+    'paymentMethod',
+    'appointmentCode',
+    'userFinalizedBy',
+    ' '];
 
   dataSource: MatTableDataSource<ResInvoice>;
 
@@ -26,18 +38,18 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute,
-    public servUtils:ServUtilitiesService){
+  constructor(private cdr: ChangeDetectorRef, private router: Router, private route: ActivatedRoute,
+    public servUtils: ServUtilitiesService) {
 
   }
-  
+
   ngAfterViewInit() {
-  
-           // Assign the data to the data source for the table to render
-           this.dataSource = new MatTableDataSource(this.invoices);
-           this.dataSource.paginator = this.paginator;
-           this.dataSource.sort = this.sort;
-     // If the user changes the sort order, reset back to the first page.
+
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(this.invoices);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.cdr.detectChanges();
 
@@ -52,12 +64,12 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
     }
   }
 
-  goToInvoice(code:number){
+  goToInvoice(code: number) {
     //console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
+    this.router.navigate([code.toString()], { relativeTo: this.route });
   }
 
-  
+
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
     if (changes['invoices']) {
@@ -65,7 +77,7 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
-}
+  }
 
 
 }
@@ -74,14 +86,14 @@ export class InvoiceTableComponent  implements AfterViewInit, OnChanges {
 
 
 
-  
 
 
 
 
 
- 
-   
+
+
+
 
 
 

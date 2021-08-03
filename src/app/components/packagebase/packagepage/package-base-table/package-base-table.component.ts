@@ -1,8 +1,8 @@
 
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResPackageBase } from 'src/app/interfaces/res-package-base';
 import { ServPackageBaseService } from 'src/app/services/serv-package-base.service';
@@ -14,15 +14,24 @@ import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
   styleUrls: ['./package-base-table.component.css']
 })
 
-export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
+export class PackageBaseTableComponent implements AfterViewInit, OnChanges {
 
   @Input('packages')
-  packages:ResPackageBase[];
+  packages: ResPackageBase[];
 
 
 
 
-  displayedColumns: string[] = ['code', 'name', 'dateCreated', 'dateExpired', 'status','price','unitTotal','type',' ','  '];
+  displayedColumns: string[] = [
+    'code',
+    'name',
+    'price',
+    'unitTotal',
+    'dateCreated',
+    'dateExpired',
+    'status',
+    ' ',
+    '  '];
 
   dataSource: MatTableDataSource<ResPackageBase>;
 
@@ -30,20 +39,20 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router,
-     private route: ActivatedRoute,
-     public servPackageBase:ServPackageBaseService,
-     public servUtils:ServUtilitiesService){
+  constructor(private cdr: ChangeDetectorRef, private router: Router,
+    private route: ActivatedRoute,
+    public servPackageBase: ServPackageBaseService,
+    public servUtils: ServUtilitiesService) {
 
   }
-  
+
   ngAfterViewInit() {
-  
-           // Assign the data to the data source for the table to render
-           this.dataSource = new MatTableDataSource(this.packages);
-           this.dataSource.paginator = this.paginator;
-           this.dataSource.sort = this.sort;
-     // If the user changes the sort order, reset back to the first page.
+
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(this.packages);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.cdr.detectChanges();
 
@@ -58,17 +67,17 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
     }
   }
 
-  goToPackageBase(code:number){
+  goToPackageBase(code: number) {
     console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
+    this.router.navigate([code.toString()], { relativeTo: this.route });
   }
 
-  packageBaseStatusExpire(packageBase:ResPackageBase){
+  packageBaseStatusExpire(packageBase: ResPackageBase) {
     let updatedPackageBase = packageBase;
-    updatedPackageBase.status="Expired";
-    updatedPackageBase.dateExpired= (new Date()).toISOString();
-    this.servPackageBase.updatePackageBase(packageBase).subscribe(()=>{
-      packageBase=updatedPackageBase;
+    updatedPackageBase.status = "Expired";
+    updatedPackageBase.dateExpired = (new Date()).toISOString();
+    this.servPackageBase.updatePackageBase(packageBase).subscribe(() => {
+      packageBase = updatedPackageBase;
     });
   }
 
@@ -79,22 +88,22 @@ export class PackageBaseTableComponent  implements AfterViewInit, OnChanges {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
-}
+  }
 
 }
 
 
 
 
-  
- 
- 
 
 
 
 
- 
-   
+
+
+
+
+
 
 
 

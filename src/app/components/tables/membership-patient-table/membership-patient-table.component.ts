@@ -10,20 +10,28 @@ import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
   templateUrl: './membership-patient-table.component.html',
   styleUrls: ['./membership-patient-table.component.css']
 })
-export class MembershipPatientTableComponent implements AfterViewInit ,OnChanges{
+export class MembershipPatientTableComponent implements AfterViewInit, OnChanges {
 
   @Input()
-  memberships:ResMembership[];
+  memberships: ResMembership[];
 
   constructor(private cdr: ChangeDetectorRef,
-    public servUtils:ServUtilitiesService) {
-        
-     
-   }
+    public servUtils: ServUtilitiesService) {
 
- 
-   
-  displayedColumns: string[] = ['code', 'dateSubscriped', 'usedAmount', 'remainingAmount','Package Code','Package Type','Package Total','Price'];
+
+  }
+
+
+
+  displayedColumns: string[] = [
+    'code',
+    'Package Code',
+    'packageName',
+    'dateSubscriped',
+    'usedAmount',
+    'remainingAmount',
+    'Package Total',
+    'Price'];
 
   dataSource: MatTableDataSource<ResMembership>;
 
@@ -34,12 +42,12 @@ export class MembershipPatientTableComponent implements AfterViewInit ,OnChanges
 
 
   ngAfterViewInit() {
-    console.log('apps',this.memberships);
-           // Assign the data to the data source for the table to render
-           this.dataSource = new MatTableDataSource(this.memberships);
-           this.dataSource.paginator = this.paginator;
-           this.dataSource.sort = this.sort;
-     // If the user changes the sort order, reset back to the first page.
+    console.log('apps', this.memberships);
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(this.memberships);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.cdr.detectChanges();
   }
@@ -61,6 +69,6 @@ export class MembershipPatientTableComponent implements AfterViewInit ,OnChanges
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
-}
+  }
 }
 
