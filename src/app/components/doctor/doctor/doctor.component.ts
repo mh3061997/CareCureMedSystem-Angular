@@ -22,7 +22,6 @@ export class DoctorComponent {
   doctorId: number;
   currentDate: Date = new Date();
   appointments: ResAppointment[];
-  invoices:ResInvoice[]=[];
 
   constructor(public dialogUpdateDoctorInformation: MatDialog,
     private currentRoute: ActivatedRoute,
@@ -36,12 +35,7 @@ export class DoctorComponent {
 
       this.doctor = doctor;
       this.appointments = this.doctor.appointments;
-      this.appointments.forEach(appointment =>{
-        if(appointment.invoice){
-          this.invoices.push(appointment.invoice);
-        }
-      })
-      console.log(this.invoices);
+ 
       
     });
   }
