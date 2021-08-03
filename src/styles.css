@@ -441,3 +441,23 @@ mat-datepicker-toggle {
 .modal-content {
     z-index: 999 !important;
 }
+
+
+/***************** TABLE STYLES ***************/
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    padding-left: 5px !important;
+    padding-right: 10px !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    border-bottom-width: 2px !important;
+    border-bottom-style: solid !important;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+    padding-left: 30px !important;
+}
