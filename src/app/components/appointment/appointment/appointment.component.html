@@ -420,34 +420,7 @@
     </div>
 
 
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-10">
 
-            <div class="card shadow bg-sec-light text-sm-center">
-
-
-                <div class="card-header  bg-white p-3">
-                    <div class="container-fluid">
-                        <div class="row justify-content-center align-middle ">
-                            <h3 class="mb-0  col-6">ِPrevious Appointments With Dr.{{doctor.name}}</h3>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row p-4">
-                    <div class="card-body  justify-content-center ">
-                        <app-doctor-appointment-table *ngIf="appointmentsPatientDoctor" [appointments]="appointmentsPatientDoctor">
-                        </app-doctor-appointment-table>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
 
 
     <div class="row justify-content-center mb-4">
@@ -573,5 +546,119 @@
             </div>
 
         </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-10">
+
+            <div class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center align-middle ">
+                            <h3 class="mb-0  col-6">ِPrevious Appointments With Dr.{{doctor.name}}</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4">
+                    <div class="card-body  justify-content-center ">
+                        <app-doctor-appointment-table *ngIf="appointmentsPatientDoctor" [appointments]="appointmentsPatientDoctor">
+                        </app-doctor-appointment-table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row justify-content-center mb-4" *ngIf="appointment.invoice">
+        <div class="col-md-10">
+
+            <div class="card shadow bg-sec-light text-sm-center">
+
+
+                <div class="card-header  bg-white p-3">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center align-middle ">
+                            <h3 class="mb-0  col-6">ِInvoice</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4">
+                    <div class="card-body  justify-content-center ">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Code</p>
+                                <p>{{appointment.invoice.code}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Status</p>
+                                <p>{{appointment.invoice.status}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Creation Date</p>
+                                <p>{{servUtils.formatDateTime(appointment.invoice.dateCreated)}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Finalization Date</p>
+                                <p>{{servUtils.formatDateTime(appointment.invoice.dateFinalized)}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Payment Method</p>
+                                <p>{{appointment.invoice.paymentMethod}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Total Due</p>
+                                <p>{{appointment.invoice.totalDue}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Discount</p>
+                                <p>{{appointment.invoice.discount}}%</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Total After Discount</p>
+                                <p>{{appointment.invoice.totalAfterDiscount}}</p>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Total Remaining</p>
+                                <p>{{appointment.invoice.totalRemaining}}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="form-control-label">Total Paid</p>
+                                <p>{{appointment.invoice.totalPaid}}</p>
+                            </div>
+                            <div class="col-lg-6" *ngIf=" appointment.invoice.status!='Not Paid' ">
+
+                                <p class="form-control-label">Finalized By</p>
+                                <p>{{appointment.invoice.userFinalizedBy}}</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 </div>

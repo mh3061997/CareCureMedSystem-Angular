@@ -3,23 +3,26 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ResAppointment } from 'src/app/interfaces/res-appointment';
 import { ResInvoice } from 'src/app/interfaces/res-invoice';
 import { ServUtilitiesService } from 'src/app/services/serv-utilities.service';
 
 @Component({
-  selector: 'app-patient-invoices-table',
-  templateUrl: './patient-invoices-table.component.html',
-  styleUrls: ['./patient-invoices-table.component.css']
+  selector: 'app-doctor-invoices-table',
+  templateUrl: './doctor-invoices-table.component.html',
+  styleUrls: ['./doctor-invoices-table.component.css']
 })
-export class PatientInvoicesTableComponent implements  AfterViewInit ,OnChanges {
+export class DoctorInvoicesTableComponent implements  AfterViewInit ,OnChanges {
 
   
   @Input()
-  invoices:ResInvoice[];
+  appointments:ResAppointment[];
 
-  displayedColumns: string[] = ['code', 'dateCreated', 'totalDue','discount', 'status' ,'paymentMethod','userFinalizedBy',' '];
+  invoices:ResInvoice[]=[];
 
-  dataSource: MatTableDataSource<ResInvoice>;
+  displayedColumns: string[] = ['code','patientName', 'dateCreated', 'totalDue','discount', 'status' ,'paymentMethod','userFinalizedBy',' '];
+ 
+  dataSource: MatTableDataSource<ResAppointment>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -28,12 +31,13 @@ export class PatientInvoicesTableComponent implements  AfterViewInit ,OnChanges 
   constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute,
     public servUtils:ServUtilitiesService){
 
+      
   }
   
   ngAfterViewInit() {
   
            // Assign the data to the data source for the table to render
-           this.dataSource = new MatTableDataSource(this.invoices);
+           this.dataSource = new MatTableDataSource(this.appointments);
            this.dataSource.paginator = this.paginator;
            this.dataSource.sort = this.sort;
      // If the user changes the sort order, reset back to the first page.
@@ -59,10 +63,17 @@ export class PatientInvoicesTableComponent implements  AfterViewInit ,OnChanges 
   
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['invoices']) {
-      this.dataSource = new MatTableDataSource(this.invoices);
+    if (changes['appointments']) {
+
+      this.appointments=this.appointments.filter((appointment)=>{
+        return appointment.status=='Invoiced';
+      })
+      console.log("appointments",this.appointments);
+      console.log("invoices",this.invoices);
+      this.dataSource = new MatTableDataSource(this.appointments);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
     }
 }
 

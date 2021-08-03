@@ -78,6 +78,7 @@ import { InventoryNewItemDialogComponent } from './components/inventory/inventor
 import { InventoryUpdateItemPriceDialogComponent } from './components/inventory/inventory-update-item-price-dialog/inventory-update-item-price-dialog.component';
 import { ReportsPageComponent } from './components/reports-page/reports-page.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { DoctorInvoicesTableComponent } from './components/doctor/doctor-invoices-table/doctor-invoices-table.component';
 
 @NgModule({
   declarations: [
@@ -147,7 +148,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     InventoryNewOrderDialogComponent,
     InventoryNewItemDialogComponent,
     InventoryUpdateItemPriceDialogComponent,
-    ReportsPageComponent
+    ReportsPageComponent,
+    DoctorInvoicesTableComponent
 
   ],
   imports: [

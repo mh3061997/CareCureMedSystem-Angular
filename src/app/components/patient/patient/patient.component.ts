@@ -68,6 +68,7 @@ export class PatientComponent implements OnInit {
       if(patient.invoiceMemberships){
         this.invoicesPatientAll.push.apply(this.invoicesPatientAll,patient.invoiceMemberships);
       }
+console.log("invoicesPatientAll",this.invoicesPatientAll);
 
     });
 
