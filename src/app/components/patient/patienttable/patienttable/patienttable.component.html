@@ -1,11 +1,13 @@
 <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Code" #input>
 </mat-form-field>
 
 
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+<div class="mat-elevation-z8 spinner-enabled">
+    <app-local-spinner [showSpinner]="showSpinner"></app-local-spinner>
+
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="code" matSortDirection="desc">
 
         <ng-container matColumnDef="code">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
@@ -52,5 +54,5 @@
         </tr>
     </table>
 
-    <mat-paginator #f [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    <mat-paginator [length]="patientsCount" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 </div>

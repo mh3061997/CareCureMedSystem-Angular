@@ -1,9 +1,8 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ResMedImage } from '../interfaces/res-med-image';
 import { ResPatient } from '../interfaces/res-patient';
-import { map, catchError, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { PathService } from './path.service';
 
 @Injectable({
@@ -16,14 +15,32 @@ export class ServPatientService {
 
   constructor(private http:HttpClient,private servPath:PathService) { }
 
-  //Get and Delete subscribe inside component
-  //Post and Put subscribe inside service
+ patientsSubject = new Subject();
   
-  
+ emitPatientsUpdatedSubject() {
+  this.patientsSubject.next();
+}
+
+getPatientsSubject() {
+  return this.patientsSubject;
+}
 
   //get all Patients
-  getPatientsAll():Observable<ResPatient[]>{
-    return this.http.get<ResPatient[]>(this.servPath.getPathPatient());
+  getPatientsAll(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string,){
+    
+    let httpParams:any = {
+        
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString(),
+      sortColumn: sortColumn,
+      sortDirection: sortDirection,
+
+  };
+
+    return this.http.get<any>(this.servPath.getPathPatient(), {
+      params: httpParams,
+      observe: 'response'
+    });
   }
 
   //get Patient by ID

@@ -1,14 +1,16 @@
 
 
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ResMedImage } from 'src/app/interfaces/res-med-image';
 import { ResMembership } from 'src/app/interfaces/res-membership';
 import { ServPatientService } from 'src/app/services/serv-patient.service';
-import {ResPatient} from 'src/app/interfaces/res-patient'
+import { ResPatient } from 'src/app/interfaces/res-patient'
 import { ActivatedRoute, Router } from '@angular/router';
+import { ServHttpUtilsService } from 'src/app/services/serv-http-utils.service';
+import { HttpResponse } from '@angular/common/http';
 
 export interface UserData {
   id: string;
@@ -18,42 +20,121 @@ export interface UserData {
 }
 
 
-  @Component({
-    selector: 'app-patienttable',
-    templateUrl: './patienttable.component.html',
-    styleUrls: ['./patienttable.component.css']
+@Component({
+  selector: 'app-patienttable',
+  templateUrl: './patienttable.component.html',
+  styleUrls: ['./patienttable.component.css']
 
 })
-export class PatienttableComponent implements AfterViewInit, OnChanges {
+export class PatienttableComponent implements AfterViewInit {
 
-  
-  @Input()
-  patients:ResPatient[];
+  patients: ResPatient[];
 
 
-
-  
-  displayedColumns: string[] = ['code', 'name', 'gender', 'email', 'mobile','age',' '];
+  displayedColumns: string[] = [
+    'code',
+    'name',
+    'gender',
+    'email',
+    'mobile',
+    'age',
+    ' '];
 
   dataSource: MatTableDataSource<ResPatient>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  paginatorPageSize: number = 10;
+  patientsCount: number;
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private route: ActivatedRoute){
+  showSpinner = false;
+  constructor(
+    private servPatient: ServPatientService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute,
+    private servHttpUtils: ServHttpUtilsService,
+    ) {
+      this.servPatient.getPatientsSubject().subscribe(() => {
+
+      this.getPatients(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+    });
+  }
+
+  getPatients(pageNumber: number, pageSize: number, sortColumn: string, sortDirection: string) {
+ 
+     this.showSpinnerToggle();
+     this.servPatient.getPatientsAll(pageNumber, pageSize, sortColumn, sortDirection).subscribe(response => {
+ 
+       this.updateCountFromResponse(response);
+       this.updatePatientsFromResponse(response);
+       this.assignNewDataSource();
+       this.hideSpinnerToggle();
+ 
+     });
+ 
+   }
+
+   updatePatientsFromResponse(response: HttpResponse<any>) {
+    this.patients = this.servHttpUtils.getBodyFromHttpResponse(response);
+  }
+  updateCountFromResponse(response: HttpResponse<any>) {
+    this.patientsCount = this.servHttpUtils.getCountFromHttpResponse(response);
 
   }
   
-  ngAfterViewInit() {
+  assignNewDataSource() {
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(this.patients);
+    this.updateDataSourceSort();
+  }
+
+  updateDataSourceSort() {
+
+    this.dataSource.sort = this.sort;
+  }
   
-           // Assign the data to the data source for the table to render
-           this.dataSource = new MatTableDataSource(this.patients);
-           this.dataSource.paginator = this.paginator;
-           this.dataSource.sort = this.sort;
-     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+  onSortingChange() {
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe((newSortAndDirection: any) => {
+
+      this.paginator.firstPage();
+      this.getPatients(0, this.paginator.pageSize, newSortAndDirection.active, newSortAndDirection.direction);
+
+    });
+  }
+  
+  onPaginationChange() {
+    this.paginator.page.subscribe((page: any) => {
+
+      //page Size has changed reset to page 0
+      if (page.pageSize != this.paginatorPageSize) {
+        this.paginator.firstPage();
+      }
+      //update last saved page size
+      this.paginatorPageSize = page.pageSize;
+      this.getPatients(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+
+    });
+  }
+
+  
+  showSpinnerToggle() {
+    this.showSpinner = true;
     this.cdr.detectChanges();
+  }
+
+  hideSpinnerToggle() {
+    this.showSpinner = false;
+  }
+
+  ngAfterViewInit() {
+
+    this.getPatients(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+    this.onSortingChange();
+    this.onPaginationChange();
+    
 
   }
 
@@ -66,27 +147,19 @@ export class PatienttableComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  goToPatient(code:number){
+  goToPatient(code: number) {
     console.log(this.route);
-    this.router.navigate([code.toString()],{relativeTo:this.route});
+    this.router.navigate([code.toString()], { relativeTo: this.route });
   }
 
-  
-  ngOnChanges(changes: SimpleChanges) {
-    // only run when property "data" changed
-    if (changes['patients']) {
-      this.dataSource = new MatTableDataSource(this.patients);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
-}
+
 }
 
 
 
 
- 
-   
+
+
 
 
 

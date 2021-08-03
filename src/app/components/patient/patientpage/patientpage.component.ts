@@ -12,32 +12,19 @@ import { PatientAddNewDialogComponent} from 'src/app/components/patient/patient-
 })
 export class PatientpageComponent implements OnInit {
   
-  patients:ResPatient[];
+ 
 
 ngOnInit(){
   
 }
   constructor(public dialogAddPatient:MatDialog,private servPatient:ServPatientService) { 
-    servPatient.getPatientsAll().subscribe(patients =>{
-
-      this.patients = patients;
-    });
+   
   }
 
 
 
   openNewPatientDialog(){
-    const dialogRef =  this.dialogAddPatient.open(PatientAddNewDialogComponent);
-   
-     dialogRef.afterClosed().subscribe(closed =>{
-    
-       this.servPatient.getPatientsAll().subscribe(patients =>{
- 
-         this.patients = patients;
-         });
- 
-     });
-   
+   this.dialogAddPatient.open(PatientAddNewDialogComponent);
    }
 
 }
