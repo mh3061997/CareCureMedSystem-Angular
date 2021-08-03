@@ -1,178 +1,113 @@
-
-<h1 class="mat-dialog-title bg-info ">Update Doctor Information</h1>
+<h1 class="mat-dialog-title bg-info ">
+    Update Doctor Information</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form *ngIf="doctor" (ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+    <form *ngIf="doctor" (ngSubmit)="onUpdateInfoSubmit()" #updateInfoForm="ngForm">
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field>   
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Name</label>
-                        <input  matInput type="text" 
-                        name="name"
-                        class="form-control"
-                        [ngModel]="doctor.name"
-                        #name="ngModel"
-                        pattern="[a-zA-Z ]*"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
-                        
-                        
-                    </mat-form-field> 
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput type="text" name="name" class="form-control" [ngModel]="doctor.name" #name="ngModel" pattern="[a-zA-Z ]*" required>
+                            <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name correctly!<br></span>
+
+
+                        </mat-form-field>
                     </div>
                     <div class="col-md-6">
-                        <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Speciality</label>
-                        <mat-select
-                        
-                        [(ngModel)]="doctor.speciality" 
-                        name="speciality"
-                        class="form-control"
-                        required
-                         #speciality="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="speciality.touched && speciality.invalid">Please enter speciality !<br></span>
-                        <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Speciality</label>
+                            <mat-select [(ngModel)]="doctor.speciality" name="speciality" class="form-control" required #speciality="ngModel">
+                                <span class="form-text text-muted" *ngIf="speciality.touched && speciality.invalid">Please enter speciality !<br></span>
+                                <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
 
-                        </mat-select >
-                    </mat-form-field> 
-
-                    </div>
-                </div>
-                
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <mat-form-field> 
-
-                        <label for="input-name" class="form-control-label">Email</label>
-                        <input
-                        name="email"
-                         matInput type="text" 
-                        class="form-control"
-                        [ngModel]="doctor.email"
-                        required
-                        email
-                        #email="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="email.touched && email.invalid">Please enter email !<br></span>
-
-                    </mat-form-field>
-
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field> 
-
-                        <label for="input-name" class="form-control-label">Mobile</label>
-                        <input
-                        name="mobile"
-                         matInput   type="number"
-                        class="form-control"
-                        [ngModel]="doctor.mobile"
-                        #mobile = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
-                    </mat-form-field>
-
-                    </div>
-                </div>
-                
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <mat-form-field> 
-
-                        <label for="input-name" class="form-control-label">Age</label>
-                        <input 
-                        name="age"
-                        matInput   type="number"
-                        class="form-control"
-                        [ngModel]="doctor.age"
-                        #age = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="age.touched && age.invalid">Please enter age !<br></span>
-         
-                 
-                    </mat-form-field>
-
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Gender</label>
-                        <mat-select
-                        
-                        [(ngModel)]="doctor.gender" 
-                        name="gender"
-                        class="form-control"
-                        required
-                         #gender="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
-                        <mat-option value="Male">Male</mat-option>
-                        <mat-option value="Female">Female</mat-option>
-
-                        </mat-select >
-                    </mat-form-field> 
-
-                    </div>
-                </div>
-                
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <mat-form-field> 
-
-                        <label for="input-name" class="form-control-label">Price Visit</label>
-                        <input 
-                        name="priceVisit"
-                        matInput   type="number"
-                        class="form-control"
-                        [ngModel]="doctor.priceVisit"
-                        #priceVisit = "ngModel"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="priceVisit.touched && priceVisit.invalid">Please enter visit price !<br></span>
-         
-                 
-                    </mat-form-field>
-
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field> 
-
-                            <label for="input-name" class="form-control-label">Price Revisit</label>
-                            <input 
-                            name="priceRevisit"
-                            matInput   type="number"
-                            class="form-control"
-                            [ngModel]="doctor.priceRevisit"
-                            #priceRevisit = "ngModel"
-                            required>
-                            <span
-                            class="form-text text-muted" 
-                            *ngIf="priceRevisit.touched && priceRevisit.invalid">Please enter Revisit price !<br></span>
-             
-                     
+                            </mat-select>
                         </mat-form-field>
 
                     </div>
                 </div>
-                
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Email</label>
+                            <input name="email" matInput type="text" class="form-control" [ngModel]="doctor.email" required email #email="ngModel">
+                            <span class="form-text text-muted" *ngIf="email.touched && email.invalid">Please enter email !<br></span>
+
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Mobile</label>
+                            <input name="mobile" matInput type="tel" pattern="[0-9]*" inputmode="numeric" class="form-control" [ngModel]="doctor.mobile" #mobile="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Age</label>
+                            <input name="age" matInput type="number" class="form-control" [ngModel]="doctor.age" #age="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="age.touched && age.invalid">Please enter age !<br></span>
+
+
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Gender</label>
+                            <mat-select [(ngModel)]="doctor.gender" name="gender" class="form-control" required #gender="ngModel">
+                                <span class="form-text text-muted" *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Female">Female</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Price Visit</label>
+                            <input name="priceVisit" matInput type="number" class="form-control" [ngModel]="doctor.priceVisit" #priceVisit="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="priceVisit.touched && priceVisit.invalid">Please enter visit price !<br></span>
+
+
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+
+                            <label for="input-name" class="form-control-label">Price Revisit</label>
+                            <input name="priceRevisit" matInput type="number" class="form-control" [ngModel]="doctor.priceRevisit" #priceRevisit="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="priceRevisit.touched && priceRevisit.invalid">Please enter Revisit price !<br></span>
+
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
             </div>
 
             <hr>
@@ -182,24 +117,14 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Saturday</label>
-                        <mat-checkbox name="saturdaycheck" 
-                        [ngModel]="saturday != undefined" 
-                        #saturdaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="saturdaycheck" [ngModel]="saturday != undefined" #saturdaycheck="ngModel" color="primary">
                         </mat-checkbox>
 
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="saturdayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="saturdayStartDecomposed"
-                            #saturdayStart="ngModel"
-                            [disabled]="!saturdaycheck.value">
-                           
-                    
+                            <mat-select name="saturdayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="saturdayStartDecomposed" #saturdayStart="ngModel" [disabled]="!saturdaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
 
@@ -210,16 +135,9 @@
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="saturdayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="saturdayEndDecomposed"
-                            #saturdayStart="ngModel"
-                            [disabled]="!saturdaycheck.value">
-                           
-                    
+                            <mat-select name="saturdayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="saturdayEndDecomposed" #saturdayStart="ngModel" [disabled]="!saturdaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
 
@@ -235,52 +153,35 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Sunday</label>
-                        <mat-checkbox name="sundaycheck" 
-                        [ngModel]="sunday != undefined" 
-                        #sundaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="sundaycheck" [ngModel]="sunday != undefined" #sundaycheck="ngModel" color="primary">
                         </mat-checkbox>
-                    
+
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="sundayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="sundayStartDecomposed"
-                            #sundayStart="ngModel"
-                            [disabled]="!sundaycheck.value">
-                            <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
+                            <mat-select name="sundayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="sundayStartDecomposed" #sundayStart="ngModel" [disabled]="!sundaycheck.value">
+                                <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
                             (ngModelChange)="phone_numbers?.length && phone_numbers[0].full_number=$event" -->
-                    
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="sundayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="sundayEndDecomposed"
-                            #sundayStart="ngModel"
-                            [disabled]="!sundaycheck.value">
-                           
-                    
+                            <mat-select name="sundayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="sundayEndDecomposed" #sundayStart="ngModel" [disabled]="!sundaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                     </div>
                 </div>
@@ -289,52 +190,35 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Monday</label>
-                        <mat-checkbox name="mondaycheck" 
-                        [ngModel]="monday != undefined" 
-                        #mondaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="mondaycheck" [ngModel]="monday != undefined" #mondaycheck="ngModel" color="primary">
                         </mat-checkbox>
-                    
+
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="mondayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="mondayStartDecomposed"
-                            #mondayStart="ngModel"
-                            [disabled]="!mondaycheck.value">
-                            <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
+                            <mat-select name="mondayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="mondayStartDecomposed" #mondayStart="ngModel" [disabled]="!mondaycheck.value">
+                                <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
                             (ngModelChange)="phone_numbers?.length && phone_numbers[0].full_number=$event" -->
-                    
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="mondayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="mondayEndDecomposed"
-                            #mondayStart="ngModel"
-                            [disabled]="!mondaycheck.value">
-                           
-                    
+                            <mat-select name="mondayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="mondayEndDecomposed" #mondayStart="ngModel" [disabled]="!mondaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                     </div>
                 </div>
@@ -343,52 +227,35 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Tuesday</label>
-                        <mat-checkbox name="tuesdaycheck" 
-                        [ngModel]="tuesday != undefined" 
-                        #tuesdaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="tuesdaycheck" [ngModel]="tuesday != undefined" #tuesdaycheck="ngModel" color="primary">
                         </mat-checkbox>
-                    
+
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="tuesdayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="tuesdayStartDecomposed"
-                            #tuesdayStart="ngModel"
-                            [disabled]="!tuesdaycheck.value">
-                            <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
+                            <mat-select name="tuesdayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="tuesdayStartDecomposed" #tuesdayStart="ngModel" [disabled]="!tuesdaycheck.value">
+                                <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
                             (ngModelChange)="phone_numbers?.length && phone_numbers[0].full_number=$event" -->
-                    
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="tuesdayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="tuesdayEndDecomposed"
-                            #tuesdayStart="ngModel"
-                            [disabled]="!tuesdaycheck.value">
-                           
-                    
+                            <mat-select name="tuesdayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="tuesdayEndDecomposed" #tuesdayStart="ngModel" [disabled]="!tuesdaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                     </div>
                 </div>
@@ -397,52 +264,35 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Wednesday</label>
-                        <mat-checkbox name="wednesdaycheck" 
-                        [ngModel]="wednesday != undefined" 
-                        #wednesdaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="wednesdaycheck" [ngModel]="wednesday != undefined" #wednesdaycheck="ngModel" color="primary">
                         </mat-checkbox>
-                    
+
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="wednesdayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="wednesdayStartDecomposed"
-                            #wednesdayStart="ngModel"
-                            [disabled]="!wednesdaycheck.value">
-                            <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
+                            <mat-select name="wednesdayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="wednesdayStartDecomposed" #wednesdayStart="ngModel" [disabled]="!wednesdaycheck.value">
+                                <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
                             (ngModelChange)="phone_numbers?.length && phone_numbers[0].full_number=$event" -->
-                    
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="wednesdayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="wednesdayEndDecomposed"
-                            #wednesdayStart="ngModel"
-                            [disabled]="!wednesdaycheck.value">
-                           
-                    
+                            <mat-select name="wednesdayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="wednesdayEndDecomposed" #wednesdayStart="ngModel" [disabled]="!wednesdaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                     </div>
                 </div>
@@ -451,52 +301,35 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Thursday</label>
-                        <mat-checkbox name="thursdaycheck" 
-                        [ngModel]="thursday != undefined" 
-                        #thursdaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="thursdaycheck" [ngModel]="thursday != undefined" #thursdaycheck="ngModel" color="primary">
                         </mat-checkbox>
-                    
+
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="thursdayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="thursdayStartDecomposed"
-                            #thursdayStart="ngModel"
-                            [disabled]="!thursdaycheck.value">
-                            <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
+                            <mat-select name="thursdayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="thursdayStartDecomposed" #thursdayStart="ngModel" [disabled]="!thursdaycheck.value">
+                                <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
                             (ngModelChange)="phone_numbers?.length && phone_numbers[0].full_number=$event" -->
-                    
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="thursdayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="thursdayEndDecomposed"
-                            #thursdayStart="ngModel"
-                            [disabled]="!thursdaycheck.value">
-                           
-                    
+                            <mat-select name="thursdayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="thursdayEndDecomposed" #thursdayStart="ngModel" [disabled]="!thursdaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                     </div>
                 </div>
@@ -505,52 +338,35 @@
                 <div class="form-group">
                     <div class="row">
                         <label for="input-name" class="form-control-label">Friday</label>
-                        <mat-checkbox name="fridaycheck" 
-                        [ngModel]="friday != undefined" 
-                        #fridaycheck="ngModel" 
-                         color="primary">
+                        <mat-checkbox name="fridaycheck" [ngModel]="friday != undefined" #fridaycheck="ngModel" color="primary">
                         </mat-checkbox>
-                    
+
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">Start time</label>
-                            <mat-select  
-                            name="fridayStart" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="fridayStartDecomposed"
-                            #fridayStart="ngModel"
-                            [disabled]="!fridaycheck.value">
-                            <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
+                            <mat-select name="fridayStart" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="fridayStartDecomposed" #fridayStart="ngModel" [disabled]="!fridaycheck.value">
+                                <!-- [ngModel]="phone_numbers && phone_numbers[0]?.full_number"
                             (ngModelChange)="phone_numbers?.length && phone_numbers[0].full_number=$event" -->
-                    
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                         <mat-form-field>
                             <label for="input-name" class="form-control-label">End time</label>
-                            <mat-select  
-                            name="fridayEnd" 
-                            class="form-control" 
-                            [compareWith]="compareTimeDecomposedObjects"
-                            required
-                            [(ngModel)]="fridayEndDecomposed"
-                            #fridayStart="ngModel"
-                            [disabled]="!fridaycheck.value">
-                           
-                    
+                            <mat-select name="fridayEnd" class="form-control" [compareWith]="compareTimeDecomposedObjects" required [(ngModel)]="fridayEndDecomposed" #fridayStart="ngModel" [disabled]="!fridaycheck.value">
+
+
                                 <mat-option *ngFor="let time of timeIntervals" [value]="time">
                                     {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                    
-                    
-                    
+
+
+
                             </mat-select>
-                    
+
                         </mat-form-field>
                     </div>
                 </div>
@@ -559,5 +375,3 @@
         </div>
     </form>
 </div>
-
-

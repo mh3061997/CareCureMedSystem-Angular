@@ -1,118 +1,74 @@
 <h1 class="mat-dialog-title bg-info ">Update Patient Information</h1>
 <div class="mat-dialog-content bg-white">
 
-    <form *ngIf="patient"(ngSubmit)="onUpdateInfoSubmit()"  #updateInfoForm="ngForm" >
+    <form *ngIf="patient" (ngSubmit)="onUpdateInfoSubmit()" #updateInfoForm="ngForm">
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field>   
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Name</label>
-                        <input  matInput 
-                        name="name"
-                        class="form-control"
-                        [ngModel]="patient.name"
-                        #name="ngModel"
-                        required
-                        type="text"
-                        pattern="[a-zA-Z ]*">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="name.touched && name.invalid">Please enter name correctly !<br></span>
-                        
-                        
-                    </mat-form-field> 
+                            <label for="input-name" class="form-control-label">Name</label>
+                            <input matInput name="name" class="form-control" [ngModel]="patient.name" #name="ngModel" required type="text" pattern="[a-zA-Z ]*">
+                            <span class="form-text text-muted" *ngIf="name.touched && name.invalid">Please enter name correctly !<br></span>
+
+
+                        </mat-form-field>
                     </div>
                     <div class="col-md-6">
-                        <mat-form-field> 
-                        <label for="input-name" class="form-control-label">Gender</label>
-                        <mat-select
-                        
-                        [ngModel]="patient.gender" 
-                        name="gender"
-                        class="form-control"
-                        required
-                         #gender="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
-                        <mat-option value="Male">Male</mat-option>
-                        <mat-option value="Female">Female</mat-option>
-                        </mat-select >
-                    </mat-form-field> 
+                        <mat-form-field>
+                            <label for="input-name" class="form-control-label">Gender</label>
+                            <mat-select [ngModel]="patient.gender" name="gender" class="form-control" required #gender="ngModel">
+                                <span class="form-text text-muted" *ngIf="gender.touched && gender.invalid">Please enter gender !<br></span>
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Female">Female</mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
                     </div>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Email</label>
-                        <input
-                        name="email"
-                         matInput type="text" 
-                        class="form-control"
-                        [ngModel]="patient.email"
-                        required
-                        email
-                        #email="ngModel">
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="email.touched && email.invalid">Please enter email !<br></span>
+                            <label for="input-name" class="form-control-label">Email</label>
+                            <input name="email" matInput type="text" class="form-control" [ngModel]="patient.email" required email #email="ngModel">
+                            <span class="form-text text-muted" *ngIf="email.touched && email.invalid">Please enter email !<br></span>
 
-                    </mat-form-field>
+                        </mat-form-field>
 
                     </div>
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Mobile</label>
-                        <input
-                        name="mobile"
-                         matInput type="number" 
-                        class="form-control"
-                        [ngModel]="patient.mobile"
-                        #mobile = "ngModel"
-                        type="number"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
-                    </mat-form-field>
+                            <label for="input-name" class="form-control-label">Mobile</label>
+                            <input name="mobile" matInput type="tel" pattern="[0-9]*" inputmode="numeric" class="form-control" [ngModel]="patient.mobile" #mobile="ngModel" required>
+                            <span class="form-text text-muted" *ngIf="mobile.touched && mobile.invalid">Please enter mobile number !<br></span>
+                        </mat-form-field>
 
                     </div>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <mat-form-field> 
+                        <mat-form-field>
 
-                        <label for="input-name" class="form-control-label">Age</label>
-                        <input 
-                        name="age"
-                        matInput type="number" 
-                        class="form-control"
-                        [ngModel]="patient.age"
-                        #age = "ngModel"
-                        type="number"
-                        required>
-                        <span
-                        class="form-text text-muted" 
-                        *ngIf="age.touched && age.invalid">Please enter age !<br></span>
-         
-                 
-                    </mat-form-field>
+                            <label for="input-name" class="form-control-label">Age</label>
+                            <input name="age" matInput type="number" class="form-control" [ngModel]="patient.age" #age="ngModel" type="number" required>
+                            <span class="form-text text-muted" *ngIf="age.touched && age.invalid">Please enter age !<br></span>
+
+
+                        </mat-form-field>
 
                     </div>
 
                 </div>
-                
+
             </div>
             <button class="btn btn-success" [disabled]="!updateInfoForm.valid" type="submit">Update</button>
         </div>

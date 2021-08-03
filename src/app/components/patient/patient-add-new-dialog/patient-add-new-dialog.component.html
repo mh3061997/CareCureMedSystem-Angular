@@ -45,7 +45,7 @@
                         <mat-form-field>
 
                             <label for="input-name" class="form-control-label">Mobile</label>
-                            <input name="mobile" matInput type="tel" pattern="[0-9]*" inputmode="numeric" class="form-control" ngModel #mobile="ngModel" required min="11">
+                            <input name="mobile" matInput type="tel" pattern="[0-9]*" inputmode="numeric" class="form-control" ngModel #mobile="ngModel" required>
                             <span class="form-text text-muted" *ngIf="mobile.touched && mobile.invalid">Please enter a valid mobile number !<br></span>
                         </mat-form-field>
 
