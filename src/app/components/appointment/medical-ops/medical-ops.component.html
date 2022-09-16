@@ -1,511 +1,789 @@
 <div *ngIf="appointment" class="container p-5">
-    <form #historyForm="ngForm">
-        <div class="row col-md-12 col-lg-6 text-left p-3 mb-1 text-danger">
-            <h1>Hello Dr.{{appointment.doctor.name}}<br> Please Enter the performed medical services.</h1>
+  <form #historyForm="ngForm">
+    <div class="row col-md-12 col-lg-6 text-left p-3 mb-1 text-danger">
+      <h1>
+        Hello Dr.{{ appointment.doctor.name }}<br />
+        Please Enter the performed medical services.
+      </h1>
+    </div>
+
+    <div *ngIf="services" class="row p-3 justify-content-lg-center">
+      <h3 class="text-heading mb-3">{{ appointment.speciality }} Services</h3>
+    </div>
+    <div *ngIf="services" class="p-3">
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Search</mat-label>
+          <input
+            type="text"
+            name="service"
+            matInput
+            type="search"
+            [(ngModel)]="searchText"
+            placeholder="Service Name"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <div
+          class="col-md-6 justify-content-between"
+          *ngFor="let service of services | serviceSearch: searchText"
+        >
+          <span
+            >{{ service.name }}, Price:{{ service.price }}, Quantity:{{
+              serviceQuantityMap.get(service)
+            }}</span
+          >
+          <button
+            class="btn btn-sm btn-success m-1"
+            (click)="addServiceQuantity(service)"
+          >
+            +
+          </button>
+          <button
+            class="btn btn-sm btn-danger m-1"
+            (click)="removeServiceQuantity(service)"
+            [disabled]="serviceQuantityMap.get(service) <= 0"
+          >
+            -
+          </button>
+          <mat-checkbox
+            class=""
+            [labelPosition]="labelPosition"
+            color="primary"
+            name="continuationCheck"
+            [ngModel]="serviceContinuationMap.get(service)"
+            (change)="onCheckChanged(service, $event.checked)"
+          >
+            continuation
+          </mat-checkbox>
         </div>
+      </div>
+    </div>
 
-        <div *ngIf="services" class="row p-3 justify-content-lg-center">
-            <h3 class="text-heading mb-3">{{appointment.speciality}} Services</h3>
-        </div>
-        <div *ngIf="services" class=" p-3">
+    <div *ngIf="appointment.speciality == 'Dermatology'" class="p-3">
+      <div class="row">
+        <label for="input-name" class="form-control-label"
+          >Use Dermatology Membership</label
+        >
+        <mat-checkbox
+          name="useMembershipCheck"
+          ngModel
+          #useMembershipCheck="ngModel"
+          color="primary"
+        >
+        </mat-checkbox>
+      </div>
 
+      <div class="row">
+        <mat-form-field>
+          <label for="input-name" class="form-control-label"
+            >Choose Membership</label
+          >
+          <mat-select
+            name="usedMembership"
+            class="form-control"
+            required
+            [(ngModel)]="membershipChosen"
+            #usedMembership="ngModel"
+            [disabled]="!useMembershipCheck.value"
+          >
+            <mat-option
+              *ngFor="let membership of appointment.patient.memberships"
+              [value]="membership"
+            >
+              {{ membership.packageBase.name }} | Remaining :
+              {{ membership.remainingAmount }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="useMembershipCheck.value && membershipChosen" class="row">
+        <mat-form-field>
+          <label for="input-name" class="form-control-label">Used Units</label>
 
-            <div class="row">
-                <mat-form-field>
-                    <mat-label>Search</mat-label>
-                    <input type="text" name="service" matInput type="search" [(ngModel)]="searchText" placeholder="Service Name">
-                </mat-form-field>
+          <input
+            matInput
+            type="text"
+            style="background-color: white; border: 2px solid black"
+            name="usedUnits"
+            class="form-control"
+            [(ngModel)]="chosenMembershipUsedUnits"
+            #usedUnits="ngModel"
+            type="number"
+            [maxlimit]="membershipChosen.remainingAmount"
+            [minlimit]="0"
+            required
+          />
+          <span
+            class="form-text text-muted"
+            *ngIf="usedUnits.touched && usedUnits.invalid"
+            >Please enter a number between 0 and
+            {{ membershipChosen.remainingAmount }} !<br
+          /></span>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row justify-content-end p-3">
+      <button
+        class="btn btn-success"
+        (click)="openAddCustomInvoiceItemDialog()"
+      >
+        Add Custom Item
+      </button>
+    </div>
+    <div class="row justify-content-center">
+      <fa-icon class="" [icon]="faPencilAlt" style="color: purple"></fa-icon>
+
+      <mat-form-field class="col-md-10 col-10" appearance="fill">
+        <mat-label>Add Note</mat-label>
+        <textarea
+          matInput
+          name="doctorNote"
+          [(ngModel)]="this.appointment.doctorNote"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-10">
+        <div class="accordion" id="historyAccordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button
+                  class="btn"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseHistory"
+                  aria-expanded="false"
+                  aria-controls="collapseHistory"
+                >
+                  History
+                </button>
+              </h5>
             </div>
 
-
-            <div class="row">
-                <div class="col-md-6 justify-content-between" *ngFor="let service of services | serviceSearch : searchText">
-                    <span>{{service.name}}, Price:{{service.price}}, Quantity:{{serviceQuantityMap.get(service)}}</span>
-                    <button class="btn btn-sm btn-success m-1" (click)="addServiceQuantity(service)">+</button>
-                    <button class="btn btn-sm btn-danger m-1" (click)="removeServiceQuantity(service)" [disabled]="serviceQuantityMap.get(service) <=0">-</button>
-                    <mat-checkbox class="" [labelPosition]='labelPosition' color="primary" name="continuationCheck" [ngModel]="serviceContinuationMap.get(service)" (change)="onCheckChanged(service,$event.checked)">
-                        continuation
-                    </mat-checkbox>
+            <div
+              id="collapseHistory"
+              class="collapse"
+              aria-labelledby="headingOne"
+              data-parent="#historyAccordion"
+            >
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Complain</mat-label>
+                      <textarea
+                        matInput
+                        name="complain"
+                        [(ngModel)]="this.appointment.complain"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>History of Present Illness</mat-label>
+                      <textarea
+                        matInput
+                        name="presentIllnessHistory"
+                        [(ngModel)]="this.appointment.presentIllnessHistory"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Past History</mat-label>
+                      <textarea
+                        matInput
+                        name="pastHistory"
+                        [(ngModel)]="this.appointment.pastHistory"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Drug History</mat-label>
+                      <textarea
+                        matInput
+                        name="drugHistory"
+                        [(ngModel)]="this.appointment.drugHistory"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Family History</mat-label>
+                      <textarea
+                        matInput
+                        name="familyHistory"
+                        [(ngModel)]="this.appointment.familyHistory"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <h2>History of lump or ulcer</h2>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Duration</mat-label>
+                      <textarea
+                        matInput
+                        name="lumpOrUlcerHistoryDuration"
+                        [(ngModel)]="
+                          this.appointment.lumpOrUlcerHistoryDuration
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>First Symptoms</mat-label>
+                      <textarea
+                        matInput
+                        name="lumpOrUlcerHistoryFirstSymptoms"
+                        [(ngModel)]="
+                          this.appointment.lumpOrUlcerHistoryFirstSymptoms
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Other Symptoms</mat-label>
+                      <textarea
+                        matInput
+                        name="lumpOrUlcerHistoryOtherSymptoms"
+                        [(ngModel)]="
+                          this.appointment.lumpOrUlcerHistoryOtherSymptoms
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Progression</mat-label>
+                      <textarea
+                        matInput
+                        name="lumpOrUlcerHistoryProgression"
+                        [(ngModel)]="
+                          this.appointment.lumpOrUlcerHistoryProgression
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Multiplicity</mat-label>
+                      <textarea
+                        matInput
+                        name="lumpOrUlcerHistoryMultiplicity"
+                        [(ngModel)]="
+                          this.appointment.lumpOrUlcerHistoryMultiplicity
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Causes</mat-label>
+                      <textarea
+                        matInput
+                        name="lumpOrUlcerHistoryCauses"
+                        [(ngModel)]="this.appointment.lumpOrUlcerHistoryCauses"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingExamination">
+              <h5 class="mb-0">
+                <button
+                  class="btn"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseExamination"
+                  aria-expanded="false"
+                  aria-controls="collapseExamination"
+                >
+                  Examination
+                </button>
+              </h5>
             </div>
 
-        </div>
-
-        <div *ngIf="appointment.speciality =='Dermatology' " class="p-3">
-
-
-            <div class="row">
-                <label for="input-name" class="form-control-label">Use Dermatology Membership</label>
-                <mat-checkbox name="useMembershipCheck" ngModel #useMembershipCheck="ngModel" color="primary">
-                </mat-checkbox>
-            </div>
-
-            <div class="row">
-                <mat-form-field>
-                    <label for="input-name" class="form-control-label">Choose Membership</label>
-                    <mat-select name="usedMembership" class="form-control" required [(ngModel)]="membershipChosen" #usedMembership="ngModel" [disabled]="!useMembershipCheck.value">
-
-                        <mat-option *ngFor="let membership of appointment.patient.memberships" [value]="membership">
-                            {{membership.packageBase.name}} | Remaining : {{membership.remainingAmount}}
-                        </mat-option>
-
-
-                    </mat-select>
-
-                </mat-form-field>
-            </div>
-            <div *ngIf="useMembershipCheck.value && membershipChosen" class="row">
-                <mat-form-field>
-                    <label for="input-name" class="form-control-label">Used Units</label>
-
-
-                    <input matInput type="text" style="background-color: white;border:2px solid black;" name="usedUnits" class="form-control" [(ngModel)]="chosenMembershipUsedUnits" #usedUnits="ngModel" type="number" [maxlimit]="membershipChosen.remainingAmount" [minlimit]="0"
-                        required>
-                    <span class="form-text text-muted" *ngIf="usedUnits.touched && usedUnits.invalid">Please enter a number between 0 and  {{membershipChosen.remainingAmount}} !<br></span>
-
-                </mat-form-field>
-
-            </div>
-
-
-
-
-        </div>
-
-        <div class="row justify-content-end p-3">
-            <button class="btn btn-success" (click)="openAddCustomInvoiceItemDialog()">Add Custom Item</button>
-
-        </div>
-        <div class="row justify-content-center ">
-
-            <fa-icon class="" [icon]="faPencilAlt" style="color:purple"></fa-icon>
-
-            <mat-form-field class="col-md-10 col-10" appearance="fill">
-
-                <mat-label>Add Note</mat-label>
-                <textarea matInput name="doctorNote" [(ngModel)]="this.appointment.doctorNote"></textarea>
-            </mat-form-field>
-
-
-
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-10">
-                <div class="accordion" id="historyAccordion">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
-                        History
-                      </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseHistory" class="collapse " aria-labelledby="headingOne" data-parent="#historyAccordion">
-                            <div class="card-body">
-
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Complain</mat-label>
-                                            <textarea matInput name="complain" [(ngModel)]="this.appointment.complain"></textarea>
-                                        </mat-form-field>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>History of Present Illness</mat-label>
-                                            <textarea matInput name="presentIllnessHistory" [(ngModel)]="this.appointment.presentIllnessHistory"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Past History</mat-label>
-                                            <textarea matInput name="pastHistory" [(ngModel)]="this.appointment.pastHistory"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Drug History</mat-label>
-                                            <textarea matInput name="drugHistory" [(ngModel)]="this.appointment.drugHistory"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Family History</mat-label>
-                                            <textarea matInput name="familyHistory" [(ngModel)]="this.appointment.familyHistory"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-12 text-center">
-                                        <h2>History of lump or ulcer</h2>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Duration</mat-label>
-                                            <textarea matInput name="lumpOrUlcerHistoryDuration" [(ngModel)]="this.appointment.lumpOrUlcerHistoryDuration"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>First Symptoms</mat-label>
-                                            <textarea matInput name="lumpOrUlcerHistoryFirstSymptoms" [(ngModel)]="this.appointment.lumpOrUlcerHistoryFirstSymptoms"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Other Symptoms</mat-label>
-                                            <textarea matInput name="lumpOrUlcerHistoryOtherSymptoms" [(ngModel)]="this.appointment.lumpOrUlcerHistoryOtherSymptoms"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Progression</mat-label>
-                                            <textarea matInput name="lumpOrUlcerHistoryProgression" [(ngModel)]="this.appointment.lumpOrUlcerHistoryProgression"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Multiplicity</mat-label>
-                                            <textarea matInput name="lumpOrUlcerHistoryMultiplicity" [(ngModel)]="this.appointment.lumpOrUlcerHistoryMultiplicity"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Causes</mat-label>
-                                            <textarea matInput name="lumpOrUlcerHistoryCauses" [(ngModel)]="this.appointment.lumpOrUlcerHistoryCauses"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingExamination">
-                            <h5 class="mb-0">
-                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExamination" aria-expanded="false" aria-controls="collapseExamination">
-                        Examination
-                      </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseExamination" class="collapse " aria-labelledby="headingExamination" data-parent="#historyAccordion">
-                            <div class="card-body">
-
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>General Condition</mat-label>
-                                            <textarea matInput name="generalCondition" [(ngModel)]="this.appointment.generalCondition"></textarea>
-                                        </mat-form-field>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Vital Data</mat-label>
-                                            <textarea matInput name="vitalData" [(ngModel)]="this.appointment.vitalData"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Chest Examination</mat-label>
-                                            <textarea matInput name="chestExamination" [(ngModel)]="this.appointment.chestExamination"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Abdominal Examination</mat-label>
-                                            <textarea matInput name="abdominalExamination" [(ngModel)]="this.appointment.abdominalExamination"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-12 text-center">
-                                        <h2>Local examination for ulcer and lump</h2>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Site</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpSite" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpSite"></textarea>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Shape</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpShape" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpShape"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Size</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpSize" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpSize"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Color</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpColor" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpColor"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Temperature</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpTemperature" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpTemperature"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Tenderness</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpTenderness" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpTenderness"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Surface</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpSurface" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpSurface"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Age</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpAge" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpAge"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Consistence</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpConsistence" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpConsistence"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Reducability</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpReducability" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpReducability"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Relation to surround structure</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpRelationToSurroundStructure" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpRelationToSurroundStructure"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Lymph drainage</mat-label>
-                                            <textarea matInput name="localExaminationForUlcerAndLumpLymphDrainage" [(ngModel)]="this.appointment.localExaminationForUlcerAndLumpLymphDrainage"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-12 text-center">
-                                        <h2>Breast Examination</h2>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Findings During Breast Exam</mat-label>
-                                            <textarea matInput name="breastExaminationAbnormalFindingsDuringBreastExam" [(ngModel)]="this.appointment.breastExaminationAbnormalFindingsDuringBreastExam"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Nipple Discharge</mat-label>
-                                            <textarea matInput name="breastExaminationNippleDischarge" [(ngModel)]="this.appointment.breastExaminationNippleDischarge"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Skin Involvement</mat-label>
-                                            <textarea matInput name="breastExaminationSkinInvolvement" [(ngModel)]="this.appointment.breastExaminationSkinInvolvement"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Auxillary Mass</mat-label>
-                                            <textarea matInput name="breastExaminationAxillaryMass" [(ngModel)]="this.appointment.breastExaminationAxillaryMass"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Breast Mass</mat-label>
-                                            <textarea matInput name="breastExaminationBreastMass" [(ngModel)]="this.appointment.breastExaminationBreastMass"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Mobile Right</mat-label>
-                                            <textarea matInput name="breastExaminationMobileRight" [(ngModel)]="this.appointment.breastExaminationMobileRight"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Size</mat-label>
-                                            <textarea matInput name="breastExaminationSize" [(ngModel)]="this.appointment.breastExaminationSize"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Neck Examination</mat-label>
-                                            <textarea matInput name="neckExamination" [(ngModel)]="this.appointment.neckExamination"></textarea>
-                                        </mat-form-field>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingInvestigation">
-                            <h5 class="mb-0">
-                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseInvestigation" aria-expanded="false" aria-controls="collapseInvestigation">
-                        Investigations
-                      </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseInvestigation" class="collapse " aria-labelledby="headingInvestigation" data-parent="#historyAccordion">
-                            <div class="card-body">
-
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Lab</mat-label>
-                                            <textarea matInput name="lab" [(ngModel)]="this.appointment.lab"></textarea>
-                                        </mat-form-field>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Radiology</mat-label>
-                                            <textarea matInput name="radiology" [(ngModel)]="this.appointment.radiology"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Endoscopic</mat-label>
-                                            <textarea matInput name="endoscopic" [(ngModel)]="this.appointment.endoscopic"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Biopsy</mat-label>
-                                            <textarea matInput name="biopsy" [(ngModel)]="this.appointment.biopsy"></textarea>
-                                        </mat-form-field>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingDiagnoses">
-                            <h5 class="mb-0">
-                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseDiagnoses" aria-expanded="false" aria-controls="collapseDiagnoses">
-                        Diagnoses
-                      </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseDiagnoses" class="collapse " aria-labelledby="headingDiagnoses" data-parent="#historyAccordion">
-                            <div class="card-body">
-
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Provisional Diagnoses</mat-label>
-                                            <textarea matInput name="provisionalDiagnoses" [(ngModel)]="this.appointment.provisionalDiagnoses"></textarea>
-                                        </mat-form-field>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Final Diagnoses</mat-label>
-                                            <textarea matInput name="finalDiagnosis" [(ngModel)]="this.appointment.finalDiagnosis"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Plan Of Management</mat-label>
-                                            <textarea matInput name="planOfManagement" [(ngModel)]="this.appointment.planOfManagement"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Operative Details</mat-label>
-                                            <textarea matInput name="operativeDetails" [(ngModel)]="this.appointment.operativeDetails"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field class="col-md-12" appearance="fill">
-
-                                            <mat-label>Post Operative Complication</mat-label>
-                                            <textarea matInput name="postOperativeComplication" [(ngModel)]="this.appointment.postOperativeComplication"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <div
+              id="collapseExamination"
+              class="collapse"
+              aria-labelledby="headingExamination"
+              data-parent="#historyAccordion"
+            >
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>General Condition</mat-label>
+                      <textarea
+                        matInput
+                        name="generalCondition"
+                        [(ngModel)]="this.appointment.generalCondition"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Vital Data</mat-label>
+                      <textarea
+                        matInput
+                        name="vitalData"
+                        [(ngModel)]="this.appointment.vitalData"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Chest Examination</mat-label>
+                      <textarea
+                        matInput
+                        name="chestExamination"
+                        [(ngModel)]="this.appointment.chestExamination"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Abdominal Examination</mat-label>
+                      <textarea
+                        matInput
+                        name="abdominalExamination"
+                        [(ngModel)]="this.appointment.abdominalExamination"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <h2>Local examination for ulcer and lump</h2>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Site</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpSite"
+                        [(ngModel)]="
+                          this.appointment.localExaminationForUlcerAndLumpSite
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Shape</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpShape"
+                        [(ngModel)]="
+                          this.appointment.localExaminationForUlcerAndLumpShape
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Size</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpSize"
+                        [(ngModel)]="
+                          this.appointment.localExaminationForUlcerAndLumpSize
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Color</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpColor"
+                        [(ngModel)]="
+                          this.appointment.localExaminationForUlcerAndLumpColor
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Temperature</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpTemperature"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpTemperature
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Tenderness</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpTenderness"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpTenderness
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Surface</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpSurface"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpSurface
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Age</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpAge"
+                        [(ngModel)]="
+                          this.appointment.localExaminationForUlcerAndLumpAge
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Consistence</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpConsistence"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpConsistence
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Reducability</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpReducability"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpReducability
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Relation to surround structure</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpRelationToSurroundStructure"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpRelationToSurroundStructure
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Lymph drainage</mat-label>
+                      <textarea
+                        matInput
+                        name="localExaminationForUlcerAndLumpLymphDrainage"
+                        [(ngModel)]="
+                          this.appointment
+                            .localExaminationForUlcerAndLumpLymphDrainage
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <h2>Breast Examination</h2>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Findings During Breast Exam</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationAbnormalFindingsDuringBreastExam"
+                        [(ngModel)]="
+                          this.appointment
+                            .breastExaminationAbnormalFindingsDuringBreastExam
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Nipple Discharge</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationNippleDischarge"
+                        [(ngModel)]="
+                          this.appointment.breastExaminationNippleDischarge
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Skin Involvement</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationSkinInvolvement"
+                        [(ngModel)]="
+                          this.appointment.breastExaminationSkinInvolvement
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Auxillary Mass</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationAxillaryMass"
+                        [(ngModel)]="
+                          this.appointment.breastExaminationAxillaryMass
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Breast Mass</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationBreastMass"
+                        [(ngModel)]="
+                          this.appointment.breastExaminationBreastMass
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Mobile Right</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationMobileRight"
+                        [(ngModel)]="
+                          this.appointment.breastExaminationMobileRight
+                        "
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Size</mat-label>
+                      <textarea
+                        matInput
+                        name="breastExaminationSize"
+                        [(ngModel)]="this.appointment.breastExaminationSize"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Neck Examination</mat-label>
+                      <textarea
+                        matInput
+                        name="neckExamination"
+                        [(ngModel)]="this.appointment.neckExamination"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
                 </div>
-
-
+              </div>
             </div>
-        </div>
-
-        <div class="row mt-5 justify-content-center">
-            <div class="col-5 text-center">
-                <button class="btn btn-danger" (click)="CreateInvoice()" [disabled]="!historyForm.valid">Finalize Appointment</button>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingInvestigation">
+              <h5 class="mb-0">
+                <button
+                  class="btn"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseInvestigation"
+                  aria-expanded="false"
+                  aria-controls="collapseInvestigation"
+                >
+                  Investigations
+                </button>
+              </h5>
             </div>
+
+            <div
+              id="collapseInvestigation"
+              class="collapse"
+              aria-labelledby="headingInvestigation"
+              data-parent="#historyAccordion"
+            >
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Lab</mat-label>
+                      <textarea
+                        matInput
+                        name="lab"
+                        [(ngModel)]="this.appointment.lab"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Radiology</mat-label>
+                      <textarea
+                        matInput
+                        name="radiology"
+                        [(ngModel)]="this.appointment.radiology"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Endoscopic</mat-label>
+                      <textarea
+                        matInput
+                        name="endoscopic"
+                        [(ngModel)]="this.appointment.endoscopic"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Biopsy</mat-label>
+                      <textarea
+                        matInput
+                        name="biopsy"
+                        [(ngModel)]="this.appointment.biopsy"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingDiagnoses">
+              <h5 class="mb-0">
+                <button
+                  class="btn"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseDiagnoses"
+                  aria-expanded="false"
+                  aria-controls="collapseDiagnoses"
+                >
+                  Diagnoses
+                </button>
+              </h5>
+            </div>
+
+            <div
+              id="collapseDiagnoses"
+              class="collapse"
+              aria-labelledby="headingDiagnoses"
+              data-parent="#historyAccordion"
+            >
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Provisional Diagnoses</mat-label>
+                      <textarea
+                        matInput
+                        name="provisionalDiagnoses"
+                        [(ngModel)]="this.appointment.provisionalDiagnoses"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Final Diagnoses</mat-label>
+                      <textarea
+                        matInput
+                        name="finalDiagnosis"
+                        [(ngModel)]="this.appointment.finalDiagnosis"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Plan Of Management</mat-label>
+                      <textarea
+                        matInput
+                        name="planOfManagement"
+                        [(ngModel)]="this.appointment.planOfManagement"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Operative Details</mat-label>
+                      <textarea
+                        matInput
+                        name="operativeDetails"
+                        [(ngModel)]="this.appointment.operativeDetails"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="col-md-12" appearance="fill">
+                      <mat-label>Post Operative Complication</mat-label>
+                      <textarea
+                        matInput
+                        name="postOperativeComplication"
+                        [(ngModel)]="this.appointment.postOperativeComplication"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-    </form>
-
+    <div class="row mt-5 justify-content-center">
+      <div class="col-5 text-center">
+        <button
+          class="btn btn-danger"
+          (click)="CreateInvoice()"
+          [disabled]="!historyForm.valid"
+        >
+          Finalize Appointment
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="spinner-wrapper" [style.display]="showSpinner ? 'block' : 'none'">
+  <div class="spinner">Loading...</div>
 </div>

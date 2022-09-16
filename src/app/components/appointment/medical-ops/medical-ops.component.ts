@@ -26,10 +26,9 @@ import { ServMembershipService } from 'src/app/services/serv-membership.service'
 @Component({
   selector: 'app-medical-ops',
   templateUrl: './medical-ops.component.html',
-  styleUrls: ['./medical-ops.component.css']
+  styleUrls: ['./medical-ops.component.css'],
 })
 export class MedicalOpsComponent implements OnInit {
-
   faPencilAlt = faPencilAlt;
 
   appointment: ResAppointment;
@@ -45,12 +44,11 @@ export class MedicalOpsComponent implements OnInit {
   labelPosition: 'before' | 'after' = 'before';
   membershipChosen: ResMembership;
   chosenMembershipUsedUnits: number;
-
+  showSpinner = false;
   @ViewChild('historyForm', { static: false }) historyForm: NgForm;
 
-
-
-  constructor(private servAppointment: ServAppointmentService,
+  constructor(
+    private servAppointment: ServAppointmentService,
     private servInvoice: ServInvoiceService,
     private servInvoiceItem: ServInvoiceItemService,
     private servServicePriceList: ServServicePriceListService,
@@ -58,96 +56,116 @@ export class MedicalOpsComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private servNoteAppointment: ServNoteAppointmentService,
-    private servMembership: ServMembershipService) {
-
+    private servMembership: ServMembershipService
+  ) {
     this.getAppointmentCode();
 
-    servAppointment.getAppointmentByID(this.appointmentId).subscribe(appointment => {
-      this.appointment = appointment;
-      console.log(appointment);
+    servAppointment
+      .getAppointmentByID(this.appointmentId)
+      .subscribe((appointment) => {
+        this.appointment = appointment;
+        console.log(appointment);
 
-      switch (this.appointment.speciality) {
-        case "Dentistry":
-          servServicePriceList.getServicePriceListBySpeciality("Dentistry").subscribe(services => {
-            this.services = services;
-            this.services.forEach(service => {
-              this.serviceQuantityMap.set(service, 0);
-              this.serviceContinuationMap.set(service, false);
-            });
-            // console.log(this.services);
-          });
-          break;
-        case "Dermatology": servServicePriceList.getServicePriceListBySpeciality("Dermatology").subscribe(services => {
-          this.services = services;
-          this.services.forEach(service => {
-            this.serviceQuantityMap.set(service, 0);
-            this.serviceContinuationMap.set(service, false);
-
-          });
-          // console.log(this.services);
-        });
-          break;
-
-
-      }
-    });
+        switch (this.appointment.speciality) {
+          case 'Dentistry':
+            servServicePriceList
+              .getServicePriceListBySpeciality('Dentistry')
+              .subscribe((services) => {
+                this.services = services;
+                this.services.forEach((service) => {
+                  this.serviceQuantityMap.set(service, 0);
+                  this.serviceContinuationMap.set(service, false);
+                });
+                // console.log(this.services);
+              });
+            break;
+          case 'Dermatology':
+            servServicePriceList
+              .getServicePriceListBySpeciality('Dermatology')
+              .subscribe((services) => {
+                this.services = services;
+                this.services.forEach((service) => {
+                  this.serviceQuantityMap.set(service, 0);
+                  this.serviceContinuationMap.set(service, false);
+                });
+                // console.log(this.services);
+              });
+            break;
+        }
+      });
   }
   addServiceQuantity(service: ResServicePriceList) {
     const serviceInvoiceItem: ResInvoiceItem = {
       code: 0,
       name: service.name,
       price: service.price,
-      invoice: this.invoice
-    }
+      invoice: this.invoice,
+    };
 
     this.selectedServices.push(serviceInvoiceItem); //speciality is ignored when sending resinvoiceitem json
-    this.serviceQuantityMap.set(service, this.serviceQuantityMap.get(service) + 1);
+    this.serviceQuantityMap.set(
+      service,
+      this.serviceQuantityMap.get(service) + 1
+    );
   }
 
   removeServiceQuantity(service: ResServicePriceList) {
-
     const serviceInvoiceItem: ResInvoiceItem = {
       code: 0,
       name: service.name,
       price: service.price,
-      invoice: this.invoice
-    }
+      invoice: this.invoice,
+    };
     const index = this.selectedServices.indexOf(serviceInvoiceItem);
     this.selectedServices.splice(index, 1); //remove 1 element starting from index
-    this.serviceQuantityMap.set(service, this.serviceQuantityMap.get(service) - 1);
-
+    this.serviceQuantityMap.set(
+      service,
+      this.serviceQuantityMap.get(service) - 1
+    );
   }
 
   onCheckChanged(service: ResServicePriceList, checked: boolean) {
     // console.log(service,checked);
-    this.serviceContinuationMap.set(service.name + service.price.toString(), checked);
-
+    this.serviceContinuationMap.set(
+      service.name + service.price.toString(),
+      checked
+    );
   }
 
-
-
   CreateInvoice() {
-    console.log(this.historyForm);
-  console.log(this.appointment);
-  
+    this.showSpinner = true;
     if (!this.selectedServices.length) {
-      if (this.appointment.type == "Visit") {
-        this.selectedServices.push({ code: 0, name: "Visit", price: this.appointment.doctor.priceVisit });
+      if (this.appointment.type == 'Visit') {
+        this.selectedServices.push({
+          code: 0,
+          name: 'Visit',
+          price: this.appointment.doctor.priceVisit,
+        });
       } else {
-
-        this.selectedServices.push({ code: 0, name: "Revisit", price: this.appointment.doctor.priceRevisit });
+        this.selectedServices.push({
+          code: 0,
+          name: 'Revisit',
+          price: this.appointment.doctor.priceRevisit,
+        });
       }
     }
     if (this.chosenMembershipUsedUnits && this.membershipChosen) {
-      this.selectedServices.push({ code: 0, name: "Package " + this.membershipChosen.packageBase.name + ", used units: " + this.chosenMembershipUsedUnits, price: 0 });
-
+      this.selectedServices.push({
+        code: 0,
+        name:
+          'Package ' +
+          this.membershipChosen.packageBase.name +
+          ', used units: ' +
+          this.chosenMembershipUsedUnits,
+        price: 0,
+      });
     }
     let totalprice = 0;
-    this.formatSelectedServicesContinuation()
-    this.selectedServices.forEach(service => {
+    this.formatSelectedServicesContinuation();
+    this.selectedServices.forEach((service) => {
       totalprice += service.price;
     });
-    this.customItems.forEach(service => {
+    this.customItems.forEach((service) => {
       totalprice += service.price;
     });
     const newInvoice: ResInvoice = {
@@ -157,32 +175,34 @@ export class MedicalOpsComponent implements OnInit {
       dateFinalized: new Date().toISOString(),
       discount: 0,
       invoiceItems: [],
-      paymentMethod: "",
-      status: "Not Paid",
+      paymentMethod: '',
+      status: 'Not Paid',
       totalAfterDiscount: totalprice,
       totalDue: totalprice,
       totalPaid: 0,
-      totalRemaining: totalprice
+      totalRemaining: totalprice,
     };
 
-    this.servInvoice.addInvoice(newInvoice).subscribe(invoiceWithCode => {
+    this.servInvoice.addInvoice(newInvoice).subscribe((invoiceWithCode) => {
       this.updateAppointmentStatus(); //doctor done
       this.invoice = invoiceWithCode;
       this.invoiceId = invoiceWithCode.code;
       this.formatSelectedServicesInvoice();
       this.CreateInvoiceItems();
     });
-
   }
 
   private updateAppointmentStatus() {
-    this.appointment.status = "Doctor Done";
-    this.servAppointment.updateAppointment(this.appointment).subscribe(res => {
-
-    });
+    this.appointment.status = 'Doctor Done';
+    this.servAppointment
+      .updateAppointment(this.appointment)
+      .subscribe((res) => {});
   }
 
-  private updateMembershipDeductUnits(unitsUsed: number, membership: ResMembership) {
+  private updateMembershipDeductUnits(
+    unitsUsed: number,
+    membership: ResMembership
+  ) {
     membership.remainingAmount -= unitsUsed;
     let tempPatient = this.appointment.patient;
     tempPatient.memberships = [];
@@ -192,42 +212,45 @@ export class MedicalOpsComponent implements OnInit {
     });
   }
   private formatSelectedServicesContinuation() {
-    this.selectedServices.map(service => {
-
-      if (this.serviceContinuationMap.get(service.name + service.price.toString())) {
-        service.name += " Continuation"
-        service.price = 0
+    this.selectedServices.map((service) => {
+      if (
+        this.serviceContinuationMap.get(service.name + service.price.toString())
+      ) {
+        service.name += ' Continuation';
+        service.price = 0;
       }
-
-
     });
   }
   private formatSelectedServicesInvoice() {
-    this.selectedServices.map(service => {
-
-
+    this.selectedServices.map((service) => {
       service.invoice = this.invoice;
-
     });
-    this.customItems.map(service => {
+    this.customItems.map((service) => {
       service.invoice = this.invoice;
     });
   }
   private CreateInvoiceItems() {
-
-    console.log(this.selectedServices.concat(this.customItems));
-    this.servInvoiceItem.addInvoiceItemMulti(this.selectedServices.concat(this.customItems)).subscribe(res => {
-
-      if (this.chosenMembershipUsedUnits && this.membershipChosen) {
-        this.updateMembershipDeductUnits(this.chosenMembershipUsedUnits, this.membershipChosen);
-      }
-      else { this.goToDoctor(); }
-    });
+    this.servInvoiceItem
+      .addInvoiceItemMulti(this.selectedServices.concat(this.customItems))
+      .subscribe((res) => {
+        if (this.chosenMembershipUsedUnits && this.membershipChosen) {
+          this.updateMembershipDeductUnits(
+            this.chosenMembershipUsedUnits,
+            this.membershipChosen
+          );
+        } else {
+          this.goToDoctor();
+        }
+      });
   }
 
   private goToDoctor() {
-
-    this.router.navigate(['admin', 'doctor', this.appointment.doctor.code.toString()]);
+    this.showSpinner = false;
+    this.router.navigate([
+      'admin',
+      'doctor',
+      this.appointment.doctor.code.toString(),
+    ]);
   }
 
   private getAppointmentCode() {
@@ -235,10 +258,12 @@ export class MedicalOpsComponent implements OnInit {
   }
 
   openAddCustomInvoiceItemDialog() {
+    const dialogRef = this.dialogAddCustomInvoiceItem.open(
+      AddCustomItemMedopsDialogComponent,
+      { disableClose: true }
+    );
 
-    const dialogRef = this.dialogAddCustomInvoiceItem.open(AddCustomItemMedopsDialogComponent, { disableClose: true });
-
-    dialogRef.afterClosed().subscribe(CustomItem => {
+    dialogRef.afterClosed().subscribe((CustomItem) => {
       if (CustomItem) {
         // console.log("closed", CustomItem);
         this.customItems.push(CustomItem);
@@ -247,10 +272,5 @@ export class MedicalOpsComponent implements OnInit {
     });
   }
 
-
-
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 }

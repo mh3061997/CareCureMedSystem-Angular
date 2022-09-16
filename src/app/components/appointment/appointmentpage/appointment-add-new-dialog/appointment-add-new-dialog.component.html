@@ -1,141 +1,222 @@
-<h1 class="mat-dialog-title bg-white ">Add New Appointment</h1>
+<h1 class="mat-dialog-title bg-white">Add New Appointment</h1>
 <div class="mat-dialog-content bg-white">
+  <form
+    *ngIf="patients"
+    (ngSubmit)="onNewAppointmentSubmit()"
+    #newAppointmentForm="ngForm"
+  >
+    <div class="container-fluid">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <mat-label>Patient</mat-label>
 
-    <form *ngIf="patients" (ngSubmit)="onNewAppointmentSubmit()" #newAppointmentForm="ngForm">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-
-
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Patient</mat-label>
-
-                            <input type="text" name="patient" required matInput [formControl]="patientFormControl"
-                                [matAutocomplete]="patientAutoComplete">
-                            <span class="form-text text-muted"
-                                *ngIf="patientFormControl.touched && patientFormControl.invalid">Please choose patient
-                                name !<br></span>
-                            <mat-autocomplete #patientAutoComplete="matAutocomplete" [displayWith]="displayFnPatient">
-                                <mat-option *ngFor="let patient of filteredpatients | async" [value]="patient">
-                                    {{patient.name}} | Code: {{patient.code}}
-                                </mat-option>
-
-                            </mat-autocomplete>
-                        </mat-form-field>
-
-                    </div>
-                    <div class="col-md-6">
-
-                        <mat-form-field>
-                            <label for="input-name" class="form-control-label">Speciality</label>
-                            <span class="form-text text-muted" *ngIf="speciality.touched && speciality.invalid">Please
-                                enter speciality
-                                !<br></span>
-                            <mat-select (selectionChange)="onSpecialityChange($event)" ngModel name="speciality" class="form-control" required #speciality="ngModel">
-
-                                <mat-option *ngFor="let speciality of specialities" [value]="speciality">{{speciality}}</mat-option>
-                               
-                            </mat-select>
-                        </mat-form-field>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                   
-
-                        <mat-form-field *ngIf="doctors" class="example-full-width">
-                            <mat-label>Doctor</mat-label>
-
-                            <input type="text" name="doctor" required matInput [formControl]="doctorFormControl"
-                                [matAutocomplete]="doctorAutoComplete">
-                            <span class="form-text text-muted"
-                                *ngIf="doctorFormControl.touched && doctorFormControl.invalid">Please choose doctor name
-                                !<br></span>
-                            <mat-autocomplete #doctorAutoComplete="matAutocomplete" [displayWith]="displayFnDoctor">
-                                <mat-option *ngFor="let doctor of filtereddoctors | async" [value]="doctor">
-                                    {{doctor.name}} | Code: {{doctor.code}}
-                                </mat-option>
-
-                            </mat-autocomplete>
-                        </mat-form-field>
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <mat-form-field>
-                            <label for="input-name" class="form-control-label">Type</label>
-                            <span class="form-text text-muted" *ngIf="type.touched && type.invalid">Please enter
-                                type !<br></span>
-                            <mat-select ngModel name="type" class="form-control" required #type="ngModel">
-
-                                <mat-option value="Visit">Visit</mat-option>
-                                <mat-option value="Revisit">Revisit</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <mat-form-field *ngIf="doctorFormControl.value" appearance="fill">
-                            <mat-label>Choose Visit Date</mat-label>
-                            <input (dateInput)="onDateChange($event.target.value)" matInput name="dateToVisit" required ngModel #dateCreated="ngModel"
-                                [matDatepicker]="dp1" [matDatepickerFilter]="datePickerDoctorDaysFilter">
-
-                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                            <mat-datepicker  required #dp1></mat-datepicker>
-
-                        </mat-form-field>
-
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field *ngIf="newAppointmentForm.value.dateToVisit && reservedDoctorTimes">
-                            <label for="input-name" class="form-control-label">Time of Visit</label>
-                            <span class="form-text text-muted" *ngIf="timeToVisit.touched && timeToVisit.invalid">Please enter
-                                time !<br></span>
-                            <mat-select ngModel name="timeToVisit" class="form-control" required #timeToVisit="ngModel">
-
-                                <mat-option
-                                 *ngFor="let time of timeIntervals" 
-                                [value]="time" 
-                                [disabled]="!isWithinWorkingHours(time) || isTimeClash(time)">
-                                {{time.hour}}:{{time.minute}} {{time.AMPM}}</mat-option>
-                                
-                            </mat-select>
-                        </mat-form-field>
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <mat-form-field>
-
-                            <label for="input-name" class="form-control-label">Note</label>
-                            <input matInput type="text" name="note" class="form-control" ngModel #note="ngModel">
-
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <button class="btn btn-success"
-                [disabled]="!(checkAddAppointmentFormValidity() && newAppointmentForm.valid && patientFormControl.valid && doctorFormControl.valid)"
-                type="submit">Add</button>
-
+              <input
+                type="text"
+                name="patient"
+                required
+                matInput
+                [formControl]="patientFormControl"
+                [matAutocomplete]="patientAutoComplete"
+              />
+              <span
+                class="form-text text-muted"
+                *ngIf="patientFormControl.touched && patientFormControl.invalid"
+                >Please choose patient name !<br
+              /></span>
+              <mat-autocomplete
+                #patientAutoComplete="matAutocomplete"
+                [displayWith]="displayFnPatient"
+              >
+                <mat-option
+                  *ngFor="let patient of filteredpatients | async"
+                  [value]="patient"
+                >
+                  {{ patient.name }} | Code: {{ patient.code }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <label for="input-name" class="form-control-label"
+                >Speciality</label
+              >
+              <span
+                class="form-text text-muted"
+                *ngIf="speciality.touched && speciality.invalid"
+                >Please enter speciality !<br
+              /></span>
+              <mat-select
+                (selectionChange)="onSpecialityChange($event)"
+                ngModel
+                name="speciality"
+                class="form-control"
+                required
+                #speciality="ngModel"
+              >
+                <mat-option
+                  *ngFor="let speciality of specialities"
+                  [value]="speciality"
+                  >{{ speciality }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-    </form>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-6">
+            <mat-form-field *ngIf="doctors" class="example-full-width">
+              <mat-label>Doctor</mat-label>
+
+              <input
+                type="text"
+                name="doctor"
+                required
+                matInput
+                [formControl]="doctorFormControl"
+                [matAutocomplete]="doctorAutoComplete"
+              />
+              <span
+                class="form-text text-muted"
+                *ngIf="doctorFormControl.touched && doctorFormControl.invalid"
+                >Please choose doctor name !<br
+              /></span>
+              <mat-autocomplete
+                #doctorAutoComplete="matAutocomplete"
+                [displayWith]="displayFnDoctor"
+              >
+                <mat-option
+                  *ngFor="let doctor of filtereddoctors | async"
+                  [value]="doctor"
+                >
+                  {{ doctor.name }} | Code: {{ doctor.code }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <label for="input-name" class="form-control-label">Type</label>
+              <span
+                class="form-text text-muted"
+                *ngIf="type.touched && type.invalid"
+                >Please enter type !<br
+              /></span>
+              <mat-select
+                ngModel
+                name="type"
+                class="form-control"
+                required
+                #type="ngModel"
+              >
+                <mat-option value="Visit">Visit</mat-option>
+                <mat-option value="Revisit">Revisit</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-6">
+            <mat-form-field *ngIf="doctorFormControl.value" appearance="fill">
+              <mat-label>Choose Visit Date</mat-label>
+              <input
+                (dateInput)="onDateChange($event.target.value)"
+                matInput
+                name="dateToVisit"
+                required
+                ngModel
+                #dateCreated="ngModel"
+                [matDatepicker]="dp1"
+                [matDatepickerFilter]="datePickerDoctorDaysFilter"
+              />
+
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="dp1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker required #dp1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field
+              *ngIf="
+                newAppointmentForm.value.dateToVisit && reservedDoctorTimes
+              "
+            >
+              <label for="input-name" class="form-control-label"
+                >Time of Visit</label
+              >
+              <span
+                class="form-text text-muted"
+                *ngIf="timeToVisit.touched && timeToVisit.invalid"
+                >Please enter time !<br
+              /></span>
+              <mat-select
+                ngModel
+                name="timeToVisit"
+                class="form-control"
+                required
+                #timeToVisit="ngModel"
+              >
+                <mat-option
+                  *ngFor="let time of timeIntervals"
+                  [value]="time"
+                  [disabled]="!isWithinWorkingHours(time) || isTimeClash(time)"
+                >
+                  {{ time.hour }}:{{ time.minute }} {{ time.AMPM }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-6">
+            <mat-form-field>
+              <label for="input-name" class="form-control-label">Note</label>
+              <input
+                matInput
+                type="text"
+                name="note"
+                class="form-control"
+                ngModel
+                #note="ngModel"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn btn-success"
+        [disabled]="
+          !(
+            checkAddAppointmentFormValidity() &&
+            newAppointmentForm.valid &&
+            patientFormControl.valid &&
+            doctorFormControl.valid
+          )
+        "
+        type="submit"
+      >
+        Add
+      </button>
+      <div
+        class="spinner-wrapper"
+        [style.display]="showSpinner ? 'block' : 'none'"
+      >
+        <div class="spinner">Loading...</div>
+      </div>
+    </div>
+  </form>
 </div>
